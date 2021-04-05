@@ -2,7 +2,7 @@ import React from "react";
 import SearchField from "react-search-field";
 import Calendar from "react-calendar";
 
-const Hero = ({ handleLogout }) => {
+const UnregisteredSponsorHome = ({ handleLogout }) => {
   return (
     <body>
       <section>
@@ -13,15 +13,10 @@ const Hero = ({ handleLogout }) => {
         </nav>
         <nav>
           <h2>Homepage</h2>
-        </nav>
+        </nav>  
         <div>
           <h1>Menu</h1>
-          <button>Edit My Profile</button>
-          <button>Payment History</button>
-          <button>Children Profiles</button>
-          <button>Academic Reports</button>
-          <button>Request a Meeting</button>
-          <button>Letter Box</button>
+          <button>Register as a Sponsor</button>
         </div>
         <div>
           <h1>Calendar</h1>
@@ -38,4 +33,4 @@ const Hero = ({ handleLogout }) => {
   );
 };
 
-export default Hero;
+export default UnregisteredSponsorHome;

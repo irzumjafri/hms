@@ -2,7 +2,7 @@ import React from "react";
 import SearchField from "react-search-field";
 import Calendar from "react-calendar";
 
-const Hero = ({ handleLogout }) => {
+const RegisteredSponsorHome = ({ handleLogout }) => {
   return (
     <body>
       <section>
@@ -38,4 +38,4 @@ const Hero = ({ handleLogout }) => {
   );
 };
 
-export default Hero;
+export default RegisteredSponsorHome;
