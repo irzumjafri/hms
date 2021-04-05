@@ -72,7 +72,7 @@ const Signup = (props) => {
         <p className="errorMsg">{pwdError}</p>
         <div className="btnContainer">
           <>
-            <button onClick={handleSignUp}>Create My Account!</button>
+            <button className = "button_blue" onClick={handleSignUp}>Create My Account!</button>
             <p>
               Have an account?{" "}
               <span onClick={() => setHasAccount(!hasAccount)}>Sign In</span>
