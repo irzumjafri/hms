@@ -5,7 +5,7 @@ const Hero = ({handleLogout}) => {
         <section className="hero">
             <nav>
                 <h2>Welcome</h2>
-                <button onClick={handleLogout}>Logout</button>
+                <button className="button_blue" onClick={handleLogout}>Logout</button>
             </nav>
         </section>
     )
