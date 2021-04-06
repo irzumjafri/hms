@@ -48,7 +48,7 @@ const App = () => {
 
   const handleSignUp = () => {
     clearErrors();
-    fire
+      fire
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch((err) => {
@@ -61,7 +61,7 @@ const App = () => {
             setPwdError(err.message);
             break;
         }
-      });
+      });    
   };
 
   const handleLogout = () => {

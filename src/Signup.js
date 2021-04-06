@@ -54,7 +54,7 @@ const Signup = (props) => {
           value={dateofbirth}
           onChange={(e) => setDateOfBirth(e.target.value)}
         ></input>
-        <label>New Password *</label>
+        <label>Password *</label>
         <input
           type="password"
           required
@@ -62,7 +62,7 @@ const Signup = (props) => {
           onChange={(e) => setPassword(e.target.value)}
         ></input>
         <p className="errorMsg">{pwdError}</p>
-        <label>Confirm New Password *</label>
+        <label>Confirm Password *</label>
         <input
           type="password"
           required
@@ -72,7 +72,7 @@ const Signup = (props) => {
         <p className="errorMsg">{pwdError}</p>
         <div className="btnContainer">
           <>
-            <button className = "button_blue" onClick={handleSignUp}>Create My Account!</button>
+            {(firstname && lastname && dateofbirth && confirmpassword == password) ? (<button className = "button_green" onClick={handleSignUp}>Create My Account!</button>) : (<button className = "button_blue">Create My Account!</button>)}
             <p>
               Have an account?{" "}
               <span onClick={() => setHasAccount(!hasAccount)}>Sign In</span>

@@ -22,7 +22,7 @@ const Login = (props) => {
       <div className="loginContainer">
         <div className="btnContainer">
           <label className="titletext">SIGN IN</label>
-          <label>Username</label>
+          <label>Email</label>
           <input
             type="text"
             autoFocus
