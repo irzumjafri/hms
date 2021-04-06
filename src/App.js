@@ -9,10 +9,10 @@ const App = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [dateofbirth, setDateOfBirth] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
 
@@ -36,19 +36,19 @@ const App = () => {
   };
 
   const signupErrorCheck = () => {
-    if (!firstname){
+    if (!firstName){
       setErrorMessage("First name not entered.")
       return 0;
     }
-    else if (!lastname){
+    else if (!lastName){
       setErrorMessage("Last name not entered.")
       return 0;
     }
-    else if (!dateofbirth){
+    else if (!dateOfBirth){
       setErrorMessage("Date of birth not entered.")
       return 0;
     }
-    else if (!confirmpassword || confirmpassword != password){
+    else if (!confirmPassword || confirmPassword != password){
       setErrorMessage("Passwords don't match.")
       return 0;
     }
@@ -66,7 +66,7 @@ const App = () => {
         .catch((err) => {
           setErrorMessage(err.message);
         });
-      // FIRESTORE: ADD ADDITIONAL DATA TO USER PROFILE
+      // FIRESTORE: ADD ADDITIONAL DATA TO USER PROFILE {firstName}{lastName}{dateOfBirth}
     }
   };
 
@@ -113,13 +113,13 @@ const App = () => {
               setEmail={setEmail}
               password={password}
               setPassword={setPassword}
-              confirmpassword={confirmpassword}
+              confirmpassword={confirmPassword}
               setConfirmPassword={setConfirmPassword}
-              dateofbirth={dateofbirth}
+              dateofbirth={dateOfBirth}
               setDateOfBirth={setDateOfBirth}
-              firstname={firstname}
+              firstname={firstName}
               setFirstName={setFirstName}
-              lastname={lastname}
+              lastname={lastName}
               setLastName={setLastName}
               handleLogin={handleLogin}
               handleSignUp={handleSignUp}
