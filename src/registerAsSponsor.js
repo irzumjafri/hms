@@ -1,12 +1,12 @@
 import React from "react";
 import SearchField from "react-search-field";
 
-const EditMyProfileAdmin = (props) => {
+const RegisterAsSponsor = (props) => {
   const {
-    firstname,
-    lastname,
+    firstName,
+    lastName,
     email,
-    dateofbirth,
+    dateOfBirth,
     setEmail,
     handleLogout,
     setFirstName,
@@ -18,10 +18,14 @@ const EditMyProfileAdmin = (props) => {
     setPhoneNumber,
     address,
     setAddress,
-    department,
-    setDepartment,
-    institution,
-    setInstitution,
+    preferredMediumOfCommunication,
+    setPreferredMediumOfCommunication,
+    numberOfSponsoredChildren,
+    setNumberOfSponsoredChildren,
+    paymentMethod,
+    setPaymentMethod,
+    paymentSchedule,
+    setPaymentSchedule,
   } = props;
 
   return (
@@ -33,24 +37,24 @@ const EditMyProfileAdmin = (props) => {
           <button onClick={handleLogout}>Logout</button>
         </nav>
         <section>
-          <h2>EDIT MY PROFILE</h2>
+          <h2>REGISTER AS A SPONSOR</h2>
           <button /*make on click function*/> HOME PAGE </button>
         </section>
-        <section className="editMyProfileAdmin">
-          <div className="editMyProfileAdminContainer">
+        <section className="register">
+          <div className="registerContainer">
             <label>First Name *</label>
             <input
               type="text"
               autoFocus
               required
-              value={firstname}
+              value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             ></input>
             <label>Last Name *</label>
             <input
               type="text"
               required
-              value={lastname}
+              value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             ></input>
             <label>Email *</label>
@@ -64,10 +68,10 @@ const EditMyProfileAdmin = (props) => {
             <input
               type="text"
               required
-              value={dateofbirth}
+              value={dateOfBirth}
               onChange={(e) => setDateOfBirth(e.target.value)}
             ></input>
-            <label>CNIC *</label>
+            <label>CNIC </label>
             <input
               type="text"
               required
@@ -88,27 +92,40 @@ const EditMyProfileAdmin = (props) => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             ></input>
-            <label>Department *</label>
+            <label>Preferred Medium of Communication *</label>
             <input
               type="text"
               required
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
+              value={preferredMediumOfCommunication}
+              onChange={(e) =>
+                setPreferredMediumOfCommunication(e.target.value)
+              } // make it into drop down menu
             ></input>
-            <label>Institution *</label>
+            <label>Number of Sponsored Children *</label>
             <input
               type="text"
               required
-              value={institution}
-              onChange={(e) => setInstitution(e.target.value)}
+              value={numberOfSponsoredChildren}
+              onChange={(e) => setNumberOfSponsoredChildren(e.target.value)}
+            ></input>
+            <label>Payment Method *</label>
+            <input
+              type="text"
+              required
+              value={paymentMethod}
+              onChange={(e) => setPaymentMethod(e.target.value)} // make it into drop down menu
+            ></input>
+            <label>Payment Schedule *</label>
+            <input
+              type="text"
+              required
+              value={paymentSchedule}
+              onChange={(e) => setPaymentSchedule(e.target.value)} // make it into drop down menu
             ></input>
 
             <div className="btnContainer">
               <button /* make on click function*/ className="button_green">
-                ✅ Save Changes
-              </button>
-              <button /* make on click function*/ className="button_red">
-                ❌ Discard Changes
+                Register Me!
               </button>
             </div>
           </div>
@@ -120,4 +137,4 @@ const EditMyProfileAdmin = (props) => {
   );
 };
 
-export default EditMyProfileAdmin;
+export default RegisterAsSponsor;

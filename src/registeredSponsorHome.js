@@ -2,7 +2,10 @@ import React from "react";
 import SearchField from "react-search-field";
 import Calendar from "react-calendar";
 
-const RegisteredSponsorHome = ({ handleLogout }) => {
+const RegisteredSponsorHome = (props) => {
+  const {
+    handleLogout,
+  } = props
   return (
     <body>
       <section>

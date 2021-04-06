@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from "react";
 import fire from "./fire";
+// import db from "./fire";  // importing database variable here
 import Login from "./Login";
 import Signup from "./Signup";
 import "./App.css";
 import Hero from "./Hero";
-// IRZUM IS MOTUUU
+import RegisteredSponsorHome from "./registeredSponsorHome";
+import UnregisteredSponsorHome from "./unregisteredSponsorHome";
+import RegisterAsSponsor from "./registerAsSponsor";
+import firebase from 'firebase';
+
+// setting up the database here
+const db = firebase.firestore();
+// setting this settign to avoid warnings
+db.settings({ timestampsInSnapshots: true });
+
+
 const App = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
@@ -13,8 +24,95 @@ const App = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
+  const [cnic, setCnic] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [
+    preferredMediumOfCommunication,
+    setPreferredMediumOfCommunication,
+  ] = useState("");
+  const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
+    ""
+  );
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [hasAccount, setHasAccount] = useState(false);
+  const [hasAccount, setHasAccount] = useState(true);
+  const [router, setRouter] = useState("unregistered"); //change it to null value when updating from database
+
+
+// WHY IS DATA GETTING STORED IN DB EVEN WHEN THERE IS A FRONT END ERROR ??!??!!
+
+  // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
+  const createUserAccount = () => {
+    
+    db.collection("userAccounts").doc(user.uid).set({
+      firstName: firstName,
+      lastName: lastName,
+      dateOfBirth: dateOfBirth,
+      email: email,
+      password: confirmPassword,
+      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate()
+    })
+  }
+
+  // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
+  const createSponsorshipRequest = () => {
+    
+    db.collection("sponsorshipApplicants").doc(user.uid).set({
+      // sponsor profile data, visible to sponsors
+      firstName: firstName,
+      lastName: lastName, // user. ???
+      emailAddress: email,  // user.email?
+      dateOfBirth: dateOfBirth,
+      cnic: cnic,
+      phoneNumber: phoneNumber,
+      address: address,
+      preferredMediumOfCommunication: preferredMediumOfCommunication,
+      numberOfSponsoredChildren: numberOfSponsoredChildren,
+      paymentMethod: paymentMethod,
+      paymentSchedule: paymentSchedule,
+      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+      
+      // fields to be used by admin, only visible to admins
+      applicationStatus: "Pending",  // admin can update this to accept or reject
+      howToAssignChildren: "Pending" // admin can update this to "auto-assign" or "assign-manually"
+    })
+  }
+
+  //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
+
+  // how we have gone about this is that all the data fields get resubmitted by the same vairable names
+  // Is that okay ??? Or are you guys doig about this differently ???
+  // Also look at the comment inside
+  const editSponsorProfile = () => {
+
+    let profileToEdit = db.collection("registeredSponsors").doc(user.uid);  // or search through name?
+
+    return profileToEdit.update({
+      firstName: firstName,
+      lastName: lastName,
+      emailAddress: email,
+      dateOfBirth: dateOfBirth,
+      cnic: cnic,
+      phoneNumber: phoneNumber,
+      address: address,
+      preferredMediumOfCommunication: preferredMediumOfCommunication,
+      numberOfSponsoredChildren: numberOfSponsoredChildren,
+      paymentMethod: paymentMethod,
+      paymentSchedule: paymentSchedule,
+
+      // cannot be updated by the sponsor so we don't even show them in the front end. How to do that ???
+      // applicationStatus: applicationStatus,  
+      // howToAssignChildren: howToAssignChildren
+    })
+  }
+
+
+
+  const registerRouter = () => {
+    setRouter("registering");
+  };
 
   const clearInputs = () => {
     setEmail("");
@@ -45,7 +143,7 @@ const App = () => {
     } else if (!dateOfBirth) {
       setErrorMessage("Date of birth not entered.");
       return 0;
-    } else if (!confirmPassword || confirmPassword != password) {
+    } else if (!confirmPassword || confirmPassword !== password) {
       setErrorMessage("Passwords don't match.");
       return 0;
     } else {
@@ -53,21 +151,31 @@ const App = () => {
     }
   };
 
+
+
   const handleSignUp = () => {
     clearErrors();
     if (signupErrorCheck()) {
-      fire
+      // try {
+      //   fire
+      //   .auth()
+      //   .createUserWithEmailAndPassword(email, password)
+      //   createUserAccount();       // user account data being set in database in this function call
+      // } catch (error){
+      //   setErrorMessage(error.message);
+      // }
+     
+        fire
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .catch((err) => {
-          setErrorMessage(err.message);
-        });
-      // FIRESTORE: ADD ADDITIONAL DATA TO USER PROFILE {firstName}{lastName}{dateOfBirth}
-      //ALSO PULL UUID
+        createUserAccount();       // user account data being set in database in this function call
+        //setErrorMessage(error.message);
+
     }
   };
 
   const handleLogout = () => {
+    setRouter("unregistered"); //change it to null value when updating from database
     fire.auth().signOut();
   };
 
@@ -76,6 +184,7 @@ const App = () => {
       if (user) {
         clearInputs();
         setUser(user);
+        console.log(user);
       } else {
         setUser("");
       }
@@ -89,7 +198,50 @@ const App = () => {
   return (
     <div className="App">
       {user ? (
-        <Hero handleLogout={handleLogout} />
+        <>
+          {
+            {
+              registered: <RegisteredSponsorHome handleLogout={handleLogout} />,
+              unregistered: (
+                <UnregisteredSponsorHome
+                  registerRouter={registerRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              registering: (
+                <RegisterAsSponsor
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  preferredMediumOfCommunication={
+                    preferredMediumOfCommunication
+                  }
+                  setPreferredMediumOfCommunication={
+                    setPreferredMediumOfCommunication
+                  }
+                  numberOfSponsoredChildren={numberOfSponsoredChildren}
+                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  paymentSchedule={paymentSchedule}
+                  setPaymentSchedule={setPaymentSchedule}
+                />
+              ),
+            }[router]
+          }
+        </>
       ) : (
         <>
           {" "}
@@ -123,7 +275,6 @@ const App = () => {
               hasAccount={hasAccount}
               setHasAccount={setHasAccount}
               errorMessage={errorMessage}
-              setErrorMessage={setErrorMessage}
             />
           )}{" "}
         </>

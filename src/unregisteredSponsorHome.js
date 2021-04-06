@@ -2,7 +2,12 @@ import React from "react";
 import SearchField from "react-search-field";
 import Calendar from "react-calendar";
 
-const UnregisteredSponsorHome = ({ handleLogout }) => {
+const UnregisteredSponsorHome = (props) => {
+  const{
+    handleLogout,
+    registerRouter,
+  } = props;
+
   return (
     <body>
       <section>
@@ -16,7 +21,7 @@ const UnregisteredSponsorHome = ({ handleLogout }) => {
         </nav>  
         <div>
           <h1>Menu</h1>
-          <button>Register as a Sponsor</button>
+          <button onClick={registerRouter}>Register as a Sponsor</button>
         </div>
         <div>
           <h1>Calendar</h1>

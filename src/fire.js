@@ -14,3 +14,4 @@ var firebaseConfig = {
   firebase.analytics();
 
   export default fire;
+  
