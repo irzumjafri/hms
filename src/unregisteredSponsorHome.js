@@ -5,7 +5,7 @@ import Calendar from "react-calendar";
 const UnregisteredSponsorHome = (props) => {
   const{
     handleLogout,
-    registerRouter
+    registerRouter,
   } = props;
 
   return (

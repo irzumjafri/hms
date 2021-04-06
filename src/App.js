@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import fire from "./fire";
+// import db from "./fire";  // importing database variable here
 import Login from "./Login";
 import Signup from "./Signup";
 import "./App.css";
@@ -7,6 +8,13 @@ import Hero from "./Hero";
 import RegisteredSponsorHome from "./registeredSponsorHome";
 import UnregisteredSponsorHome from "./unregisteredSponsorHome";
 import RegisterAsSponsor from "./registerAsSponsor";
+import firebase from 'firebase';
+
+// setting up the database here
+const db = firebase.firestore();
+// setting this settign to avoid warnings
+db.settings({ timestampsInSnapshots: true });
+
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -33,8 +41,74 @@ const App = () => {
   const [router, setRouter] = useState("unregistered"); //change it to null value when updating from database
 
 
-  //CREATE REGISTERSPONSOR FUNCTION
-  //FIRESTORE LINK
+// WHY IS DATA GETTING STORED IN DB EVEN WHEN THERE IS A FRONT END ERROR ??!??!!
+
+  // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
+  const createUserAccount = () => {
+    
+    db.collection("userAccounts").doc(user.uid).set({
+      firstName: firstName,
+      lastName: lastName,
+      dateOfBirth: dateOfBirth,
+      email: email,
+      password: confirmPassword,
+      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate()
+    })
+  }
+
+  // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
+  const createSponsorshipRequest = () => {
+    
+    db.collection("sponsorshipApplicants").doc(user.uid).set({
+      // sponsor profile data, visible to sponsors
+      firstName: firstName,
+      lastName: lastName, // user. ???
+      emailAddress: email,  // user.email?
+      dateOfBirth: dateOfBirth,
+      cnic: cnic,
+      phoneNumber: phoneNumber,
+      address: address,
+      preferredMediumOfCommunication: preferredMediumOfCommunication,
+      numberOfSponsoredChildren: numberOfSponsoredChildren,
+      paymentMethod: paymentMethod,
+      paymentSchedule: paymentSchedule,
+      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+      
+      // fields to be used by admin, only visible to admins
+      applicationStatus: "Pending",  // admin can update this to accept or reject
+      howToAssignChildren: "Pending" // admin can update this to "auto-assign" or "assign-manually"
+    })
+  }
+
+  //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
+
+  // how we have gone about this is that all the data fields get resubmitted by the same vairable names
+  // Is that okay ??? Or are you guys doig about this differently ???
+  // Also look at the comment inside
+  const editSponsorProfile = () => {
+
+    let profileToEdit = db.collection("registeredSponsors").doc(user.uid);  // or search through name?
+
+    return profileToEdit.update({
+      firstName: firstName,
+      lastName: lastName,
+      emailAddress: email,
+      dateOfBirth: dateOfBirth,
+      cnic: cnic,
+      phoneNumber: phoneNumber,
+      address: address,
+      preferredMediumOfCommunication: preferredMediumOfCommunication,
+      numberOfSponsoredChildren: numberOfSponsoredChildren,
+      paymentMethod: paymentMethod,
+      paymentSchedule: paymentSchedule,
+
+      // cannot be updated by the sponsor so we don't even show them in the front end. How to do that ???
+      // applicationStatus: applicationStatus,  
+      // howToAssignChildren: howToAssignChildren
+    })
+  }
+
+
 
   const registerRouter = () => {
     setRouter("registering");
@@ -86,8 +160,9 @@ const App = () => {
         .catch((err) => {
           setErrorMessage(err.message);
         });
-      // FIRESTORE: ADD ADDITIONAL DATA TO USER PROFILE {firstName}{lastName}{dateOfBirth}
-      //ALSO PULL UID {user.uid}
+
+      // user account data being set in database in this function call
+      createUserAccount();
     }
   };
 
