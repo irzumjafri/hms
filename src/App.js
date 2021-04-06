@@ -67,6 +67,7 @@ const App = () => {
           setErrorMessage(err.message);
         });
       // FIRESTORE: ADD ADDITIONAL DATA TO USER PROFILE {firstName}{lastName}{dateOfBirth}
+      //ALSO PULL UUID
     }
   };
 
