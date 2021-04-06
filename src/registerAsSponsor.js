@@ -1,7 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
 
-const RegisteredAsSponsor = (props) => {
+const RegisterAsSponsor = (props) => {
   const {
     firstname,
     lastname,
@@ -137,4 +137,4 @@ const RegisteredAsSponsor = (props) => {
   );
 };
 
-export default RegisteredAsSponsor;
+export default RegisterAsSponsor;
