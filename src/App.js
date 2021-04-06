@@ -4,7 +4,9 @@ import Login from "./Login";
 import Signup from "./Signup";
 import "./App.css";
 import Hero from "./Hero";
-// IRZUM IS MOTUUU
+import RegisteredSponsorHome from "./registeredSponsorHome"
+import UnregisteredSponsorHome from "./unregisteredSponsorHome"
+
 const App = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
@@ -14,7 +16,8 @@ const App = () => {
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [hasAccount, setHasAccount] = useState(false);
+  const [hasAccount, setHasAccount] = useState(true);
+  const [router,setRouter] = useState("unregistered");
 
   const clearInputs = () => {
     setEmail("");
@@ -63,7 +66,7 @@ const App = () => {
           setErrorMessage(err.message);
         });
       // FIRESTORE: ADD ADDITIONAL DATA TO USER PROFILE {firstName}{lastName}{dateOfBirth}
-      //ALSO PULL UUID
+      //ALSO PULL UID {user.uid}
     }
   };
 
@@ -76,6 +79,7 @@ const App = () => {
       if (user) {
         clearInputs();
         setUser(user);
+        console.log(user)
       } else {
         setUser("");
       }
@@ -89,7 +93,11 @@ const App = () => {
   return (
     <div className="App">
       {user ? (
-        <Hero handleLogout={handleLogout} />
+        <>{{'registered':
+        <RegisteredSponsorHome handleLogout={handleLogout} />,
+      'unregistered':
+        <UnregisteredSponsorHome handleLogout={handleLogout}/>
+    }[router]}</>
       ) : (
         <>
           {" "}
@@ -123,7 +131,6 @@ const App = () => {
               hasAccount={hasAccount}
               setHasAccount={setHasAccount}
               errorMessage={errorMessage}
-              setErrorMessage={setErrorMessage}
             />
           )}{" "}
         </>
