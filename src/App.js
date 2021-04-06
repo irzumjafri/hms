@@ -39,22 +39,9 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
   const [router, setRouter] = useState("unregistered"); //change it to null value when updating from database
+  const [applicationStatus, setApplicationStatus] = useState("");
+  const [howToAssignChildren, setHowToAssignChildren] = useState("");
 
-
-// WHY IS DATA GETTING STORED IN DB EVEN WHEN THERE IS A FRONT END ERROR ??!??!!
-
-  // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
-  const createUserAccount = () => {
-    
-    db.collection("userAccounts").doc(user.uid).set({
-      firstName: firstName,
-      lastName: lastName,
-      dateOfBirth: dateOfBirth,
-      email: email,
-      password: confirmPassword,
-      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate()
-    })
-  }
 
   // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
   const createSponsorshipRequest = () => {
@@ -62,8 +49,8 @@ const App = () => {
     db.collection("sponsorshipApplicants").doc(user.uid).set({
       // sponsor profile data, visible to sponsors
       firstName: firstName,
-      lastName: lastName, // user. ???
-      emailAddress: email,  // user.email?
+      lastName: lastName,
+      emailAddress: email,
       dateOfBirth: dateOfBirth,
       cnic: cnic,
       phoneNumber: phoneNumber,
@@ -81,10 +68,6 @@ const App = () => {
   }
 
   //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
-
-  // how we have gone about this is that all the data fields get resubmitted by the same vairable names
-  // Is that okay ??? Or are you guys doig about this differently ???
-  // Also look at the comment inside
   const editSponsorProfile = () => {
 
     let profileToEdit = db.collection("registeredSponsors").doc(user.uid);  // or search through name?
@@ -102,12 +85,13 @@ const App = () => {
       paymentMethod: paymentMethod,
       paymentSchedule: paymentSchedule,
 
-      // cannot be updated by the sponsor so we don't even show them in the front end. How to do that ???
-      // applicationStatus: applicationStatus,  
-      // howToAssignChildren: howToAssignChildren
+      // cannot be updated by the sponsor so we don't even show them in the front end
+      applicationStatus: applicationStatus,  
+      howToAssignChildren: howToAssignChildren
     })
   }
 
+  // function that retreives all of data about a sponsor to set the states
 
 
   const registerRouter = () => {
@@ -151,6 +135,19 @@ const App = () => {
     }
   };
 
+  // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
+  const createUserAccount = () => {
+  
+    db.collection("userAccounts").doc(user.uid).set({
+      firstName: firstName,
+      lastName: lastName,
+      dateOfBirth: dateOfBirth,
+      email: email,
+      password: confirmPassword,
+      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate()
+    })
+  }
+
   const handleSignUp = () => {
     clearErrors();
     if (signupErrorCheck()) {
@@ -158,7 +155,8 @@ const App = () => {
         fire
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        createUserAccount();       // user account data being set in database in this function call
+        // user account data being set in database in this function call
+        createUserAccount();       
       } catch (error){
         setErrorMessage(error.message);
       }
