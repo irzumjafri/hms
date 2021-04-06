@@ -151,18 +151,19 @@ const App = () => {
     }
   };
 
+
+
   const handleSignUp = () => {
     clearErrors();
     if (signupErrorCheck()) {
-      fire
+      try {
+        fire
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .catch((err) => {
-          setErrorMessage(err.message);
-        });
-
-      // user account data being set in database in this function call
-      createUserAccount();
+        createUserAccount();       // user account data being set in database in this function call
+      } catch (error){
+        setErrorMessage(error.message);
+      }
     }
   };
 
