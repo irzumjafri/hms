@@ -1,13 +1,13 @@
 import firebase from 'firebase';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyA_bcOWa8iLui3QM4G1L8AarYKISVq8jwM",
-    authDomain: "hunehar-management-system.firebaseapp.com",
-    projectId: "hunehar-management-system",
-    storageBucket: "hunehar-management-system.appspot.com",
-    messagingSenderId: "405857121024",
-    appId: "1:405857121024:web:a6a4c01ab729c14795b9e5",
-    measurementId: "G-N38Z42F2K8"
+  apiKey: "AIzaSyBQw13bxxgXGvAhlxMxfQiSGNAIvuHxQNw",
+  authDomain: "project-hms-database.firebaseapp.com",
+  projectId: "project-hms-database",
+  storageBucket: "project-hms-database.appspot.com",
+  messagingSenderId: "98674088411",
+  appId: "1:98674088411:web:98a0c0cee83340deeceffe",
+  measurementId: "G-GSKESMESSH"
   };
 
   const fire = firebase.initializeApp(firebaseConfig);
