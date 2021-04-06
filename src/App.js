@@ -45,7 +45,7 @@ const App = () => {
     } else if (!dateOfBirth) {
       setErrorMessage("Date of birth not entered.");
       return 0;
-    } else if (!confirmPassword || confirmPassword != password) {
+    } else if (!confirmPassword || confirmPassword !== password) {
       setErrorMessage("Passwords don't match.");
       return 0;
     } else {

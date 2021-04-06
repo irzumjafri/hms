@@ -14,7 +14,6 @@ const Signup = (props) => {
     hasAccount,
     setHasAccount,
     errorMessage,
-    setErrorMessage,
     setFirstName,
     setLastName,
     setConfirmPassword,
@@ -70,7 +69,19 @@ const Signup = (props) => {
         <p className="errorMsg">{errorMessage}</p>
         <div className="btnContainer">
           <>
-            {(firstname && lastname && dateofbirth && confirmpassword && confirmpassword == password) ? (<button className = "button_green" onClick={handleSignUp}>Create My Account!</button>) : (<button onClick={handleSignUp} className = "button_blue">Create My Account!</button>)}
+            {firstname &&
+            lastname &&
+            dateofbirth &&
+            confirmpassword &&
+            confirmpassword === password ? (
+              <button className="button_green" onClick={handleSignUp}>
+                Create My Account!
+              </button>
+            ) : (
+              <button onClick={handleSignUp} className="button_blue">
+                Create My Account!
+              </button>
+            )}
             {/*CSS: CHANGE BUTTON COLOR WHEN FIELDS AREN'T COMPLETE */}
             <p>
               Have an account?{" "}
