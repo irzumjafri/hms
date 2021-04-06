@@ -7,11 +7,9 @@ const Login = (props) => {
     password,
     setPassword,
     handleLogin,
-    handleSignUp,
     hasAccount,
     setHasAccount,
-    emailError,
-    pwdError,
+    errorMessage,
   } = props;
 
   return (
@@ -30,7 +28,6 @@ const Login = (props) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></input>
-          <p className="errorMsg">{emailError}</p>
           <label>Password</label>
           <input
             type="password"
@@ -38,7 +35,7 @@ const Login = (props) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></input>
-          <p className="errorMsg">{pwdError}</p>
+          <p className="errorMsg">{errorMessage}</p>
           <button className="button_blue" onClick={handleLogin}>
             LOG IN
           </button>

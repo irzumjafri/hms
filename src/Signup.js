@@ -13,8 +13,8 @@ const Signup = (props) => {
     handleSignUp,
     hasAccount,
     setHasAccount,
-    emailError,
-    pwdError,
+    errorMessage,
+    setErrorMessage,
     setFirstName,
     setLastName,
     setConfirmPassword,
@@ -46,7 +46,6 @@ const Signup = (props) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></input>
-        <p className="errorMsg">{emailError}</p>
         <label>Date of Birth (DD-MM-YYYY) *</label>
         <input
           type="text"
@@ -61,7 +60,6 @@ const Signup = (props) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <p className="errorMsg">{pwdError}</p>
         <label>Confirm Password *</label>
         <input
           type="password"
@@ -69,10 +67,11 @@ const Signup = (props) => {
           value={confirmpassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         ></input>
-        <p className="errorMsg">{pwdError}</p>
+        <p className="errorMsg">{errorMessage}</p>
         <div className="btnContainer">
           <>
-            {(firstname && lastname && dateofbirth && confirmpassword == password) ? (<button className = "button_green" onClick={handleSignUp}>Create My Account!</button>) : (<button className = "button_blue">Create My Account!</button>)}
+            {(firstname && lastname && dateofbirth && confirmpassword && confirmpassword == password) ? (<button className = "button_green" onClick={handleSignUp}>Create My Account!</button>) : (<button onClick={handleSignUp} className = "button_blue">Create My Account!</button>)}
+            {/*CSS: CHANGE BUTTON COLOR WHEN FIELDS AREN'T COMPLETE */}
             <p>
               Have an account?{" "}
               <span onClick={() => setHasAccount(!hasAccount)}>Sign In</span>

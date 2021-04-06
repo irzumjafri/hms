@@ -13,8 +13,7 @@ const App = () => {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [dateofbirth, setDateOfBirth] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [pwdError, setPwdError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
 
   const clearInputs = () => {
@@ -23,8 +22,7 @@ const App = () => {
   };
 
   const clearErrors = () => {
-    setEmailError("");
-    setPwdError("");
+    setErrorMessage("");
   };
 
   const handleLogin = () => {
@@ -33,35 +31,43 @@ const App = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch((err) => {
-        switch (err.code) {
-          case "auth/invalid-email":
-          case "auth/user-disabled":
-          case "auth/user-not-found":
-            setEmailError(err.message);
-            break;
-          case "auth/wrong-password":
-            setPwdError(err.message);
-            break;
-        }
+        setErrorMessage(err.message);
       });
+  };
+
+  const signupErrorCheck = () => {
+    if (!firstname){
+      setErrorMessage("First name not entered.")
+      return 0;
+    }
+    else if (!lastname){
+      setErrorMessage("Last name not entered.")
+      return 0;
+    }
+    else if (!dateofbirth){
+      setErrorMessage("Date of birth not entered.")
+      return 0;
+    }
+    else if (!confirmpassword || confirmpassword != password){
+      setErrorMessage("Passwords don't match.")
+      return 0;
+    }
+    else{
+      return 1;
+    }
   };
 
   const handleSignUp = () => {
     clearErrors();
+    if (signupErrorCheck()) {
       fire
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch((err) => {
-        switch (err.code) {
-          case "auth/email-already-in-use":
-          case "auth/invalid-email":
-            setEmailError(err.message);
-            break;
-          case "auth/weak-password":
-            setPwdError(err.message);
-            break;
-        }
-      });    
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .catch((err) => {
+          setErrorMessage(err.message);
+        });
+      // FIRESTORE: ADD ADDITIONAL DATA TO USER PROFILE
+    }
   };
 
   const handleLogout = () => {
@@ -97,11 +103,9 @@ const App = () => {
               password={password}
               setPassword={setPassword}
               handleLogin={handleLogin}
-              handleSignUp={handleSignUp}
               hasAccount={hasAccount}
               setHasAccount={setHasAccount}
-              emailError={emailError}
-              pwdError={pwdError}
+              errorMessage={errorMessage}
             />
           ) : (
             <Signup
@@ -121,8 +125,8 @@ const App = () => {
               handleSignUp={handleSignUp}
               hasAccount={hasAccount}
               setHasAccount={setHasAccount}
-              emailError={emailError}
-              pwdError={pwdError}
+              errorMessage={errorMessage}
+              setErrorMessage={setErrorMessage}
             />
           )}{" "}
         </>
