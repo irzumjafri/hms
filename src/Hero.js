@@ -25,7 +25,7 @@ const Hero = ({ handleLogout }) => {
         </div>
         <div>
           <h1>Calendar</h1>
-          <Calendar />
+          <Calendar/>
           <h2>Today's Event(s):</h2>
           <p>No Events</p>
           <button>Add Event</button>

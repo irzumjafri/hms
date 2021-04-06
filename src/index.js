@@ -1,10 +1,12 @@
 import React from 'react';
+import { useMediaQuery } from 'react-responsive'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+document.head.innerHTML += '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
 ReactDOM.render(
+  
   <React.StrictMode>
     <App />
   </React.StrictMode>,
