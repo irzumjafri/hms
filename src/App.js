@@ -151,28 +151,20 @@ const App = () => {
     }
   };
 
-
-
   const handleSignUp = () => {
     clearErrors();
     if (signupErrorCheck()) {
-      // try {
-      //   fire
-      //   .auth()
-      //   .createUserWithEmailAndPassword(email, password)
-      //   createUserAccount();       // user account data being set in database in this function call
-      // } catch (error){
-      //   setErrorMessage(error.message);
-      // }
-     
+      try {
         fire
         .auth()
         .createUserWithEmailAndPassword(email, password)
         createUserAccount();       // user account data being set in database in this function call
-        //setErrorMessage(error.message);
-
+      } catch (error){
+        setErrorMessage(error.message);
+      }
     }
   };
+
 
   const handleLogout = () => {
     setRouter("unregistered"); //change it to null value when updating from database
