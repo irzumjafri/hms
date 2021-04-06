@@ -4,7 +4,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import "./App.css";
 import Hero from "./Hero";
-
+// IRZUM IS MOTUUU
 const App = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
@@ -36,23 +36,19 @@ const App = () => {
   };
 
   const signupErrorCheck = () => {
-    if (!firstName){
-      setErrorMessage("First name not entered.")
+    if (!firstName) {
+      setErrorMessage("First name not entered.");
       return 0;
-    }
-    else if (!lastName){
-      setErrorMessage("Last name not entered.")
+    } else if (!lastName) {
+      setErrorMessage("Last name not entered.");
       return 0;
-    }
-    else if (!dateOfBirth){
-      setErrorMessage("Date of birth not entered.")
+    } else if (!dateOfBirth) {
+      setErrorMessage("Date of birth not entered.");
       return 0;
-    }
-    else if (!confirmPassword || confirmPassword != password){
-      setErrorMessage("Passwords don't match.")
+    } else if (!confirmPassword || confirmPassword != password) {
+      setErrorMessage("Passwords don't match.");
       return 0;
-    }
-    else{
+    } else {
       return 1;
     }
   };
