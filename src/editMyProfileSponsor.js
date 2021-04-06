@@ -3,10 +3,10 @@ import SearchField from "react-search-field";
 
 const EditMyProfileSponsor = (props) => {
   const {
-    firstname,
-    lastname,
+    firstName,
+    lastLame,
     email,
-    dateofbirth,
+    dateOfBirth,
     setEmail,
     handleLogout,
     setFirstName,

@@ -4,8 +4,9 @@ import Login from "./Login";
 import Signup from "./Signup";
 import "./App.css";
 import Hero from "./Hero";
-import RegisteredSponsorHome from "./registeredSponsorHome"
-import UnregisteredSponsorHome from "./unregisteredSponsorHome"
+import RegisteredSponsorHome from "./registeredSponsorHome";
+import UnregisteredSponsorHome from "./unregisteredSponsorHome";
+import RegisterAsSponsor from "./registerAsSponsor";
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -15,9 +16,29 @@ const App = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
+  const [cnic, setCnic] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [
+    preferredMediumOfCommunication,
+    setPreferredMediumOfCommunication,
+  ] = useState("");
+  const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
+    ""
+  );
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
-  const [router,setRouter] = useState("unregistered");
+  const [router, setRouter] = useState("unregistered"); //change it to null value when updating from database
+
+
+  //CREATE REGISTERSPONSOR FUNCTION
+  //FIRESTORE LINK
+
+  const registerRouter = () => {
+    setRouter("registering");
+  };
 
   const clearInputs = () => {
     setEmail("");
@@ -71,6 +92,7 @@ const App = () => {
   };
 
   const handleLogout = () => {
+    setRouter("unregistered"); //change it to null value when updating from database
     fire.auth().signOut();
   };
 
@@ -79,7 +101,7 @@ const App = () => {
       if (user) {
         clearInputs();
         setUser(user);
-        console.log(user)
+        console.log(user);
       } else {
         setUser("");
       }
@@ -93,11 +115,50 @@ const App = () => {
   return (
     <div className="App">
       {user ? (
-        <>{{'registered':
-        <RegisteredSponsorHome handleLogout={handleLogout} />,
-      'unregistered':
-        <UnregisteredSponsorHome handleLogout={handleLogout}/>
-    }[router]}</>
+        <>
+          {
+            {
+              registered: <RegisteredSponsorHome handleLogout={handleLogout} />,
+              unregistered: (
+                <UnregisteredSponsorHome
+                  registerRouter={registerRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              registering: (
+                <RegisterAsSponsor
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  preferredMediumOfCommunication={
+                    preferredMediumOfCommunication
+                  }
+                  setPreferredMediumOfCommunication={
+                    setPreferredMediumOfCommunication
+                  }
+                  numberOfSponsoredChildren={numberOfSponsoredChildren}
+                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  paymentSchedule={paymentSchedule}
+                  setPaymentSchedule={setPaymentSchedule}
+                />
+              ),
+            }[router]
+          }
+        </>
       ) : (
         <>
           {" "}

@@ -3,10 +3,10 @@ import SearchField from "react-search-field";
 
 const RegisterAsSponsor = (props) => {
   const {
-    firstname,
-    lastname,
+    firstName,
+    lastName,
     email,
-    dateofbirth,
+    dateOfBirth,
     setEmail,
     handleLogout,
     setFirstName,
@@ -47,14 +47,14 @@ const RegisterAsSponsor = (props) => {
               type="text"
               autoFocus
               required
-              value={firstname}
+              value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             ></input>
             <label>Last Name *</label>
             <input
               type="text"
               required
-              value={lastname}
+              value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             ></input>
             <label>Email *</label>
@@ -68,7 +68,7 @@ const RegisterAsSponsor = (props) => {
             <input
               type="text"
               required
-              value={dateofbirth}
+              value={dateOfBirth}
               onChange={(e) => setDateOfBirth(e.target.value)}
             ></input>
             <label>CNIC </label>
