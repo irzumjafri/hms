@@ -36,7 +36,24 @@
   justify-content: center;
   align-items: center;
   transform: translateX(55px);
-  background: #33773d;
+  background: #61ce70;
+}
+
+.button_red {
+  border: none;
+  outline: none;
+  width: 70%;
+  height: 100%;
+  margin-top: 10px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(55px);
+  background: #ff5a5a;
 }
 
 .WelcomeTextBlue {
@@ -246,7 +263,6 @@
   color: red;
   font-size: 16px;
 }
-
 
 .hero {
   width: 100%;

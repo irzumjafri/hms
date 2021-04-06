@@ -1,7 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
 
-const EditMyProfileAdmin = (props) => {
+const EditMyProfileSponsor = (props) => {
   const {
     firstname,
     lastname,
@@ -18,10 +18,14 @@ const EditMyProfileAdmin = (props) => {
     setPhoneNumber,
     address,
     setAddress,
-    department,
-    setDepartment,
-    institution,
-    setInstitution,
+    preferredMediumOfCommunication,
+    setPreferredMediumOfCommunication,
+    numberOfSponsoredChildren,
+    setNumberOfSponsoredChildren,
+    paymentMethod,
+    setPaymentMethod,
+    paymentSchedule,
+    setPaymentSchedule,
   } = props;
 
   return (
@@ -36,8 +40,8 @@ const EditMyProfileAdmin = (props) => {
           <h2>EDIT MY PROFILE</h2>
           <button /*make on click function*/> HOME PAGE </button>
         </section>
-        <section className="editMyProfileAdmin">
-          <div className="editMyProfileAdminContainer">
+        <section className="editMyProfileSponsor">
+          <div className="editMyProfileSponsorContainer">
             <label>First Name *</label>
             <input
               type="text"
@@ -67,7 +71,7 @@ const EditMyProfileAdmin = (props) => {
               value={dateofbirth}
               onChange={(e) => setDateOfBirth(e.target.value)}
             ></input>
-            <label>CNIC *</label>
+            <label>CNIC </label>
             <input
               type="text"
               required
@@ -88,19 +92,35 @@ const EditMyProfileAdmin = (props) => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             ></input>
-            <label>Department *</label>
+            <label>Preferred Medium of Communication *</label>
             <input
               type="text"
               required
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
+              value={preferredMediumOfCommunication}
+              onChange={(e) =>
+                setPreferredMediumOfCommunication(e.target.value)
+              } // make it into drop down menu
             ></input>
-            <label>Institution *</label>
+            <label>Number of Sponsored Children *</label>
             <input
               type="text"
               required
-              value={institution}
-              onChange={(e) => setInstitution(e.target.value)}
+              value={numberOfSponsoredChildren}
+              onChange={(e) => setNumberOfSponsoredChildren(e.target.value)}
+            ></input>
+            <label>Payment Method *</label>
+            <input
+              type="text"
+              required
+              value={paymentMethod}
+              onChange={(e) => setPaymentMethod(e.target.value)} // make it into drop down menu
+            ></input>
+            <label>Payment Schedule *</label>
+            <input
+              type="text"
+              required
+              value={paymentSchedule}
+              onChange={(e) => setPaymentSchedule(e.target.value)} // make it into drop down menu
             ></input>
 
             <div className="btnContainer">
@@ -120,4 +140,4 @@ const EditMyProfileAdmin = (props) => {
   );
 };
 
-export default EditMyProfileAdmin;
+export default EditMyProfileSponsor;
