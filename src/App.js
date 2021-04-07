@@ -271,12 +271,19 @@ const App = () => {
               contactus: (
                 <ContactUs setRouter={setRouter} handleLogout={handleLogout} />
               ),
-              faqs: <FAQs setRouter={setRouter} handleLogout={handleLogout} questions={questions} answers={answers}/>
+              faqs: (
+                <FAQs
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                  questions={questions}
+                  answers={answers}
+                />
+              ),
             }[router]
           }
         </>
-        //CODE ENDS
       ) : (
+        //CODE ENDS
         //CODE ENDS
         <>
           {hasAccount ? (
