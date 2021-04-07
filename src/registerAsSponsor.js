@@ -37,7 +37,7 @@ const RegisterAsSponsor = (props) => {
          <img src={logo} className="Applogo" alt="logo" />
           <h2 className= "titletext">Hunehar Management System</h2>
           <SearchField />
-          <button className = "button_blue" onClick={handleLogout}>Logout</button>
+          <button className = "button_green" onClick={handleLogout}>Logout</button>
         </nav>
         <section>
           <button /*make on click function*/> HOME PAGE </button>
