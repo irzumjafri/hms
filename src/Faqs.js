@@ -6,7 +6,8 @@ const FAQs = (props) => {
     questions,
     answers,
     handleLogout,
-    setRouter
+    setRouter,
+    applicationStatus
   } = props;
 
   return (
@@ -19,7 +20,7 @@ const FAQs = (props) => {
         </nav>
         <section>
           <h2>Frequently Asked Questions (FAQs)</h2>
-          <button /*make on click function*/> HOME PAGE </button>
+          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
         <section className="faqs">
           {questions.map((con, i) => {

@@ -5,6 +5,7 @@ const ContactUs = (props) => {
   const {
     handleLogout,
     setRouter,
+    applicationStatus
   } = props;
 
   return (
@@ -17,7 +18,7 @@ const ContactUs = (props) => {
         </nav>
         <section>
           <h2>CONTACT US</h2>
-          <button /*make on click function*/> HOME PAGE </button>
+          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
         <section className="contactUs">
           <div className="contactUsContainer">

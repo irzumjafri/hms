@@ -21,11 +21,11 @@ const RegisteredSponsorHome = (props) => {
         <div>
           <h1>Menu</h1>
           <button onClick={() => setRouter("editmyprofile")}>Edit My Profile</button>
-          <button>Payment History</button>
-          <button>Children Profiles</button>
-          <button>Academic Reports</button>
-          <button>Request a Meeting</button>
-          <button>Letter Box</button>
+          <button onClick={() => setRouter("paymenthistory")}>Payment History</button>
+          <button onClick={() => setRouter("childrenprofiles")}>Children Profiles</button>
+          <button onClick={() => setRouter("academicreports")}>Academic Reports</button>
+          <button onClick={() => setRouter("requestmeeting")}>Request a Meeting</button>
+          <button onClick={() => setRouter("letterbox")}>Letter Box</button>
         </div>
         <div>
           <h1>Calendar</h1>

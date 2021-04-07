@@ -27,7 +27,8 @@ const EditMyProfileSponsor = (props) => {
     paymentSchedule,
     setPaymentSchedule,
     setRouter,
-    editSponsorProfile
+    editSponsorProfile,
+    applicationStatus
   } = props;
 
   return (
@@ -40,7 +41,7 @@ const EditMyProfileSponsor = (props) => {
         </nav>
         <section>
           <h2>EDIT MY PROFILE</h2>
-          <button /*make on click function*/> HOME PAGE </button>
+          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
         <section className="editMyProfileSponsor">
           <div className="editMyProfileSponsorContainer">
@@ -135,8 +136,8 @@ const EditMyProfileSponsor = (props) => {
             </div>
           </div>
         </section>
-        <button>Contact Us</button>
-        <button>FAQs</button>
+        <button onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );

@@ -4,12 +4,14 @@ import SearchField from "react-search-field";
 const LetterBox = (props) => {
   const {
     handleLogout,
-    selectAChild,
-    letter,
-    setLetter,
-    fromChild,
+    myChildren,
+    setLetterBody,
+    selectedChild,
+    recievedLetters,
     writeOrReceive,
     setWriteOrReceive,
+    setRouter,
+    applicationStatus,
   } = props;
 
   return (
@@ -22,7 +24,16 @@ const LetterBox = (props) => {
         </nav>
         <section>
           <h2>LETTER BOX</h2>
-          <button /*make on click function*/> HOME PAGE </button>
+          <button
+            onClick={() =>
+              applicationStatus
+                ? setRouter("registered")
+                : setRouter("unregistered")
+            }
+          >
+            {" "}
+            HOME PAGE{" "}
+          </button>
         </section>
         <section className="letterBox">
           <div className="letterBoxContainer">
@@ -35,17 +46,12 @@ const LetterBox = (props) => {
               </button>
             </nav>
             <>
-              {!writeOrReceive ? (
+              {writeOrReceive ? (
                 <div>
+                  <h2>SENDING LETTERS</h2>
                   <div>
                     <label>To *</label>
-                    <input
-                      className="input-left"
-                      type="text"
-                      required
-                      value={selectAChild}
-                      // MAKE SCROLLABLE SELECT A CHILD HEHEHE
-                    ></input>
+                    <button>DropDown Select a child</button>
                   </div>
                   <div>
                     <label>Letter *</label>
@@ -53,28 +59,34 @@ const LetterBox = (props) => {
                       className="input-left"
                       type="text"
                       required
-                      value={letter}
-                      onChange={(e) => setLetter(e.target.value)}
+                      onChange={(e) => setLetterBody(e.target.value)}
                     ></input>
                   </div>
                 </div>
               ) : (
                 <div>
-                  <div>
-                    <label>From</label>
-                    <textbox>{fromChild}</textbox>
-                  </div>
-                  <div>
-                    <label>Letter</label>
-                    <textbox>{letter}</textbox>
-                  </div>
+                  <h2>RECIEVING LETTERS</h2>
+                  {recievedLetters.map((con, i) => {
+                    return (
+                      <div className="letterContainer">
+                        <div>
+                          <label>From</label>
+                          <textbox>{recievedLetters[i].from}</textbox>
+                        </div>
+                        <div>
+                          <label>Letter</label>
+                          <textbox>{recievedLetters[i].message}</textbox>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </>
           </div>
         </section>
-        <button /*make on click function*/>Contact Us</button>
-        <button /*make on click function*/>FAQs</button>
+        <button onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );

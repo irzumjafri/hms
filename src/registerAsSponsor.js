@@ -27,7 +27,8 @@ const RegisterAsSponsor = (props) => {
     paymentSchedule,
     setPaymentSchedule,
     createSponsorshipRequest,
-    setRouter
+    setRouter,
+    applicationStatus
   } = props;
 
   return (
@@ -41,7 +42,7 @@ const RegisterAsSponsor = (props) => {
           <p className = "smalltext" onClick={handleLogout}><span>Logout</span></p>
         </nav>
         <section className = "navbarContainer">
-          <button className = "smalltext"/*make on click function*/> HOME PAGE </button>
+          <button className = "smalltext"onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
         <section className="register">
           <div className="registerContainer">

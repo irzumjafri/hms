@@ -4,19 +4,9 @@ import SearchField from "react-search-field";
 const ChildrenProfiles = (props) => {
   const {
     handleLogout,
-    childName,
-    childDateOfBirth,
-    childGender,
-    childCurrentAddress,
-    childGrade,
-    childContactInformation,
-    childGuardian1Name,
-    childGuardian1Realtion,
-    childGuardian1Occupation,
-    childGuardian1Cnic,
-    childGuardian2Name,
-    childGuardian2Realtion,
-    childFamilyBackground,
+    childData,
+    setRouter,
+    applicationStatus
   } = props;
 
   return (
@@ -29,62 +19,64 @@ const ChildrenProfiles = (props) => {
         </nav>
         <section>
           <h2>CHILDREN PROFILES</h2>
-          <button /*make on click function*/> HOME PAGE </button>
+          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
         <section className="childrenProfiles">
-          <div className="childrenProfilesContainer">
+        {childData.map((con, i) => {
+          return (
+            <div className="childrenProfilesContainer">
             <div>
               <section>
                 <label>Name</label>
-                <textbox>{childName}</textbox>
+                <textbox>{childData[i].name}</textbox>
               </section>
               <section>
                 <label>Date of Birth (DD-MM-YYYY)</label>
-                <textbox>{childDateOfBirth}</textbox>
+                <textbox>{childData[i].dateOfBirth}</textbox>
               </section>
               <section>
                 <label>Gender</label>
-                <textbox>{childGender}</textbox>
+                <textbox>{childData[i].gender}</textbox>
               </section>
               <section>
                 <label>Current Address</label>
-                <textbox>{childCurrentAddress}</textbox>
+                <textbox>{childData.currentAddress}</textbox>
               </section>
               <section>
                 <label>Grade</label>
-                <textbox>{childGrade}</textbox>
+                <textbox>{childData[i].grade}</textbox>
               </section>
               <section>
                 <label>Contact Information</label>
-                <textbox>{childContactInformation}</textbox>
+                <textbox>{childData[i].contactInformation}</textbox>
               </section>
               <section>
                 <label>Guardian 1’s Name</label>
-                <textbox>{childGuardian1Name}</textbox>
+                <textbox>{childData[i].guardian1Name}</textbox>
               </section>
               <section>
                 <label>Guardian 1’s Relation</label>
-                <textbox>{childGuardian1Realtion}</textbox>
+                <textbox>{childData[i].guardian1Realtion}</textbox>
               </section>
               <section>
                 <label>Guardian 1’s Occupation</label>
-                <textbox>{childGuardian1Occupation}</textbox>
+                <textbox>{childData[i].guardian1Occupation}</textbox>
               </section>
               <section>
                 <label>Guardian 1’s CNIC</label>
-                <textbox>{childGuardian1Cnic}</textbox>
+                <textbox>{childData[i].guardian1Cnic}</textbox>
               </section>
               <section>
                 <label>Guardian 2’s Name</label>
-                <textbox>{childGuardian2Name}</textbox>
+                <textbox>{childData[i].guardian2Name}</textbox>
               </section>
               <section>
                 <label>Guardian 2’s Relation</label>
-                <textbox>{childGuardian2Realtion}</textbox>
+                <textbox>{childData[i].guardian2Realtion}</textbox>
               </section>
               <section>
                 <label>Family Background</label>
-                <textbox>{childFamilyBackground}</textbox>
+                <textbox>{childData[i].familyBackground}</textbox>
               </section>
 
               <div className="btnContainer">
@@ -97,9 +89,13 @@ const ChildrenProfiles = (props) => {
               </div>
             </div>
           </div>
+            
+          );
+        })}
+          
         </section>
-        <button /*make on click function*/>Contact Us</button>
-        <button /*make on click function*/>FAQs</button>
+        <button onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );

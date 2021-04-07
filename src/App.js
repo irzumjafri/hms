@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import fire from "./fire";
 // import db from "./fire";  // importing database variable here
-import Login from "./Login";
-import Signup from "./Signup";
+import Login from "./login";
+import Signup from "./signup";
 import "./App.css";
 import Hero from "./Hero";
 import RegisteredSponsorHome from "./registeredSponsorHome";
@@ -10,8 +10,11 @@ import UnregisteredSponsorHome from "./unregisteredSponsorHome";
 import RegisterAsSponsor from "./registerAsSponsor";
 import firebase from "firebase";
 import EditMyProfileSponsor from "./editMyProfileSponsor";
-import ContactUs from "./ContactUs";
-import FAQs from "./Faqs";
+import ContactUs from "./contactUs";
+import FAQs from "./faqs";
+import PaymentHistory from "./paymentHistory";
+import ChildrenProfiles from "./childrenProfiles";
+import LetterBox from "./letterBox";
 
 // setting up the database here
 const db = firebase.firestore();
@@ -41,7 +44,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
   const [router, setRouter] = useState("registered"); //change it to null value when updating from database
-  const [applicationStatus, setApplicationStatus] = useState("");
+  const [applicationStatus, setApplicationStatus] = useState(true);
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
   const [questions, setQuestions] = useState([
     "are you okay",
@@ -50,6 +53,57 @@ const App = () => {
     "are you k",
   ]);
   const [answers, setAnswers] = useState(["no", "yes", "no", "yes"]);
+  const [paymentDate, setPaymentDate] = useState([
+    "01-01-0001",
+    "02-01-0001",
+    "03-01-0001",
+    "04-01-0001",
+  ]);
+  const [amount, setAmount] = useState(["1000", "2000", "3000", "4000"]);
+  const [childData, setChildData] = useState([
+    {
+      name: "irzum",
+      dateOfBirth: "01-01-0001",
+      gender: "male",
+      currentAddress: "LUMSU",
+      grade: "A++++",
+      contactInformation: "090078601",
+      guardian1Name: "myself",
+      guardian1Relation: "daddy",
+      guardian1Cnic: "123-123",
+      guardian2Name: "myself",
+      guardian2Relation: "daddy",
+      familyBackground: "pathanKhandaan",
+    },
+    {
+      name: "irzumbmW",
+      dateOfBirth: "01-01-0001",
+      gender: "male",
+      currentAddress: "LUMSU",
+      grade: "A++++",
+      contactInformation: "090078601",
+      guardian1Name: "myself",
+      guardian1Relation: "daddy",
+      guardian1Cnic: "123-123",
+      guardian2Name: "myself",
+      guardian2Relation: "daddy",
+      familyBackground: "pathanKhandaan",
+    },
+  ]);
+  const [myChildren, setMyChildren] = useState([
+    "shabbir",
+    "altaf",
+    "bashir",
+    "naseem",
+  ]);
+  const [letterBody, setLetterBody] = useState("");
+  const [selectedChild, setSelectedChild] = useState("");
+  const [writeOrReceive, setWriteOrReceive] = useState(true);
+  const [recievedLetters, setRecievedLetters] = useState([
+    { from: "irtasam", message: "Ki haal chaal ai?" },
+    { from: "irtasam", message: "paisay bhijwao, creately lena hai" },
+    { from: "irtasam", message: "credit card bhi donate kardo" },
+  ]);
 
   // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
   const createSponsorshipRequest = () => {
@@ -204,6 +258,7 @@ const App = () => {
               ),
               registering: (
                 <RegisterAsSponsor
+                  applicationStatus={applicationStatus}
                   firstName={firstName}
                   lastName={lastName}
                   email={email}
@@ -237,6 +292,7 @@ const App = () => {
               ),
               editmyprofile: (
                 <EditMyProfileSponsor
+                  applicationStatus={applicationStatus}
                   firstName={firstName}
                   lastName={lastName}
                   email={email}
@@ -268,11 +324,55 @@ const App = () => {
                   editSponsorProfile={editSponsorProfile}
                 />
               ),
+              paymenthistory: (
+                <PaymentHistory
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  paymentDate={paymentDate}
+                  amount={amount}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              letterbox: (
+                <LetterBox
+                  myChildren={myChildren}
+                  handleLogout={handleLogout}
+                  setLetterBody={setLetterBody}
+                  selectedChild={selectedChild}
+                  recievedLetters={recievedLetters}
+                  writeOrReceive={writeOrReceive}
+                  setWriteOrReceive={setWriteOrReceive}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
+              ),
+              childrenprofiles: (
+                <ChildrenProfiles
+                  handleLogout={handleLogout}
+                  childData={childData}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
+              ),
+              childrenprofiles: (
+                <ChildrenProfiles
+                  handleLogout={handleLogout}
+                  childData={childData}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
+              ),
               contactus: (
-                <ContactUs setRouter={setRouter} handleLogout={handleLogout} />
+                <ContactUs
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
               ),
               faqs: (
                 <FAQs
+                  applicationStatus={applicationStatus}
                   setRouter={setRouter}
                   handleLogout={handleLogout}
                   questions={questions}
