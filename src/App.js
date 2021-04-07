@@ -43,9 +43,13 @@ const App = () => {
   const [router, setRouter] = useState("registered"); //change it to null value when updating from database
   const [applicationStatus, setApplicationStatus] = useState("");
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
-  const [questions, setQuestions] = useState(["are you okay","are you ok","are you oka","are you k"]);
-  const [answers, setAnswers] = useState(["no","yes","no","yes"]);
-
+  const [questions, setQuestions] = useState([
+    "are you okay",
+    "are you ok",
+    "are you oka",
+    "are you k",
+  ]);
+  const [answers, setAnswers] = useState(["no", "yes", "no", "yes"]);
 
   // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
   const createSponsorshipRequest = () => {
@@ -178,95 +182,102 @@ const App = () => {
   return (
     <div className="App">
       {user ? (
-        <>
-          {
-            {
-              registered: (
-                <RegisteredSponsorHome
-                  setRouter={setRouter}
-                  handleLogout={handleLogout}
-                />
-              ),
-              unregistered: (
-                <UnregisteredSponsorHome
-                  setRouter={setRouter}
-                  handleLogout={handleLogout}
-                />
-              ),
-              registering: (
-                <RegisterAsSponsor
-                  firstName={firstName}
-                  lastName={lastName}
-                  email={email}
-                  dateOfBirth={dateOfBirth}
-                  setEmail={setEmail}
-                  handleLogout={handleLogout}
-                  setFirstName={setFirstName}
-                  setLastName={setLastName}
-                  setDateOfBirth={setDateOfBirth}
-                  cnic={cnic}
-                  setCnic={setCnic}
-                  phoneNumber={phoneNumber}
-                  setPhoneNumber={setPhoneNumber}
-                  address={address}
-                  setAddress={setAddress}
-                  preferredMediumOfCommunication={
-                    preferredMediumOfCommunication
-                  }
-                  setPreferredMediumOfCommunication={
-                    setPreferredMediumOfCommunication
-                  }
-                  numberOfSponsoredChildren={numberOfSponsoredChildren}
-                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
-                  paymentMethod={paymentMethod}
-                  setPaymentMethod={setPaymentMethod}
-                  paymentSchedule={paymentSchedule}
-                  setPaymentSchedule={setPaymentSchedule}
-                  createSponsorshipRequest={createSponsorshipRequest}
-                  setRouter={setRouter}
-                />
-              ),
-              editmyprofile: (
-                <EditMyProfileSponsor
-                  firstName={firstName}
-                  lastName={lastName}
-                  email={email}
-                  dateOfBirth={dateOfBirth}
-                  setEmail={setEmail}
-                  handleLogout={handleLogout}
-                  setFirstName={setFirstName}
-                  setLastName={setLastName}
-                  setDateOfBirth={setDateOfBirth}
-                  cnic={cnic}
-                  setCnic={setCnic}
-                  phoneNumber={phoneNumber}
-                  setPhoneNumber={setPhoneNumber}
-                  address={address}
-                  setAddress={setAddress}
-                  preferredMediumOfCommunication={
-                    preferredMediumOfCommunication
-                  }
-                  setPreferredMediumOfCommunication={
-                    setPreferredMediumOfCommunication
-                  }
-                  numberOfSponsoredChildren={numberOfSponsoredChildren}
-                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
-                  paymentMethod={paymentMethod}
-                  setPaymentMethod={setPaymentMethod}
-                  paymentSchedule={paymentSchedule}
-                  setPaymentSchedule={setPaymentSchedule}
-                  setRouter={setRouter}
-                  editSponsorProfile={editSponsorProfile}
-                />
-              ),
-              contactus: (
-                <ContactUs setRouter={setRouter} handleLogout={handleLogout} />
-              ),
-              faqs: <FAQs setRouter={setRouter} handleLogout={handleLogout} questions={questions} answers={answers}/>
-            }[router]
-          }
-        </>
+        //USE FOR TESTING SCREENS
+        //CODE STARTS
+        <Hero />
       ) : (
+        //CODE ENDS
+        //USE FOR TESTING APP
+        //CODE STARTS
+        // <>
+        //   {
+        //     {
+        //       registered: (
+        //         <RegisteredSponsorHome
+        //           setRouter={setRouter}
+        //           handleLogout={handleLogout}
+        //         />
+        //       ),
+        //       unregistered: (
+        //         <UnregisteredSponsorHome
+        //           setRouter={setRouter}
+        //           handleLogout={handleLogout}
+        //         />
+        //       ),
+        //       registering: (
+        //         <RegisterAsSponsor
+        //           firstName={firstName}
+        //           lastName={lastName}
+        //           email={email}
+        //           dateOfBirth={dateOfBirth}
+        //           setEmail={setEmail}
+        //           handleLogout={handleLogout}
+        //           setFirstName={setFirstName}
+        //           setLastName={setLastName}
+        //           setDateOfBirth={setDateOfBirth}
+        //           cnic={cnic}
+        //           setCnic={setCnic}
+        //           phoneNumber={phoneNumber}
+        //           setPhoneNumber={setPhoneNumber}
+        //           address={address}
+        //           setAddress={setAddress}
+        //           preferredMediumOfCommunication={
+        //             preferredMediumOfCommunication
+        //           }
+        //           setPreferredMediumOfCommunication={
+        //             setPreferredMediumOfCommunication
+        //           }
+        //           numberOfSponsoredChildren={numberOfSponsoredChildren}
+        //           setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+        //           paymentMethod={paymentMethod}
+        //           setPaymentMethod={setPaymentMethod}
+        //           paymentSchedule={paymentSchedule}
+        //           setPaymentSchedule={setPaymentSchedule}
+        //           createSponsorshipRequest={createSponsorshipRequest}
+        //           setRouter={setRouter}
+        //         />
+        //       ),
+        //       editmyprofile: (
+        //         <EditMyProfileSponsor
+        //           firstName={firstName}
+        //           lastName={lastName}
+        //           email={email}
+        //           dateOfBirth={dateOfBirth}
+        //           setEmail={setEmail}
+        //           handleLogout={handleLogout}
+        //           setFirstName={setFirstName}
+        //           setLastName={setLastName}
+        //           setDateOfBirth={setDateOfBirth}
+        //           cnic={cnic}
+        //           setCnic={setCnic}
+        //           phoneNumber={phoneNumber}
+        //           setPhoneNumber={setPhoneNumber}
+        //           address={address}
+        //           setAddress={setAddress}
+        //           preferredMediumOfCommunication={
+        //             preferredMediumOfCommunication
+        //           }
+        //           setPreferredMediumOfCommunication={
+        //             setPreferredMediumOfCommunication
+        //           }
+        //           numberOfSponsoredChildren={numberOfSponsoredChildren}
+        //           setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+        //           paymentMethod={paymentMethod}
+        //           setPaymentMethod={setPaymentMethod}
+        //           paymentSchedule={paymentSchedule}
+        //           setPaymentSchedule={setPaymentSchedule}
+        //           setRouter={setRouter}
+        //           editSponsorProfile={editSponsorProfile}
+        //         />
+        //       ),
+        //       contactus: (
+        //         <ContactUs setRouter={setRouter} handleLogout={handleLogout} />
+        //       ),
+        //       faqs: <FAQs setRouter={setRouter} handleLogout={handleLogout} questions={questions} answers={answers}/>
+        //     }[router]
+        //   }
+        // </>
+        //CODE ENDS
         <>
           {hasAccount ? (
             <Login
