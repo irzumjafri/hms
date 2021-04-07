@@ -43,9 +43,13 @@ const App = () => {
   const [router, setRouter] = useState("registered"); //change it to null value when updating from database
   const [applicationStatus, setApplicationStatus] = useState("");
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
-  const [questions, setQuestions] = useState(["are you okay","are you ok","are you oka","are you k"]);
-  const [answers, setAnswers] = useState(["no","yes","no","yes"]);
-
+  const [questions, setQuestions] = useState([
+    "are you okay",
+    "are you ok",
+    "are you oka",
+    "are you k",
+  ]);
+  const [answers, setAnswers] = useState(["no", "yes", "no", "yes"]);
 
   // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
   const createSponsorshipRequest = () => {
@@ -178,10 +182,10 @@ const App = () => {
   return (
     <div className="App">
       {user ? (
-
         //USE FOR TESTING SCREENS
         //CODE STARTS
-        <Hero/>
+        <Hero />
+      ) : (
         //CODE ENDS
         //USE FOR TESTING APP
         //CODE STARTS
@@ -274,7 +278,6 @@ const App = () => {
         //   }
         // </>
         //CODE ENDS
-      ) : (
         <>
           {hasAccount ? (
             <Login
