@@ -4,7 +4,7 @@ import SearchField from "react-search-field";
 const EditMyProfileSponsor = (props) => {
   const {
     firstName,
-    lastLame,
+    lastName,
     email,
     dateOfBirth,
     setEmail,
@@ -26,6 +26,8 @@ const EditMyProfileSponsor = (props) => {
     setPaymentMethod,
     paymentSchedule,
     setPaymentSchedule,
+    setRouter,
+    editSponsorProfile
   } = props;
 
   return (
@@ -47,14 +49,14 @@ const EditMyProfileSponsor = (props) => {
               type="text"
               autoFocus
               required
-              value={firstname}
+              value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             ></input>
             <label>Last Name *</label>
             <input
               type="text"
               required
-              value={lastname}
+              value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             ></input>
             <label>Email *</label>
@@ -68,7 +70,7 @@ const EditMyProfileSponsor = (props) => {
             <input
               type="text"
               required
-              value={dateofbirth}
+              value={dateOfBirth}
               onChange={(e) => setDateOfBirth(e.target.value)}
             ></input>
             <label>CNIC </label>
@@ -124,10 +126,10 @@ const EditMyProfileSponsor = (props) => {
             ></input>
 
             <div className="btnContainer">
-              <button /* make on click function*/ className="button_green">
+              <button onClick={() => {setRouter("registered");editSponsorProfile();}} className="button_green">
                 ✅ Save Changes
               </button>
-              <button /* make on click function*/ className="button_red">
+              <button onClick={() => setRouter("registered")} className="button_red">
                 ❌ Discard Changes
               </button>
             </div>

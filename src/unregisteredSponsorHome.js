@@ -5,7 +5,7 @@ import Calendar from "react-calendar";
 const UnregisteredSponsorHome = (props) => {
   const{
     handleLogout,
-    registerRouter,
+    setRouter
   } = props;
 
   return (
@@ -21,7 +21,7 @@ const UnregisteredSponsorHome = (props) => {
         </nav>  
         <div>
           <h1>Menu</h1>
-          <button onClick={registerRouter}>Register as a Sponsor</button>
+          <button onClick={() => setRouter("registering")}>Register as a Sponsor</button>
         </div>
         <div>
           <h1>Calendar</h1>

@@ -9,6 +9,7 @@ import RegisteredSponsorHome from "./registeredSponsorHome";
 import UnregisteredSponsorHome from "./unregisteredSponsorHome";
 import RegisterAsSponsor from "./registerAsSponsor";
 import firebase from "firebase";
+import EditMyProfileSponsor from "./editMyProfileSponsor";
 
 // setting up the database here
 const db = firebase.firestore();
@@ -37,7 +38,7 @@ const App = () => {
   const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
-  const [router, setRouter] = useState("unregistered"); //change it to null value when updating from database
+  const [router, setRouter] = useState("registered"); //change it to null value when updating from database //directly open registered
   const [applicationStatus, setApplicationStatus] = useState("");
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
 
@@ -90,10 +91,6 @@ const App = () => {
   };
 
   // function that retreives all of data about a sponsor to set the states
-
-  const registerRouter = () => {
-    setRouter("registering");
-  };
 
   const clearInputs = () => {
     setEmail("");
@@ -149,13 +146,8 @@ const App = () => {
   const handleSignUp = () => {
     clearErrors();
     if (signupErrorCheck()) {
-      try {
-        fire.auth().createUserWithEmailAndPassword(email, password);
-        // user account data being set in database in this function call
-        createUserAccount();
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
+      fire.auth().createUserWithEmailAndPassword(email, password);
+      createUserAccount();
     }
   };
 
@@ -186,10 +178,10 @@ const App = () => {
         <>
           {
             {
-              registered: <RegisteredSponsorHome handleLogout={handleLogout} />,
+              registered: <RegisteredSponsorHome setRouter={setRouter} handleLogout={handleLogout} />,
               unregistered: (
                 <UnregisteredSponsorHome
-                  registerRouter={registerRouter}
+                  setRouter={setRouter}
                   handleLogout={handleLogout}
                 />
               ),
@@ -224,12 +216,40 @@ const App = () => {
                   setPaymentSchedule={setPaymentSchedule}
                 />
               ),
+              editmyprofile: (<EditMyProfileSponsor firstName={firstName}
+                lastName={lastName}
+                email={email}
+                dateOfBirth={dateOfBirth}
+                setEmail={setEmail}
+                handleLogout={handleLogout}
+                setFirstName={setFirstName}
+                setLastName={setLastName}
+                setDateOfBirth={setDateOfBirth}
+                cnic={cnic}
+                setCnic={setCnic}
+                phoneNumber={phoneNumber}
+                setPhoneNumber={setPhoneNumber}
+                address={address}
+                setAddress={setAddress}
+                preferredMediumOfCommunication={
+                  preferredMediumOfCommunication
+                }
+                setPreferredMediumOfCommunication={
+                  setPreferredMediumOfCommunication
+                }
+                numberOfSponsoredChildren={numberOfSponsoredChildren}
+                setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                paymentMethod={paymentMethod}
+                setPaymentMethod={setPaymentMethod}
+                paymentSchedule={paymentSchedule}
+                setPaymentSchedule={setPaymentSchedule}
+                setRouter={setRouter}
+                editSponsorProfile={editSponsorProfile}/>),
             }[router]
           }
         </>
       ) : (
         <>
-          {" "}
           {hasAccount ? (
             <Login
               email={email}
@@ -240,6 +260,7 @@ const App = () => {
               hasAccount={hasAccount}
               setHasAccount={setHasAccount}
               errorMessage={errorMessage}
+              setErrorMessage={setErrorMessage}
             />
           ) : (
             <Signup
@@ -261,7 +282,7 @@ const App = () => {
               setHasAccount={setHasAccount}
               errorMessage={errorMessage}
             />
-          )}{" "}
+          )}
         </>
       )}
     </div>

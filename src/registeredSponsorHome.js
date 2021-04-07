@@ -5,6 +5,7 @@ import Calendar from "react-calendar";
 const RegisteredSponsorHome = (props) => {
   const {
     handleLogout,
+    setRouter
   } = props
   return (
     <body>
@@ -19,7 +20,7 @@ const RegisteredSponsorHome = (props) => {
         </nav>
         <div>
           <h1>Menu</h1>
-          <button>Edit My Profile</button>
+          <button onClick={() => setRouter("editmyprofile")}>Edit My Profile</button>
           <button>Payment History</button>
           <button>Children Profiles</button>
           <button>Academic Reports</button>
@@ -34,8 +35,8 @@ const RegisteredSponsorHome = (props) => {
           <button>Add Event</button>
           <button>Remove Event</button>
         </div>
-        <button>Contact Us</button>
-        <button>FAQs</button>
+        <button onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );
