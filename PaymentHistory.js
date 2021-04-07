@@ -25,7 +25,7 @@ const PaymentHistory = (props) => {
           <button onClick={handleLogout}>Logout</button>
         </nav>
         <section>
-          <h2>CONTACT US</h2>
+          <h2>PAYMENT HISTORY</h2>
           <button /*make on click function*/> HOME PAGE </button>
         </section>
         <section className="paymentHistory">
