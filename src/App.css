@@ -527,69 +527,104 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: #529cea;
+}
+.navbar .navbarContainer_gray {
+  width: 100%;
+  padding: 0px 2px;
+  background: linear-gradient(
+    0deg,
+    rgba(151, 151, 151, 0.15) -61.36%,
+    rgba(151, 151, 151, 0) 254.55%
+  );
 }
 .navbar .navbarContainer {
   width: 100%;
-  display: flex;
   padding: 0px 10px;
+  background: #529cea;
 }
-.navbar .navbarContainer .Applogo {
+.navbar .navbarContainer_gray .Applogo {
   width: 10%;
   margin: auto;
   display: inline-block;
-  /* transform: translateX(30%); */
 }
-.navbar .navbarContainer .titletext {
-  color: white;
-  margin-bottom: 10px;
+.navbar .navbarContainer_gray .titletext {
+  color: #4c8dc3;
+  margin: 5px auto;
   font-size: 25px;
   font-weight: 900px;
   display: inline-block;
+  align-items: center;
+  justify-content: center;
 }
 
-.navbar .navbarContainer .titletext {
+.navbar .navbarContainer_gray .search {
   color: white;
-  margin-bottom: 10px;
+  margin: 5px auto;
   border-radius: 40px;
   font-size: 18px;
   font-weight: 500px;
   display: inline-block;
 }
-.navbar .navbarContainer .button_blue {
-  border: none;
-  outline: none;
-  width: 50%;
-  padding: 10px 0px;
-  color: #000;
-  font-size: 18px;
-  letter-spacing: 1px;
-  background: #529cea;
-  border-radius: 10px;
+
+.navbar .navbarContainer_gray p span {
+  color: black;
+  font-weight: 200;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: 10px auto;
+  cursor: pointer;
   display: inline-block;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  transition: all 400ms ease-in-out;
+}
+.navbar .navbarContainer_gray .smalltext {
+  color: black;
+  margin: 10px auto;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: italic;
+}
+.navbar .navbarContainer_gray p span:hover {
+  text-decoration: underline;
+}
+/* ################### BottomBar ################ */
+.bottombar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.bottombar .bottombarContainer {
+  width: 100%;
+  padding: 0px 2px;
+  background: linear-gradient(
+    0deg,
+    rgba(151, 151, 151, 0.15) -61.36%,
+    rgba(151, 151, 151, 0) 254.55%
+  );
+  margin: 100% 0% 0% 0%;
 }
 
-.navbar .navbarContainer .button_green {
-  border: none;
-  outline: none;
-  width: 50%;
-  padding: 10px 0px;
-  color: #000;
-  font-size: 18px;
-  letter-spacing: 1px;
-  background: #61ce70;
-  border-radius: 10px;
+.bottombar .bottombarContainer p span {
+  color: black;
+  font-weight: 200;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: 10px auto;
+  cursor: pointer;
   display: inline-block;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  transition: all 400ms ease-in-out;
 }
-
+.bottombar .bottombarContainer .smalltext {
+  color: black;
+  margin: 10px auto;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: italic;
+}
+.bottombar .bottombarContainer p span:hover {
+  text-decoration: underline;
+}
 /* ################### Register ################ */
 .register {
   width: 100%;
@@ -731,28 +766,6 @@
   text-align: center;
   color: #fff;
   text-decoration: italic;
-}
-
-.register .registerContainer .btnContainer p span {
-  color: white;
-  font-weight: 200;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  margin-left: 5px;
-  cursor: pointer;
-  align-items: center;
-  transition: all 400ms ease-in-out;
-}
-.register .registerContainer .smalltext {
-  color: white;
-  margin-top: 10px;
-  display: block;
-  font-size: 14px;
-  line-height: 1;
-  text-decoration: italic;
-}
-.register .registerContainer .btnContainer p span:hover {
-  text-decoration: underline;
 }
 
 .register .registerContainer .errorMsg {

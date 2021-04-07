@@ -33,14 +33,15 @@ const RegisterAsSponsor = (props) => {
   return (
     <body>
       <section className="navbar">
-        <nav className = "navbarContainer">
+        <nav className = "navbarContainer_gray">
          <img src={logo} className="Applogo" alt="logo" />
           <h2 className= "titletext">Hunehar Management System</h2>
           <SearchField className ="search" />
-          <button className = "button_green" onClick={handleLogout}>Logout</button>
+         
+          <p className = "smalltext" onClick={handleLogout}><span>Logout</span></p>
         </nav>
-        <section>
-          <button /*make on click function*/> HOME PAGE </button>
+        <section className = "navbarContainer">
+          <button className = "smalltext"/*make on click function*/> HOME PAGE </button>
         </section>
         <section className="register">
           <div className="registerContainer">
@@ -143,9 +144,13 @@ const RegisterAsSponsor = (props) => {
               </button>
             </div>
           </div>
+        </section >
+        <section className = "bottom_bar">
+         <navbar className = "bottombarContainer">
+        <p className = "smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+        <p className = "smalltext"  onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+        </navbar>
         </section>
-        <button className = "smalltext" onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button className = "smalltext" onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );
