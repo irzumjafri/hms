@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import fire from "./fire";
 // import db from "./fire";  // importing database variable here
-import Login from "./login";
-import Signup from "./signup";
+import Login from "./Login";
+import Signup from "./Signup";
 import "./App.css";
 import Hero from "./Hero";
 import RegisteredSponsorHome from "./registeredSponsorHome";
@@ -10,11 +10,11 @@ import UnregisteredSponsorHome from "./unregisteredSponsorHome";
 import RegisterAsSponsor from "./registerAsSponsor";
 import firebase from "firebase";
 import EditMyProfileSponsor from "./editMyProfileSponsor";
-import ContactUs from "./contactUs";
-import FAQs from "./faqs";
-import PaymentHistory from "./paymentHistory";
-import ChildrenProfiles from "./childrenProfiles";
-import LetterBox from "./letterBox";
+import ContactUs from "./ContactUs";
+import FAQs from "./Faqs";
+import PaymentHistory from "./PaymentHistory";
+import ChildrenProfiles from "./ChildrenProfiles";
+import LetterBox from "./LetterBox";
 
 // setting up the database here
 const db = firebase.firestore();
