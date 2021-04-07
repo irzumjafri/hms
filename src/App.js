@@ -184,99 +184,99 @@ const App = () => {
       {user ? (
         //USE FOR TESTING SCREENS
         //CODE STARTS
-        <Hero />
-      ) : (
-        //CODE ENDS
+        // <Hero />
         //USE FOR TESTING APP
         //CODE STARTS
-        // <>
-        //   {
-        //     {
-        //       registered: (
-        //         <RegisteredSponsorHome
-        //           setRouter={setRouter}
-        //           handleLogout={handleLogout}
-        //         />
-        //       ),
-        //       unregistered: (
-        //         <UnregisteredSponsorHome
-        //           setRouter={setRouter}
-        //           handleLogout={handleLogout}
-        //         />
-        //       ),
-        //       registering: (
-        //         <RegisterAsSponsor
-        //           firstName={firstName}
-        //           lastName={lastName}
-        //           email={email}
-        //           dateOfBirth={dateOfBirth}
-        //           setEmail={setEmail}
-        //           handleLogout={handleLogout}
-        //           setFirstName={setFirstName}
-        //           setLastName={setLastName}
-        //           setDateOfBirth={setDateOfBirth}
-        //           cnic={cnic}
-        //           setCnic={setCnic}
-        //           phoneNumber={phoneNumber}
-        //           setPhoneNumber={setPhoneNumber}
-        //           address={address}
-        //           setAddress={setAddress}
-        //           preferredMediumOfCommunication={
-        //             preferredMediumOfCommunication
-        //           }
-        //           setPreferredMediumOfCommunication={
-        //             setPreferredMediumOfCommunication
-        //           }
-        //           numberOfSponsoredChildren={numberOfSponsoredChildren}
-        //           setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
-        //           paymentMethod={paymentMethod}
-        //           setPaymentMethod={setPaymentMethod}
-        //           paymentSchedule={paymentSchedule}
-        //           setPaymentSchedule={setPaymentSchedule}
-        //           createSponsorshipRequest={createSponsorshipRequest}
-        //           setRouter={setRouter}
-        //         />
-        //       ),
-        //       editmyprofile: (
-        //         <EditMyProfileSponsor
-        //           firstName={firstName}
-        //           lastName={lastName}
-        //           email={email}
-        //           dateOfBirth={dateOfBirth}
-        //           setEmail={setEmail}
-        //           handleLogout={handleLogout}
-        //           setFirstName={setFirstName}
-        //           setLastName={setLastName}
-        //           setDateOfBirth={setDateOfBirth}
-        //           cnic={cnic}
-        //           setCnic={setCnic}
-        //           phoneNumber={phoneNumber}
-        //           setPhoneNumber={setPhoneNumber}
-        //           address={address}
-        //           setAddress={setAddress}
-        //           preferredMediumOfCommunication={
-        //             preferredMediumOfCommunication
-        //           }
-        //           setPreferredMediumOfCommunication={
-        //             setPreferredMediumOfCommunication
-        //           }
-        //           numberOfSponsoredChildren={numberOfSponsoredChildren}
-        //           setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
-        //           paymentMethod={paymentMethod}
-        //           setPaymentMethod={setPaymentMethod}
-        //           paymentSchedule={paymentSchedule}
-        //           setPaymentSchedule={setPaymentSchedule}
-        //           setRouter={setRouter}
-        //           editSponsorProfile={editSponsorProfile}
-        //         />
-        //       ),
-        //       contactus: (
-        //         <ContactUs setRouter={setRouter} handleLogout={handleLogout} />
-        //       ),
-        //       faqs: <FAQs setRouter={setRouter} handleLogout={handleLogout} questions={questions} answers={answers}/>
-        //     }[router]
-        //   }
-        // </>
+        <>
+          {
+            {
+              registered: (
+                <RegisteredSponsorHome
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              unregistered: (
+                <UnregisteredSponsorHome
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              registering: (
+                <RegisterAsSponsor
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  preferredMediumOfCommunication={
+                    preferredMediumOfCommunication
+                  }
+                  setPreferredMediumOfCommunication={
+                    setPreferredMediumOfCommunication
+                  }
+                  numberOfSponsoredChildren={numberOfSponsoredChildren}
+                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  paymentSchedule={paymentSchedule}
+                  setPaymentSchedule={setPaymentSchedule}
+                  createSponsorshipRequest={createSponsorshipRequest}
+                  setRouter={setRouter}
+                />
+              ),
+              editmyprofile: (
+                <EditMyProfileSponsor
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  preferredMediumOfCommunication={
+                    preferredMediumOfCommunication
+                  }
+                  setPreferredMediumOfCommunication={
+                    setPreferredMediumOfCommunication
+                  }
+                  numberOfSponsoredChildren={numberOfSponsoredChildren}
+                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  paymentSchedule={paymentSchedule}
+                  setPaymentSchedule={setPaymentSchedule}
+                  setRouter={setRouter}
+                  editSponsorProfile={editSponsorProfile}
+                />
+              ),
+              contactus: (
+                <ContactUs setRouter={setRouter} handleLogout={handleLogout} />
+              ),
+              faqs: <FAQs setRouter={setRouter} handleLogout={handleLogout} questions={questions} answers={answers}/>
+            }[router]
+          }
+        </>
+        //CODE ENDS
+      ) : (
         //CODE ENDS
         <>
           {hasAccount ? (
