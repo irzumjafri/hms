@@ -1,6 +1,6 @@
 import React from "react";
 import SearchField from "react-search-field";
-
+import logo from "./HMSlogo.png"
 const RegisterAsSponsor = (props) => {
   const {
     firstName,
@@ -32,70 +32,81 @@ const RegisterAsSponsor = (props) => {
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
+      <section className="navbar">
+        <nav className = "navbarContainer">
+         <img src={logo} className="Applogo" alt="logo" />
+          <h2 className= "titletext">Hunehar Management System</h2>
           <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+          <button className = "button_blue" onClick={handleLogout}>Logout</button>
         </nav>
         <section>
-          <h2>REGISTER AS A SPONSOR</h2>
           <button /*make on click function*/> HOME PAGE </button>
         </section>
         <section className="register">
           <div className="registerContainer">
-            <label>First Name *</label>
-            <input
+            <h2 className="titletext">REGISTER AS A SPONSOR</h2>
+            <label className="label-left" >First Name *</label>
+            <label className="label-right">
+            <p className="p_i">Last Name *</p></label>
+            <input className="input-left"
               type="text"
               autoFocus
               required
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             ></input>
-            <label>Last Name *</label>
+            
             <input
+              className="input-right"
               type="text"
               required
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             ></input>
-            <label>Email *</label>
+            <label className="label-left">Email *</label>
+            <label className="label-right">  <p className="p_ii">Date of Birth (DD-MM-YYYY) *</p></label>
             <input
+            className="input-left"
               type="text"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
-            <label>Date of Birth (DD-MM-YYYY) *</label>
+            
             <input
+              className="input-right"
               type="text"
               required
               value={dateOfBirth}
               onChange={(e) => setDateOfBirth(e.target.value)}
             ></input>
-            <label>CNIC </label>
+            <label className="label-left">CNIC </label>
+            <label className="label-right"><p className="p_iii">Phone Number *</p></label>
             <input
+             className="input-left"
               type="text"
               required
               value={cnic}
               onChange={(e) => setCnic(e.target.value)}
             ></input>
-            <label>Phone Number *</label>
+            
             <input
+              className="input-right"
               type="text"
               required
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             ></input>
-            <label>Address *</label>
-            <input
+            <label className="label-left">Address *</label>
+            <label className="label-right"><p className="p_iv">Preferred Medium of Communication * </p></label>
+            <input className="input-left"
               type="text"
               required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             ></input>
-            <label>Preferred Medium of Communication *</label>
-            <input
+           
+            <input className="input-right"
               type="text"
               required
               value={preferredMediumOfCommunication}
@@ -103,22 +114,23 @@ const RegisterAsSponsor = (props) => {
                 setPreferredMediumOfCommunication(e.target.value)
               } // make it into drop down menu
             ></input>
-            <label>Number of Sponsored Children *</label>
-            <input
-              type="text"
+            <label className="label-left">Number of Sponsored Children *</label>
+            <label className="label-right"> <p className="p_iv">Payment Method *</p></label>
+            <input className="input-left"
+              type="counter"
               required
               value={numberOfSponsoredChildren}
               onChange={(e) => setNumberOfSponsoredChildren(e.target.value)}
             ></input>
-            <label>Payment Method *</label>
-            <input
+            
+            <input className="input-right"
               type="text"
               required
               value={paymentMethod}
               onChange={(e) => setPaymentMethod(e.target.value)} // make it into drop down menu
             ></input>
-            <label>Payment Schedule *</label>
-            <input
+            <label className="label-left">Payment Schedule *</label>
+            <input className="input-left"
               type="text"
               required
               value={paymentSchedule}
@@ -132,8 +144,8 @@ const RegisterAsSponsor = (props) => {
             </div>
           </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <button className = "smalltext" onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button className = "smalltext" onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );

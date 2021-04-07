@@ -96,7 +96,7 @@ const Signup = (props) => {
                 Create My Account!
               </button>
             ) : (
-              <button onClick={handleSignUp} className="button_blue">
+              <button onClick={handleSignUp} className="button_gray">
                 Create My Account!
               </button>
             )}
