@@ -178,7 +178,13 @@ const App = () => {
   return (
     <div className="App">
       {user ? (
+
+        //USE FOR TESTING SCREENS
+        //CODE STARTS
         <Hero/>
+        //CODE ENDS
+        //USE FOR TESTING APP
+        //CODE STARTS
         // <>
         //   {
         //     {
@@ -267,6 +273,7 @@ const App = () => {
         //     }[router]
         //   }
         // </>
+        //CODE ENDS
       ) : (
         <>
           {hasAccount ? (
