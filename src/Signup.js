@@ -25,7 +25,9 @@ const Signup = (props) => {
       <div className="signupContainer">
         <label className="titletext">SIGN UP</label>
         <label className="label-left">First Name *</label>
-        <p className="label-right"><p className="p_i">Last Name *</p></p>
+        <p className="label-right">
+          <p className="p_i">Last Name *</p>
+        </p>
         <input
           className="input-left"
           type="text"
@@ -44,7 +46,10 @@ const Signup = (props) => {
         ></input>
 
         <label className="label-left">Email *</label>
-        <p className="label-right"> <p className="p_ii">Date of Birth (DD-MM-YYYY) *</p></p>
+        <p className="label-right">
+          {" "}
+          <p className="p_ii">Date of Birth (DD-MM-YYYY) *</p>
+        </p>
         <input
           className="input-left"
           type="text"
@@ -61,7 +66,9 @@ const Signup = (props) => {
           onChange={(e) => setDateOfBirth(e.target.value)}
         ></input>
         <label className="label-left">Password *</label>
-        <label className="label-right"><p className="p_iii">Confirm Password *</p></label>
+        <label className="label-right">
+          <p className="p_iii">Confirm Password *</p>
+        </label>
         <input
           className="input-left"
           type="password"

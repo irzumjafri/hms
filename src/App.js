@@ -8,13 +8,12 @@ import Hero from "./Hero";
 import RegisteredSponsorHome from "./registeredSponsorHome";
 import UnregisteredSponsorHome from "./unregisteredSponsorHome";
 import RegisterAsSponsor from "./registerAsSponsor";
-import firebase from 'firebase';
+import firebase from "firebase";
 
 // setting up the database here
 const db = firebase.firestore();
 // setting this settign to avoid warnings
 db.settings({ timestampsInSnapshots: true });
-
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -42,35 +41,34 @@ const App = () => {
   const [applicationStatus, setApplicationStatus] = useState("");
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
 
-
   // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
   const createSponsorshipRequest = () => {
-    
-    db.collection("sponsorshipApplicants").doc(user.uid).set({
-      // sponsor profile data, visible to sponsors
-      firstName: firstName,
-      lastName: lastName,
-      emailAddress: email,
-      dateOfBirth: dateOfBirth,
-      cnic: cnic,
-      phoneNumber: phoneNumber,
-      address: address,
-      preferredMediumOfCommunication: preferredMediumOfCommunication,
-      numberOfSponsoredChildren: numberOfSponsoredChildren,
-      paymentMethod: paymentMethod,
-      paymentSchedule: paymentSchedule,
-      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-      
-      // fields to be used by admin, only visible to admins
-      applicationStatus: "Pending",  // admin can update this to accept or reject
-      howToAssignChildren: "Pending" // admin can update this to "auto-assign" or "assign-manually"
-    })
-  }
+    db.collection("sponsorshipApplicants")
+      .doc(user.uid)
+      .set({
+        // sponsor profile data, visible to sponsors
+        firstName: firstName,
+        lastName: lastName,
+        emailAddress: email,
+        dateOfBirth: dateOfBirth,
+        cnic: cnic,
+        phoneNumber: phoneNumber,
+        address: address,
+        preferredMediumOfCommunication: preferredMediumOfCommunication,
+        numberOfSponsoredChildren: numberOfSponsoredChildren,
+        paymentMethod: paymentMethod,
+        paymentSchedule: paymentSchedule,
+        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+
+        // fields to be used by admin, only visible to admins
+        applicationStatus: "Pending", // admin can update this to accept or reject
+        howToAssignChildren: "Pending", // admin can update this to "auto-assign" or "assign-manually"
+      });
+  };
 
   //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
   const editSponsorProfile = () => {
-
-    let profileToEdit = db.collection("registeredSponsors").doc(user.uid);  // or search through name?
+    let profileToEdit = db.collection("registeredSponsors").doc(user.uid); // or search through name?
 
     return profileToEdit.update({
       firstName: firstName,
@@ -86,13 +84,12 @@ const App = () => {
       paymentSchedule: paymentSchedule,
 
       // cannot be updated by the sponsor so we don't even show them in the front end
-      applicationStatus: applicationStatus,  
-      howToAssignChildren: howToAssignChildren
-    })
-  }
+      applicationStatus: applicationStatus,
+      howToAssignChildren: howToAssignChildren,
+    });
+  };
 
   // function that retreives all of data about a sponsor to set the states
-
 
   const registerRouter = () => {
     setRouter("registering");
@@ -137,32 +134,30 @@ const App = () => {
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
-  
-    db.collection("userAccounts").doc(user.uid).set({
-      firstName: firstName,
-      lastName: lastName,
-      dateOfBirth: dateOfBirth,
-      email: email,
-      password: confirmPassword,
-      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate()
-    })
-  }
+    db.collection("userAccounts")
+      .doc(user.uid)
+      .set({
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: dateOfBirth,
+        email: email,
+        password: confirmPassword,
+        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+      });
+  };
 
   const handleSignUp = () => {
     clearErrors();
     if (signupErrorCheck()) {
       try {
-        fire
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
+        fire.auth().createUserWithEmailAndPassword(email, password);
         // user account data being set in database in this function call
-        createUserAccount();       
-      } catch (error){
+        createUserAccount();
+      } catch (error) {
         setErrorMessage(error.message);
       }
     }
   };
-
 
   const handleLogout = () => {
     setRouter("unregistered"); //change it to null value when updating from database
