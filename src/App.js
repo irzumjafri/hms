@@ -10,6 +10,8 @@ import UnregisteredSponsorHome from "./unregisteredSponsorHome";
 import RegisterAsSponsor from "./registerAsSponsor";
 import firebase from "firebase";
 import EditMyProfileSponsor from "./editMyProfileSponsor";
+import ContactUs from "./ContactUs";
+import FAQs from "./Faqs";
 
 // setting up the database here
 const db = firebase.firestore();
@@ -38,9 +40,12 @@ const App = () => {
   const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
-  const [router, setRouter] = useState("registered"); //change it to null value when updating from database //directly open registered
+  const [router, setRouter] = useState("registered"); //change it to null value when updating from database
   const [applicationStatus, setApplicationStatus] = useState("");
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
+  const [questions, setQuestions] = useState(["are you okay","are you ok","are you oka","are you k"]);
+  const [answers, setAnswers] = useState(["no","yes","no","yes"]);
+
 
   // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
   const createSponsorshipRequest = () => {
@@ -89,8 +94,6 @@ const App = () => {
       howToAssignChildren: howToAssignChildren,
     });
   };
-
-  // function that retreives all of data about a sponsor to set the states
 
   const clearInputs = () => {
     setEmail("");
@@ -178,7 +181,12 @@ const App = () => {
         <>
           {
             {
-              registered: <RegisteredSponsorHome setRouter={setRouter} handleLogout={handleLogout} />,
+              registered: (
+                <RegisteredSponsorHome
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
               unregistered: (
                 <UnregisteredSponsorHome
                   setRouter={setRouter}
@@ -214,37 +222,47 @@ const App = () => {
                   setPaymentMethod={setPaymentMethod}
                   paymentSchedule={paymentSchedule}
                   setPaymentSchedule={setPaymentSchedule}
+                  createSponsorshipRequest={createSponsorshipRequest}
+                  setRouter={setRouter}
                 />
               ),
-              editmyprofile: (<EditMyProfileSponsor firstName={firstName}
-                lastName={lastName}
-                email={email}
-                dateOfBirth={dateOfBirth}
-                setEmail={setEmail}
-                handleLogout={handleLogout}
-                setFirstName={setFirstName}
-                setLastName={setLastName}
-                setDateOfBirth={setDateOfBirth}
-                cnic={cnic}
-                setCnic={setCnic}
-                phoneNumber={phoneNumber}
-                setPhoneNumber={setPhoneNumber}
-                address={address}
-                setAddress={setAddress}
-                preferredMediumOfCommunication={
-                  preferredMediumOfCommunication
-                }
-                setPreferredMediumOfCommunication={
-                  setPreferredMediumOfCommunication
-                }
-                numberOfSponsoredChildren={numberOfSponsoredChildren}
-                setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
-                paymentMethod={paymentMethod}
-                setPaymentMethod={setPaymentMethod}
-                paymentSchedule={paymentSchedule}
-                setPaymentSchedule={setPaymentSchedule}
-                setRouter={setRouter}
-                editSponsorProfile={editSponsorProfile}/>),
+              editmyprofile: (
+                <EditMyProfileSponsor
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  preferredMediumOfCommunication={
+                    preferredMediumOfCommunication
+                  }
+                  setPreferredMediumOfCommunication={
+                    setPreferredMediumOfCommunication
+                  }
+                  numberOfSponsoredChildren={numberOfSponsoredChildren}
+                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  paymentSchedule={paymentSchedule}
+                  setPaymentSchedule={setPaymentSchedule}
+                  setRouter={setRouter}
+                  editSponsorProfile={editSponsorProfile}
+                />
+              ),
+              contactus: (
+                <ContactUs setRouter={setRouter} handleLogout={handleLogout} />
+              ),
+              faqs: <FAQs setRouter={setRouter} handleLogout={handleLogout} questions={questions} answers={answers}/>
             }[router]
           }
         </>

@@ -31,8 +31,8 @@ const UnregisteredSponsorHome = (props) => {
           <button>Add Event</button>
           <button>Remove Event</button>
         </div>
-        <button>Contact Us</button>
-        <button>FAQs</button>
+        <button onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );

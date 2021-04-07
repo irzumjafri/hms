@@ -4,13 +4,7 @@ import SearchField from "react-search-field";
 const ContactUs = (props) => {
   const {
     handleLogout,
-    huneharPhoneNumber,
-    huneharAddress,
-    huneharEmail,
-    facebook,
-    instagram,
-    twitter,
-    youtube,
+    setRouter,
   } = props;
 
   return (
@@ -29,36 +23,36 @@ const ContactUs = (props) => {
           <div className="contactUsContainer">
             <div>
               <label>Phone Number </label>
-              <textbox>{huneharPhoneNumber}</textbox>
+              <textbox>090078601</textbox>
             </div>
             <div>
               <label>Email Address</label>
-              <textbox>{huneharEmail}</textbox>
+              <textbox>hunehar@management.system</textbox>
             </div>
             <div>
               <label>Address</label>
-              <textbox>{huneharAddress}</textbox>
+              <textbox>irtasam ka ghar</textbox>
             </div>
             <div>
               <label>Facebook</label>
-              <textbox>{facebook}</textbox>
+              <textbox>facebook.com/hunehar</textbox>
             </div>
             <div>
               <label>Instagram</label>
-              <textbox>{instagram}</textbox>
+              <textbox>instagram.com/hunhar</textbox>
             </div>
             <div>
               <label>Twitter</label>
-              <textbox>{twitter}</textbox>
+              <textbox>twitter.com/hunehar</textbox>
             </div>
             <div>
               <label>YouTube</label>
-              <textbox>{youtube}</textbox>
+              <textbox>youtube.com/hunehar</textbox>
             </div>
           </div>
         </section>
-        <button /*make on click function*/>Contact Us</button>
-        <button /*make on click function*/>FAQs</button>
+        <button onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );

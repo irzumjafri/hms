@@ -26,6 +26,8 @@ const RegisterAsSponsor = (props) => {
     setPaymentMethod,
     paymentSchedule,
     setPaymentSchedule,
+    createSponsorshipRequest,
+    setRouter
   } = props;
 
   return (
@@ -124,14 +126,14 @@ const RegisterAsSponsor = (props) => {
             ></input>
 
             <div className="btnContainer">
-              <button /* make on click function*/ className="button_green">
+              <button onClick={() => createSponsorshipRequest()} className="button_green">
                 Register Me!
               </button>
             </div>
           </div>
         </section>
-        <button>Contact Us</button>
-        <button>FAQs</button>
+        <button onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );
