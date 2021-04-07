@@ -36,7 +36,7 @@ const RegisterAsSponsor = (props) => {
         <nav className = "navbarContainer">
          <img src={logo} className="Applogo" alt="logo" />
           <h2 className= "titletext">Hunehar Management System</h2>
-          <SearchField />
+          <SearchField className ="search" />
           <button className = "button_green" onClick={handleLogout}>Logout</button>
         </nav>
         <section>

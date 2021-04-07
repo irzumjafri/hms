@@ -548,6 +548,14 @@
   display: inline-block;
 }
 
+.navbar .navbarContainer .titletext {
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: 500px;
+  display: inline-block;
+}
 .navbar .navbarContainer .button_blue {
   border: none;
   outline: none;
