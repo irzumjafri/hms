@@ -525,12 +525,14 @@
 /* ################### Navbar ################ */
 .navbar {
   width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 .navbar .navbarContainer_gray {
   width: 100%;
   padding: 0px 0px;
+
   align-items: center;
   justify-content: center;
   background: linear-gradient(
@@ -641,13 +643,13 @@
 }
 .bottombar .bottombarContainer {
   width: 100%;
-  padding: 0px 2px;
+  padding: 10px 2px;
   background: linear-gradient(
     0deg,
     rgba(151, 151, 151, 0.15) -61.36%,
     rgba(151, 151, 151, 0) 254.55%
   );
-  margin: 100% 0% 0% 0%;
+  margin: auto;
 }
 
 .bottombar .bottombarContainer p span {
@@ -657,16 +659,17 @@
   letter-spacing: 0.5px;
   margin: 10px auto;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  float: right;
   transition: all 400ms ease-in-out;
 }
 .bottombar .bottombarContainer .smalltext {
   color: black;
-  margin: 10px auto;
-  display: inline-block;
+  margin: 10px 10px;
   font-size: 14px;
   line-height: 1;
   text-decoration: italic;
+  float: right;
 }
 .bottombar .bottombarContainer p span:hover {
   text-decoration: underline;

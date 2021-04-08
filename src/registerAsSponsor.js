@@ -148,7 +148,7 @@ const RegisterAsSponsor = (props) => {
             </div>
           </div>
         </section >
-        <section className="bottom_bar">
+        <section className="bottombar">
           <navbar className="bottombarContainer">
             <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
             <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
