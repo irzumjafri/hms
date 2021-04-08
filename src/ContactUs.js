@@ -5,7 +5,14 @@ const ContactUs = (props) => {
   const {
     handleLogout,
     setRouter,
-    applicationStatus
+    applicationStatus,
+    contactPhoneNumber,
+    contactEmail,
+    contactAddress,
+    contactFacebook,
+    contactInstagram,
+    contactTwitter,
+    contactYoutube,
   } = props;
 
   return (
@@ -18,37 +25,46 @@ const ContactUs = (props) => {
         </nav>
         <section>
           <h2>CONTACT US</h2>
-          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
+          <button
+            onClick={() =>
+              applicationStatus
+                ? setRouter("registered")
+                : setRouter("unregistered")
+            }
+          >
+            {" "}
+            HOME PAGE{" "}
+          </button>
         </section>
         <section className="contactUs">
           <div className="contactUsContainer">
             <div>
               <label>Phone Number </label>
-              <textbox>090078601</textbox>
+              <textbox>{contactPhoneNumber}</textbox>
             </div>
             <div>
               <label>Email Address</label>
-              <textbox>hunehar@management.system</textbox>
+              <textbox>{contactEmail}</textbox>
             </div>
             <div>
               <label>Address</label>
-              <textbox>irtasam ka ghar</textbox>
+              <textbox>{contactAddress}</textbox>
             </div>
             <div>
               <label>Facebook</label>
-              <textbox>facebook.com/hunehar</textbox>
+              <textbox>{contactFacebook}</textbox>
             </div>
             <div>
               <label>Instagram</label>
-              <textbox>instagram.com/hunhar</textbox>
+              <textbox>{contactInstagram}</textbox>
             </div>
             <div>
               <label>Twitter</label>
-              <textbox>twitter.com/hunehar</textbox>
+              <textbox>{contactTwitter}</textbox>
             </div>
             <div>
               <label>YouTube</label>
-              <textbox>youtube.com/hunehar</textbox>
+              <textbox>{contactYoutube}</textbox>
             </div>
           </div>
         </section>
