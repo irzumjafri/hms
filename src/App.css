@@ -525,13 +525,11 @@
 /* ################### Navbar ################ */
 .navbar {
   width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 .navbar .navbarContainer_gray {
   width: 100%;
-  padding: 0px 0px;
 
   align-items: center;
   justify-content: center;
@@ -540,14 +538,17 @@
     rgba(151, 151, 151, 0.15) -61.36%,
     rgba(151, 151, 151, 0) 254.55%
   );
+  position: fixed;
+  top: 0;
 }
 .navbar .navbarContainer {
   width: 100%;
-  padding: 5px 5px;
   background: #529cea;
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: auto;
+  transform: translateY(57px);
+  margin-bottom: 10px;
 }
 .navbar .navbarContainer p span {
   color: white;
@@ -583,7 +584,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 2;
+  line-height: 1;
+  transform: translateX(-30px);
 }
 .navbar .navbarContainer_gray .Applogo {
   width: 10%;
@@ -604,13 +606,17 @@
 }
 
 .navbar .navbarContainer_gray .search {
-  color: white;
-  margin: auto;
-  border-radius: 40px;
+  color: black;
+  margin: 10px auto;
   font-size: 18px;
   font-weight: 500px;
+  border-radius: 100%;
+  background: transparent;
+  background-color: transparent;
   display: block;
   float: right;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar .navbarContainer_gray p span {
@@ -622,6 +628,7 @@
   cursor: pointer;
   display: block;
   transition: all 400ms ease-in-out;
+  float: right;
 }
 .navbar .navbarContainer_gray .smalltext {
   color: black;
@@ -649,7 +656,10 @@
     rgba(151, 151, 151, 0.15) -61.36%,
     rgba(151, 151, 151, 0) 254.55%
   );
-  margin: auto;
+  margin: auto auto auto 0px;
+
+  position: fixed;
+  bottom: 0;
 }
 
 .bottombar .bottombarContainer p span {
@@ -657,7 +667,7 @@
   font-weight: 200;
   font-size: 14px;
   letter-spacing: 0.5px;
-  margin: 10px auto;
+  margin: 5px auto;
   cursor: pointer;
   display: flex;
   float: right;
@@ -665,7 +675,7 @@
 }
 .bottombar .bottombarContainer .smalltext {
   color: black;
-  margin: 10px 10px;
+  margin: auto 10px;
   font-size: 14px;
   line-height: 1;
   text-decoration: italic;
@@ -677,7 +687,7 @@
 /* ################### Register ################ */
 .register {
   width: 100%;
-  min-height: 100vh;
+  min-height: 60vh;
   padding: 0 20px;
   background: #fff;
   display: flex;
@@ -685,12 +695,13 @@
 
 .register .registerContainer {
   padding: 60px;
-  margin: auto;
+  margin: 60px auto;
   width: 100%;
   max-width: 900px;
   min-height: 400px;
   display: block;
   flex-direction: column;
+
   justify-content: center;
   background: #192539;
   border-radius: 10px;
@@ -821,6 +832,152 @@
   color: #ff0033;
   font-size: 14px;
 }
+
+/* ####################UnregisteredHomepage######################### */
+
+.unregistered {
+  width: 100%;
+  min-height: 60vh;
+  padding: 0 20px;
+  background: #fff;
+  display: flex;
+}
+
+.unregistered .unregisteredContainer {
+  padding: 60px;
+  margin: 60px auto;
+  width: 100%;
+  max-width: 900px;
+  min-height: 400px;
+  display: block;
+  flex-direction: column;
+
+  justify-content: center;
+  background: #192539;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.unregistered .button_blue {
+  border: none;
+  outline: none;
+  width: 50%;
+  padding: 10px 0px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #529cea;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.unregistered .button_green {
+  border: none;
+  outline: none;
+  width: 15%;
+  padding: 30px 10px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #61ce7d;
+  border-radius: 10px;
+  margin: auto;
+  float: left;
+}
+.unregistered .titletext {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.unregistered .label-left {
+  color: black;
+  margin: auto;
+  display: inline-block;
+  font-size: 30px;
+}
+.unregistered .unregisteredContainer .input-left {
+  width: 40%;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin: 10px 150px 10px 0px;
+}
+.unregistered .label-right {
+  color: black;
+
+  display: inline-block;
+  margin: auto;
+  font-size: 30px;
+  line-height: 1;
+  text-align: left;
+}
+
+.unregistered .unregisteredContainer .label-right .p_i {
+  margin: 10px 0px 10px 220px;
+}
+
+.unregistered .unregisteredContainer .label-right .p_ii {
+  margin: 10px 0px 10px 260px;
+}
+
+.unregistered .unregisteredContainer .label-right .p_iii {
+  margin: 10px 0px 10px 266px;
+}
+
+.unregistered .unregisteredContainer .label-right .p_iv {
+  margin: 10px 0px 10px 235px;
+}
+
+.unregistered .unregisteredContainer .label-right .p_v {
+  margin: 10px 0px 10px 58px;
+}
+
+.unregistered .unregisteredContainer .input-right {
+  width: 40%;
+  border: none;
+  outline: none;
+  margin: 0px 0px;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  letter-spacing: 1px;
+  display: inline-block;
+}
+
+.unregistered .unregisteredContainer .btnContainer {
+  width: 100%;
+  padding: 24px 0;
+}
+
+.unregistered .unregisteredContainer .btnContainer p {
+  margin: 10px 0 0 0;
+  text-align: center;
+  color: #fff;
+  text-decoration: italic;
+}
+
+.unregistered .unregisteredContainer .errorMsg {
+  color: #ff0033;
+  font-size: 14px;
+}
+
 .hero {
   width: 100%;
   min-height: 100vh;
