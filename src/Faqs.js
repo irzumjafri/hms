@@ -7,7 +7,7 @@ const FAQs = (props) => {
     answers,
     handleLogout,
     setRouter,
-    applicationStatus
+    applicationStatus,
   } = props;
 
   return (
@@ -20,17 +20,27 @@ const FAQs = (props) => {
         </nav>
         <section>
           <h2>Frequently Asked Questions (FAQs)</h2>
-          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
+          <button
+            onClick={() =>
+              applicationStatus
+                ? setRouter("registered")
+                : setRouter("unregistered")
+            }
+          >
+            {" "}
+            HOME PAGE{" "}
+          </button>
         </section>
         <section className="faqs">
           {questions.map((con, i) => {
-          return (
-            <div className="faqsContainer">
+            return (
+              <div className="faqsContainer">
+                <label>Question {i + 1}</label>
                 <text>{questions[i]}</text>
                 <text>{answers[i]}</text>
-            </div>
-          );
-        })}
+              </div>
+            );
+          })}
         </section>
         <button onClick={() => setRouter("contactus")}>Contact Us</button>
         <button onClick={() => setRouter("faqs")}>FAQs</button>
