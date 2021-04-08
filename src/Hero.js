@@ -12,6 +12,28 @@ const UnregisteredSponsorHome = (props) => {
   return (
     <body>
      <section className="navbar">
+        
+        <nav className="navbarContainer">
+          <h2 className="titletext">Homepage</h2>
+        </nav>
+        <section className = "unregistered">
+    
+          <h1 className="label-left" >Menu</h1>
+          <h1 className= "label-right">Calendar</h1>
+         
+
+        <button className = "button_green" onClick={() => setRouter("registering")}>Register as a Sponsor</button>
+         
+          <h2 className="label-right" ><p className = "p_i">Today's Event(s):</p></h2>
+          <p className="label-right" ><p className = "p_ii">No Events</p></p>
+          <button className ="button_blue">Add Event</button>
+          <button className = "button_red">Remove Event</button>       
+         
+
+        </section>
+
+        <Calendar className= "calender" />
+        
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
@@ -20,22 +42,6 @@ const UnregisteredSponsorHome = (props) => {
           classNames="search"/> 
           
         </nav>
-        <nav className="navbarContainer">
-          <h2 className="titletext">Homepage</h2>
-        </nav>
-        
-        <div className = "unregistered">
-          <h1 className="label-left" >Menu</h1>
-          <button className = "button_green" onClick={() => setRouter("registering")}>Register as a Sponsor</button>
-        </div>
-        <div>
-          <h1 className= "label-right">Calendar</h1>
-          <Calendar />
-          <h2>Today's Event(s):</h2>
-          <p>No Events</p>
-          <button>Add Event</button>
-          <button>Remove Event</button>
-        </div>
         <section className="bottombar">
           <navbar className="bottombarContainer">
             <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>

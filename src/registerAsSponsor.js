@@ -34,14 +34,7 @@ const RegisterAsSponsor = (props) => {
   return (
     <body>
       <section className="navbar">
-        <nav className="navbarContainer_gray">
-          <img src={logo} className="Applogo" alt="logo" />
-          < h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
-          <SearchField placeholder ="search..."
-          classNames="search"/> 
-          
-        </nav>
+        
         <nav className="navbarContainer">
           <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
           <h2 className="titletext">REGISTER AS A SPONSOR</h2>
@@ -149,6 +142,14 @@ const RegisterAsSponsor = (props) => {
             </div>
           </div>
         </section >
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          
+        </nav>
         <section className="bottombar">
           <navbar className="bottombarContainer">
             <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
