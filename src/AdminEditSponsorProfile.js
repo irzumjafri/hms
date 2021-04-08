@@ -1,7 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
 
-const AdminAddSponsorProfile = (props) => {
+const AdminEditSponsorProfile = (props) => {
   const {
     firstName,
     lastName,
@@ -52,8 +52,8 @@ const AdminAddSponsorProfile = (props) => {
             HOME PAGE{" "}
           </button>
         </section>
-        <section className="adminAddSponsorProfile">
-          <div className="adminAddSponsorProfileContainer">
+        <section className="adminEditSponsorProfile">
+          <div className="adminEditSponsorProfileContainer">
             <label>First Name *</label>
             <input
               type="text"
@@ -149,7 +149,7 @@ const AdminAddSponsorProfile = (props) => {
                 // }}
                 className="buttongreen"
               >
-                ✅ Create Profile
+                ✅ Save Changes
               </button>
             </div>
           </div>
@@ -161,4 +161,4 @@ const AdminAddSponsorProfile = (props) => {
   );
 };
 
-export default AdminAddSponsorProfile;
+export default AdminEditSponsorProfile;
