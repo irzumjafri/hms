@@ -155,7 +155,7 @@ const App = () => {
     });
   };
 
-  //const childcount = 0001
+  const childcount = 1000
   // Function that creates profile of the child
   const createChildProfile = () => {
     const childUniqueId = firstName + lastName
@@ -181,7 +181,7 @@ const App = () => {
         grade : grade,
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
       });
-      //childcount = childcount + 1 //increasing child count
+      childcount = childcount + 1 //increasing child count
   };
 
 
