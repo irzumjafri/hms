@@ -1,7 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
 
-const AdminAddChildrenProfiles = (props) => {
+const AdminEditChildrenProfiles = (props) => {
   const {
     handleLogout,
     setRouter,
@@ -190,7 +190,7 @@ const AdminAddChildrenProfiles = (props) => {
                   // MakeonClick Function onClick={() => setRouter("registered")}
                   className="buttongreen"
                 >
-                  ✅ Add Child
+                  ✅ Save Changes
                 </button>
               </div>
             </div>
@@ -203,4 +203,4 @@ const AdminAddChildrenProfiles = (props) => {
   );
 };
 
-export default AdminAddChildrenProfiles;
+export default AdminEditChildrenProfiles;
