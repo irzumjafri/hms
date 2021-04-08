@@ -32,7 +32,7 @@ const RequestAMeeting = (props) => {
         </section>
         <section className="requestAMeeting">
           <div className="requestAMeetingContainer">
-            <label>Preferred Meeting Date (DD-MM-YYYY) * *</label>
+            <label>Preferred Meeting Date (DD-MM-YYYY) *</label>
             <input
               type="text"
               autoFocus
@@ -41,7 +41,7 @@ const RequestAMeeting = (props) => {
               onChange={(e) => setPreferredMeetingDate(e.target.value)}
             ></input>
             <section>
-              <label>Preferred Meeting Time (hh:mm) * *</label>
+              <label>Preferred Meeting Time (hh:mm) *</label>
               <input
                 type="text"
                 required
@@ -68,13 +68,15 @@ const RequestAMeeting = (props) => {
               value={backUpDatesAndTimes}
               onChange={(e) => setBackUpDatesAndTimes(e.target.value)}
             ></input>
-            <label>Purpose *</label>
-            <input
-              type="text"
-              required
-              value={purpose}
-              onChange={(e) => setPurpose(e.target.value)}
-            ></input>
+            <section>
+              <label>Purpose *</label>
+              <input
+                type="text"
+                required
+                value={purpose}
+                onChange={(e) => setPurpose(e.target.value)}
+              ></input>
+            </section>
             <div className="btnContainer">
               <button
                 // Make the onclick function
@@ -82,7 +84,7 @@ const RequestAMeeting = (props) => {
                 //   setRouter("registered");
                 //   editSponsorProfile();
                 // }}
-                className="button_green"
+                className="buttongreen"
               >
                 ✅ Submit Request
               </button>

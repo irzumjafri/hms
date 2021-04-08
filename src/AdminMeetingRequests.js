@@ -6,7 +6,6 @@ const AdminMeetingRequests = (props) => {
     handleLogout,
     preferredMeetingDate,
     hour,
-    setHour,
     minutes,
     amPm,
     backUpDatesAndTimes,
