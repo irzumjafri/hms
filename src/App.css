@@ -530,7 +530,9 @@
 }
 .navbar .navbarContainer_gray {
   width: 100%;
-  padding: 0px 2px;
+  padding: 0px 0px;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(
     0deg,
     rgba(151, 151, 151, 0.15) -61.36%,
@@ -539,31 +541,74 @@
 }
 .navbar .navbarContainer {
   width: 100%;
-  padding: 0px 10px;
+  padding: 5px 5px;
   background: #529cea;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: auto;
+}
+.navbar .navbarContainer p span {
+  color: white;
+  font-weight: 200;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 400ms ease-in-out;
+}
+.navbar .navbarContainer .smalltext {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  font-size: 14px;
+  line-height: 2;
+  text-decoration: italic;
+  margin: 10px 10px;
+}
+.navbar .navbarContainer p span:hover {
+  text-decoration: underline;
+}
+.navbar .navbarContainer .titletext {
+  color: white;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 2;
 }
 .navbar .navbarContainer_gray .Applogo {
   width: 10%;
   margin: auto;
-  display: inline-block;
+  display: block;
+  float: left;
 }
 .navbar .navbarContainer_gray .titletext {
   color: #4c8dc3;
-  margin: 5px auto;
+  margin: 20px auto auto 5px;
+  line-height: 25px;
   font-size: 25px;
   font-weight: 900px;
-  display: inline-block;
+  display: block;
+  float: left;
   align-items: center;
   justify-content: center;
 }
 
 .navbar .navbarContainer_gray .search {
   color: white;
-  margin: 5px auto;
+  margin: auto;
   border-radius: 40px;
   font-size: 18px;
   font-weight: 500px;
-  display: inline-block;
+  display: block;
+  float: right;
 }
 
 .navbar .navbarContainer_gray p span {
@@ -571,15 +616,16 @@
   font-weight: 200;
   font-size: 14px;
   letter-spacing: 0.5px;
-  margin: 10px auto;
+  margin: 10px 10px;
   cursor: pointer;
-  display: inline-block;
+  display: block;
   transition: all 400ms ease-in-out;
 }
 .navbar .navbarContainer_gray .smalltext {
   color: black;
-  margin: 10px auto;
-  display: inline-block;
+  margin: 10px 10px;
+  display: block;
+  float: right;
   font-size: 14px;
   line-height: 1;
   text-decoration: italic;
@@ -731,15 +777,15 @@
 }
 
 .register .registerContainer .label-right .p_iii {
-  margin: 10px 0px 10px 350px;
+  margin: 10px 0px 10px 266px;
 }
 
 .register .registerContainer .label-right .p_iv {
-  margin: 10px 0px 10px 220px;
+  margin: 10px 0px 10px 235px;
 }
 
 .register .registerContainer .label-right .p_v {
-  margin: 10px 0px 10px 260px;
+  margin: 10px 0px 10px 58px;
 }
 
 .register .registerContainer .input-right {
