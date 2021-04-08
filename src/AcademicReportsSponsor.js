@@ -15,6 +15,8 @@ const AcademicReportsSponsor = (props) => {
     totalMarks,
     percentage,
     grade,
+    setRouter,
+    applicationStatus
   } = props;
 
   return (
@@ -27,7 +29,11 @@ const AcademicReportsSponsor = (props) => {
         </nav>
         <section>
           <h2>ACADEMIC REPORTS</h2>
-          <button /*make on click function*/> HOME PAGE </button>
+          <button onClick={() =>
+              applicationStatus
+                ? setRouter("registered")
+                : setRouter("unregistered")
+            }> HOME PAGE </button>
         </section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
@@ -88,8 +94,8 @@ const AcademicReportsSponsor = (props) => {
             </div>
           </div>
         </section>
-        <button /*make on click function*/>Contact Us</button>
-        <button /*make on click function*/>FAQs</button>
+        <button onClick={() => setRouter("contactus")}>Contact Us</button>
+        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );

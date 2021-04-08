@@ -15,6 +15,8 @@ import FAQs from "./Faqs";
 import PaymentHistory from "./PaymentHistory";
 import ChildrenProfiles from "./ChildrenProfiles";
 import LetterBox from "./LetterBox";
+import RequestAMeeting from "./RequestAMeeting";
+import AcademicReportsSponsor from "./academicReportsSponsor";
 
 // setting up the database here
 const db = firebase.firestore();
@@ -363,6 +365,8 @@ const App = () => {
                   applicationStatus={applicationStatus}
                 />
               ),
+              requestmeeting: (<RequestAMeeting handleLogout={handleLogout} setRouter={setRouter} applicationStatus={applicationStatus}/>),
+              academicreports: (<AcademicReportsSponsor handleLogout={handleLogout} setRouter={setRouter} applicationStatus={applicationStatus}/>),
               contactus: (
                 <ContactUs
                   applicationStatus={applicationStatus}
