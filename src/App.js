@@ -238,7 +238,7 @@ const App = () => {
       {user ? (
         //USE FOR TESTING SCREENS
         //CODE STARTS
-        //<Hero />
+        // <Hero />
         //USE FOR TESTING APP
         //CODE STARTS
         <>
@@ -382,6 +382,7 @@ const App = () => {
             }[router]
           }
         </>
+      ) : (
         //CODE ENDS
         //CODE ENDS
         <>
