@@ -125,6 +125,7 @@ const Sponsor = () => {
         paymentMethod: paymentMethod,
         paymentSchedule: paymentSchedule,
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+        id : user.uid,
 
         // fields to be used by admin, only visible to admins
         applicationStatus: "Pending", // admin can update this to accept or reject
@@ -132,26 +133,42 @@ const Sponsor = () => {
       });
   };
 
+//creates sponsor profile after being approvd by admin
+  const createSponsorProfile = () => {
+    db.collection("sponsorshipApplicants").where("applicationStatus", "==", true)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        var dataTransferredToCollection = db.collection("sponsors").doc(doc.data().barcode).set(doc.data());
+        console.log(doc.id, " => ", doc.data());
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
+  }
+
   //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
   const editSponsorProfile = () => {
-    // this needs to be rewritten using .where
-    // let profileToEdit = db.collection("sponsors").doc(user.uid); // or search through name?
-    // return profileToEdit.update({
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   emailAddress: email,
-    //   dateOfBirth: dateOfBirth,
-    //   cnic: cnic,
-    //   phoneNumber: phoneNumber,
-    //   address: address,
-    //   preferredMediumOfCommunication: preferredMediumOfCommunication,
-    //   numberOfSponsoredChildren: numberOfSponsoredChildren,
-    //   paymentMethod: paymentMethod,
-    //   paymentSchedule: paymentSchedule,
-    //   // cannot be updated by the sponsor so we don't even show them in the front end
-    //   applicationStatus: applicationStatus,
-    //   howToAssignChildren: howToAssignChildren,
-    // });
+    //this needs to be rewritten using .where
+    let profileToEdit = db.collection("sponsors").doc(user.uid); // or search through name?
+    return profileToEdit.update({
+      firstName: firstName,
+      lastName: lastName,
+      emailAddress: email,
+      dateOfBirth: dateOfBirth,
+      cnic: cnic,
+      phoneNumber: phoneNumber,
+      address: address,
+      preferredMediumOfCommunication: preferredMediumOfCommunication,
+      numberOfSponsoredChildren: numberOfSponsoredChildren,
+      paymentMethod: paymentMethod,
+      paymentSchedule: paymentSchedule,
+      // cannot be updated by the sponsor so we don't even show them in the front end
+      applicationStatus: applicationStatus,
+      howToAssignChildren: howToAssignChildren,
+    });
   };
 
   // Admin users can edit their profile information using this function
@@ -221,6 +238,20 @@ const Sponsor = () => {
   //   .catch((error) => {
   //     console.log("Error getting document:", error);
   //   });
+
+  //fetching one document // to show data on edit my profile page for sponsors
+  var docRef_fetchSponsorData = db.collection("sponsors").doc(user.uid);
+  docRef_fetchSponsorData.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
 
   //fetching multiple documents (like when displaying all sponsorship requests on the admin interface)
   db.collection("sponsorshipApplicants")
@@ -327,7 +358,10 @@ const Sponsor = () => {
   //   });
   // };
 
-  // admin saving payment history for each sponsor
+  // where does admin enters the name of sponsor for whom he wants to save his payment history
+
+
+  //admin saving payment history for each sponsor
   // const paymentHistory = () => {
   //   db.collection("paymentHistory")
   //     .doc(user.uid) //  fetch this ID for sponsor
@@ -339,6 +373,56 @@ const Sponsor = () => {
   //       paymentType: paymentType,
   //     });
   // };
+
+  // Sponsors sending letters to child
+
+    const sendLettersToChild = () => {
+      db.collection("lettersToChild")
+      .doc(user.uid)
+      .set({
+        id : user.uid,
+        sponsorName : sponsorName,
+        message : message,
+        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+      });
+    };
+
+  // sponsors checking letters sent by child
+
+  const sendLettersToChild = () => {
+    db.collection("lettersFromChild")
+    .where("sponsorName", "==", sponsorName)
+
+
+
+
+
+
+    .doc(user.uid)
+    .set({
+      id : user.uid,
+      sponsorName : sponsorName,
+      message : message,
+      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+    });
+  };
+
+
+
+
+  db.collection("sponsorshipApplicants")
+  .where("applicationStatus", "==", false)
+  .get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+  })
+  .catch((error) => {
+    console.log("Error getting documents: ", error);
+  });
+
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
