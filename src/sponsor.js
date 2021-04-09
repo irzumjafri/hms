@@ -140,7 +140,7 @@ const Sponsor = () => {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        var dataTransferredToCollection = db.collection("sponsors").doc(doc.data().barcode).set(doc.data());
+        var dataTransferredToCollection = db.collection("registeredSponsors").doc(doc.data().barcode).set(doc.data());
         console.log(doc.id, " => ", doc.data());
       });
     })
@@ -148,28 +148,6 @@ const Sponsor = () => {
       console.log("Error getting documents: ", error);
     });
   }
-
-  //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
-  const editSponsorProfile = () => {
-    //this needs to be rewritten using .where
-    let profileToEdit = db.collection("sponsors").doc(user.uid); // or search through name?
-    return profileToEdit.update({
-      firstName: firstName,
-      lastName: lastName,
-      emailAddress: email,
-      dateOfBirth: dateOfBirth,
-      cnic: cnic,
-      phoneNumber: phoneNumber,
-      address: address,
-      preferredMediumOfCommunication: preferredMediumOfCommunication,
-      numberOfSponsoredChildren: numberOfSponsoredChildren,
-      paymentMethod: paymentMethod,
-      paymentSchedule: paymentSchedule,
-      // cannot be updated by the sponsor so we don't even show them in the front end
-      applicationStatus: applicationStatus,
-      howToAssignChildren: howToAssignChildren,
-    });
-  };
 
   // Admin users can edit their profile information using this function
   const editSponsorProfile = () => {
@@ -212,7 +190,7 @@ const Sponsor = () => {
             paymentSchedule: paymentSchedule,
             applicationStatus: appStatus,
             howToAssignChildren: howTo,
-            id = idofDoc
+            id: idofDoc,
           })
           .then(() => {
             console.log("Document successfully updated!");
@@ -240,7 +218,7 @@ const Sponsor = () => {
   //   });
 
   //fetching one document // to show data on edit my profile page for sponsors
-  var docRef_fetchSponsorData = db.collection("sponsors").doc(user.uid);
+  var docRef_fetchSponsorData = db.collection("registeredSponsors").doc(user.uid);
   docRef_fetchSponsorData.get().then((doc) => {
       if (doc.exists) {
         console.log("Document data:", doc.data());
@@ -376,36 +354,36 @@ const Sponsor = () => {
 
   // Sponsors sending letters to child
 
-    const sendLettersToChild = () => {
-      db.collection("lettersToChild")
-      .doc(user.uid)
-      .set({
-        id : user.uid,
-        sponsorName : sponsorName,
-        message : message,
-        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-      });
-    };
+  //   const sendLettersToChild = () => {
+  //     db.collection("lettersToChild")
+  //     .doc(user.uid)
+  //     .set({
+  //       id : user.uid,
+  //       sponsorName : sponsorName,
+  //       message : message,
+  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  //     });
+  //   };
 
-  // sponsors checking letters sent by child
+  // // sponsors checking letters sent by child
 
-  const sendLettersToChild = () => {
-    db.collection("lettersFromChild")
-    .where("sponsorName", "==", sponsorName)
-
-
+  // const sendLettersToChild = () => {
+  //   db.collection("lettersFromChild")
+  //   .where("sponsorName", "==", sponsorName)
 
 
 
 
-    .doc(user.uid)
-    .set({
-      id : user.uid,
-      sponsorName : sponsorName,
-      message : message,
-      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-    });
-  };
+
+
+  //   .doc(user.uid)
+  //   .set({
+  //     id : user.uid,
+  //     sponsorName : sponsorName,
+  //     message : message,
+  //     timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  //   });
+  // };
 
 
 
