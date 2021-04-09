@@ -21,7 +21,7 @@ const AdminHome = (props) => {
         </div>
         <div>
           <h1 /*Make the menu drop down*/>Menu</h1>
-          <button onClick={() => setRouter("editsponsorprofile")}>
+          <button onClick={() => setRouter("editmyprofile")}>
             Edit My Profile
           </button>
           <button onClick={() => setRouter("sponsorshiprequests")}>

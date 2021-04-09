@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
-import fire from "./fire";
-// import db from "./fire";  // importing database variable here
-import Login from "./Login";
-import Signup from "./Signup";
-import "./App.css";
-import Hero from "./Hero";
 import firebase from "firebase";
-import ContactUs from "./ContactUs";
-import FAQs from "./Faqs";
+import fire from "./fire";
+import "./App.css";
 import AdminHome from "./AdminHome";
-import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
+import AdminEditMyProfile from "./AdminEditMyProfile";
 import AdminChildrenProfiles from "./AdminChildrenProfiles";
 import AdminSponsorProfiles from "./AdminSponsorProfiles";
 import AdminEditContactUs from "./AdminEditContactUs";
@@ -17,29 +11,33 @@ import AdminEditFAQs from "./AdminEditFAQs";
 import AdminPaymentHistory from "./AdminPaymentHistory";
 import AdminMeetingRequests from "./AdminMeetingRequests";
 import AdminAcademicReports from "./AdminAcademicReports";
-import AdminContactUs from './AdminContactUs'
-import AdminFAQs from './AdminFaqs'
+import AdminContactUs from "./AdminContactUs";
+import AdminFAQs from "./AdminFaqs";
+import AdminSponsorshipRequests from "./AdminSponsorshipRequests";
+import AdminLogin from './AdminLogin'
 
 // setting up the database here
 const db = firebase.firestore();
 // setting this settign to avoid warnings
 db.settings({ timestampsInSnapshots: true });
 
-const Sponsor = () => {
-  const [user, setUser] = useState("");
+const Admin = () => {
+  const [loggedIn, setLoggedIn] = useState(true);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [cnic, setCnic] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [department, setDepartment] = useState("");
+  const [institution, setInstitution] = useState("");
   const [
     preferredMediumOfCommunication,
     setPreferredMediumOfCommunication,
   ] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [sponsorData, setSponsorData] = useState([
     {
       firstName: "irzum",
@@ -125,10 +123,10 @@ const Sponsor = () => {
     },
   ]);
   const [myChildren, setMyChildren] = useState([
-    "shabbir",
-    "altaf",
-    "bashir",
-    "naseem",
+    { value: 1, label: "shabbir" },
+    { value: 2, label: "altaf" },
+    { value: 3, label: "bashir" },
+    { value: 4, label: "naseem" },
   ]);
   const [letterBody, setLetterBody] = useState("");
   const [selectedChild, setSelectedChild] = useState("");
@@ -139,53 +137,88 @@ const Sponsor = () => {
     { from: "irtasam", message: "credit card bhi donate kardo" },
   ]);
 
-  // Function that creates profile of sponsor which gets created in sponsorshipApplicants as an applicant
-  const createSponsorshipRequest = () => {
-    db.collection("sponsorshipApplicants")
-      .doc(user.uid)
-      .set({
-        // sponsor profile data, visible to sponsors
-        firstName: firstName,
-        lastName: lastName,
-        emailAddress: email,
-        dateOfBirth: dateOfBirth,
-        cnic: cnic,
-        phoneNumber: phoneNumber,
-        address: address,
-        preferredMediumOfCommunication: preferredMediumOfCommunication,
-        numberOfSponsoredChildren: numberOfSponsoredChildren,
-        paymentMethod: paymentMethod,
-        paymentSchedule: paymentSchedule,
-        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  // This funtion is done to authenticate admin login. Returns true if login match successful otherwise false
+  const handleAdminLogin = (email, password) => {
+    db.collection("adminProfiles")
+      .where("email", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        
+        console.log(querySnapshot.data) /////////////////////////////////////////// for debugging
 
-        // fields to be used by admin, only visible to admins
-        applicationStatus: "Pending", // admin can update this to accept or reject
-        howToAssignChildren: "Pending", // admin can update this to "auto-assign" or "assign-manually"
+        // check if correct password has been entered or not
+        if (password == querySnapshot.data.password) 
+        {
+          // allow login
+          setLoggedIn(true)
+        }
+        else
+        {
+          // password did not match so don't allow for login
+          setLoggedIn(false)
+        }
+      })
+      .catch((error) => {
+        // unauthorized access
+        console.log("Error getting documents: ", error);
+        setErrorMessage(error)
+        setLoggedIn(false)
       });
   };
 
-  //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
-  const editSponsorProfile = () => {
-    let profileToEdit = db.collection("registeredSponsors").doc(user.uid); // or search through name?
-
-    return profileToEdit.update({
-      firstName: firstName,
-      lastName: lastName,
-      emailAddress: email,
-      dateOfBirth: dateOfBirth,
-      cnic: cnic,
-      phoneNumber: phoneNumber,
-      address: address,
-      preferredMediumOfCommunication: preferredMediumOfCommunication,
-      numberOfSponsoredChildren: numberOfSponsoredChildren,
-      paymentMethod: paymentMethod,
-      paymentSchedule: paymentSchedule,
-
-      // cannot be updated by the sponsor so we don't even show them in the front end
-      applicationStatus: applicationStatus,
-      howToAssignChildren: howToAssignChildren,
-    });
+  // This function allows Admin Users to Logout
+  const handleLogout = () => {
+    setRouter("home"); //change it to null value when updating from database
+    fire.auth().signOut();
   };
+
+  // Admin users can edit their profile information using this function
+  const editMyProfile = (email) => {
+    db.collection("adminProfiles")
+      .where("email", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.update({
+          firstName: firstName,
+          lastName: lastName,
+          emailAddress: email,
+          dateOfBirth: dateOfBirth,
+          cnic: cnic,
+          phoneNumber: phoneNumber,
+          address: address,
+          department: department,
+          institution: institution,
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  };
+
+  
+
+  //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
+  // const editSponsorProfile = () => {
+  //   let profileToEdit = db.collection("registeredSponsors").doc(user.uid); // or search through name?
+
+  //   return profileToEdit.update({
+  //     firstName: firstName,
+  //     lastName: lastName,
+  //     emailAddress: email,
+  //     dateOfBirth: dateOfBirth,
+  //     cnic: cnic,
+  //     phoneNumber: phoneNumber,
+  //     address: address,
+  //     preferredMediumOfCommunication: preferredMediumOfCommunication,
+  //     numberOfSponsoredChildren: numberOfSponsoredChildren,
+  //     paymentMethod: paymentMethod,
+  //     paymentSchedule: paymentSchedule,
+
+  //     // cannot be updated by the sponsor so we don't even show them in the front end
+  //     applicationStatus: applicationStatus,
+  //     howToAssignChildren: howToAssignChildren,
+  //   });
+  // };
 
   const clearInputs = () => {
     setEmail("");
@@ -196,96 +229,42 @@ const Sponsor = () => {
     setErrorMessage("");
   };
 
-  const handleLogin = () => {
-    clearErrors();
-    fire
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch((err) => {
-        setErrorMessage(err.message);
-      });
-  };
-
-  const signupErrorCheck = () => {
-    if (!firstName) {
-      setErrorMessage("First name not entered.");
-      return 0;
-    } else if (!lastName) {
-      setErrorMessage("Last name not entered.");
-      return 0;
-    } else if (!dateOfBirth) {
-      setErrorMessage("Date of birth not entered.");
-      return 0;
-    } else if (!confirmPassword || confirmPassword !== password) {
-      setErrorMessage("Passwords don't match.");
-      return 0;
-    } else {
-      return 1;
-    }
-  };
-
-  // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
-  const createUserAccount = () => {
-    db.collection("userAccounts")
-      .doc(user.uid)
-      .set({
-        firstName: firstName,
-        lastName: lastName,
-        dateOfBirth: dateOfBirth,
-        email: email,
-        password: confirmPassword,
-        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-      });
-  };
-
-  const handleSignUp = () => {
-    clearErrors();
-    if (signupErrorCheck()) {
-      fire.auth().createUserWithEmailAndPassword(email, password);
-      createUserAccount();
-    }
-  };
-
-  const handleLogout = () => {
-    setRouter("home"); //change it to null value when updating from database
-    fire.auth().signOut();
-  };
-
-  const authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        clearInputs();
-        setUser(user);
-        console.log(user);
-      } else {
-        setUser("");
-      }
-    });
-  };
-
-  useEffect(() => {
-    authListener();
-  }, []);
 
   return (
     <div className="App">
-      {user ? (
-        //USE FOR TESTING SCREENS
-        //CODE STARTS
-        // <Hero />
-        //USE FOR TESTING APP
-        //CODE STARTS
+      {loggedIn ? (
         <>
           {
             {
               home: (
                 <AdminHome setRouter={setRouter} handleLogout={handleLogout} />
               ),
-              editsponsorprofile: (
-                <AdminEditSponsorProfile setRouter={setRouter} />
+              editmyprofile: (
+                <AdminEditMyProfile
+                  setRouter={setRouter}
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  department = {department}
+                  setDepartment={setDepartment}
+                  institution={institution}
+                  setInstitution={setInstitution}
+                />
               ),
               sponsorshiprequests: (
-                <AdminEditSponsorProfile setRouter={setRouter} />
+                <AdminSponsorshipRequests setRouter={setRouter} />
               ),
               sponsorprofiles: (
                 <AdminSponsorProfiles
@@ -328,7 +307,10 @@ const Sponsor = () => {
                 />
               ),
               editcontactinformation: (
-                <AdminEditContactUs handleLogout={handleLogout} setRouter={setRouter} />
+                <AdminEditContactUs
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                />
               ),
               admincontactus: (
                 <AdminContactUs
@@ -351,43 +333,17 @@ const Sponsor = () => {
         </>
       ) : (
         <>
-          {hasAccount ? (
-            <Login
-              email={email}
+          <AdminLogin email={email}
               setEmail={setEmail}
               password={password}
               setPassword={setPassword}
-              handleLogin={handleLogin}
-              hasAccount={hasAccount}
-              setHasAccount={setHasAccount}
+              handleAdminLogin={handleAdminLogin}
               errorMessage={errorMessage}
-              setErrorMessage={setErrorMessage}
-            />
-          ) : (
-            <Signup
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              confirmpassword={confirmPassword}
-              setConfirmPassword={setConfirmPassword}
-              dateofbirth={dateOfBirth}
-              setDateOfBirth={setDateOfBirth}
-              firstname={firstName}
-              setFirstName={setFirstName}
-              lastname={lastName}
-              setLastName={setLastName}
-              handleLogin={handleLogin}
-              handleSignUp={handleSignUp}
-              hasAccount={hasAccount}
-              setHasAccount={setHasAccount}
-              errorMessage={errorMessage}
-            />
-          )}
+              setErrorMessage={setErrorMessage}/>
         </>
       )}
     </div>
   );
 };
 
-export default Sponsor;
+export default Admin;
