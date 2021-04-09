@@ -14,7 +14,7 @@ import AdminAcademicReports from "./AdminAcademicReports";
 import AdminContactUs from "./AdminContactUs";
 import AdminFAQs from "./AdminFaqs";
 import AdminSponsorshipRequests from "./AdminSponsorshipRequests";
-import AdminLogin from './AdminLogin'
+import AdminLogin from "./AdminLogin";
 
 // setting up the database here
 const db = firebase.firestore();
@@ -22,7 +22,7 @@ const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
 const Admin = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -138,31 +138,48 @@ const Admin = () => {
   ]);
 
   // This funtion is done to authenticate admin login. Returns true if login match successful otherwise false
-  const handleAdminLogin = (email, password) => {
+  const handleAdminLogin = () => {
+    console.log("broooooooooooooooo");
+
+    // const dbData = db
+    //   .collection("adminProfiles")
+    //   .where("email", "==", email)
+    //   .get();
+
+    // if (dbData.data().password === password) {
+    //   console.log("true");
+    //   setLoggedIn(true);
+    // } else {
+    //   console.log("false");
+    //   setLoggedIn(false);
+    //   setErrorMessage("Unauthorzied Access");
+    // }
+
     db.collection("adminProfiles")
       .where("email", "==", email)
       .get()
       .then((querySnapshot) => {
-        
-        console.log(querySnapshot.data) /////////////////////////////////////////// for debugging
+        if (querySnapshot.empty) {
+          // no email match found hence an attempt at unauthorized access to prevent
+          setErrorMessage("Unauthorized Access");
+          setLoggedIn(false);
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            console.log("Here", doc.data().password);
+            console.log("Hi", doc.data().email);
 
-        // check if correct password has been entered or not
-        if (password == querySnapshot.data.password) 
-        {
-          // allow login
-          setLoggedIn(true)
+            if (password === doc.data().password) {
+              console.log("In true");
+              // allow login
+              setLoggedIn(true);
+            } else {
+              console.log("In false");
+              // password did not match so don't allow for login
+              setLoggedIn(false);
+            }
+          });
         }
-        else
-        {
-          // password did not match so don't allow for login
-          setLoggedIn(false)
-        }
-      })
-      .catch((error) => {
-        // unauthorized access
-        console.log("Error getting documents: ", error);
-        setErrorMessage(error)
-        setLoggedIn(false)
       });
   };
 
@@ -194,8 +211,6 @@ const Admin = () => {
         console.log("Error getting documents: ", error);
       });
   };
-
-  
 
   //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
   // const editSponsorProfile = () => {
@@ -229,7 +244,6 @@ const Admin = () => {
     setErrorMessage("");
   };
 
-
   return (
     <div className="App">
       {loggedIn ? (
@@ -257,7 +271,7 @@ const Admin = () => {
                   setPhoneNumber={setPhoneNumber}
                   address={address}
                   setAddress={setAddress}
-                  department = {department}
+                  department={department}
                   setDepartment={setDepartment}
                   institution={institution}
                   setInstitution={setInstitution}
@@ -333,13 +347,15 @@ const Admin = () => {
         </>
       ) : (
         <>
-          <AdminLogin email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              handleAdminLogin={handleAdminLogin}
-              errorMessage={errorMessage}
-              setErrorMessage={setErrorMessage}/>
+          <AdminLogin
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            handleAdminLogin={handleAdminLogin}
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+          />
         </>
       )}
     </div>
