@@ -1,6 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
 import Calendar from "react-calendar";
+import logo from "./HMSlogo.png"
 
 const RegisteredSponsorHome = (props) => {
   const {
@@ -9,34 +10,44 @@ const RegisteredSponsorHome = (props) => {
   } = props
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField/>
-          <button onClick={handleLogout}>Logout</button>
+      <section className="navbar">
+        <nav className="navbarContainer">
+        <h2 className="titletext">Homepage</h2>
         </nav>
-        <nav>
-          <h2>Homepage</h2>
+        <section className = "sponsorHomepage">
+        <div className = "sponsorHomepageContainer_left">
+          <h1 className="label-left">Menu</h1>
+          <button className = "button_green" onClick={() => setRouter("editmyprofile")}>Edit My Profile</button>
+          <button className = "button_green" onClick={() => setRouter("paymenthistory")}>Payment History</button>
+          <button className = "button_green"onClick={() => setRouter("childrenprofiles")}>Children Profiles</button>
+          <button className = "button_green"onClick={() => setRouter("academicreports")}>Academic Reports</button>
+          <button className = "button_green" onClick={() => setRouter("requestmeeting")}>Request a Meeting</button>
+          <button className = "button_green" onClick={() => setRouter("letterbox")}>Letter Box</button>
+        </div>
+        <div className = "sponsorHomepageContainer_right">
+          <h1 className="label-right" >Calendar</h1>
+          <Calendar className= "calender" />
+        
+        <h2 className="label-right" ><p className = "p_i">Today's Event(s):</p></h2>
+        <p className="label-right" ><p className = "p_ii">No Events</p></p>
+        <button className ="button_blue">Add Event</button>
+        <button className = "button_red">Remove Event</button> 
+        </div>
+        </section>
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          
         </nav>
-        <div>
-          <h1>Menu</h1>
-          <button onClick={() => setRouter("editmyprofile")}>Edit My Profile</button>
-          <button onClick={() => setRouter("paymenthistory")}>Payment History</button>
-          <button onClick={() => setRouter("childrenprofiles")}>Children Profiles</button>
-          <button onClick={() => setRouter("academicreports")}>Academic Reports</button>
-          <button onClick={() => setRouter("requestmeeting")}>Request a Meeting</button>
-          <button onClick={() => setRouter("letterbox")}>Letter Box</button>
-        </div>
-        <div>
-          <h1>Calendar</h1>
-          <Calendar />
-          <h2>Today's Event(s):</h2>
-          <p>No Events</p>
-          <button>Add Event</button>
-          <button>Remove Event</button>
-        </div>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+        </section>
       </section>
     </body>
   );
