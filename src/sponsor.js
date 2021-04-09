@@ -16,7 +16,7 @@ import PaymentHistory from "./PaymentHistory";
 import ChildrenProfiles from "./ChildrenProfiles";
 import LetterBox from "./LetterBox";
 import RequestAMeeting from "./RequestAMeeting";
-import AcademicReportsSponsor from "./academicReportsSponsor";
+import AcademicReportsSponsor from "./AcademicReportsSponsor";
 
 // setting up the database here
 const db = firebase.firestore();
@@ -93,10 +93,10 @@ const Sponsor = () => {
     },
   ]);
   const [myChildren, setMyChildren] = useState([
-    "shabbir",
-    "altaf",
-    "bashir",
-    "naseem",
+    {value: 1,label:"shabbir"},
+    {value: 2,label:"altaf"},
+    {value: 3,label:"bashir"},
+    {value: 4,label:"naseem"},
   ]);
   const [letterBody, setLetterBody] = useState("");
   const [selectedChild, setSelectedChild] = useState("");
@@ -156,19 +156,19 @@ const Sponsor = () => {
   };
 
   // fetching one document
-  var docRef_fetchSponsorData = db.collection("sponsors").doc(user.uid);
-  docRef
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-      } else {
-        console.log("No such document!");
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
+  // var docRef_fetchSponsorData = db.collection("sponsors").doc(user.uid);
+  // docRef
+  //   .get()
+  //   .then((doc) => {
+  //     if (doc.exists) {
+  //       console.log("Document data:", doc.data());
+  //     } else {
+  //       console.log("No such document!");
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.log("Error getting document:", error);
+  //   });
 
   //fetching multiple documents (like when displaying all sponsorship requests on the admin interface)
   db.collection("sponsorshipApplicants")
@@ -276,17 +276,17 @@ const Sponsor = () => {
   // };
 
   // admin saving payment history for each sponsor
-  const paymentHistory = () => {
-    db.collection("paymentHistory")
-      .doc(user.uid) //  fetch this ID for sponsor
-      .set({
-        sponsorName: sponsorName,
-        paymentDate: paymentDate,
-        childName: childName,
-        paymentAmount: paymentAmount,
-        paymentType: paymentType,
-      });
-  };
+  // const paymentHistory = () => {
+  //   db.collection("paymentHistory")
+  //     .doc(user.uid) //  fetch this ID for sponsor
+  //     .set({
+  //       sponsorName: sponsorName,
+  //       paymentDate: paymentDate,
+  //       childName: childName,
+  //       paymentAmount: paymentAmount,
+  //       paymentType: paymentType,
+  //     });
+  // };
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
@@ -473,6 +473,7 @@ const Sponsor = () => {
                   handleLogout={handleLogout}
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
+                  child={myChildren}
                 />
               ),
               contactus: (

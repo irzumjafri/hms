@@ -1,5 +1,6 @@
 import React from "react";
 import SearchField from "react-search-field";
+import Select from 'react-select';
 
 const AcademicReportsSponsor = (props) => {
   const {
@@ -40,7 +41,7 @@ const AcademicReportsSponsor = (props) => {
             <div>
               <section>
                 <label>Child</label>
-                <textbox /*Make drop down menu */>{child}</textbox>
+                <Select options={child}/>
               </section>
               <section>
                 <label>Report Type</label>
