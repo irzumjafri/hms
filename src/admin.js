@@ -240,12 +240,14 @@ const Admin = () => {
                 cnic: doc.data().cnic,
                 phoneNumber: doc.data().phoneNumber,
                 address: doc.data().address,
-                preferredMediumOfCommunication: doc.data(),
+                preferredMediumOfCommunication: doc.data()
+                  .preferredMediumOfCommunication,
                 numberOfSponsoredChildren: doc.data().numberOfSponsoredChildren,
                 paymentMethod: doc.data().paymentMethod,
                 paymentSchedule: doc.data().paymentSchedule,
                 status: doc.data().status,
                 howToAssignChildren: doc.data().howToAssignChildren,
+                id: doc.data().id,
               },
             ]);
           });
