@@ -16,7 +16,7 @@ import PaymentHistory from "./PaymentHistory";
 import ChildrenProfiles from "./ChildrenProfiles";
 import LetterBox from "./LetterBox";
 import RequestAMeeting from "./RequestAMeeting";
-import AcademicReportsSponsor from "./AcademicReportsSponsor";
+import AcademicReportsSponsor from "./academicReportsSponsor";
 
 // setting up the database here
 const db = firebase.firestore();
