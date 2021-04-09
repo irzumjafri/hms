@@ -39,6 +39,9 @@ const Admin = () => {
   ] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
+  const [sponsorshipApplicatonData, setSponsorshipApplicatonData] = useState(
+    []
+  );
   const [sponsorData, setSponsorData] = useState([
     {
       firstName: "irzum",
@@ -218,6 +221,7 @@ const Admin = () => {
       });
   };
 
+  ///////////////////////////////////////////////////////////////////////////// needs to be tested
   // This function gets all of sponsors' data from db and set it to be displayed
   const fetchSponsorData = () => {
     db.collection("registeredSponsors")
@@ -255,14 +259,158 @@ const Admin = () => {
       });
   };
 
-  // edit sponsor status -> delete from sponsorship requests and add to registeredSponsors
+  // This function gets all of sponsors' data from db and set it to be displayed
+  const fetchSponsorshipApplications = () => {
+    db.collection("sponsorshipApplicants")
+      .get()
+      .then((querySnapshot) => {
+        // Registered sponsors' db is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No sponsorship requests to display");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all sponsors present in current snapshot of the db
+            setSponsorshipApplicatonData([
+              ...sponsorshipApplicatonData,
+              {
+                firstName: doc.data().firstName,
+                lastName: doc.data().lastName,
+                emailAddress: doc.data().emailAddress,
+                dateOfBirth: doc.data().dateOfBirth,
+                cnic: doc.data().cnic,
+                phoneNumber: doc.data().phoneNumber,
+                address: doc.data().address,
+                preferredMediumOfCommunication: doc.data()
+                  .preferredMediumOfCommunication,
+                numberOfSponsoredChildren: doc.data().numberOfSponsoredChildren,
+                paymentMethod: doc.data().paymentMethod,
+                paymentSchedule: doc.data().paymentSchedule,
+                timeStamp: doc.data().timeStamp,
+                id: doc.data().id,
+                applicationStatus: doc.data().applicationStatus,
+                howToAssignChildren: doc.data().howToAssignChildren,
+              },
+            ]);
+          });
+        }
+      });
+  };
+
+  // accept sponsorship request
+  const acceptSponsorshipRequest = (i, howTo) => {
+    let first = "";
+    let last = "";
+    let email = "";
+    let dob = "";
+    let nic = "";
+    let phone = "";
+    let addr = "";
+    let pmc = "";
+    let noc = "";
+    let pm = "";
+    let ps = "";
+    let ts = "";
+    let identity = "";
+    const apS = "Accepted";
+
+    // get all data from reuqest
+    db.collection("sponsorshipApplicants")
+      .get()
+      .then((querySnapshot) => {
+        // Registered sponsors' db is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No sponsorship requests to display");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all sponsors present in current snapshot of the db
+            if (doc.data().id === i) {
+              first = doc.data().firstName;
+              last = doc.data().lastName;
+              email = doc.data().emailAddress;
+              dob = doc.data().dateOfBirth;
+              nic = doc.data().cnic;
+              phone = doc.data().phoneNumber;
+              addr = doc.data().address;
+              pmc = doc.data().preferredMediumOfCommunication;
+              noc = doc.data().numberOfSponsoredChildren;
+              pm = doc.data().paymentMethod;
+              ps = doc.data().paymentSchedule;
+              ts = doc.data().timeStamp;
+              identity = doc.data().id;
+            }
+          });
+        }
+      });
+
+    // delete the request from its database
+    db.collection("sponsorshipApplicants")
+      .doc(i)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+
+    // create new document in registered sponsor profile
+    db.collection("registeredSponsors").doc(identity).set({
+      firstName: first,
+      lastName: last,
+      emailAddress: email,
+      dateOfBirth: dob,
+      cnic: nic,
+      phoneNumber: phone,
+      address: addr,
+      preferredMediumOfCommunication: pmc,
+      numberOfSponsoredChildren: noc,
+      paymentMethod: pm,
+      paymentSchedule: ps,
+      timeStamp: ts,
+      id: identity,
+      applicationStatus: apS,
+      howToAssignChildren: howTo,
+    });
+  };
+
+  ///////////////////  ID = I bas laaaaa do IRZUMMM //////////////////////////
+
+  // This function allows admin to eit sponors' information including their status and how to assign
+  const editSponsorProfile = (i, howTo, appStatus) => {
+    let profileToEdit = db.collection("registeredSponsors").doc(i);
+    return profileToEdit
+      .update({
+        firstName: firstName,
+        lastName: lastName,
+        emailAddress: email,
+        dateOfBirth: dateOfBirth,
+        cnic: cnic,
+        phoneNumber: phoneNumber,
+        address: address,
+        preferredMediumOfCommunication: preferredMediumOfCommunication,
+        numberOfSponsoredChildren: numberOfSponsoredChildren,
+        paymentMethod: paymentMethod,
+        paymentSchedule: paymentSchedule,
+        applicationStatus: appStatus,
+        howToAssignChildren: howTo,
+        id: i,
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+      })
+      .catch((error) => {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+      });
+  };
 
   ///////////////////////////////////////////////////////////////////////////// needs to be tested
   // deletes sponsor data at the given email address
-  const deleteSponsorProfile = (emailToDelete) => {
+  const deleteSponsorProfile = (i) => {
     db.collection("registeredSponsors")
-      .where("emailAddress", "==", emailToDelete)
-      .get() /// was .doc() first but doesn't make sense with where
+      .doc(i)
       .delete()
       .then(() => {
         console.log("Document successfully deleted!");

@@ -125,7 +125,7 @@ const Sponsor = () => {
         paymentMethod: paymentMethod,
         paymentSchedule: paymentSchedule,
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-        id : user.uid,
+        id: user.uid,
 
         // fields to be used by admin, only visible to admins
         applicationStatus: "Pending", // admin can update this to accept or reject
@@ -133,21 +133,25 @@ const Sponsor = () => {
       });
   };
 
-//creates sponsor profile after being approvd by admin
+  //creates sponsor profile after being approvd by admin
   const createSponsorProfile = () => {
-    db.collection("sponsorshipApplicants").where("applicationStatus", "==", true)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        var dataTransferredToCollection = db.collection("registeredSponsors").doc(doc.data().barcode).set(doc.data());
-        console.log(doc.id, " => ", doc.data());
+    db.collection("sponsorshipApplicants")
+      .where("applicationStatus", "==", true)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          var dataTransferredToCollection = db
+            .collection("registeredSponsors")
+            .doc(doc.data().barcode)
+            .set(doc.data());
+          console.log(doc.id, " => ", doc.data());
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
       });
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-    });
-  }
+  };
 
   // Admin users can edit their profile information using this function
   const editSponsorProfile = () => {
@@ -218,8 +222,12 @@ const Sponsor = () => {
   //   });
 
   //fetching one document // to show data on edit my profile page for sponsors
-  var docRef_fetchSponsorData = db.collection("registeredSponsors").doc(user.uid);
-  docRef_fetchSponsorData.get().then((doc) => {
+  var docRef_fetchSponsorData = db
+    .collection("registeredSponsors")
+    .doc(user.uid);
+  docRef_fetchSponsorData
+    .get()
+    .then((doc) => {
       if (doc.exists) {
         console.log("Document data:", doc.data());
       } else {
@@ -229,7 +237,6 @@ const Sponsor = () => {
     .catch((error) => {
       console.log("Error getting document:", error);
     });
-
 
   //fetching multiple documents (like when displaying all sponsorship requests on the admin interface)
   db.collection("sponsorshipApplicants")
@@ -338,7 +345,6 @@ const Sponsor = () => {
 
   // where does admin enters the name of sponsor for whom he wants to save his payment history
 
-
   //admin saving payment history for each sponsor
   // const paymentHistory = () => {
   //   db.collection("paymentHistory")
@@ -371,11 +377,6 @@ const Sponsor = () => {
   //   db.collection("lettersFromChild")
   //   .where("sponsorName", "==", sponsorName)
 
-
-
-
-
-
   //   .doc(user.uid)
   //   .set({
   //     id : user.uid,
@@ -385,22 +386,18 @@ const Sponsor = () => {
   //   });
   // };
 
-
-
-
   db.collection("sponsorshipApplicants")
-  .where("applicationStatus", "==", false)
-  .get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+    .where("applicationStatus", "==", false)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
     });
-  })
-  .catch((error) => {
-    console.log("Error getting documents: ", error);
-  });
-
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
