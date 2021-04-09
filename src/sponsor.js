@@ -154,6 +154,59 @@ const Sponsor = () => {
     // });
   };
 
+  // Admin users can edit their profile information using this function
+  const editSponsorProfile = () => {
+    let idofDoc = 0;
+    let appStatus = "";
+    let howTo = "";
+
+    db.collection("registeredSponsors")
+      .where("emailAddress", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        // no email match found hence an attempt at unauthorized access to prevent
+        if (querySnapshot.empty) {
+          console.log("Empty");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // extract and store id to reference the doc to be edited
+            idofDoc = doc.data().id;
+            appStatus = doc.data().applicationStatus;
+            howTo = doc.data().howToAssignChildren;
+          });
+        }
+
+        let profileToEdit = db
+          .collection("registeredSponsors")
+          .doc(idofDoc.toString());
+        return profileToEdit
+          .update({
+            firstName: firstName,
+            lastName: lastName,
+            emailAddress: email,
+            dateOfBirth: dateOfBirth,
+            cnic: cnic,
+            phoneNumber: phoneNumber,
+            address: address,
+            preferredMediumOfCommunication: preferredMediumOfCommunication,
+            numberOfSponsoredChildren: numberOfSponsoredChildren,
+            paymentMethod: paymentMethod,
+            paymentSchedule: paymentSchedule,
+            applicationStatus: appStatus,
+            howToAssignChildren: howTo,
+            id = idofDoc
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+          })
+          .catch((error) => {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+          });
+      });
+  };
+
   // fetching one document
   // var docRef_fetchSponsorData = db.collection("sponsors").doc(user.uid);
   // docRef

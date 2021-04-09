@@ -22,7 +22,8 @@ const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
 const Admin = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [id, setId] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -137,6 +138,9 @@ const Admin = () => {
     { from: "irtasam", message: "credit card bhi donate kardo" },
   ]);
 
+  // Admin accounts will be ceated with user.id as dcument name and each profile will also have id = user.ud to them
+  // for linking purposes
+
   // This funtion is done to authenticate admin login. Returns true if login match successful otherwise false
   const handleAdminLogin = () => {
     db.collection("adminLogin")
@@ -169,50 +173,49 @@ const Admin = () => {
     setRouter("home"); //change it to null value when updating from database
   };
 
-  ///////////////////////////////////////////////////////////////////////////// needs to be tested
   // Admin users can edit their profile information using this function
   const editAdminProfile = () => {
-    // console.log("Inside now");
-    // let profileToEdit = db
-    //   .collection("adminProfiles")
-    //   .where("emailAddress", "==", email)
-    //   .get()
-    //   .then((querySnapshot) => {
-    //     // no email match found hence an attempt at unauthorized access to prevent
-    //     if (querySnapshot.empty) {
-    //       console.log("EMPTYYYYYYYYYY");
-    //       return;
-    //     } else {
-    //       querySnapshot.forEach((doc) => {
-    //           // .update({
-    //             firstName: firstName,
-    //             lastName: lastName,
-    //             emailAddress: email,
-    //             dateOfBirth: dateOfBirth,
-    //             cnic: cnic,
-    //             phoneNumber: phoneNumber,
-    //             address: address,
-    //             department: department,
-    //             institution: institution,
-    //           // })
-    //           // .then(console.log("UPDATED"));
-    //       });
-    //     }
-    //   });
-    // db.collection("adminProfiles")
-    // .where("emailAddress", "==", email)
-    // .doc()
-    // .set({
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   emailAddress: email,
-    //   dateOfBirth: dateOfBirth,
-    //   cnic: cnic,
-    //   phoneNumber: phoneNumber,
-    //   address: address,
-    //   department: department,
-    //   institution: institution,
-    // });
+    let idofDoc = 0;
+
+    db.collection("adminProfiles")
+      .where("emailAddress", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        // no email match found hence an attempt at unauthorized access to prevent
+        if (querySnapshot.empty) {
+          console.log("Empty");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // extract and store id to reference the doc to be edited
+            idofDoc = doc.data().id;
+          });
+        }
+
+        let profileToEdit = db
+          .collection("adminProfiles")
+          .doc(idofDoc.toString());
+        return profileToEdit
+          .update({
+            firstName: firstName,
+            lastName: lastName,
+            emailAddress: email,
+            dateOfBirth: dateOfBirth,
+            cnic: cnic,
+            phoneNumber: phoneNumber,
+            address: address,
+            department: department,
+            institution: institution,
+            id: idofDoc,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+          })
+          .catch((error) => {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+          });
+      });
   };
 
   // This function gets all of sponsors' data from db and set it to be displayed
@@ -250,12 +253,14 @@ const Admin = () => {
       });
   };
 
+  // edit sponsor status -> delete from sponsorship requests and add to registeredSponsors
+
   ///////////////////////////////////////////////////////////////////////////// needs to be tested
   // deletes sponsor data at the given email address
   const deleteSponsorProfile = (emailToDelete) => {
     db.collection("registeredSponsors")
       .where("emailAddress", "==", emailToDelete)
-      .doc()
+      .get() /// was .doc() first but doesn't make sense with where
       .delete()
       .then(() => {
         console.log("Document successfully deleted!");
