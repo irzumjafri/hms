@@ -1,5 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
+import {Button, Form} from 'react-bootstrap';
+import logo from "./HMSlogo.png";
 
 const PaymentHistory = (props) => {
   const {
@@ -12,30 +14,60 @@ const PaymentHistory = (props) => {
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+       <section className="navbar">
+      <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">PAYMENT HISTORY</h2>
         </nav>
         <section>
-          <h2>PAYMENT HISTORY</h2>
           <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
+
+
         <section className="paymentHistory">
         {paymentDate.map((con, i) => {
           return (
-            <div className="paymentContainer">
-                <label>Amount</label>
-                <textbox>{amount[i]}</textbox>
-                <label>Payment Date (DD-MM-YYYY)</label>
-                <textbox>{paymentDate[i]}</textbox>
+            <div className="paymentHistoryContainer">
+
+                <Form>
+
+                <div class = "col">
+                <Form.Label className= "label-left">Amount</Form.Label>
+                <Form.Control
+                type="text"
+                autoFocus
+                required
+                value={amount[i]}
+                ></Form.Control>
+                </div>
+                <div class = "col">
+                <Form.Label className= "label-left">Payment Date (DD-MM-YYYY)</Form.Label>
+                <Form.Control
+                type="text"
+                autoFocus
+                required
+                value={paymentDate[i]}
+                ></Form.Control>
+                </div>
+                </Form>
             </div>
           );
         })}
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+        </section>
       </section>
     </body>
   );

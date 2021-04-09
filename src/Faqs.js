@@ -22,6 +22,8 @@ const AdminFAQs = (props) => {
         <section>
           <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
+
+        
         <section className="faqs">
           {questions.map((con, i) => {
             return (
