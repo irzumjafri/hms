@@ -1,9 +1,11 @@
 import React from "react";
 import SearchField from "react-search-field";
 import Calendar from "react-calendar";
-import logo from "./HMSlogo.png"
+import logo from "./HMSlogo.png";
+import Button from 'react-bootstrap/Button';
 
 const RegisteredSponsorHome = (props) => {
+  
   const {
     handleLogout,
     setRouter

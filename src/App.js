@@ -3,6 +3,7 @@ import fire from "./fire";
 import Sponsor from "./sponsor";
 import Admin from "./admin"
 import { Route, Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return <div>
