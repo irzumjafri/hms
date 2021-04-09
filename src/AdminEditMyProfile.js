@@ -23,7 +23,7 @@ const AdminEditMyProfile = (props) => {
     institution,
     setInstitution,
     setRouter,
-    editAdminprofile
+    editAdminProfile,
   } = props;
 
   return (
@@ -36,14 +36,7 @@ const AdminEditMyProfile = (props) => {
         </nav>
         <section>
           <h2>SPONSOR PROFILES</h2>
-          <button
-            onClick={() =>
-                setRouter('home')
-            }
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
+          <button onClick={() => setRouter("home")}> HOME PAGE </button>
         </section>
         <section className="adminEditSponsorProfile">
           <div className="adminEditSponsorProfileContainer">
@@ -102,9 +95,7 @@ const AdminEditMyProfile = (props) => {
               type="text"
               required
               value={department}
-              onChange={(e) =>
-                setDepartment(e.target.value)
-              } 
+              onChange={(e) => setDepartment(e.target.value)}
             ></input>
             <label>Institution *</label>
             <input
@@ -115,16 +106,13 @@ const AdminEditMyProfile = (props) => {
             ></input>
 
             <div className="btnContainer">
-              <button
-                onClick={() => setRouter("home")}
-                className="button_red"
-              >
+              <button onClick={() => setRouter("home")} className="button_red">
                 ❌ Discard Profile
               </button>
               <button
                 onClick={() => {
                   setRouter("home");
-                  editAdminprofile();
+                  editAdminProfile();
                 }}
                 className="buttongreen"
               >

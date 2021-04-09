@@ -93,10 +93,10 @@ const Sponsor = () => {
     },
   ]);
   const [myChildren, setMyChildren] = useState([
-    {value: 1,label:"shabbir"},
-    {value: 2,label:"altaf"},
-    {value: 3,label:"bashir"},
-    {value: 4,label:"naseem"},
+    { value: 1, label: "shabbir" },
+    { value: 2, label: "altaf" },
+    { value: 3, label: "bashir" },
+    { value: 4, label: "naseem" },
   ]);
   const [letterBody, setLetterBody] = useState("");
   const [selectedChild, setSelectedChild] = useState("");
@@ -134,25 +134,24 @@ const Sponsor = () => {
 
   //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
   const editSponsorProfile = () => {
-    let profileToEdit = db.collection("sponsors").doc(user.uid); // or search through name?
-
-    return profileToEdit.update({
-      firstName: firstName,
-      lastName: lastName,
-      emailAddress: email,
-      dateOfBirth: dateOfBirth,
-      cnic: cnic,
-      phoneNumber: phoneNumber,
-      address: address,
-      preferredMediumOfCommunication: preferredMediumOfCommunication,
-      numberOfSponsoredChildren: numberOfSponsoredChildren,
-      paymentMethod: paymentMethod,
-      paymentSchedule: paymentSchedule,
-
-      // cannot be updated by the sponsor so we don't even show them in the front end
-      applicationStatus: applicationStatus,
-      howToAssignChildren: howToAssignChildren,
-    });
+    // this needs to be rewritten using .where
+    // let profileToEdit = db.collection("sponsors").doc(user.uid); // or search through name?
+    // return profileToEdit.update({
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   emailAddress: email,
+    //   dateOfBirth: dateOfBirth,
+    //   cnic: cnic,
+    //   phoneNumber: phoneNumber,
+    //   address: address,
+    //   preferredMediumOfCommunication: preferredMediumOfCommunication,
+    //   numberOfSponsoredChildren: numberOfSponsoredChildren,
+    //   paymentMethod: paymentMethod,
+    //   paymentSchedule: paymentSchedule,
+    //   // cannot be updated by the sponsor so we don't even show them in the front end
+    //   applicationStatus: applicationStatus,
+    //   howToAssignChildren: howToAssignChildren,
+    // });
   };
 
   // fetching one document

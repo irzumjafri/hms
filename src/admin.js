@@ -139,44 +139,24 @@ const Admin = () => {
 
   // This funtion is done to authenticate admin login. Returns true if login match successful otherwise false
   const handleAdminLogin = () => {
-    console.log("broooooooooooooooo");
-
-    // const dbData = db
-    //   .collection("adminProfiles")
-    //   .where("email", "==", email)
-    //   .get();
-
-    // if (dbData.data().password === password) {
-    //   console.log("true");
-    //   setLoggedIn(true);
-    // } else {
-    //   console.log("false");
-    //   setLoggedIn(false);
-    //   setErrorMessage("Unauthorzied Access");
-    // }
-
-    db.collection("adminProfiles")
+    db.collection("adminLogin")
       .where("email", "==", email)
       .get()
       .then((querySnapshot) => {
+        // no email match found hence an attempt at unauthorized access to prevent
         if (querySnapshot.empty) {
-          // no email match found hence an attempt at unauthorized access to prevent
-          setErrorMessage("Unauthorized Access");
+          setErrorMessage("Unauthorized access");
           setLoggedIn(false);
           return;
         } else {
           querySnapshot.forEach((doc) => {
-            console.log("Here", doc.data().password);
-            console.log("Hi", doc.data().email);
-
             if (password === doc.data().password) {
-              console.log("In true");
               // allow login
               setLoggedIn(true);
             } else {
-              console.log("In false");
               // password did not match so don't allow for login
               setLoggedIn(false);
+              setErrorMessage("Incorrect password");
             }
           });
         }
@@ -185,40 +165,105 @@ const Admin = () => {
 
   // This function allows Admin Users to Logout
   const handleAdminLogout = () => {
-    setLoggedIn(false);   
+    setLoggedIn(false);
     setRouter("home"); //change it to null value when updating from database
   };
 
+  ///////////////////////////////////////////////////////////////////////////// needs to be tested
   // Admin users can edit their profile information using this function
   const editAdminProfile = () => {
-    db.collection("adminProfiles")
-      .where("email", "==", email)
+    // console.log("Inside now");
+    // let profileToEdit = db
+    //   .collection("adminProfiles")
+    //   .where("emailAddress", "==", email)
+    //   .get()
+    //   .then((querySnapshot) => {
+    //     // no email match found hence an attempt at unauthorized access to prevent
+    //     if (querySnapshot.empty) {
+    //       console.log("EMPTYYYYYYYYYY");
+    //       return;
+    //     } else {
+    //       querySnapshot.forEach((doc) => {
+    //           // .update({
+    //             firstName: firstName,
+    //             lastName: lastName,
+    //             emailAddress: email,
+    //             dateOfBirth: dateOfBirth,
+    //             cnic: cnic,
+    //             phoneNumber: phoneNumber,
+    //             address: address,
+    //             department: department,
+    //             institution: institution,
+    //           // })
+    //           // .then(console.log("UPDATED"));
+    //       });
+    //     }
+    //   });
+    // db.collection("adminProfiles")
+    // .where("emailAddress", "==", email)
+    // .doc()
+    // .set({
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   emailAddress: email,
+    //   dateOfBirth: dateOfBirth,
+    //   cnic: cnic,
+    //   phoneNumber: phoneNumber,
+    //   address: address,
+    //   department: department,
+    //   institution: institution,
+    // });
+  };
+
+  // This function gets all of sponsors' data from db and set it to be displayed
+  const fetchSponsorData = () => {
+    db.collection("registeredSponsors")
       .get()
       .then((querySnapshot) => {
-        querySnapshot.update({
-          firstName: firstName,
-          lastName: lastName,
-          emailAddress: email,
-          dateOfBirth: dateOfBirth,
-          cnic: cnic,
-          phoneNumber: phoneNumber,
-          address: address,
-          department: department,
-          institution: institution,
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
+        // Registered sponsors' db is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No registered sponsors exist in the database yet");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all sponsors present in current snapshot of the db
+            setSponsorData([
+              ...sponsorData,
+              {
+                firstName: doc.data().firstName,
+                lastName: doc.data().lastName,
+                email: doc.data().email,
+                dateOfBirth: doc.data().dateOfBirth,
+                cnic: doc.data().cnic,
+                phoneNumber: doc.data().phoneNumber,
+                address: doc.data().address,
+                preferredMediumOfCommunication: doc.data(),
+                numberOfSponsoredChildren: doc.data().numberOfSponsoredChildren,
+                paymentMethod: doc.data().paymentMethod,
+                paymentSchedule: doc.data().paymentSchedule,
+                status: doc.data().status,
+                howToAssignChildren: doc.data().howToAssignChildren,
+              },
+            ]);
+          });
+        }
       });
   };
- 
-  const fetchSponsorData = () => {
-    //GET SPONSOR DATA WHOLE COLLECTION AND STORE INTO sponsorData
-  }
 
- const deleteSponsorProfile = (i) => {
-   //DELETE SPONSOR DATA FOR ENTRY NUMBER i
- }
+  ///////////////////////////////////////////////////////////////////////////// needs to be tested
+  // deletes sponsor data at the given email address
+  const deleteSponsorProfile = (emailToDelete) => {
+    db.collection("registeredSponsors")
+      .where("emailAddress", "==", emailToDelete)
+      .doc()
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
 
   const clearInputs = () => {
     setEmail("");
