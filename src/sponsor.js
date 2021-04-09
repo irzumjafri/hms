@@ -192,6 +192,73 @@ const Sponsor = () => {
     }
   };
 
+  const childcount = 1000;
+  // Function that creates profile of the child
+  const createChildProfile = () => {
+    const childUniqueId = firstName + lastName
+    db.collection("childProfile")
+      .doc(childUniqueId)  //      unique ID for child???
+      .set({ 
+        // child profile data
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: dateOfBirth,
+        gender : gender,
+        address: address,
+        guardian1Name : guardian1Name,
+        guardian1Relation : guardian1Relation,
+        guardian1Cnic : guardian1Cnic,
+        guardian1Occupation : guardian1Occupation,
+        guardian2Name :guardian2Name,
+        guardian2Relation : guardian2Relation,
+        guardian2Cnic : guardian2Cnic,
+        guardian2Occupation : guardian2Occupation,
+        familyBackground : familyBackground,
+        contactInformation : contactInformation,
+        grade : grade,
+        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+      });
+      childcount = childcount + 1 //increasing child count
+  };
+
+
+  // how to get child doc ID ??????????????????
+  const editChildProfile = () => {
+    let profileToEdit = db.collection("childProfile").doc(childUniqueId); // or search through name?
+
+    return profileToEdit.update({
+      firstName: firstName,
+      lastName: lastName,
+      dateOfBirth: dateOfBirth,
+      gender : gender,
+      address: address,
+      guardian1Name : guardian1Name,
+      guardian1Relation : guardian1Relation,
+      guardian1Cnic : guardian1Cnic,
+      guardian1Occupation : guardian1Occupation,
+      guardian2Name :guardian2Name,
+      guardian2Relation : guardian2Relation,
+      guardian2Cnic : guardian2Cnic,
+      guardian2Occupation : guardian2Occupation,
+      familyBackground : familyBackground,
+      contactInformation : contactInformation,
+      grade : grade,
+      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+    });
+  };
+
+  const paymentHistory = () => {
+    db.collection("childProfile")
+    .doc(user.uid)  //      
+    .set({ 
+    sponsorName : sponsorName,
+    paymentDate : paymentDate,
+    childName : childName,
+    paymentAmount : paymentAmount,
+    paymentType : paymentType,
+    });
+  };
+
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
     db.collection("userAccounts")

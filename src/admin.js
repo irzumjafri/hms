@@ -5,25 +5,26 @@ import Login from "./Login";
 import Signup from "./Signup";
 import "./App.css";
 import Hero from "./Hero";
-import RegisteredSponsorHome from "./registeredSponsorHome";
-import UnregisteredSponsorHome from "./unregisteredSponsorHome";
-import RegisterAsSponsor from "./registerAsSponsor";
 import firebase from "firebase";
-import EditMyProfileSponsor from "./editMyProfileSponsor";
 import ContactUs from "./ContactUs";
 import FAQs from "./Faqs";
-import PaymentHistory from "./PaymentHistory";
-import ChildrenProfiles from "./ChildrenProfiles";
-import LetterBox from "./LetterBox";
-import RequestAMeeting from "./RequestAMeeting";
-import AcademicReportsSponsor from "./AcademicReportsSponsor";
+import AdminHome from './AdminHome'
+import AdminEditSponsorProfile from './AdminEditSponsorProfile'
+import AdminChildrenProfiles from './AdminChildrenProfiles'
+import AdminSponsorProfiles from './AdminSponsorProfiles'
+import AdminEditContactUs from './AdminEditContactUs'
+import AdminEditFAQs from './AdminEditFAQs'
+import AdminPaymentHistory from './AdminPaymentHistory'
+import AdminMeetingRequests from './AdminMeetingRequests'
+import AdminAcademicReports from './AdminAcademicReports'
+
 
 // setting up the database here
 const db = firebase.firestore();
 // setting this settign to avoid warnings
 db.settings({ timestampsInSnapshots: true });
 
-const Admin = () => {
+const Sponsor = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,6 +39,33 @@ const Admin = () => {
     preferredMediumOfCommunication,
     setPreferredMediumOfCommunication,
   ] = useState("");
+  const [sponsorData,setSponsorData]=useState([{
+    firstName: "irzum",
+    lastName: "jafri",
+    email: "irzumbm@gmail.com",
+    dateOfBirth: "LUMSU",
+    cnic: "A++++",
+    phoneNumber: "090078601",
+    address: "myself",
+    preferredMediumOfCommunication: "daddy",
+    numberOfSponsoredChildren: "123-123",
+    paymentMethod: "myself",
+    paymentSchedule: "daddy",
+    status: "pathanKhandaan",
+  },{
+    firstName: "irzumirzum",
+    lastName: "jafri",
+    email: "irzumbm@gmail.com",
+    dateOfBirth: "LUMSU",
+    cnic: "A++++",
+    phoneNumber: "090078601",
+    address: "myself",
+    preferredMediumOfCommunication: "daddy",
+    numberOfSponsoredChildren: "123-123",
+    paymentMethod: "myself",
+    paymentSchedule: "daddy",
+    status: "pathanKhandaan",
+  }]); 
   const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
     ""
   );
@@ -45,7 +73,7 @@ const Admin = () => {
   const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
-  const [router, setRouter] = useState("registered"); //change it to null value when updating from database
+  const [router, setRouter] = useState("home"); //change it to null value when updating from database
   const [applicationStatus, setApplicationStatus] = useState(true);
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
   const [questions, setQuestions] = useState([
@@ -237,9 +265,89 @@ const Admin = () => {
 
   return (
     <div className="App">
-      <h2>ADMIN</h2>
+      {user ? (
+        //USE FOR TESTING SCREENS
+        //CODE STARTS
+        // <Hero />
+        //USE FOR TESTING APP
+        //CODE STARTS
+        <>
+          {
+            {
+              home: (
+                <AdminHome
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              editsponsorprofile: (<AdminEditSponsorProfile setRouter={setRouter}/>),
+              sponsorshiprequests: (<AdminEditSponsorProfile setRouter={setRouter}/>),
+              sponsorprofiles: (<AdminSponsorProfiles sponsorData={sponsorData} setRouter={setRouter}/>),
+              paymenthistory: (<AdminPaymentHistory/>),
+              meetingrequests: (<AdminMeetingRequests/>),
+              // letterbox: (<AdminLetterBox/>),
+              childrenprofiles: (<AdminChildrenProfiles/>),
+              academicrecords: (<AdminAcademicReports/>),
+              editfaqs: (<AdminEditFAQs/>),
+              editcontactinformation: (<AdminEditContactUs/>),
+              contactus: (
+                <ContactUs
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              faqs: (
+                <FAQs
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                  questions={questions}
+                  answers={answers}
+                />
+              ),
+            }[router]
+          }
+        </>
+      ) : (
+        <>
+          {hasAccount ? (
+            <Login
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              hasAccount={hasAccount}
+              setHasAccount={setHasAccount}
+              errorMessage={errorMessage}
+              setErrorMessage={setErrorMessage}
+            />
+          ) : (
+            <Signup
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              confirmpassword={confirmPassword}
+              setConfirmPassword={setConfirmPassword}
+              dateofbirth={dateOfBirth}
+              setDateOfBirth={setDateOfBirth}
+              firstname={firstName}
+              setFirstName={setFirstName}
+              lastname={lastName}
+              setLastName={setLastName}
+              handleLogin={handleLogin}
+              handleSignUp={handleSignUp}
+              hasAccount={hasAccount}
+              setHasAccount={setHasAccount}
+              errorMessage={errorMessage}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 };
 
-export default Admin;
+export default Sponsor;

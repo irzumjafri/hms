@@ -43,9 +43,7 @@ const AdminEditSponsorProfile = (props) => {
           <h2>SPONSOR PROFILES</h2>
           <button
             onClick={() =>
-              applicationStatus
-                ? setRouter("registered")
-                : setRouter("unregistered")
+                setRouter('home')
             }
           >
             {" "}
