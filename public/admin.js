@@ -4,14 +4,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
+import AppAdmin from '../src/AppAdmin';
 document.head.innerHTML += '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
 ReactDOM.render(
   
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
+  <React.StrictMode>
+    <AppAdmin />
+  </React.StrictMode>,
+  document.getElementById('adminroot')
 );
 
 // If you want to start measuring performance in your app, pass a function
