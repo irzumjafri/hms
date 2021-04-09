@@ -134,7 +134,7 @@ const Sponsor = () => {
 
   //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
   const editSponsorProfile = () => {
-    let profileToEdit = db.collection("registeredSponsors").doc(user.uid); // or search through name?
+    let profileToEdit = db.collection("sponsors").doc(user.uid); // or search through name?
 
     return profileToEdit.update({
       firstName: firstName,
@@ -154,6 +154,34 @@ const Sponsor = () => {
       howToAssignChildren: howToAssignChildren,
     });
   };
+
+
+  // fetching one document
+  var docRef_fetchSponsorData = db.collection("sponsors").doc(user.uid);
+  docRef.get().then((doc) => {
+      if (doc.exists) {
+          console.log("Document data:", doc.data());
+      } else {
+          console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  });
+
+  //fetching multiple documents (like when displaying all sponsorship requests on the admin interface)
+  db.collection("sponsorshipApplicants").where("applicationStatus", "==", false)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+
+
 
   const clearInputs = () => {
     setEmail("");
@@ -247,9 +275,12 @@ const Sponsor = () => {
     });
   };
 
+
+
+// admin saving payment history for each sponsor
   const paymentHistory = () => {
-    db.collection("childProfile")
-    .doc(user.uid)  //      
+    db.collection("paymentHistory")
+    .doc(user.uid)  //  fetch this ID for sponsor 
     .set({ 
     sponsorName : sponsorName,
     paymentDate : paymentDate,
@@ -258,6 +289,14 @@ const Sponsor = () => {
     paymentType : paymentType,
     });
   };
+
+
+
+
+
+
+
+
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
