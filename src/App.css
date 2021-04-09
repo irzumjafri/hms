@@ -1329,7 +1329,7 @@
   font-size: 18px;
   width: 100%;
   letter-spacing: 1px;
-  background: #ff0033;
+  background: #ff5a5a;
   border-radius: 10px;
   height: 50px;
   margin: 10px 0px auto 10px;
@@ -1390,7 +1390,113 @@
   font-size: 14px;
 }
 
-/* ####################################################################### */
+/* ##############################FAQs######################################## */
+
+.faqs {
+  width: 100%;
+  min-height: 60vh;
+  padding: 0 20px;
+  background: #fff;
+  display: flex;
+}
+
+.faqs .faqsContainer {
+  padding: 60px;
+  margin: 60px auto;
+  width: 100%;
+  max-width: 900px;
+  min-height: 400px;
+  display: block;
+  flex-direction: column;
+
+  justify-content: center;
+  background: #192539;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.faqs .faqsContainer .button_green {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #61ce7d;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.faqs .faqsContainer .button_redd {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  letter-spacing: 1px;
+  background: #ff5a5a;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.faqs .faqsContainer .titletext {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.faqs .faqsContainer .label-left {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.faqs .faqsContainer .blue {
+  color: #192539;
+  background-color: #192539;
+  border: none;
+}
+.faqs .faqsContainer .input-left {
+  width: 40%;
+}
+.faqs .faqsContainer .label-right {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.faqs .faqsContainer .input-right {
+  color: white;
+}
+
+.faqs .faqsContainer .btnContainer {
+  width: 100%;
+  padding: 24px 0;
+}
+
+.faqs .faqsContainer .btnContainer p {
+  margin: 10px 0 0 0;
+  text-align: center;
+  color: #fff;
+  text-decoration: italic;
+}
+
+/* ######################################################################### */
 .hero {
   width: 100%;
   min-height: 100vh;

@@ -20,11 +20,12 @@ const ChildrenProfiles = (props) => {
         <section>
           <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
+
         <section className="childrenProfiles">
         {childData.map((con, i) => {
           return (
             <div className="childrenProfilesContainer">
-                <Form>
+              <Form>
               <Form.Row >
               <div class = "col-md-6">
             <Form.Label className= "label-left">Name</Form.Label>
