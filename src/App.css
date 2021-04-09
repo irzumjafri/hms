@@ -1170,6 +1170,227 @@
   font-size: 14px;
 }
 
+/* ################################ ChildrenProfiles ###############*/
+.editMyProfileSponsor {
+  width: 100%;
+  min-height: 60vh;
+  padding: 0 20px;
+  background: #fff;
+  display: flex;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer {
+  padding: 60px;
+  margin: 60px auto;
+  width: 100%;
+  max-width: 900px;
+  min-height: 400px;
+  display: block;
+  flex-direction: column;
+
+  justify-content: center;
+  background: #192539;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .button_green {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #61ce7d;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .button_redd {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #ff0033;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .titletext {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.editMyProfileSponsor .editMyProfileSponsorContainer .label-left {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .blue {
+  color: #192539;
+  background-color: #192539;
+  border: none;
+}
+.editMyProfileSponsor .editMyProfileSponsorContainer .input-left {
+  width: 40%;
+}
+.editMyProfileSponsor .editMyProfileSponsorContainer .label-right {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .input-right {
+  color: white;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .btnContainer {
+  width: 100%;
+  padding: 24px 0;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .btnContainer p {
+  margin: 10px 0 0 0;
+  text-align: center;
+  color: #fff;
+  text-decoration: italic;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .errorMsg {
+  color: #ff0033;
+  font-size: 14px;
+}
+
+/* ################### ChildrenProfile################## */
+
+.childrenProfiles {
+  width: 100%;
+  min-height: 60vh;
+  padding: 0 20px;
+  background: #fff;
+  display: flex;
+}
+
+.childrenProfiles .childrenProfilesContainer {
+  padding: 60px;
+  margin: 60px auto;
+  width: 100%;
+  max-width: 900px;
+  min-height: 400px;
+  display: block;
+  flex-direction: column;
+
+  justify-content: center;
+  background: #192539;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.childrenProfiles .childrenProfilesContainer .button_green {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #61ce7d;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.childrenProfiles .childrenProfilesContainer .button_redd {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  letter-spacing: 1px;
+  background: #ff0033;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.childrenProfiles .childrenProfilesContainer .titletext {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.childrenProfiles .childrenProfilesContainer .label-left {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.childrenProfiles .childrenProfilesContainer .blue {
+  color: #192539;
+  background-color: #192539;
+  border: none;
+}
+.childrenProfiles .childrenProfilesContainer .input-left {
+  width: 40%;
+}
+.childrenProfiles .childrenProfilesContainer .label-right {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.childrenProfiles .childrenProfilesContainer .input-right {
+  color: white;
+}
+
+.childrenProfiles .childrenProfilesContainer .btnContainer {
+  width: 100%;
+  padding: 24px 0;
+}
+
+.childrenProfiles .childrenProfilesContainer .btnContainer p {
+  margin: 10px 0 0 0;
+  text-align: center;
+  color: #fff;
+  text-decoration: italic;
+}
+
+.childrenProfiles .childrenProfilesContainer .errorMsg {
+  color: #ff0033;
+  font-size: 14px;
+}
+
+/* ####################################################################### */
 .hero {
   width: 100%;
   min-height: 100vh;
