@@ -1,13 +1,13 @@
 import React from "react";
 import SearchField from "react-search-field";
+import AdminEditSponsorProfile from './AdminEditSponsorProfile'
 
 const AdminSponsorProfiles = (props) => {
   const {
     handleLogout,
     sponsorData,
+    deleteSponsorProfile,
     setRouter,
-    applicationStatus,
-    totalSponsors,
   } = props;
 
   return (
@@ -22,15 +22,16 @@ const AdminSponsorProfiles = (props) => {
           <h2>SPONSOR PROFILES</h2>
           <button onClick={() => setRouter("home")}>HOME PAGE</button>
         </section>
+        <section>
+                  <button /*Make this drop down*/> Add Filter </button>
+                  <textbox>Total Active Sponsors: {sponsorData.length}</textbox>
+                  <button className="buttongreen"> Add New Sponsor </button>
+                </section>
         <section className="adminSponsorProfiles">
           {sponsorData.map((con, i) => {
             return (
               <div className="adminSponsorProfilesContainer">
-                <section>
-                  <button /*Make this drop down*/> Add Filter </button>
-                  <textbox>Total Active Sponsors: {totalSponsors}</textbox>
-                  <button className="buttongreen"> Add New Sponsor </button>
-                </section>
+                
                 <div>
                   <section>
                     <label>First Name</label>
@@ -87,7 +88,7 @@ const AdminSponsorProfiles = (props) => {
 
                   <div className="btnContainer">
                     <button
-                      // MakeonClick Function onClick={() => setRouter("registered")}
+                      onClick={() => deleteSponsorProfile(i)}
                       className="button_red"
                     >
                       ❌ Delete this Profile
@@ -95,7 +96,7 @@ const AdminSponsorProfiles = (props) => {
                   </div>
                   <div className="btnContainer">
                     <button
-                      // MakeonClick Function onClick={() => setRouter("registered")}
+                      onClick={() => <AdminEditSponsorProfile />}
                       className="buttonblue"
                     >
                       Edit this Profile

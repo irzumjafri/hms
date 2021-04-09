@@ -32,15 +32,7 @@ const SponsorshipRequests = (props) => {
           </p>
         </nav>
         <section className="navbarContainer">
-          <button
-            className="smalltext"
-            // Make changes to the onclick function
-            // onClick={() =>
-            //   applicationStatus
-            //     ? setRouter("registered")
-            //     : setRouter("unregistered")
-            // }
-          >
+          <button className="smalltext" onClick={() => setRouter("home")}>
             {" "}
             HOME PAGE{" "}
           </button>
@@ -111,12 +103,8 @@ const SponsorshipRequests = (props) => {
         </section>
         <section className="bottom_bar">
           <navbar className="bottombarContainer">
-            <p className="smalltext" onClick={() => setRouter("contactus")}>
-              <span>Contact Us</span>
-            </p>
-            <p className="smalltext" onClick={() => setRouter("faqs")}>
-              <span>FAQs</span>
-            </p>
+            <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
+            <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
           </navbar>
         </section>
       </section>

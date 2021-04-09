@@ -75,7 +75,7 @@ const Admin = () => {
   const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
-  const [router, setRouter] = useState("home"); //change it to null value when updating from database
+  const [router, setRouter] = useState("home");
   const [applicationStatus, setApplicationStatus] = useState(true);
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
   const [questions, setQuestions] = useState([
@@ -184,13 +184,13 @@ const Admin = () => {
   };
 
   // This function allows Admin Users to Logout
-  const handleLogout = () => {
+  const handleAdminLogout = () => {
+    setLoggedIn(false);   
     setRouter("home"); //change it to null value when updating from database
-    fire.auth().signOut();
   };
 
   // Admin users can edit their profile information using this function
-  const editMyProfile = (email) => {
+  const editAdminProfile = () => {
     db.collection("adminProfiles")
       .where("email", "==", email)
       .get()
@@ -211,29 +211,14 @@ const Admin = () => {
         console.log("Error getting documents: ", error);
       });
   };
+ 
+  const fetchSponsorData = () => {
+    //GET SPONSOR DATA WHOLE COLLECTION AND STORE INTO sponsorData
+  }
 
-  //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
-  // const editSponsorProfile = () => {
-  //   let profileToEdit = db.collection("registeredSponsors").doc(user.uid); // or search through name?
-
-  //   return profileToEdit.update({
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     emailAddress: email,
-  //     dateOfBirth: dateOfBirth,
-  //     cnic: cnic,
-  //     phoneNumber: phoneNumber,
-  //     address: address,
-  //     preferredMediumOfCommunication: preferredMediumOfCommunication,
-  //     numberOfSponsoredChildren: numberOfSponsoredChildren,
-  //     paymentMethod: paymentMethod,
-  //     paymentSchedule: paymentSchedule,
-
-  //     // cannot be updated by the sponsor so we don't even show them in the front end
-  //     applicationStatus: applicationStatus,
-  //     howToAssignChildren: howToAssignChildren,
-  //   });
-  // };
+ const deleteSponsorProfile = (i) => {
+   //DELETE SPONSOR DATA FOR ENTRY NUMBER i
+ }
 
   const clearInputs = () => {
     setEmail("");
@@ -251,7 +236,10 @@ const Admin = () => {
           {
             {
               home: (
-                <AdminHome setRouter={setRouter} handleLogout={handleLogout} />
+                <AdminHome
+                  setRouter={setRouter}
+                  handlelogout={handleAdminLogout}
+                />
               ),
               editmyprofile: (
                 <AdminEditMyProfile
@@ -261,7 +249,7 @@ const Admin = () => {
                   email={email}
                   dateOfBirth={dateOfBirth}
                   setEmail={setEmail}
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                   setFirstName={setFirstName}
                   setLastName={setLastName}
                   setDateOfBirth={setDateOfBirth}
@@ -275,6 +263,7 @@ const Admin = () => {
                   setDepartment={setDepartment}
                   institution={institution}
                   setInstitution={setInstitution}
+                  editAdminProfile={editAdminProfile}
                 />
               ),
               sponsorshiprequests: (
@@ -282,19 +271,21 @@ const Admin = () => {
               ),
               sponsorprofiles: (
                 <AdminSponsorProfiles
+                  handlelogout={handleAdminLogout}
                   sponsorData={sponsorData}
                   setRouter={setRouter}
+                  deleteSponsorProfile={deleteSponsorProfile}
                 />
               ),
               paymenthistory: (
                 <AdminPaymentHistory
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                 />
               ),
               meetingrequests: (
                 <AdminMeetingRequests
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                 />
               ),
@@ -302,19 +293,19 @@ const Admin = () => {
               childrenprofiles: (
                 <AdminChildrenProfiles
                   childData={childData}
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                 />
               ),
               academicrecords: (
                 <AdminAcademicReports
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                 />
               ),
               editfaqs: (
                 <AdminEditFAQs
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   questions={questions}
                   answers={answers}
@@ -322,7 +313,7 @@ const Admin = () => {
               ),
               editcontactinformation: (
                 <AdminEditContactUs
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                 />
               ),
@@ -330,14 +321,14 @@ const Admin = () => {
                 <AdminContactUs
                   applicationStatus={applicationStatus}
                   setRouter={setRouter}
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                 />
               ),
               adminfaqs: (
                 <AdminFAQs
                   applicationStatus={applicationStatus}
                   setRouter={setRouter}
-                  handleLogout={handleLogout}
+                  handlelogout={handleAdminLogout}
                   questions={questions}
                   answers={answers}
                 />

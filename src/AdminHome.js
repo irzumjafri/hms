@@ -3,14 +3,14 @@ import SearchField from "react-search-field";
 import Calendar from "react-calendar";
 
 const AdminHome = (props) => {
-  const { handleLogout, setRouter, updatesArray } = props;
+  const { handlelogout, setRouter, updatesArray } = props;
   return (
     <body>
       <section>
         <nav>
           <h2>Hunehar Management System</h2>
           <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={() => handlelogout}>Logout</button>
         </nav>
         <nav>
           <h2>Homepage</h2>

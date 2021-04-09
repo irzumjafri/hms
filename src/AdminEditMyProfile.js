@@ -23,6 +23,7 @@ const AdminEditMyProfile = (props) => {
     institution,
     setInstitution,
     setRouter,
+    editAdminprofile
   } = props;
 
   return (
@@ -115,16 +116,16 @@ const AdminEditMyProfile = (props) => {
 
             <div className="btnContainer">
               <button
-                // Make new onlick Function onClick={() => setRouter("registered")}
+                onClick={() => setRouter("home")}
                 className="button_red"
               >
                 ❌ Discard Profile
               </button>
               <button
-                // Make new onclick function onClick={() => {
-                //   setRouter("registered");
-                //   editSponsorProfile();
-                // }}
+                onClick={() => {
+                  setRouter("home");
+                  editAdminprofile();
+                }}
                 className="buttongreen"
               >
                 ✅ Save Changes
