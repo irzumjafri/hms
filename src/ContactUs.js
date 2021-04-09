@@ -1,5 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
+import {Button, Form} from 'react-bootstrap';
+import logo from "./HMSlogo.png";
 
 const ContactUs = (props) => {
   const {
@@ -17,59 +19,103 @@ const ContactUs = (props) => {
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+      <section className="navbar">
+      <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">CONTACT US</h2>
         </nav>
         <section>
-          <h2>CONTACT US</h2>
-          <button
-            onClick={() =>
-              applicationStatus
-                ? setRouter("registered")
-                : setRouter("unregistered")
-            }
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
+          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
+
+
         <section className="contactUs">
           <div className="contactUsContainer">
-            <div>
-              <label>Phone Number </label>
-              <textbox>{contactPhoneNumber}</textbox>
-            </div>
-            <div>
-              <label>Email Address</label>
-              <textbox>{contactEmail}</textbox>
-            </div>
-            <div>
-              <label>Address</label>
-              <textbox>{contactAddress}</textbox>
-            </div>
-            <div>
-              <label>Facebook</label>
-              <textbox>{contactFacebook}</textbox>
-            </div>
-            <div>
-              <label>Instagram</label>
-              <textbox>{contactInstagram}</textbox>
-            </div>
-            <div>
-              <label>Twitter</label>
-              <textbox>{contactTwitter}</textbox>
-            </div>
-            <div>
-              <label>YouTube</label>
-              <textbox>{contactYoutube}</textbox>
-            </div>
+          <Form>
+              <div class = "col">
+              <Form.Label className= "label-left">Phone Number</Form.Label>
+              <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={contactPhoneNumber}
+              ></Form.Control>
+              </div>
+              <div class = "col">
+              <Form.Label className= "label-left">Email Address</Form.Label>
+              <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={contactEmail}
+              ></Form.Control>
+              </div>
+
+              <div class = "col">
+              <Form.Label className= "label-left">Address</Form.Label>
+              <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={contactAddress}
+              ></Form.Control>
+              </div>
+              <div class = "col">
+              <Form.Label className= "label-left">Facebook</Form.Label>
+              <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={contactFacebook}
+              ></Form.Control>
+              </div>
+              
+              <div class = "col">
+              <Form.Label className= "label-left">Instagram</Form.Label>
+              <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={contactInstagram}
+              ></Form.Control>
+              </div>
+              <div class = "col">
+              <Form.Label className= "label-left">Twitter</Form.Label>
+              <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={contactTwitter}
+              ></Form.Control>
+              </div>
+
+              <div class = "col">
+              <Form.Label className= "label-left">YouTube</Form.Label>
+              <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={contactYoutube}
+              ></Form.Control>
+              </div>
+              </Form>
+
           </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+       <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+        </section>
       </section>
     </body>
   );
