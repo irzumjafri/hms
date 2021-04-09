@@ -289,10 +289,11 @@ const Sponsor = () => {
     }
   };
 
-  // const childcount = 1000;
+
+  // const childId = 1000;
   // // Function that creates profile of the child
   // const createChildProfile = () => {
-  //   const childUniqueId = firstName + lastName
+  //   const childUniqueId = childId
   //   db.collection("childProfile")
   //     .doc(childUniqueId)  //      unique ID for child???
   //     .set({
@@ -314,8 +315,9 @@ const Sponsor = () => {
   //       contactInformation : contactInformation,
   //       grade : grade,
   //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  //       id : chil
   //     });
-  //     childcount = childcount + 1 //increasing child count
+  //     //childcount = childcount + 1 //increasing child count
   // };
 
   // // how to get child doc ID ??????????????????
