@@ -20,17 +20,7 @@ const AdminChildrenProfiles = (props) => {
         </nav>
         <section>
           <h2>CHILDREN PROFILES</h2>
-          <button
-          // Make new onclick Function
-          // onClick={() =>
-          //   applicationStatus
-          //     ? setRouter("registered")
-          //     : setRouter("unregistered")
-          // }
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
+          <button onClick={() => setRouter("home")}> HOME PAGE </button>
         </section>
         <section className="adminChildrenProfiles">
           {childData.map((con, i) => {

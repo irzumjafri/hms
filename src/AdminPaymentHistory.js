@@ -20,17 +20,7 @@ const AdminPaymentHistory = (props) => {
         </nav>
         <section>
           <h2 /*Make a drop down menu  refer to figma*/>PAYMENT HISTORY</h2>
-          <button
-          // Make the new onclick
-          // onClick={() =>
-          //   applicationStatus
-          //     ? setRouter("registered")
-          //     : setRouter("unregistered")
-          // }
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
+          <button onClick={() => setRouter("home")}>HOME PAGE</button>
         </section>
         <section className="adminPaymentHistory">
           <div className="adminPaymentContainer" /* Make the map function*/>

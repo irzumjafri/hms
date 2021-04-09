@@ -24,6 +24,7 @@ const AdminAcademicReports = (props) => {
     setPercentage,
     grade,
     setGrade,
+    setRouter
   } = props;
 
   return (
@@ -36,7 +37,7 @@ const AdminAcademicReports = (props) => {
         </nav>
         <section>
           <h2>ACADEMIC REPORTS</h2>
-          <button /*make on click function*/> HOME PAGE </button>
+          <button onClick={() => setRouter("home")}> HOME PAGE </button>
         </section>
         <section className="adminAcademicReports">
           <div className="adminAcademicReportsContainer">

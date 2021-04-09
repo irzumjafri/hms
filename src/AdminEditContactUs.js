@@ -32,12 +32,7 @@ const AdminEditContactUs = (props) => {
         <section>
           <h2>EDIT CONTACT US</h2>
           <button
-          // Make new onclick function
-          // onClick={() =>
-          //   applicationStatus
-          //     ? setRouter("registered")
-          //     : setRouter("unregistered")
-          // }
+          onClick={() => setRouter("home")}
           >
             {" "}
             HOME PAGE{" "}

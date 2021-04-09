@@ -10,6 +10,7 @@ const AdminMeetingRequests = (props) => {
     amPm,
     backUpDatesAndTimes,
     purpose,
+    setRouter
   } = props;
 
   return (
@@ -22,7 +23,8 @@ const AdminMeetingRequests = (props) => {
         </nav>
         <section>
           <h2>MEETING REQUESTS</h2>
-          <button /*make on click function*/> HOME PAGE </button>
+          <button onClick={() =>
+            setRouter('home')}> HOME PAGE </button>
         </section>
         <section className="requestAMeeting">
           <div className="requestAMeetingContainer">

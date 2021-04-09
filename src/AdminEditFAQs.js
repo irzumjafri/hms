@@ -21,12 +21,7 @@ const AdminEditFAQs = (props) => {
         <section>
           <h2>Edit Frequently Asked Questions (FAQs)</h2>
           <button
-          // Make relevant changes
-          // onClick={() =>
-          //   applicationStatus
-          //     ? setRouter("registered")
-          //     : setRouter("unregistered")
-          // }
+          onClick={() => setRouter("home")}
           >
             {" "}
             HOME PAGE{" "}

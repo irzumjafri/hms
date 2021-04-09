@@ -155,33 +155,34 @@ const Sponsor = () => {
     });
   };
 
-
   // fetching one document
   var docRef_fetchSponsorData = db.collection("sponsors").doc(user.uid);
-  docRef.get().then((doc) => {
-      if (doc.exists) {
-          console.log("Document data:", doc.data());
-      } else {
-          console.log("No such document!");
-      }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
-  });
-
-  //fetching multiple documents (like when displaying all sponsorship requests on the admin interface)
-  db.collection("sponsorshipApplicants").where("applicationStatus", "==", false)
+  docRef
     .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
+    .then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+      } else {
+        console.log("No such document!");
+      }
     })
     .catch((error) => {
-        console.log("Error getting documents: ", error);
+      console.log("Error getting document:", error);
     });
 
-
+  //fetching multiple documents (like when displaying all sponsorship requests on the admin interface)
+  db.collection("sponsorshipApplicants")
+    .where("applicationStatus", "==", false)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
 
   const clearInputs = () => {
     setEmail("");
@@ -220,83 +221,72 @@ const Sponsor = () => {
     }
   };
 
-  const childcount = 1000;
-  // Function that creates profile of the child
-  const createChildProfile = () => {
-    const childUniqueId = firstName + lastName
-    db.collection("childProfile")
-      .doc(childUniqueId)  //      unique ID for child???
-      .set({ 
-        // child profile data
-        firstName: firstName,
-        lastName: lastName,
-        dateOfBirth: dateOfBirth,
-        gender : gender,
-        address: address,
-        guardian1Name : guardian1Name,
-        guardian1Relation : guardian1Relation,
-        guardian1Cnic : guardian1Cnic,
-        guardian1Occupation : guardian1Occupation,
-        guardian2Name :guardian2Name,
-        guardian2Relation : guardian2Relation,
-        guardian2Cnic : guardian2Cnic,
-        guardian2Occupation : guardian2Occupation,
-        familyBackground : familyBackground,
-        contactInformation : contactInformation,
-        grade : grade,
-        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-      });
-      childcount = childcount + 1 //increasing child count
-  };
+  // const childcount = 1000;
+  // // Function that creates profile of the child
+  // const createChildProfile = () => {
+  //   const childUniqueId = firstName + lastName
+  //   db.collection("childProfile")
+  //     .doc(childUniqueId)  //      unique ID for child???
+  //     .set({
+  //       // child profile data
+  //       firstName: firstName,
+  //       lastName: lastName,
+  //       dateOfBirth: dateOfBirth,
+  //       gender : gender,
+  //       address: address,
+  //       guardian1Name : guardian1Name,
+  //       guardian1Relation : guardian1Relation,
+  //       guardian1Cnic : guardian1Cnic,
+  //       guardian1Occupation : guardian1Occupation,
+  //       guardian2Name :guardian2Name,
+  //       guardian2Relation : guardian2Relation,
+  //       guardian2Cnic : guardian2Cnic,
+  //       guardian2Occupation : guardian2Occupation,
+  //       familyBackground : familyBackground,
+  //       contactInformation : contactInformation,
+  //       grade : grade,
+  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  //     });
+  //     childcount = childcount + 1 //increasing child count
+  // };
 
+  // // how to get child doc ID ??????????????????
+  // const editChildProfile = () => {
+  //   let profileToEdit = db.collection("childProfile").doc(childUniqueId); // or search through name?
 
-  // how to get child doc ID ??????????????????
-  const editChildProfile = () => {
-    let profileToEdit = db.collection("childProfile").doc(childUniqueId); // or search through name?
+  //   return profileToEdit.update({
+  //     firstName: firstName,
+  //     lastName: lastName,
+  //     dateOfBirth: dateOfBirth,
+  //     gender : gender,
+  //     address: address,
+  //     guardian1Name : guardian1Name,
+  //     guardian1Relation : guardian1Relation,
+  //     guardian1Cnic : guardian1Cnic,
+  //     guardian1Occupation : guardian1Occupation,
+  //     guardian2Name :guardian2Name,
+  //     guardian2Relation : guardian2Relation,
+  //     guardian2Cnic : guardian2Cnic,
+  //     guardian2Occupation : guardian2Occupation,
+  //     familyBackground : familyBackground,
+  //     contactInformation : contactInformation,
+  //     grade : grade,
+  //     timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  //   });
+  // };
 
-    return profileToEdit.update({
-      firstName: firstName,
-      lastName: lastName,
-      dateOfBirth: dateOfBirth,
-      gender : gender,
-      address: address,
-      guardian1Name : guardian1Name,
-      guardian1Relation : guardian1Relation,
-      guardian1Cnic : guardian1Cnic,
-      guardian1Occupation : guardian1Occupation,
-      guardian2Name :guardian2Name,
-      guardian2Relation : guardian2Relation,
-      guardian2Cnic : guardian2Cnic,
-      guardian2Occupation : guardian2Occupation,
-      familyBackground : familyBackground,
-      contactInformation : contactInformation,
-      grade : grade,
-      timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-    });
-  };
-
-
-
-// admin saving payment history for each sponsor
+  // admin saving payment history for each sponsor
   const paymentHistory = () => {
     db.collection("paymentHistory")
-    .doc(user.uid)  //  fetch this ID for sponsor 
-    .set({ 
-    sponsorName : sponsorName,
-    paymentDate : paymentDate,
-    childName : childName,
-    paymentAmount : paymentAmount,
-    paymentType : paymentType,
-    });
+      .doc(user.uid) //  fetch this ID for sponsor
+      .set({
+        sponsorName: sponsorName,
+        paymentDate: paymentDate,
+        childName: childName,
+        paymentAmount: paymentAmount,
+        paymentType: paymentType,
+      });
   };
-
-
-
-
-
-
-
-
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
@@ -471,8 +461,20 @@ const Sponsor = () => {
                   applicationStatus={applicationStatus}
                 />
               ),
-              requestmeeting: (<RequestAMeeting handleLogout={handleLogout} setRouter={setRouter} applicationStatus={applicationStatus}/>),
-              academicreports: (<AcademicReportsSponsor handleLogout={handleLogout} setRouter={setRouter} applicationStatus={applicationStatus}/>),
+              requestmeeting: (
+                <RequestAMeeting
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
+              ),
+              academicreports: (
+                <AcademicReportsSponsor
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
+              ),
               contactus: (
                 <ContactUs
                   applicationStatus={applicationStatus}

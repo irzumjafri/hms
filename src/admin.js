@@ -8,16 +8,17 @@ import Hero from "./Hero";
 import firebase from "firebase";
 import ContactUs from "./ContactUs";
 import FAQs from "./Faqs";
-import AdminHome from './AdminHome'
-import AdminEditSponsorProfile from './AdminEditSponsorProfile'
-import AdminChildrenProfiles from './AdminChildrenProfiles'
-import AdminSponsorProfiles from './AdminSponsorProfiles'
-import AdminEditContactUs from './AdminEditContactUs'
-import AdminEditFAQs from './AdminEditFAQs'
-import AdminPaymentHistory from './AdminPaymentHistory'
-import AdminMeetingRequests from './AdminMeetingRequests'
-import AdminAcademicReports from './AdminAcademicReports'
-
+import AdminHome from "./AdminHome";
+import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
+import AdminChildrenProfiles from "./AdminChildrenProfiles";
+import AdminSponsorProfiles from "./AdminSponsorProfiles";
+import AdminEditContactUs from "./AdminEditContactUs";
+import AdminEditFAQs from "./AdminEditFAQs";
+import AdminPaymentHistory from "./AdminPaymentHistory";
+import AdminMeetingRequests from "./AdminMeetingRequests";
+import AdminAcademicReports from "./AdminAcademicReports";
+import AdminContactUs from './AdminContactUs'
+import AdminFAQs from './AdminFaqs'
 
 // setting up the database here
 const db = firebase.firestore();
@@ -39,33 +40,36 @@ const Sponsor = () => {
     preferredMediumOfCommunication,
     setPreferredMediumOfCommunication,
   ] = useState("");
-  const [sponsorData,setSponsorData]=useState([{
-    firstName: "irzum",
-    lastName: "jafri",
-    email: "irzumbm@gmail.com",
-    dateOfBirth: "LUMSU",
-    cnic: "A++++",
-    phoneNumber: "090078601",
-    address: "myself",
-    preferredMediumOfCommunication: "daddy",
-    numberOfSponsoredChildren: "123-123",
-    paymentMethod: "myself",
-    paymentSchedule: "daddy",
-    status: "pathanKhandaan",
-  },{
-    firstName: "irzumirzum",
-    lastName: "jafri",
-    email: "irzumbm@gmail.com",
-    dateOfBirth: "LUMSU",
-    cnic: "A++++",
-    phoneNumber: "090078601",
-    address: "myself",
-    preferredMediumOfCommunication: "daddy",
-    numberOfSponsoredChildren: "123-123",
-    paymentMethod: "myself",
-    paymentSchedule: "daddy",
-    status: "pathanKhandaan",
-  }]); 
+  const [sponsorData, setSponsorData] = useState([
+    {
+      firstName: "irzum",
+      lastName: "jafri",
+      email: "irzumbm@gmail.com",
+      dateOfBirth: "LUMSU",
+      cnic: "A++++",
+      phoneNumber: "090078601",
+      address: "myself",
+      preferredMediumOfCommunication: "daddy",
+      numberOfSponsoredChildren: "123-123",
+      paymentMethod: "myself",
+      paymentSchedule: "daddy",
+      status: "pathanKhandaan",
+    },
+    {
+      firstName: "irzumirzum",
+      lastName: "jafri",
+      email: "irzumbm@gmail.com",
+      dateOfBirth: "LUMSU",
+      cnic: "A++++",
+      phoneNumber: "090078601",
+      address: "myself",
+      preferredMediumOfCommunication: "daddy",
+      numberOfSponsoredChildren: "123-123",
+      paymentMethod: "myself",
+      paymentSchedule: "daddy",
+      status: "pathanKhandaan",
+    },
+  ]);
   const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
     ""
   );
@@ -243,7 +247,7 @@ const Sponsor = () => {
   };
 
   const handleLogout = () => {
-    setRouter("unregistered"); //change it to null value when updating from database
+    setRouter("home"); //change it to null value when updating from database
     fire.auth().signOut();
   };
 
@@ -275,30 +279,66 @@ const Sponsor = () => {
           {
             {
               home: (
-                <AdminHome
+                <AdminHome setRouter={setRouter} handleLogout={handleLogout} />
+              ),
+              editsponsorprofile: (
+                <AdminEditSponsorProfile setRouter={setRouter} />
+              ),
+              sponsorshiprequests: (
+                <AdminEditSponsorProfile setRouter={setRouter} />
+              ),
+              sponsorprofiles: (
+                <AdminSponsorProfiles
+                  sponsorData={sponsorData}
                   setRouter={setRouter}
-                  handleLogout={handleLogout}
                 />
               ),
-              editsponsorprofile: (<AdminEditSponsorProfile setRouter={setRouter}/>),
-              sponsorshiprequests: (<AdminEditSponsorProfile setRouter={setRouter}/>),
-              sponsorprofiles: (<AdminSponsorProfiles sponsorData={sponsorData} setRouter={setRouter}/>),
-              paymenthistory: (<AdminPaymentHistory/>),
-              meetingrequests: (<AdminMeetingRequests/>),
+              paymenthistory: (
+                <AdminPaymentHistory
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                />
+              ),
+              meetingrequests: (
+                <AdminMeetingRequests
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                />
+              ),
               // letterbox: (<AdminLetterBox/>),
-              childrenprofiles: (<AdminChildrenProfiles/>),
-              academicrecords: (<AdminAcademicReports/>),
-              editfaqs: (<AdminEditFAQs/>),
-              editcontactinformation: (<AdminEditContactUs/>),
-              contactus: (
-                <ContactUs
+              childrenprofiles: (
+                <AdminChildrenProfiles
+                  childData={childData}
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                />
+              ),
+              academicrecords: (
+                <AdminAcademicReports
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                />
+              ),
+              editfaqs: (
+                <AdminEditFAQs
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                  questions={questions}
+                  answers={answers}
+                />
+              ),
+              editcontactinformation: (
+                <AdminEditContactUs handleLogout={handleLogout} setRouter={setRouter} />
+              ),
+              admincontactus: (
+                <AdminContactUs
                   applicationStatus={applicationStatus}
                   setRouter={setRouter}
                   handleLogout={handleLogout}
                 />
               ),
-              faqs: (
-                <FAQs
+              adminfaqs: (
+                <AdminFAQs
                   applicationStatus={applicationStatus}
                   setRouter={setRouter}
                   handleLogout={handleLogout}

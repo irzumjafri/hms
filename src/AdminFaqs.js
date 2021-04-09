@@ -1,7 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
 
-const AdminFAQs = (props) => {
+const FAQs = (props) => {
   const {
     questions,
     answers,
@@ -22,9 +22,7 @@ const AdminFAQs = (props) => {
           <h2>Frequently Asked Questions (FAQs)</h2>
           <button
             onClick={() =>
-              applicationStatus
-                ? setRouter("registered")
-                : setRouter("unregistered")
+              setRouter('home')
             }
           >
             {" "}
@@ -42,11 +40,11 @@ const AdminFAQs = (props) => {
             );
           })}
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
+        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
       </section>
     </body>
   );
 };
 
-export default AdminFAQs;
+export default FAQs;
