@@ -134,28 +134,6 @@ const Sponsor = () => {
 
   //  Edit My Profile (Sponsor). Function that allows sponsor to update their credentials
   const editSponsorProfile = () => {
-    // this needs to be rewritten using .where
-    // let profileToEdit = db.collection("sponsors").doc(user.uid); // or search through name?
-    // return profileToEdit.update({
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   emailAddress: email,
-    //   dateOfBirth: dateOfBirth,
-    //   cnic: cnic,
-    //   phoneNumber: phoneNumber,
-    //   address: address,
-    //   preferredMediumOfCommunication: preferredMediumOfCommunication,
-    //   numberOfSponsoredChildren: numberOfSponsoredChildren,
-    //   paymentMethod: paymentMethod,
-    //   paymentSchedule: paymentSchedule,
-    //   // cannot be updated by the sponsor so we don't even show them in the front end
-    //   applicationStatus: applicationStatus,
-    //   howToAssignChildren: howToAssignChildren,
-    // });
-  };
-
-  // Admin users can edit their profile information using this function
-  const editSponsorProfile = () => {
     let idofDoc = 0;
     let appStatus = "";
     let howTo = "";
@@ -195,7 +173,7 @@ const Sponsor = () => {
             paymentSchedule: paymentSchedule,
             applicationStatus: appStatus,
             howToAssignChildren: howTo,
-            id = idofDoc
+            id: idofDoc,
           })
           .then(() => {
             console.log("Document successfully updated!");
