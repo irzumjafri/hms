@@ -544,7 +544,6 @@
 .navbar .navbarContainer {
   width: 100%;
   background: #529cea;
-  display: flex;
   align-items: center;
   justify-content: center;
   transform: translateY(57px);
@@ -584,7 +583,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 2;
   transform: translateX(-30px);
 }
 .navbar .navbarContainer_gray .Applogo {
@@ -838,67 +837,94 @@
 .unregistered {
   width: 100%;
   min-height: 60vh;
-  padding: 0 20px;
   background: #fff;
   display: flex;
 }
 
-.unregistered .button_blue {
+.unregistered .unregisteredContainer_left {
+  padding: 60px;
+  margin: 60px;
+  width: 100%;
+  min-height: 400px;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  float: left;
+}
+
+.unregistered .unregisteredContainer_right {
+  padding: 60px;
+  margin: 60px;
+  width: 100%;
+  margin-left: 20%;
+  min-height: 400px;
+  background: white;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  float: right;
+}
+
+.unregistered .unregisteredContainer_right .button_blue {
   outline: none;
   border: none;
-  height: 25px;
-  width: 10%;
-  padding: 20px 0px;
+  height: 35px;
+  width: 45%;
+  padding: 10px;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
   background: #529cea;
   border-radius: 10px;
-  position: absolute;
-  top: 700px;
-  right: 360px;
-  margin: auto;
+  margin: 10px auto;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  float: left;
 }
 
-.unregistered .button_red {
+.unregistered .unregisteredContainer_right .button_red {
   outline: none;
   border: none;
-  height: 25px;
-  width: 10%;
-  padding: 20px 0px;
+  height: 35px;
+  width: 45%;
+  padding: 10px;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
-  background: red;
+  background: #ff0033;
   border-radius: 10px;
-  position: absolute;
+  display: block;
   align-items: center;
   justify-content: center;
-  top: 700px;
-  right: 60px;
-  margin: auto;
+  margin: 10px auto;
+  float: right;
 }
-.unregistered .button_green {
+.unregistered .unregisteredContainer_left .button_green {
+  border: none;
   outline: none;
-  width: 30%;
-  padding: 50px 10px;
+  width: 50%;
+  padding: 50px 0px;
   color: #fff;
+
   font-size: 18px;
   letter-spacing: 1px;
   background: #61ce7d;
   border-radius: 10px;
-  margin: auto;
-  position: absolute;
-  top: 350px;
-  left: 100px;
-}
-.calendar {
+  margin: 30%;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 600px;
-  right: 60px;
-  margin: auto;
+  transform: translateX(-10px);
+}
+.unregistered .unregisteredContainer_right .calendar {
+  align-items: center;
+  justify-content: center;
+  margin: 50%;
+  transform: translateX(10%);
 }
 .unregistered .titletext {
   color: white;
@@ -909,82 +935,26 @@
   align-items: center;
   justify-content: center;
 }
-.unregistered .label-left {
+.unregistered .unregisteredContainer_left .label-left {
   color: black;
   margin: auto;
-  position: absolute;
-  top: 250px;
-  left: 60px;
   font-size: 30px;
 }
 
-.unregistered .label-right {
+.unregistered .unregisteredContainer_right .label-right {
   color: black;
-  float: right;
-  position: absolute;
-  top: 250px;
-  right: 260px;
-  margin: auto;
+  margin: 10px auto;
   font-size: 30px;
-  line-height: 1;
-  text-align: left;
 }
 
-.unregistered .label-right .p_i {
-  position: absolute;
-  top: 550px;
-  right: 260px;
+.unregistered .unregisteredContainer_right .label-right .p_i {
+  margin: 10px auto;
   font-size: 20px;
 }
 
-.unregistered .label-right .p_ii {
-  position: absolute;
-  top: 650px;
-  right: 160px;
+.unregistered .unregisteredContainer_right .label-right .p_ii {
+  margin: 10px auto;
   font-size: 20px;
-}
-
-.unregistered .unregisteredContainer .label-right .p_iii {
-  margin: 10px 0px 10px 266px;
-}
-
-.unregistered .unregisteredContainer .label-right .p_iv {
-  margin: 10px 0px 10px 235px;
-}
-
-.unregistered .unregisteredContainer .label-right .p_v {
-  margin: 10px 0px 10px 58px;
-}
-
-.unregistered .unregisteredContainer .input-right {
-  width: 40%;
-  border: none;
-  outline: none;
-  margin: 0px 0px;
-  font-size: 18px;
-  border-radius: 10px;
-  padding: 10px;
-  background: #fff;
-  color: #000;
-  letter-spacing: 1px;
-  display: inline-block;
-}
-
-.unregistered .unregisteredContainer .btnContainer {
-  width: 100%;
-  padding: 24px 0;
-}
-
-.unregistered .unregisteredContainer .btnContainer p {
-  margin: 10px 0 0 0;
-  text-align: center;
-  color: #fff;
-  text-decoration: italic;
-}
-
-.unregistered .unregisteredContainer .errorMsg {
-  color: #ff0033;
-  font-size: 14px;
 }
 
 .hero {
