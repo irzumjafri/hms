@@ -1,5 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
+import {Button, Form} from 'react-bootstrap';
+import logo from "./HMSlogo.png";
 
 const FAQs = (props) => {
   const {
@@ -12,36 +14,58 @@ const FAQs = (props) => {
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handleLogout}>Logout</button>
-        </nav>
+      <section className="navbar">
+     
         <section>
-          <h2>Frequently Asked Questions (FAQs)</h2>
-          <button
-            onClick={() =>
-              setRouter('home')
-            }
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
         </section>
+
+        
         <section className="faqs">
+        <div className="faqsContainer">
+
           {questions.map((con, i) => {
             return (
-              <div className="faqsContainer">
-                <label>Question {i + 1}</label>
-                <text>{questions[i]}</text>
-                <text>{answers[i]}</text>
-              </div>
+
+              
+
+              <Form>
+
+              <div class = "col">
+            <Form.Label className= "label-left">{questions[i]}</Form.Label>
+            <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={answers[i]}
+            ></Form.Control>
+            </div>
+            </Form>
+          
+              
             );
           })}
+          </div>
         </section>
-        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
-        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          
+          <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">FREQUENTLY ASKED QUESTIONS</h2>
+        </nav>
+          
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+
+        </section>
       </section>
     </body>
   );

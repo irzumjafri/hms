@@ -1,4 +1,7 @@
 import React from "react";
+import SearchField from "react-search-field";
+import logo from "./HMSlogo.png";
+import {Button, Form} from 'react-bootstrap';
 
 const Signup = (props) => {
   const {
@@ -22,68 +25,83 @@ const Signup = (props) => {
 
   return (
     <section className="signup">
-      <div className="signupContainer">
+    <div className="signupContainer">
+
+
+
         <label className="titletext">SIGN UP</label>
-        <label className="label-left">First Name *</label>
-        <p className="label-right">
-          <p className="p_i">Last Name *</p>
-        </p>
-        <input
-          className="input-left"
-          type="text"
-          autoFocus
-          required
-          value={firstname}
-          onChange={(e) => setFirstName(e.target.value)}
-        ></input>
 
-        <input
-          className="input-right"
-          type="text"
-          required
-          value={lastname}
-          onChange={(e) => setLastName(e.target.value)}
-        ></input>
 
-        <label className="label-left">Email *</label>
-        <p className="label-right">
-          {" "}
-          <p className="p_ii">Date of Birth (DD-MM-YYYY) *</p>
-        </p>
-        <input
-          className="input-left"
-          type="text"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
+        <Form>
+              <Form.Row >
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">First Name *</Form.Label>
+            <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={firstname}
+              onChange={(e) => setFirstName(e.target.value)}
+            ></Form.Control>
+            </div >
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Last Name *</Form.Label>
+            <Form.Control
+              type="text"
+              required
+              value={lastname}
+              onChange={(e) => setLastName(e.target.value)}
+            ></Form.Control>
+              </div>
+              </Form.Row>
 
-        <input
-          className="input-right"
-          type="text"
-          required
-          value={dateofbirth}
-          onChange={(e) => setDateOfBirth(e.target.value)}
-        ></input>
-        <label className="label-left">Password *</label>
-        <label className="label-right">
-          <p className="p_iii">Confirm Password *</p>
-        </label>
-        <input
-          className="input-left"
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
+              <Form.Row>
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Email *</Form.Label>
+            <Form.Control
+              type="text"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            >
+            </Form.Control>
+            </div>
+            <div  class = "col-md-6">
+            <Form.Label className= "label-right">Date of Birth (DD-MM-YYYY) *</Form.Label>
+            <Form.Control
+              type="text"
+              required
+              value={dateofbirth}
+              onChange={(e) => setDateOfBirth(e.target.value)}
+            >
+              </Form.Control>
+            </div >
+            </Form.Row>
 
-        <input
-          className="input-right"
-          type="password"
-          required
-          value={confirmpassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        ></input>
+            <Form.Row>
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Password *</Form.Label>
+            <Form.Control
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            >
+            </Form.Control>
+            </div>
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Confirm Password *</Form.Label>
+            <Form.Control
+              type="password"
+              required
+              value={confirmpassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            >
+              </Form.Control>
+            </div >
+            </Form.Row >
+
+         </Form>
         <p className="errorMsg">{errorMessage}</p>
         <div className="btnContainer">
           <>

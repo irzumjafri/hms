@@ -310,7 +310,7 @@
   align-items: center;
   justify-content: center;
 }
-.signup .signupContainer .titletext {
+/* .signup .signupContainer .titletext {
   color: white;
   margin-bottom: 10px;
   font-size: 25px;
@@ -321,7 +321,6 @@
 }
 .signup .signupContainer .label-left {
   color: white;
-  margin: 10px 150px 10px 0px;
   display: inline-block;
   font-size: 18px;
 }
@@ -346,7 +345,7 @@
   font-size: 18px;
   line-height: 1;
   text-align: left;
-}
+} */
 
 .signup .signupContainer .label-right .p_i {
   margin: 10px 0px 10px 220px;
@@ -405,7 +404,39 @@
   color: #ff0033;
   font-size: 14px;
 }
-@media only screen and (max-width: 768px) {
+.signup .signupContainer .titletext {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signup .signupContainer .label-left {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.signup .signupContainer .blue {
+  color: #192539;
+  background-color: #192539;
+  border: none;
+}
+.signup .signupContainer .input-left {
+  width: 40%;
+}
+.signup .signupContainer .label-right {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.signup .signupContainer .input-right {
+  color: white;
+}
+/* @media only screen and (max-width: 768px) {
   .signup .signupContainer .label-left {
     margin: auto;
     display: flex;
@@ -470,7 +501,7 @@
   .signup .signupContainer .button_green {
     margin-top: 0%;
   }
-}
+} */
 
 /* ################### Navbar ################ */
 .navbar {
