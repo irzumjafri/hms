@@ -73,36 +73,7 @@ const Admin = () => {
     "04-01-0001",
   ]);
   const [amount, setAmount] = useState(["1000", "2000", "3000", "4000"]);
-  const [childData, setChildData] = useState([
-    {
-      name: "irzum",
-      dateOfBirth: "01-01-0001",
-      gender: "male",
-      currentAddress: "LUMSU",
-      grade: "A++++",
-      contactInformation: "090078601",
-      guardian1Name: "myself",
-      guardian1Relation: "daddy",
-      guardian1Cnic: "123-123",
-      guardian2Name: "myself",
-      guardian2Relation: "daddy",
-      familyBackground: "pathanKhandaan",
-    },
-    {
-      name: "irzumbmW",
-      dateOfBirth: "01-01-0001",
-      gender: "male",
-      currentAddress: "LUMSU",
-      grade: "A++++",
-      contactInformation: "090078601",
-      guardian1Name: "myself",
-      guardian1Relation: "daddy",
-      guardian1Cnic: "123-123",
-      guardian2Name: "myself",
-      guardian2Relation: "daddy",
-      familyBackground: "pathanKhandaan",
-    },
-  ]);
+  const [childData, setChildData] = useState([]);
   const [myChildren, setMyChildren] = useState([
     { value: 1, label: "shabbir" },
     { value: 2, label: "altaf" },
@@ -230,13 +201,13 @@ const Admin = () => {
       });
   };
 
-  var tempApplications = [];
   const fetchSponsorshipApplications = () => {
+    let tempApplications = [];
     db.collection("sponsorshipApplicants")
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
-          setErrorMessage("No sponsorship requests to display");
+          console.log("No sponsorship requests to display");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -261,6 +232,7 @@ const Admin = () => {
             });
           });
         }
+        console.log(tempApplications);
         setSponsorshipApplicationData(tempApplications);
       });
   };
@@ -282,13 +254,12 @@ const Admin = () => {
     let ts = "";
     let identity = "";
     const apS = "Accepted";
-    let td = "false";
 
     db.collection("sponsorshipApplicants")
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
-          setErrorMessage("No sponsorship requests to display");
+          console.log("No sponsorship requests to display");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -362,8 +333,8 @@ const Admin = () => {
   };
 
   // This fucntion fetches all the sponsor profiles to be displayed
-  var tempData = [];
   const fetchSponsorData = () => {
+    let tempData = [];
     db.collection("registeredSponsors")
       .get()
       .then((querySnapshot) => {
@@ -571,8 +542,41 @@ const Admin = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
   };
 
+  // This function fetches all the children profiles stored in the current snapshot of database and lets admin users see them
   const fetchChildrenProfiles = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
+    let tempData = [];
+    db.collection("childrenProfiles")
+      .get()
+      .then((querySnapshot) => {
+        // Children Profiles' db is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No registered sponsors exist in the database yet");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all children profiles present in current snapshot of the db
+            tempData.push({
+              name: doc.data().name,
+              dateOfBirth: doc.data().dateOfBirth,
+              gender: doc.data().gender,
+              gender: doc.data().gender,
+              currentAddress: doc.data().currentAddress,
+              grade: doc.data().grade,
+
+              contactInformation: doc.data().contactInformation,
+              guardian1Name: doc.data().guardian1Name,
+              guardian1Relation: doc.data().guardian1Relation,
+              guardian1Occupation: doc.data().guardian1Occupation,
+              guardian1Cnic: doc.data().guardian1Cnic,
+              guardian2Name: doc.data().guardian2Name,
+              guardian2Relation: doc.data().guardian2Relation,
+              familyBackground: doc.data().familyBackground,
+              id: doc.data().id,
+            });
+          });
+        }
+        setChildData(tempData);
+      });
   };
 
   const fetchAcademicRecords = () => {
