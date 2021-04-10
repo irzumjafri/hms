@@ -48,7 +48,7 @@ const Sponsor = () => {
   const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
-  const [router, setRouter] = useState("registered");
+  const [router, setRouter] = useState("");
   const [applicationStatus, setApplicationStatus] = useState("");
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
   const [questions, setQuestions] = useState([]);
@@ -153,7 +153,9 @@ const Sponsor = () => {
           setEmail(doc.data().emailAddress);
           setDateOfBirth(doc.data().dateOfBirth);
           setApplicationStatus(doc.data().applicationStatus);
-          console.log(applicationStatus);
+          applicationStatus
+            ? setRouter("registered")
+            : setRouter("unregistered");
         } else {
           console.log("No such document!");
         }
@@ -329,20 +331,23 @@ const Sponsor = () => {
   const handleSignUp = () => {
     clearErrors();
     if (signupErrorCheck()) {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    setUser(userCredential.user)
-    createUserAccount(userCredential.user.uid)
-  })
-  .catch((error) => {
-    setErrorMessage(error.message);
-  });
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          setUser(userCredential.user);
+          createUserAccount(userCredential.user.uid);
+        })
+        .catch((error) => {
+          setErrorMessage(error.message);
+        });
     }
   };
 
   const handleLogout = () => {
     setRouter("");
     fire.auth().signOut();
+    setUser("");
   };
 
   const authListener = () => {
