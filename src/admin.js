@@ -46,7 +46,11 @@ const Admin = () => {
   const [sponsorshipApplicationData, setSponsorshipApplicationData] = useState(
     []
   );
-  const [sponsorData, setSponsorData] = useState([]);
+  const [sponsorData, setSponsorData] = useState([
+    {firstName: "Maha", 
+    lastName : "Sajid"}
+
+  ]);
   const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
     ""
   );

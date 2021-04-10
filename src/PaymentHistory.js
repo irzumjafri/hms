@@ -51,6 +51,8 @@ const PaymentHistory = (props) => {
             
           );
         })}
+        console.log({amount})
+        console.log({paymentDate})
         </div>
         </section>
         <nav className="navbarContainer_gray">
