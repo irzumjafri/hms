@@ -290,104 +290,25 @@ const Sponsor = () => {
   };
 
 
-  // const childId = 1000;
-  // // Function that creates profile of the child
-  // const createChildProfile = () => {
-  //   const childUniqueId = childId
-  //   db.collection("childProfile")
-  //     .doc(childUniqueId)  //      unique ID for child???
-  //     .set({
-  //       // child profile data
-  //       firstName: firstName,
-  //       lastName: lastName,
-  //       dateOfBirth: dateOfBirth,
-  //       gender : gender,
-  //       address: address,
-  //       guardian1Name : guardian1Name,
-  //       guardian1Relation : guardian1Relation,
-  //       guardian1Cnic : guardian1Cnic,
-  //       guardian1Occupation : guardian1Occupation,
-  //       guardian2Name :guardian2Name,
-  //       guardian2Relation : guardian2Relation,
-  //       guardian2Cnic : guardian2Cnic,
-  //       guardian2Occupation : guardian2Occupation,
-  //       familyBackground : familyBackground,
-  //       contactInformation : contactInformation,
-  //       grade : grade,
-  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-  //       id : chil
-  //     });
-  //     //childcount = childcount + 1 //increasing child count
-  // };
 
-  // // how to get child doc ID ??????????????????
-  // const editChildProfile = () => {
-  //   let profileToEdit = db.collection("childProfile").doc(childUniqueId); // or search through name?
 
-  //   return profileToEdit.update({
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     dateOfBirth: dateOfBirth,
-  //     gender : gender,
-  //     address: address,
-  //     guardian1Name : guardian1Name,
-  //     guardian1Relation : guardian1Relation,
-  //     guardian1Cnic : guardian1Cnic,
-  //     guardian1Occupation : guardian1Occupation,
-  //     guardian2Name :guardian2Name,
-  //     guardian2Relation : guardian2Relation,
-  //     guardian2Cnic : guardian2Cnic,
-  //     guardian2Occupation : guardian2Occupation,
-  //     familyBackground : familyBackground,
-  //     contactInformation : contactInformation,
-  //     grade : grade,
-  //     timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-  //   });
-  // };
+ 
 
   // where does admin enters the name of sponsor for whom he wants to save his payment history
 
   //var fName = window.prompt("Sponsor First Name: ")
   //var lNname = window.prompt("Sponsor Last Name: ")
 
-  var fName = "Ali"
-  var lNname = "ahmed"
+ 
+
+//sponsor checking his payment history
+  const checkingPaymentHistory = () => {
+
+    db.collection("paymentHistory").doc(user.uid).set()
 
 
-  //admin saving payment history for each sponsor
-  const paymentHistory = () => {
-    let sponsorDocId = ""
 
-    db.collection("registeredSponsors")
-    .where("firstName", "==", fName)
-    .where("lastName","==",lNname)
-    .get()
-    .then((querySnapshot) => {
-      // no email match found hence an attempt at unauthorized access to prevent
-      if (querySnapshot.empty) {
-        console.log("Empty");
-        return;
-      } else {
-        querySnapshot.forEach((doc) => {
-          // extract and store id to reference the doc to be edited
-          sponsorDocId = doc.data().id;
-        });
-      }
-
-      db.collection("paymentHistory")
-      .doc(sponsorDocId) //  fetch this ID for sponsor
-      .set({
-      firstName: firstName,
-      lastName : lastName,
-      paymentDate: paymentDate,
-      //childName: childName,
-      //paymentAmount: paymentAmount,
-      //paymentType: paymentType,
-    });
-    });
-  };
-
-
+  }
 
 
   // Sponsors sending letters to child
