@@ -259,9 +259,8 @@ const Admin = () => {
       });
   };
 
-  var fName = "Ali"
-  var lNname = "ahmed"
-
+  var fName = "Ali";
+  var lNname = "ahmed";
 
   //admin saving payment history for each sponsor
   // const addingPaymentHistory = () => {
@@ -324,7 +323,7 @@ const Admin = () => {
   //     //childcount = childcount + 1 //increasing child count
   // };
 
-   // // how to get child doc ID ??????????????????
+  // // how to get child doc ID ??????????????????
   // const editChildProfile = () => {
   //   let profileToEdit = db.collection("childProfile").doc(childUniqueId); // or search through name?
 
@@ -348,7 +347,6 @@ const Admin = () => {
   //     timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
   //   });
   // };
-
 
   // This function gets all of sponsors' data from db and set it to be displayed
   const fetchSponsorshipApplications = () => {
@@ -470,7 +468,7 @@ const Admin = () => {
 
   // This function allows admin to eit sponors' information including their status and how to assign
   const editSponsorProfile = (i, howTo, appStatus) => {
-    let profileToEdit = db.collection("registeredSponsors").doc(i);
+    let profileToEdit = db.collection("registeredSponsors").doc(i.id);
     return profileToEdit
       .update({
         firstName: firstName,
@@ -486,7 +484,7 @@ const Admin = () => {
         paymentSchedule: paymentSchedule,
         applicationStatus: appStatus,
         howToAssignChildren: howTo,
-        id: i,
+        id: i.id,
       })
       .then(() => {
         console.log("Document successfully updated!");
