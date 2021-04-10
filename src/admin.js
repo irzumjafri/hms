@@ -288,6 +288,7 @@ const Admin = () => {
           });
         }
       });
+      console.log(identity)
     db.collection("sponsorshipApplicants")
       .doc(i)
       .delete()
@@ -297,6 +298,7 @@ const Admin = () => {
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
+    console.log(identity)
     db.collection("registeredSponsors").doc(identity).set({
       firstName: first,
       lastName: last,
@@ -363,7 +365,7 @@ const Admin = () => {
   }
 
   const editSponsorProfile = (i, howTo, appStatus) => {
-    let profileToEdit = db.collection("registeredSponsors").doc(i);
+    let profileToEdit = db.collection("registeredSponsors").doc(i.id);
     return profileToEdit
       .update({
         firstName: i.firstName,

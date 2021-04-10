@@ -229,7 +229,7 @@ const Sponsor = () => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
+        console.log("Document data:", doc.data());  // how to show this data on frontend???
       } else {
         console.log("No such document!");
       }
@@ -238,7 +238,7 @@ const Sponsor = () => {
       console.log("Error getting document:", error);
     });
 
-  //fetching multiple documents (like when displaying all sponsorship requests on the admin interface)
+  //fetching multiple documents (for example when displaying all sponsorship requests on the admin interface)
   db.collection("sponsorshipApplicants")
     .where("applicationStatus", "==", false)
     .get()
@@ -290,75 +290,26 @@ const Sponsor = () => {
   };
 
 
-  // const childId = 1000;
-  // // Function that creates profile of the child
-  // const createChildProfile = () => {
-  //   const childUniqueId = childId
-  //   db.collection("childProfile")
-  //     .doc(childUniqueId)  //      unique ID for child???
-  //     .set({
-  //       // child profile data
-  //       firstName: firstName,
-  //       lastName: lastName,
-  //       dateOfBirth: dateOfBirth,
-  //       gender : gender,
-  //       address: address,
-  //       guardian1Name : guardian1Name,
-  //       guardian1Relation : guardian1Relation,
-  //       guardian1Cnic : guardian1Cnic,
-  //       guardian1Occupation : guardian1Occupation,
-  //       guardian2Name :guardian2Name,
-  //       guardian2Relation : guardian2Relation,
-  //       guardian2Cnic : guardian2Cnic,
-  //       guardian2Occupation : guardian2Occupation,
-  //       familyBackground : familyBackground,
-  //       contactInformation : contactInformation,
-  //       grade : grade,
-  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-  //       id : chil
-  //     });
-  //     //childcount = childcount + 1 //increasing child count
-  // };
 
-  // // how to get child doc ID ??????????????????
-  // const editChildProfile = () => {
-  //   let profileToEdit = db.collection("childProfile").doc(childUniqueId); // or search through name?
 
-  //   return profileToEdit.update({
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     dateOfBirth: dateOfBirth,
-  //     gender : gender,
-  //     address: address,
-  //     guardian1Name : guardian1Name,
-  //     guardian1Relation : guardian1Relation,
-  //     guardian1Cnic : guardian1Cnic,
-  //     guardian1Occupation : guardian1Occupation,
-  //     guardian2Name :guardian2Name,
-  //     guardian2Relation : guardian2Relation,
-  //     guardian2Cnic : guardian2Cnic,
-  //     guardian2Occupation : guardian2Occupation,
-  //     familyBackground : familyBackground,
-  //     contactInformation : contactInformation,
-  //     grade : grade,
-  //     timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-  //   });
-  // };
+ 
 
   // where does admin enters the name of sponsor for whom he wants to save his payment history
 
-  //admin saving payment history for each sponsor
-  // const paymentHistory = () => {
-  //   db.collection("paymentHistory")
-  //     .doc(user.uid) //  fetch this ID for sponsor
-  //     .set({
-  //       sponsorName: sponsorName,
-  //       paymentDate: paymentDate,
-  //       childName: childName,
-  //       paymentAmount: paymentAmount,
-  //       paymentType: paymentType,
-  //     });
-  // };
+  //var fName = window.prompt("Sponsor First Name: ")
+  //var lNname = window.prompt("Sponsor Last Name: ")
+
+ 
+
+//sponsor checking his payment history
+  const checkingPaymentHistory = () => {
+
+    db.collection("paymentHistory").doc(user.uid).set()
+
+
+
+  }
+
 
   // Sponsors sending letters to child
 
