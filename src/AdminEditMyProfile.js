@@ -8,7 +8,7 @@ const AdminEditMyProfile = (props) => {
     email,
     dateOfBirth,
     setEmail,
-    handleLogout,
+    handlelogout,
     setFirstName,
     setLastName,
     setDateOfBirth,
@@ -32,7 +32,7 @@ const AdminEditMyProfile = (props) => {
         <nav>
           <h2>Hunehar Management System</h2>
           <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handlelogout}>Logout</button>
         </nav>
         <section>
           <h2>SPONSOR PROFILES</h2>

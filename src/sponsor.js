@@ -45,7 +45,7 @@ const Sponsor = () => {
   const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
-  const [router, setRouter] = useState("registered"); //change it to null value when updating from database
+  const [router, setRouter] = useState("unregistered"); //change it to null value when updating from database
   const [applicationStatus, setApplicationStatus] = useState(true);
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
   const [questions, setQuestions] = useState([

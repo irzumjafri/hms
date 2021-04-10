@@ -10,7 +10,7 @@ const AdminHome = (props) => {
         <nav>
           <h2>Hunehar Management System</h2>
           <SearchField />
-          <button onClick={() => handlelogout}>Logout</button>
+          <button onClick={() => handlelogout()}>Logout</button>
         </nav>
         <nav>
           <h2>Homepage</h2>

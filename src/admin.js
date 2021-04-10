@@ -1,3 +1,4 @@
+//-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 import fire from "./fire";
@@ -15,13 +16,15 @@ import AdminContactUs from "./AdminContactUs";
 import AdminFAQs from "./AdminFaqs";
 import AdminSponsorshipRequests from "./AdminSponsorshipRequests";
 import AdminLogin from "./AdminLogin";
+//-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
-// setting up the database here
+//-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
 const db = firebase.firestore();
-// setting this settign to avoid warnings
 db.settings({ timestampsInSnapshots: true });
+//-----------------------------------------------------------------------------------DATABASE INIT-------------------------------------------------------------------------------------
 
 const Admin = () => {
+  //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
   const [loggedIn, setLoggedIn] = useState(true);
   const [id, setId] = useState("");
   const [email, setEmail] = useState("");
@@ -39,39 +42,10 @@ const Admin = () => {
   ] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
-  const [sponsorshipApplicatonData, setSponsorshipApplicatonData] = useState(
+  const [sponsorshipApplicationData, setSponsorshipApplicationData] = useState(
     []
   );
-  const [sponsorData, setSponsorData] = useState([
-    {
-      firstName: "irzum",
-      lastName: "jafri",
-      email: "irzumbm@gmail.com",
-      dateOfBirth: "LUMSU",
-      cnic: "A++++",
-      phoneNumber: "090078601",
-      address: "myself",
-      preferredMediumOfCommunication: "daddy",
-      numberOfSponsoredChildren: "123-123",
-      paymentMethod: "myself",
-      paymentSchedule: "daddy",
-      status: "pathanKhandaan",
-    },
-    {
-      firstName: "irzumirzum",
-      lastName: "jafri",
-      email: "irzumbm@gmail.com",
-      dateOfBirth: "LUMSU",
-      cnic: "A++++",
-      phoneNumber: "090078601",
-      address: "myself",
-      preferredMediumOfCommunication: "daddy",
-      numberOfSponsoredChildren: "123-123",
-      paymentMethod: "myself",
-      paymentSchedule: "daddy",
-      status: "pathanKhandaan",
-    },
-  ]);
+  const [sponsorData, setSponsorData] = useState([]);
   const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
     ""
   );
@@ -140,17 +114,25 @@ const Admin = () => {
     { from: "irtasam", message: "paisay bhijwao, creately lena hai" },
     { from: "irtasam", message: "credit card bhi donate kardo" },
   ]);
+  //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
-  // Admin accounts will be ceated with user.id as dcument name and each profile will also have id = user.ud to them
-  // for linking purposes
+  //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
 
-  // This funtion is done to authenticate admin login. Returns true if login match successful otherwise false
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+  };
+
+  const clearErrors = () => {
+    setErrorMessage("");
+  };
+
   const handleAdminLogin = () => {
+    clearErrors();
     db.collection("adminLogin")
       .where("email", "==", email)
       .get()
       .then((querySnapshot) => {
-        // no email match found hence an attempt at unauthorized access to prevent
         if (querySnapshot.empty) {
           setErrorMessage("Unauthorized access");
           setLoggedIn(false);
@@ -158,43 +140,53 @@ const Admin = () => {
         } else {
           querySnapshot.forEach((doc) => {
             if (password === doc.data().password) {
-              // allow login
               setLoggedIn(true);
             } else {
-              // password did not match so don't allow for login
+              clearInputs();
               setLoggedIn(false);
               setErrorMessage("Incorrect password");
             }
           });
         }
       });
+    fetchSponsorshipApplications();
+    fetchSponsorData();
+    fetchAdminProfile();
   };
 
-  // This function allows Admin Users to Logout
   const handleAdminLogout = () => {
     setLoggedIn(false);
-    setRouter("home"); //change it to null value when updating from database
+    setRouter("home");
   };
 
-  // Admin users can edit their profile information using this function
+  const fetchAdminProfile = () => {
+    //GET ADMIN PROFILE AND STORE INTO STATES CREATED
+    //STATES NEEDED TO BE UPDATED
+    // firstName,
+    // lastName,
+    // email,
+    // dateOfBirth,
+    // handlelogout,
+    // cnic,
+    // phoneNumber,
+    // address,
+    // department,
+    // institution,
+  };
   const editAdminProfile = () => {
     let idofDoc = 0;
-
     db.collection("adminProfiles")
       .where("emailAddress", "==", email)
       .get()
       .then((querySnapshot) => {
-        // no email match found hence an attempt at unauthorized access to prevent
         if (querySnapshot.empty) {
           console.log("Empty");
           return;
         } else {
           querySnapshot.forEach((doc) => {
-            // extract and store id to reference the doc to be edited
             idofDoc = doc.data().id;
           });
         }
-
         let profileToEdit = db
           .collection("adminProfiles")
           .doc(idofDoc.toString());
@@ -215,90 +207,47 @@ const Admin = () => {
             console.log("Document successfully updated!");
           })
           .catch((error) => {
-            // The document probably doesn't exist.
             console.error("Error updating document: ", error);
           });
       });
   };
 
-  ///////////////////////////////////////////////////////////////////////////// needs to be tested
-  // This function gets all of sponsors' data from db and set it to be displayed
-  const fetchSponsorData = () => {
-    db.collection("registeredSponsors")
-      .get()
-      .then((querySnapshot) => {
-        // Registered sponsors' db is empty
-        if (querySnapshot.empty) {
-          setErrorMessage("No registered sponsors exist in the database yet");
-          return;
-        } else {
-          querySnapshot.forEach((doc) => {
-            // update state to store data of all sponsors present in current snapshot of the db
-            setSponsorData([
-              ...sponsorData,
-              {
-                firstName: doc.data().firstName,
-                lastName: doc.data().lastName,
-                email: doc.data().email,
-                dateOfBirth: doc.data().dateOfBirth,
-                cnic: doc.data().cnic,
-                phoneNumber: doc.data().phoneNumber,
-                address: doc.data().address,
-                preferredMediumOfCommunication: doc.data()
-                  .preferredMediumOfCommunication,
-                numberOfSponsoredChildren: doc.data().numberOfSponsoredChildren,
-                paymentMethod: doc.data().paymentMethod,
-                paymentSchedule: doc.data().paymentSchedule,
-                status: doc.data().status,
-                howToAssignChildren: doc.data().howToAssignChildren,
-                id: doc.data().id,
-              },
-            ]);
-          });
-        }
-      });
-  };
-
-  // This function gets all of sponsors' data from db and set it to be displayed
+  var tempApplications = [];
   const fetchSponsorshipApplications = () => {
     db.collection("sponsorshipApplicants")
       .get()
       .then((querySnapshot) => {
-        // Registered sponsors' db is empty
         if (querySnapshot.empty) {
           setErrorMessage("No sponsorship requests to display");
           return;
         } else {
           querySnapshot.forEach((doc) => {
-            // update state to store data of all sponsors present in current snapshot of the db
-            setSponsorshipApplicatonData([
-              ...sponsorshipApplicatonData,
-              {
-                firstName: doc.data().firstName,
-                lastName: doc.data().lastName,
-                emailAddress: doc.data().emailAddress,
-                dateOfBirth: doc.data().dateOfBirth,
-                cnic: doc.data().cnic,
-                phoneNumber: doc.data().phoneNumber,
-                address: doc.data().address,
-                preferredMediumOfCommunication: doc.data()
-                  .preferredMediumOfCommunication,
-                numberOfSponsoredChildren: doc.data().numberOfSponsoredChildren,
-                paymentMethod: doc.data().paymentMethod,
-                paymentSchedule: doc.data().paymentSchedule,
-                timeStamp: doc.data().timeStamp,
-                id: doc.data().id,
-                applicationStatus: doc.data().applicationStatus,
-                howToAssignChildren: doc.data().howToAssignChildren,
-              },
-            ]);
+            tempApplications.push({
+              firstName: doc.data().firstName,
+              lastName: doc.data().lastName,
+              emailAddress: doc.data().emailAddress,
+              dateOfBirth: doc.data().dateOfBirth,
+              cnic: doc.data().cnic,
+              phoneNumber: doc.data().phoneNumber,
+              address: doc.data().address,
+              preferredMediumOfCommunication: doc.data()
+                .preferredMediumOfCommunication,
+              numberOfSponsoredChildren: doc.data().numberOfSponsoredChildren,
+              paymentMethod: doc.data().paymentMethod,
+              paymentSchedule: doc.data().paymentSchedule,
+              timeStamp: doc.data().timeStamp,
+              id: doc.data().id,
+              applicationStatus: doc.data().applicationStatus,
+              howToAssignChildren: doc.data().howToAssignChildren,
+            });
           });
         }
+        setSponsorshipApplicationData(tempApplications);
       });
   };
 
-  // accept sponsorship request
   const acceptSponsorshipRequest = (i, howTo) => {
+    //FIX THIS HARDCODING PLS THNX
     let first = "";
     let last = "";
     let email = "";
@@ -313,18 +262,14 @@ const Admin = () => {
     let ts = "";
     let identity = "";
     const apS = "Accepted";
-
-    // get all data from reuqest
     db.collection("sponsorshipApplicants")
       .get()
       .then((querySnapshot) => {
-        // Registered sponsors' db is empty
         if (querySnapshot.empty) {
           setErrorMessage("No sponsorship requests to display");
           return;
         } else {
           querySnapshot.forEach((doc) => {
-            // update state to store data of all sponsors present in current snapshot of the db
             if (doc.data().id === i) {
               first = doc.data().firstName;
               last = doc.data().lastName;
@@ -343,8 +288,6 @@ const Admin = () => {
           });
         }
       });
-
-    // delete the request from its database
     db.collection("sponsorshipApplicants")
       .doc(i)
       .delete()
@@ -354,8 +297,6 @@ const Admin = () => {
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
-
-    // create new document in registered sponsor profile
     db.collection("registeredSponsors").doc(identity).set({
       firstName: first,
       lastName: last,
@@ -373,41 +314,82 @@ const Admin = () => {
       applicationStatus: apS,
       howToAssignChildren: howTo,
     });
+    fetchSponsorshipApplications();
   };
 
-  ///////////////////  ID = I bas laaaaa do IRZUMMM //////////////////////////
+  const rejectSponsorshipRequest = (i) => {
+    //DELETE SPONSORSHIPAPPLICATION FROM FIREBASE
+    //i is id of SPONSOR
+  };
 
-  // This function allows admin to eit sponors' information including their status and how to assign
+  var tempData = [];
+  const fetchSponsorData = () => {
+    db.collection("registeredSponsors")
+      .get()
+      .then((querySnapshot) => {
+        // Registered sponsors' db is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No registered sponsors exist in the database yet");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all sponsors present in current snapshot of the db
+            tempData.push({
+              firstName: doc.data().firstName,
+              lastName: doc.data().lastName,
+              email: doc.data().email,
+              dateOfBirth: doc.data().dateOfBirth,
+              cnic: doc.data().cnic,
+              phoneNumber: doc.data().phoneNumber,
+              address: doc.data().address,
+              preferredMediumOfCommunication: doc.data()
+                .preferredMediumOfCommunication,
+              numberOfSponsoredChildren: doc.data().numberOfSponsoredChildren,
+              paymentMethod: doc.data().paymentMethod,
+              paymentSchedule: doc.data().paymentSchedule,
+              status: doc.data().status,
+              howToAssignChildren: doc.data().howToAssignChildren,
+              id: doc.data().id,
+            });
+          });
+        }
+        console.log("patty");
+        setSponsorData(tempData);
+      });
+  };
+
+  const addSponsorProfile = (i) => {
+    //CREATE FUNCTION SIMILAR TO EDIT WITHOUT SEARCHING JUST NEED TO ADD NEW DOCUMENT, i WILL HAVE ALL THE VALUES.
+  }
+
   const editSponsorProfile = (i, howTo, appStatus) => {
     let profileToEdit = db.collection("registeredSponsors").doc(i);
     return profileToEdit
       .update({
-        firstName: firstName,
-        lastName: lastName,
-        emailAddress: email,
-        dateOfBirth: dateOfBirth,
-        cnic: cnic,
-        phoneNumber: phoneNumber,
-        address: address,
-        preferredMediumOfCommunication: preferredMediumOfCommunication,
-        numberOfSponsoredChildren: numberOfSponsoredChildren,
-        paymentMethod: paymentMethod,
-        paymentSchedule: paymentSchedule,
-        applicationStatus: appStatus,
-        howToAssignChildren: howTo,
-        id: i,
+        firstName: i.firstName,
+        lastName: i.lastName,
+        emailAddress: i.email,
+        dateOfBirth: i.dateOfBirth,
+        cnic: i.cnic,
+        phoneNumber: i.phoneNumber,
+        address: i.address,
+        preferredMediumOfCommunication: i.preferredMediumOfCommunication,
+        numberOfSponsoredChildren: i.numberOfSponsoredChildren,
+        paymentMethod: i.paymentMethod,
+        paymentSchedule: i.paymentSchedule,
+        applicationStatus: i.appStatus,
+        howToAssignChildren: i.howToAssignChildren,
+        id: i.id,
       })
       .then(() => {
         console.log("Document successfully updated!");
       })
       .catch((error) => {
-        // The document probably doesn't exist.
         console.error("Error updating document: ", error);
       });
+    fetchSponsorData();
   };
 
-  ///////////////////////////////////////////////////////////////////////////// needs to be tested
-  // deletes sponsor data at the given email address
   const deleteSponsorProfile = (i) => {
     db.collection("registeredSponsors")
       .doc(i)
@@ -418,16 +400,36 @@ const Admin = () => {
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
+    fetchSponsorData();
   };
 
-  const clearInputs = () => {
-    setEmail("");
-    setPassword("");
-  };
+  const fetchPaymentHistory = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL PAYMENT DETAILS JUST LIKE IN SPONSOR MAKE A LISTTT.
+  }
 
-  const clearErrors = () => {
-    setErrorMessage("");
-  };
+  const fetchMeetingRequests = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
+  }
+
+  const fetchSentLetters = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
+  }
+
+  const fetchReceivedLetters = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
+  }
+
+  const fetchChildrenProfiles = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
+  }
+
+  const fetchAcademicRecords = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
+  }
+
+  //-----------------------------------------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------------------
+
+  //-------------------------------------------------------------------------------------RENDER-----------------------------------------------------------------------------------------
 
   return (
     <div className="App">
@@ -467,7 +469,13 @@ const Admin = () => {
                 />
               ),
               sponsorshiprequests: (
-                <AdminSponsorshipRequests setRouter={setRouter} />
+                <AdminSponsorshipRequests
+                  setRouter={setRouter}
+                  sponsorshipApplicationData={sponsorshipApplicationData}
+                  handlelogout={handleAdminLogout}
+                  rejectSponsorshipRequest={rejectSponsorshipRequest}
+                  acceptSponsorshipRequest={acceptSponsorshipRequest}
+                />
               ),
               sponsorprofiles: (
                 <AdminSponsorProfiles
@@ -475,6 +483,7 @@ const Admin = () => {
                   sponsorData={sponsorData}
                   setRouter={setRouter}
                   deleteSponsorProfile={deleteSponsorProfile}
+                  editSponsorProfile={editSponsorProfile}
                 />
               ),
               paymenthistory: (
@@ -552,5 +561,6 @@ const Admin = () => {
     </div>
   );
 };
+//-------------------------------------------------------------------------------------RENDER-----------------------------------------------------------------------------------------
 
 export default Admin;

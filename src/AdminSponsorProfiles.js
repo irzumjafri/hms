@@ -4,10 +4,11 @@ import AdminEditSponsorProfile from './AdminEditSponsorProfile'
 
 const AdminSponsorProfiles = (props) => {
   const {
-    handleLogout,
+    handlelogout,
     sponsorData,
     deleteSponsorProfile,
     setRouter,
+    editSponsorProfile
   } = props;
 
   return (
@@ -16,7 +17,7 @@ const AdminSponsorProfiles = (props) => {
         <nav>
           <h2>Hunehar Management System</h2>
           <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handlelogout}>Logout</button>
         </nav>
         <section>
           <h2>SPONSOR PROFILES</h2>
@@ -25,7 +26,8 @@ const AdminSponsorProfiles = (props) => {
         <section>
                   <button /*Make this drop down*/> Add Filter </button>
                   <textbox>Total Active Sponsors: {sponsorData.length}</textbox>
-                  <button className="buttongreen"> Add New Sponsor </button>
+                  <button className="buttongreen" onClick={() => setRouter('home')}> Add New Sponsor </button> 
+                  {/* fix this */}
                 </section>
         <section className="adminSponsorProfiles">
           {sponsorData.map((con, i) => {
@@ -43,7 +45,7 @@ const AdminSponsorProfiles = (props) => {
                   </section>
                   <section>
                     <label>Email</label>
-                    <textbox>{sponsorData[i].email}</textbox>
+                    <textbox>{sponsorData[i].emailaddress}</textbox>
                   </section>
                   <section>
                     <label>Date of Birth (DD-MM-YYYY)</label>
@@ -96,7 +98,7 @@ const AdminSponsorProfiles = (props) => {
                   </div>
                   <div className="btnContainer">
                     <button
-                      onClick={() => <AdminEditSponsorProfile />}
+                      onClick={() => <AdminEditSponsorProfile sponsorProfile={sponsorData[i]} setRouter={setRouter} editSponsorProfile={editSponsorProfile} handlelogout={handlelogout} />}
                       className="buttonblue"
                     >
                       Edit this Profile
