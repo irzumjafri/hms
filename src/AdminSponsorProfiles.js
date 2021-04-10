@@ -1,6 +1,6 @@
 import React from "react";
 import SearchField from "react-search-field";
-import AdminEditSponsorProfile from './AdminEditSponsorProfile'
+import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
 
 const AdminSponsorProfiles = (props) => {
   const {
@@ -8,7 +8,7 @@ const AdminSponsorProfiles = (props) => {
     sponsorData,
     deleteSponsorProfile,
     setRouter,
-    editSponsorProfile
+    editSponsorProfile,
   } = props;
 
   return (
@@ -24,16 +24,18 @@ const AdminSponsorProfiles = (props) => {
           <button onClick={() => setRouter("home")}>HOME PAGE</button>
         </section>
         <section>
-                  <button /*Make this drop down*/> Add Filter </button>
-                  <textbox>Total Active Sponsors: {sponsorData.length}</textbox>
-                  <button className="buttongreen" onClick={() => setRouter('home')}> Add New Sponsor </button> 
-                  {/* fix this */}
-                </section>
+          <button /*Make this drop down*/> Add Filter </button>
+          <textbox>Total Active Sponsors: {sponsorData.length}</textbox>
+          <button className="buttongreen" onClick={() => setRouter("home")}>
+            {" "}
+            Add New Sponsor{" "}
+          </button>
+          {/* fix this */}
+        </section>
         <section className="adminSponsorProfiles">
           {sponsorData.map((con, i) => {
             return (
               <div className="adminSponsorProfilesContainer">
-                
                 <div>
                   <section>
                     <label>First Name</label>
@@ -90,7 +92,7 @@ const AdminSponsorProfiles = (props) => {
 
                   <div className="btnContainer">
                     <button
-                      onClick={() => deleteSponsorProfile(i)}
+                      onClick={() => deleteSponsorProfile(sponsorData[i].id)}
                       className="button_red"
                     >
                       ❌ Delete this Profile
@@ -98,7 +100,14 @@ const AdminSponsorProfiles = (props) => {
                   </div>
                   <div className="btnContainer">
                     <button
-                      onClick={() => <AdminEditSponsorProfile sponsorProfile={sponsorData[i]} setRouter={setRouter} editSponsorProfile={editSponsorProfile} handlelogout={handlelogout} />}
+                      onClick={() => (
+                        <AdminEditSponsorProfile
+                          sponsorProfile={sponsorData[i]}
+                          setRouter={setRouter}
+                          editSponsorProfile={editSponsorProfile}
+                          handlelogout={handlelogout}
+                        />
+                      )}
                       className="buttonblue"
                     >
                       Edit this Profile

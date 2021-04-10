@@ -20,7 +20,8 @@ import AdminLogin from "./AdminLogin";
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
 const db = firebase.firestore();
-db.settings({ timestampsInSnapshots: true });
+db.settings({ timestampsInSnapshots: true, isPersistenceEnabled: false });
+
 //-----------------------------------------------------------------------------------DATABASE INIT-------------------------------------------------------------------------------------
 
 const Admin = () => {
@@ -159,20 +160,35 @@ const Admin = () => {
     setRouter("home");
   };
 
+  // this function reads and sets all of the logged in admin's data for their profile
   const fetchAdminProfile = () => {
-    //GET ADMIN PROFILE AND STORE INTO STATES CREATED
-    //STATES NEEDED TO BE UPDATED
-    // firstName,
-    // lastName,
-    // email,
-    // dateOfBirth,
-    // handlelogout,
-    // cnic,
-    // phoneNumber,
-    // address,
-    // department,
-    // institution,
+    console.log(email);
+
+    db.collection("adminProfiles")
+      .where("emailAddress", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.log("Email not associated with this account");
+          return;
+        } else {
+          // set all the fields
+          querySnapshot.forEach((doc) => {
+            setFirstName(doc.data().firstName);
+            setLastName(doc.data().lastName);
+            setAddress(doc.data().address);
+            setCnic(doc.data().cnic);
+            setDateOfBirth(doc.data().dateOfBirth);
+            setEmail(doc.data().emailAddress);
+            setId(doc.data().id);
+            setPhoneNumber(doc.data().phoneNumber);
+            setInstitution(doc.data().institution);
+            setDepartment(doc.data().department);
+          });
+        }
+      });
   };
+
   const editAdminProfile = () => {
     let idofDoc = 0;
     db.collection("adminProfiles")
@@ -205,6 +221,8 @@ const Admin = () => {
           })
           .then(() => {
             console.log("Document successfully updated!");
+
+            // update email in adminLogin as well
           })
           .catch((error) => {
             console.error("Error updating document: ", error);
@@ -239,6 +257,7 @@ const Admin = () => {
               id: doc.data().id,
               applicationStatus: doc.data().applicationStatus,
               howToAssignChildren: doc.data().howToAssignChildren,
+              toDisplay: doc.data().toDisplay,
             });
           });
         }
@@ -246,8 +265,10 @@ const Admin = () => {
       });
   };
 
+  // this function allows admin users to accept the application with id = i and sets HowToAssign children according to
+  // the popup. It will either be "Auto-assign" or "Assign Manually"
   const acceptSponsorshipRequest = (i, howTo) => {
-    //FIX THIS HARDCODING PLS THNX
+    console.log("in accept"); ////////////////////////////////////
     let first = "";
     let last = "";
     let email = "";
@@ -262,6 +283,8 @@ const Admin = () => {
     let ts = "";
     let identity = "";
     const apS = "Accepted";
+    let td = "false";
+
     db.collection("sponsorshipApplicants")
       .get()
       .then((querySnapshot) => {
@@ -270,7 +293,7 @@ const Admin = () => {
           return;
         } else {
           querySnapshot.forEach((doc) => {
-            if (doc.data().id === i) {
+            if (doc.data().id === i && doc.data().toDisplay === "true") {
               first = doc.data().firstName;
               last = doc.data().lastName;
               email = doc.data().emailAddress;
@@ -287,41 +310,55 @@ const Admin = () => {
             }
           });
         }
+
+        // delete profile from applications
+        db.collection("sponsorshipApplicants")
+          .doc(identity.toString().replace(/\s/g, ""))
+          .delete()
+          .then(() => {
+            console.log("Document successfully deleted!");
+
+            // and add the profile to registered sponsors with updated status and assigned howTO
+            db.collection("registeredSponsors").doc(identity).set({
+              firstName: first,
+              lastName: last,
+              emailAddress: email,
+              dateOfBirth: dob,
+              cnic: nic,
+              phoneNumber: phone,
+              address: addr,
+              preferredMediumOfCommunication: pmc,
+              numberOfSponsoredChildren: noc,
+              paymentMethod: pm,
+              paymentSchedule: ps,
+              timeStamp: ts,
+              id: identity,
+              applicationStatus: apS,
+              howToAssignChildren: howTo,
+            });
+            fetchSponsorshipApplications();
+
+            // assign children to sponsors as well acc to how to
+          });
+      })
+
+      .catch((error) => {
+        console.error("Error removing document: ", error);
       });
-      console.log(identity)
+  };
+
+  // This function allows admin to simply reject a sponsorship request with id = i
+  const rejectSponsorshipRequest = (i) => {
     db.collection("sponsorshipApplicants")
-      .doc(i)
+      .doc(i.toString().replace(/\s/g, ""))
       .delete()
       .then(() => {
-        console.log("Document successfully deleted!");
+        console.log("Document successfully deleted!", i);
+        fetchSponsorshipApplications();
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
-    console.log(identity)
-    db.collection("registeredSponsors").doc(identity).set({
-      firstName: first,
-      lastName: last,
-      emailAddress: email,
-      dateOfBirth: dob,
-      cnic: nic,
-      phoneNumber: phone,
-      address: addr,
-      preferredMediumOfCommunication: pmc,
-      numberOfSponsoredChildren: noc,
-      paymentMethod: pm,
-      paymentSchedule: ps,
-      timeStamp: ts,
-      id: identity,
-      applicationStatus: apS,
-      howToAssignChildren: howTo,
-    });
-    fetchSponsorshipApplications();
-  };
-
-  const rejectSponsorshipRequest = (i) => {
-    //DELETE SPONSORSHIPAPPLICATION FROM FIREBASE
-    //i is id of SPONSOR
   };
 
   var tempData = [];
@@ -355,14 +392,13 @@ const Admin = () => {
             });
           });
         }
-        console.log("patty");
         setSponsorData(tempData);
       });
   };
 
   const addSponsorProfile = (i) => {
     //CREATE FUNCTION SIMILAR TO EDIT WITHOUT SEARCHING JUST NEED TO ADD NEW DOCUMENT, i WILL HAVE ALL THE VALUES.
-  }
+  };
 
   const editSponsorProfile = (i, howTo, appStatus) => {
     let profileToEdit = db.collection("registeredSponsors").doc(i.id);
@@ -385,49 +421,49 @@ const Admin = () => {
       })
       .then(() => {
         console.log("Document successfully updated!");
+        fetchSponsorData();
       })
       .catch((error) => {
         console.error("Error updating document: ", error);
       });
-    fetchSponsorData();
   };
 
   const deleteSponsorProfile = (i) => {
     db.collection("registeredSponsors")
-      .doc(i)
+      .doc(i.toString().replace(/\s/g, ""))
       .delete()
       .then(() => {
         console.log("Document successfully deleted!");
+        fetchSponsorData();
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
-    fetchSponsorData();
   };
 
   const fetchPaymentHistory = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL PAYMENT DETAILS JUST LIKE IN SPONSOR MAKE A LISTTT.
-  }
+  };
 
   const fetchMeetingRequests = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
-  }
+  };
 
   const fetchSentLetters = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
-  }
+  };
 
   const fetchReceivedLetters = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
-  }
+  };
 
   const fetchChildrenProfiles = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
-  }
+  };
 
   const fetchAcademicRecords = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
-  }
+  };
 
   //-----------------------------------------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------------------
 
