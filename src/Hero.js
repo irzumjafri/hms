@@ -1,104 +1,75 @@
 import React from "react";
 import SearchField from "react-search-field";
-
-const ChildrenProfiles = (props) => {
-  const {
+import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
+import logo from "./HMSlogo.png"
+import Button from 'react-bootstrap/Button';
+const UnregisteredSponsorHome = (props) => {
+  const{
     handleLogout,
-    childData,
-    setRouter,
-    applicationStatus
+    setRouter
   } = props;
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handleLogout}>Logout</button>
-        </nav>
-        <section>
-          <h2>CHILDREN PROFILES</h2>
-          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
-        </section>
-        <section className="childrenProfiles">
-        {childData.map((con, i) => {
-          return (
-            <div className="childrenProfilesContainer">
-            <div>
-              <section>
-                <label>Name</label>
-                <textbox>{childData[i].name}</textbox>
-              </section>
-              <section>
-                <label>Date of Birth (DD-MM-YYYY)</label>
-                <textbox>{childData[i].dateOfBirth}</textbox>
-              </section>
-              <section>
-                <label>Gender</label>
-                <textbox>{childData[i].gender}</textbox>
-              </section>
-              <section>
-                <label>Current Address</label>
-                <textbox>{childData.currentAddress}</textbox>
-              </section>
-              <section>
-                <label>Grade</label>
-                <textbox>{childData[i].grade}</textbox>
-              </section>
-              <section>
-                <label>Contact Information</label>
-                <textbox>{childData[i].contactInformation}</textbox>
-              </section>
-              <section>
-                <label>Guardian 1’s Name</label>
-                <textbox>{childData[i].guardian1Name}</textbox>
-              </section>
-              <section>
-                <label>Guardian 1’s Relation</label>
-                <textbox>{childData[i].guardian1Realtion}</textbox>
-              </section>
-              <section>
-                <label>Guardian 1’s Occupation</label>
-                <textbox>{childData[i].guardian1Occupation}</textbox>
-              </section>
-              <section>
-                <label>Guardian 1’s CNIC</label>
-                <textbox>{childData[i].guardian1Cnic}</textbox>
-              </section>
-              <section>
-                <label>Guardian 2’s Name</label>
-                <textbox>{childData[i].guardian2Name}</textbox>
-              </section>
-              <section>
-                <label>Guardian 2’s Relation</label>
-                <textbox>{childData[i].guardian2Realtion}</textbox>
-              </section>
-              <section>
-                <label>Family Background</label>
-                <textbox>{childData[i].familyBackground}</textbox>
-              </section>
+     <section className="navbar">
+       
+        <section className = "unregistered">
+        <div className = "unregisteredContainer_left">
+          <h1 className="label-left" >Menu</h1>
 
-              <div className="btnContainer">
-                <button
-                  // MakeonClick Function onClick={() => setRouter("registered")}
-                  className="button_red"
-                >
-                  ❌ Withdraw Sponsorship for This Child
-                </button>
-              </div>
-            </div>
+          <Button button className = "button_green" onClick={() => setRouter("registering")} variant="primary" size="lg" block>
+          Register as a Sponsor
+          </Button>
+
+        </div>
+        <div className = "unregisteredContainer_right">
+          <h1 className= "label-right">Calendar</h1>
+        
+          <Calendar className= "calender" />
+        
+          <h2 className="label-right" ><p className = "p_i">Today's Event(s):</p></h2>
+          <p className="label-right" ><p className = "p_ii">No Events</p></p>
+
+
+        <div class = "row">
+              <div class = "col-md-6" >
+          <Button button className = "button_blue" variant="primary" size="sm" block>
+          Add Event
+          </Button>
           </div>
-            
-          );
-        })}
-          
+              <div class = "col-md-6" >
+          <Button button className = "button_red" variant="primary" size="sm" block>
+          Remove Event
+          </Button>
+          </div>
+            </div>  
+        </div>
+
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+
+       
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          
+           
+        <nav className="navbarContainer">
+          <h2 className="titletext">Homepage</h2>
+        </nav>
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+        </section>
       </section>
     </body>
   );
 };
 
-export default ChildrenProfiles;
+export default UnregisteredSponsorHome;

@@ -476,7 +476,6 @@
 .navbar {
   width: 100%;
   display: flex;
-  flex-direction: column;
 }
 .navbar .navbarContainer_gray {
   width: 100%;
@@ -491,18 +490,25 @@
   background-color: #f2f2f2;
   position: fixed;
   top: 0;
+  margin: 0px;
+  left: 0px;
+  right: 0px;
 }
-.navbar .navbarContainer {
+.navbar .navbarContainer_gray .navbarContainer {
   width: 100%;
   background: #529cea;
-  display: block;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: auto 0px;
-  transform: translateY(52px);
-  margin-bottom: 10px;
+  /* position: fixed;
+  top: 45px;
+  left: 0px;
+  right: 0px; */
+  margin: 0px;
+  /* transform: translateY(52px); */
 }
-.navbar .navbarContainer p span {
+.navbar .navbarContainer_gray .navbarContainer p span {
   color: white;
   font-weight: 200;
   font-size: 14px;
@@ -514,7 +520,7 @@
   justify-content: center;
   transition: all 400ms ease-in-out;
 }
-.navbar .navbarContainer .smalltext {
+.navbar .navbarContainer_gray .navbarContainer .smalltext {
   color: white;
   display: flex;
   align-items: center;
@@ -525,10 +531,10 @@
   text-decoration: italic;
   margin: 10px 10px;
 }
-.navbar .navbarContainer p span:hover {
+.navbar .navbarContainer_gray .navbarContainer p span:hover {
   text-decoration: underline;
 }
-.navbar .navbarContainer .titletext {
+.navbar .navbarContainer_gray .navbarContainer .titletext {
   color: white;
   margin: auto;
   font-size: 20px;
@@ -594,7 +600,7 @@
 .navbar .navbarContainer_gray p span:hover {
   text-decoration: underline;
 }
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
   .navbar .navbarContainer {
     transform: translateY(100px);
   }
@@ -604,7 +610,7 @@
 
     line-height: 1;
   }
-}
+} */
 /* ################### BottomBar ################ */
 .bottombar {
   width: 100%;
@@ -625,6 +631,8 @@
 
   position: fixed;
   bottom: 0;
+  left: 0px;
+  right: 0px;
 }
 
 .bottombar .bottombarContainer p span {
@@ -811,6 +819,7 @@
   padding: 60px;
   margin: 60px;
   width: 100%;
+  min-width: 300px;
   min-height: 400px;
   display: block;
   flex-direction: column;
@@ -838,43 +847,45 @@
 .unregistered .unregisteredContainer_right .button_blue {
   outline: none;
   border: none;
-  height: 35px;
-  width: 45%;
+  /* height: 35px;
+  width: 45%; */
   padding: 10px;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
   background: #529cea;
   border-radius: 10px;
-  margin: 10px auto;
+  margin: 10px;
   display: block;
   align-items: center;
   justify-content: center;
-  float: left;
+
+  /* float: left; */
 }
 
 .unregistered .unregisteredContainer_right .button_red {
   outline: none;
   border: none;
-  height: 35px;
-  width: 45%;
+  /* height: 35px;
+  width: 45%; */
   padding: 10px;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
   background: #ff0033;
   border-radius: 10px;
+  margin: 10px;
   display: block;
   align-items: center;
   justify-content: center;
-  margin: 10px auto;
-  float: right;
+
+  /* float: left; */
 }
 .unregistered .unregisteredContainer_left .button_green {
   border: none;
   outline: none;
-  width: 50%;
-  padding: 50px 0px;
+  /* width: 50%; */
+  padding: 30%;
   color: #fff;
 
   font-size: 18px;
@@ -884,7 +895,7 @@
   margin: 30%;
   align-items: center;
   justify-content: center;
-  transform: translateX(-10px);
+  /* transform: translateX(-10px); */
 }
 .unregistered .unregisteredContainer_right .calendar {
   align-items: center;
@@ -923,7 +934,7 @@
   font-size: 20px;
 }
 
-@media only screen and (max-width: 1564px) {
+/* @media only screen and (max-width: 1564px) {
   .unregistered .unregisteredContainer_left .button_green {
     border: none;
     outline: none;
@@ -940,7 +951,7 @@
     justify-content: center;
     transform: translateX(-10px);
   }
-}
+} */
 /* ############################SPONSOR HOME PAGE ################################## */
 
 .sponsorHomepage {
@@ -980,8 +991,8 @@
 .sponsorHomepage .sponsorHomepageContainer_right .button_blue {
   outline: none;
   border: none;
-  height: 35px;
-  width: 45%;
+  /* height: 35px;
+  width: 45%; */
   padding: 10px;
   color: #fff;
   font-size: 18px;
@@ -992,38 +1003,35 @@
   display: block;
   align-items: center;
   justify-content: center;
-  float: left;
+
+  /* float: left; */
 }
 
-.sponsorHomepage .sponsorHomepageContainer_right .button_red {
+.sponsorHomepage .sponsorHomepageContainer_right .button_redd {
   outline: none;
   border: none;
-  height: 35px;
-  width: 45%;
+  /* height: 35px;
+  width: 45%; */
   padding: 10px;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
   background: #ff0033;
   border-radius: 10px;
+  margin: 10px;
   display: block;
   align-items: center;
   justify-content: center;
-  margin: 10px auto;
-  float: right;
 }
 .sponsorHomepage .sponsorHomepageContainer_left .button_green {
-  width: 50%;
-  padding: 30px 10px;
-  max-width: 350px;
+  padding: 30px;
+
   color: #000;
   font-size: 18px;
   letter-spacing: 1px;
   background: white;
   border-radius: 10px;
-  margin: 10px;
-  align-items: center;
-  justify-content: center;
+  margin: 15px 20px;
   border: 1px solid black;
   outline: 2px;
 }
@@ -1063,19 +1071,32 @@
   margin: 10px auto;
   font-size: 20px;
 }
-@media only screen and (max-width: 1564px) {
-  .sponsorHomepage .sponsorHomepageContainer_left {
-    padding: 60px 0px 60px 20px;
-    margin: 60px 0px 60px 60px;
-  }
-
-  .sponsorHomepage .sponsorHomepageContainer_right {
-    margin: 60px 60px 60px 0px;
-  }
+@media only screen and (max-width: 768px) {
+  /* .sponsorHomepage .sponsorHomepageContainer_left {
+    padding: 100px;
+    margin: 60px 60px 60px 60px;
+    width: 50%;
+    background-color: #192539;
+  } */
   .sponsorHomepage .sponsorHomepageContainer_left .button_green {
-    width: 40%;
+    margin: 70px;
+    padding: none;
   }
 }
+
+@media only screen and (max-width: 736px) {
+  /* .sponsorHomepage .sponsorHomepageContainer_left {
+    padding: 100px;
+    margin: 60px 60px 60px 60px;
+    width: 50%;
+    background-color: #192539;
+  } */
+  .sponsorHomepage .sponsorHomepageContainer_left .button_green {
+    margin-bottom: 10px;
+    padding: none;
+  }
+}
+
 /* ######################################EditmyprofileSponsor#################### */
 .editMyProfileSponsor {
   width: 100%;
@@ -1819,7 +1840,95 @@
   }
 }
 
-/* ################################################# */
+/* ####################### Letter Box ########################## */
+
+.letterBox {
+  width: 100%;
+  min-height: 60vh;
+  padding: 0 20px;
+  background: #fff;
+  display: flex;
+}
+
+.letterBox .letterBoxContainer {
+  padding: 60px;
+  margin: 60px auto;
+  width: 100%;
+  max-width: 900px;
+  min-height: 400px;
+  display: block;
+  flex-direction: column;
+
+  justify-content: center;
+  background: #192539;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.letterBox .letterBoxContainer .button_green {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #61ce7d;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.letterBox .letterBoxContainer .titletext {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.letterBox .letterBoxContainer .label-left {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+  margin: 5px;
+}
+
+.letterBox .letterBoxContainer .input-left {
+  width: 40%;
+}
+.letterBox .letterBoxContainer .label-right {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+  margin: 5px;
+}
+
+.letterBox .letterBoxContainer .input-right {
+  color: white;
+}
+
+.letterBox .letterBoxContainer .btnContainer {
+  width: 100%;
+  padding: 24px 0;
+}
+
+.letterBox .letterBoxContainer .btnContainer p {
+  margin: 10px 0 0 0;
+  text-align: center;
+  color: #fff;
+  text-decoration: italic;
+}
+
+.letterBox .letterBoxContainer .errorMsg {
+  color: #ff0033;
+  font-size: 14px;
+}
+/* ######################################################################### */
 .hero {
   width: 100%;
   min-height: 100vh;

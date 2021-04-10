@@ -400,7 +400,7 @@ const Sponsor = () => {
       {user ? (
         //USE FOR TESTING SCREENS
         //CODE STARTS
-        // <Hero />
+         // <Hero />
         //USE FOR TESTING APP
         //CODE STARTS
         <>
