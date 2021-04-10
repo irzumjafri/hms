@@ -66,6 +66,16 @@ const Sponsor = () => {
   const [selectedChild, setSelectedChild] = useState("");
   const [writeOrReceive, setWriteOrReceive] = useState(true);
   const [recievedLetters, setRecievedLetters] = useState([]);
+
+  const [preferredMeetingDate,setPreferredMeetingDate] = useState("")
+  const [hour, setHour] = useState("")
+  const [minutes, setMinutes] = useState("")
+  const [amPm, setAmPm] = useState("")
+  const [backUpDatesAndTimes, setBackUpDatesAndTimes] = useState("")
+  const [purpose, setPurpose] = useState("")
+
+
+
     //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
 
@@ -263,6 +273,19 @@ const Sponsor = () => {
   //     });
   //   }
 
+
+  const meetingrequest = () => {
+    db.collection("Meeting").doc(user.id).set({
+      meetingdata : preferredMeetingDate,
+      hour : hour,
+      min : minutes,
+      ampm : amPm,
+      backupdate : backUpDatesAndTimes,
+      purpose : purpose,
+      id : user.uid
+    });
+  };
+
   //sponsor checking his payment history
   const checkingPaymentHistory = () => {
     db.collection("paymentHistory")
@@ -271,6 +294,8 @@ const Sponsor = () => {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           console.log(doc.id, " => ", doc.data());
+          
+
         });
       })
       .catch((error) => {
@@ -307,21 +332,6 @@ const Sponsor = () => {
   //     });
   //   }
 
-  //   // sponsors checking letters sent by child
-  //   const getLettersByChild = () => {
-  //     db.collection("lettersFromChild")
-  //     .where("sponsorId", "==", user.id)
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         // doc.data() is never undefined for query doc snapshot
-  //         console.log(doc.id, " => ", doc.data());
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error getting documents: ", error);
-  //     });
-  //   }
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = (id) => {
@@ -513,6 +523,17 @@ const Sponsor = () => {
                   handleLogout={handleLogout}
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
+                  setPreferredMeetingDate = {setPreferredMeetingDate}
+                  hour = {hour}
+                  setHour = {setHour}
+                  minutes = {minutes}
+                  setMinutes = {setMinutes}
+                  amPm = {amPm}
+                  setAmPm = {setAmPm}
+                  backUpDatesAndTimes = {backUpDatesAndTimes}
+                  setBackUpDatesAndTimes = {setBackUpDatesAndTimes}
+                  purpose = {purpose}
+                  setPurpose = {setPurpose}
                 />
               ),
               academicreports: (
