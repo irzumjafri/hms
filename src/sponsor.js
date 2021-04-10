@@ -48,7 +48,7 @@ const Sponsor = () => {
   const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
-  const [router, setRouter] = useState("");
+  const [router, setRouter] = useState("registered");
   const [applicationStatus, setApplicationStatus] = useState("");
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
   const [questions, setQuestions] = useState([]);
@@ -60,7 +60,12 @@ const Sponsor = () => {
   const [letterBody, setLetterBody] = useState("");
   const [selectedChild, setSelectedChild] = useState("");
   const [writeOrReceive, setWriteOrReceive] = useState(true);
-  const [recievedLetters, setRecievedLetters] = useState([]);
+  const [recievedLetters, setRecievedLetters] = useState([
+    { from: "irtasam", message: "Ki haal chaal ai?" },
+    { from: "irtasam", message: "paisay bhijwao, creately lena hai" },
+    { from: "irtasam", message: "credit card bhi donate kardo" },
+  ]);
+
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
@@ -135,10 +140,10 @@ const Sponsor = () => {
       });
   };
 
-  const fetchLogin = () => {
-    let refdoc = "";
-    refdoc = db.collection("userAccounts").doc(user.uid);
-    refdoc
+  const fetchLogin = (u) => {
+    var docRef = db.collection("userAccounts").doc(u.uid);
+    console.log(u.uid);
+    docRef
       .get()
       .then((doc) => {
         if (doc.exists) {
@@ -148,15 +153,16 @@ const Sponsor = () => {
           setEmail(doc.data().emailAddress);
           setDateOfBirth(doc.data().dateOfBirth);
           setApplicationStatus(doc.data().applicationStatus);
-          console.log(applicationStatus)
+          console.log(applicationStatus);
         } else {
+          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       })
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  }
+  };
 
   const fetchSponsorData = () => {
     let refdoc = "";
@@ -181,7 +187,7 @@ const Sponsor = () => {
           setPaymentSchedule(doc.data().paymentSchedule);
           setApplicationStatus(doc.data().applicationStatus);
           setHowToAssignChildren(doc.data().howToAssignChildren);
-          console.log(applicationStatus)
+          console.log(applicationStatus);
         } else {
           console.log("No such document!");
         }
@@ -309,12 +315,13 @@ const Sponsor = () => {
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
     db.collection("userAccounts")
-      .doc(user.uid)
+      .doc(user.uid.toString)
       .set({
         firstName: firstName,
         lastName: lastName,
         dateOfBirth: dateOfBirth,
         email: email,
+        id: user.uid.toString,
         password: confirmPassword,
         applicationStatus: "",
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
@@ -339,10 +346,7 @@ const Sponsor = () => {
       if (user) {
         clearInputs();
         setUser(user);
-        fetchLogin();
-        console.log(user);
-      } else {
-        setUser("");
+        fetchLogin(user);
       }
     });
   };
@@ -541,7 +545,7 @@ const Sponsor = () => {
               setPassword={setPassword}
               confirmpassword={confirmPassword}
               setConfirmPassword={setConfirmPassword}
-              dateofBirth={dateOfBirth}
+              dateofbirth={dateOfBirth}
               setDateOfBirth={setDateOfBirth}
               firstname={firstName}
               setFirstName={setFirstName}
