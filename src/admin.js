@@ -16,7 +16,8 @@ import AdminContactUs from "./AdminContactUs";
 import AdminFAQs from "./AdminFaqs";
 import AdminSponsorshipRequests from "./AdminSponsorshipRequests";
 import AdminLogin from "./AdminLogin";
-import AdminEditSponsorProfile from './AdminEditSponsorProfile'
+import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
+import AdminAddSponsorProfile from "./AdminAddSponsorProfile";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -27,9 +28,8 @@ db.settings({ timestampsInSnapshots: true, isPersistenceEnabled: false });
 
 const Admin = () => {
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [id, setId] = useState("");
-  const [i, setI] = useState('');
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -117,6 +117,7 @@ const Admin = () => {
     { from: "irtasam", message: "paisay bhijwao, creately lena hai" },
     { from: "irtasam", message: "credit card bhi donate kardo" },
   ]);
+  const [editingProfile, setEditingProfile] = useState();
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
@@ -403,6 +404,27 @@ const Admin = () => {
   // On sponsor profile page, this function allows admin to add another sponsor from sponsor side
   const addSponsorProfile = (i) => {};
 
+  const calladmineditprofile = (spon) => {
+    console.log(spon);
+    setEditingProfile({
+      firstName: spon.firstName,
+      lastName: spon.lastName,
+      email: spon.email,
+      dateOfBirth: spon.dateOfBirth,
+      cnic: spon.cnic,
+      phoneNumber: spon.phoneNumber,
+      address: spon.address,
+      preferredMediumOfCommunication: spon.preferredMediumOfCommunication,
+      numberOfSponsoredChildren: spon.numberOfSponsoredChildren,
+      paymentMethod: spon.paymentMethod,
+      paymentSchedule: spon.paymentSchedule,
+      applicationStatus: spon.applicationStatus,
+      howToAssignChildren: spon.howToAssignChildren,
+      id: spon.id,
+    });
+
+    setRouter("admineditsponsorprofile");
+  };
   const editSponsorProfile = (i, howTo, appStatus) => {
     let profileToEdit = db.collection("registeredSponsors").doc(i.id);
     return profileToEdit
@@ -486,6 +508,41 @@ const Admin = () => {
                   handlelogout={handleAdminLogout}
                 />
               ),
+              adminaddsponsorprofile: (
+                <AdminAddSponsorProfile
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleAdminLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  preferredMediumOfCommunication={
+                    preferredMediumOfCommunication
+                  }
+                  setPreferredMediumOfCommunication={
+                    setPreferredMediumOfCommunication
+                  }
+                  numberOfSponsoredChildren={numberOfSponsoredChildren}
+                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  paymentSchedule={paymentSchedule}
+                  setPaymentSchedule={setPaymentSchedule}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                  addSponsorProfile={addSponsorProfile}
+                />
+              ),
+
               editmyprofile: (
                 <AdminEditMyProfile
                   setRouter={setRouter}
@@ -527,12 +584,12 @@ const Admin = () => {
                   setRouter={setRouter}
                   deleteSponsorProfile={deleteSponsorProfile}
                   editSponsorProfile={editSponsorProfile}
-                  setI = {setI}
+                  calladmineditprofile={calladmineditprofile}
                 />
               ),
               admineditsponsorprofile: (
                 <AdminEditSponsorProfile
-                  sponsorProfile={sponsorData[i]}
+                  sponsorProfile={editingProfile}
                   setRouter={setRouter}
                   editSponsorProfile={editSponsorProfile}
                   handlelogout={handleAdminLogout}

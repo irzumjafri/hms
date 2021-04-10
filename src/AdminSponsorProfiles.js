@@ -10,8 +10,7 @@ const AdminSponsorProfiles = (props) => {
     sponsorData,
     deleteSponsorProfile,
     setRouter,
-    editSponsorProfile,
-    setI
+    calladmineditprofile
   } = props;
 
   return (
@@ -31,7 +30,7 @@ const AdminSponsorProfiles = (props) => {
               </div>
               <div class="col-md-12">
                 <div
-                  onClick={() => setRouter("home")}
+                  onClick={() => setRouter("adminaddsponsorprofile")}
                   class="Button"
                   className="button_green"
                 >
@@ -42,7 +41,6 @@ const AdminSponsorProfiles = (props) => {
             </div>
 
             {sponsorData.map((con, i) => {
-              setI(i)
               return (
                 <div>
                   <Form>
@@ -157,16 +155,27 @@ const AdminSponsorProfiles = (props) => {
                       </div>
                     </Form.Row>
 
+                    <button
+                    onClick={() => (
+                      calladmineditprofile(sponsorData[i])
+                    )}
+                  >
+                    {" "}
+                    Edit this Profile
+                  </button>
+                  <button
+                    onClick={() => (
+                      deleteSponsorProfile(sponsorData[i].id)
+                    )}
+                  >
+                    {" "}
+                    Delete this Profile
+                  </button>
+
                     <div class="row">
                       <div class="col-md-6">
                         <div
-                          onClick={() => (
-                            <AdminEditSponsorProfile
-                              sponsorProfile={sponsorData[i]}
-                              setRouter={setRouter}
-                              editSponsorProfile={editSponsorProfile}
-                              handlelogout={handlelogout}
-                            />
+                          onClick={() => (calladmineditprofile(sponsorData[i])
                           )}
                           class="Button"
                           className="button_blue"
@@ -190,14 +199,7 @@ const AdminSponsorProfiles = (props) => {
                     </div>
                   </Form>
 
-                  <button
-                    onClick={() => (
-                      setRouter('admineditsponsorprofile')
-                    )}
-                  >
-                    {" "}
-                    Edit this Profile
-                  </button>
+                  
                 </div>
               );
             })}

@@ -27,8 +27,8 @@ const AdminAddSponsorProfile = (props) => {
     paymentSchedule,
     setPaymentSchedule,
     setRouter,
-    editSponsorProfile,
     applicationStatus,
+    addSponsorProfile,
   } = props;
 
   return (
@@ -137,16 +137,13 @@ const AdminAddSponsorProfile = (props) => {
 
             <div className="btnContainer">
               <button
-                // Make new onlick Function onClick={() => setRouter("registered")}
+                onClick={() => {setRouter("home");addSponsorProfile()}}
                 className="button_red"
               >
                 ❌ Discard Profile
               </button>
               <button
-                // Make new onclick function onClick={() => {
-                //   setRouter("registered");
-                //   editSponsorProfile();
-                // }}
+                onClick={() => setRouter("home")}
                 className="buttongreen"
               >
                 ✅ Create Profile
