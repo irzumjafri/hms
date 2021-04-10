@@ -238,20 +238,6 @@ const Sponsor = () => {
       console.log("Error getting document:", error);
     });
 
-  //fetching multiple documents (for example when displaying all sponsorship requests on the admin interface)
-  db.collection("sponsorshipApplicants")
-    .where("applicationStatus", "==", false)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-      });
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-    });
-
   const clearInputs = () => {
     setEmail("");
     setPassword("");
@@ -290,67 +276,52 @@ const Sponsor = () => {
   };
 
 
+// //sponsor checking his payment history
+//   const checkingPaymentHistory = () => {
+//     db.collection("paymentHistory")
+//     .where("id", "==", user.id)
+//     .get()
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         // doc.data() is never undefined for query doc snapshot
+//         console.log(doc.id, " => ", doc.data());
+//       });
+//     })
+//     .catch((error) => {
+//       console.log("Error getting documents: ", error);
+//     });
+//   }
+
+//   //Sponsors sending letters to child
+//     const sendLettersToChild = () => {
+//       db.collection("lettersToChild")
+//       .doc(user.uid)
+//       .set({
+//         sponsorId : user.uid,
+//         sponsorName : sponsorName,
+//         childName : childName,
+//         message : message,
+//         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+//       });
+//     };
+
+//   // sponsors checking letters sent by child
+//   const getLettersByChild = () => {
+//     db.collection("lettersFromChild")
+//     .where("sponsorId", "==", user.id)
+//     .get()
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         // doc.data() is never undefined for query doc snapshot
+//         console.log(doc.id, " => ", doc.data());
+//       });
+//     })
+//     .catch((error) => {
+//       console.log("Error getting documents: ", error);
+//     });
+//   }
 
 
- 
-
-  // where does admin enters the name of sponsor for whom he wants to save his payment history
-
-  //var fName = window.prompt("Sponsor First Name: ")
-  //var lNname = window.prompt("Sponsor Last Name: ")
-
- 
-
-//sponsor checking his payment history
-  const checkingPaymentHistory = () => {
-
-    db.collection("paymentHistory").doc(user.uid).set()
-
-
-
-  }
-
-
-  // Sponsors sending letters to child
-
-  //   const sendLettersToChild = () => {
-  //     db.collection("lettersToChild")
-  //     .doc(user.uid)
-  //     .set({
-  //       id : user.uid,
-  //       sponsorName : sponsorName,
-  //       message : message,
-  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-  //     });
-  //   };
-
-  // // sponsors checking letters sent by child
-
-  // const sendLettersToChild = () => {
-  //   db.collection("lettersFromChild")
-  //   .where("sponsorName", "==", sponsorName)
-
-  //   .doc(user.uid)
-  //   .set({
-  //     id : user.uid,
-  //     sponsorName : sponsorName,
-  //     message : message,
-  //     timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-  //   });
-  // };
-
-  db.collection("sponsorshipApplicants")
-    .where("applicationStatus", "==", false)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-      });
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-    });
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = () => {
