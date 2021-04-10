@@ -449,166 +449,166 @@ const Sponsor = () => {
       {user ? (
         //USE FOR TESTING SCREENS
         //CODE STARTS
-         <Hero />
+         // <Hero />
         //USE FOR TESTING APP
         //CODE STARTS
-        // <>
-        //   {
-        //     {
-        //       registered: (
-        //         <RegisteredSponsorHome
-        //           setRouter={setRouter}
-        //           handleLogout={handleLogout}
-        //         />
-        //       ),
-        //       unregistered: (
-        //         <UnregisteredSponsorHome
-        //           setRouter={setRouter}
-        //           handleLogout={handleLogout}
-        //         />
-        //       ),
-        //       registering: (
-        //         <RegisterAsSponsor
-        //           applicationStatus={applicationStatus}
-        //           firstName={firstName}
-        //           lastName={lastName}
-        //           email={email}
-        //           dateOfBirth={dateOfBirth}
-        //           setEmail={setEmail}
-        //           handleLogout={handleLogout}
-        //           setFirstName={setFirstName}
-        //           setLastName={setLastName}
-        //           setDateOfBirth={setDateOfBirth}
-        //           cnic={cnic}
-        //           setCnic={setCnic}
-        //           phoneNumber={phoneNumber}
-        //           setPhoneNumber={setPhoneNumber}
-        //           address={address}
-        //           setAddress={setAddress}
-        //           preferredMediumOfCommunication={
-        //             preferredMediumOfCommunication
-        //           }
-        //           setPreferredMediumOfCommunication={
-        //             setPreferredMediumOfCommunication
-        //           }
-        //           numberOfSponsoredChildren={numberOfSponsoredChildren}
-        //           setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
-        //           paymentMethod={paymentMethod}
-        //           setPaymentMethod={setPaymentMethod}
-        //           paymentSchedule={paymentSchedule}
-        //           setPaymentSchedule={setPaymentSchedule}
-        //           createSponsorshipRequest={createSponsorshipRequest}
-        //           setRouter={setRouter}
-        //         />
-        //       ),
-        //       editmyprofile: (
-        //         <EditMyProfileSponsor
-        //           applicationStatus={applicationStatus}
-        //           firstName={firstName}
-        //           lastName={lastName}
-        //           email={email}
-        //           dateOfBirth={dateOfBirth}
-        //           setEmail={setEmail}
-        //           handleLogout={handleLogout}
-        //           setFirstName={setFirstName}
-        //           setLastName={setLastName}
-        //           setDateOfBirth={setDateOfBirth}
-        //           cnic={cnic}
-        //           setCnic={setCnic}
-        //           phoneNumber={phoneNumber}
-        //           setPhoneNumber={setPhoneNumber}
-        //           address={address}
-        //           setAddress={setAddress}
-        //           preferredMediumOfCommunication={
-        //             preferredMediumOfCommunication
-        //           }
-        //           setPreferredMediumOfCommunication={
-        //             setPreferredMediumOfCommunication
-        //           }
-        //           numberOfSponsoredChildren={numberOfSponsoredChildren}
-        //           setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
-        //           paymentMethod={paymentMethod}
-        //           setPaymentMethod={setPaymentMethod}
-        //           paymentSchedule={paymentSchedule}
-        //           setPaymentSchedule={setPaymentSchedule}
-        //           setRouter={setRouter}
-        //           editSponsorProfile={editSponsorProfile}
-        //         />
-        //       ),
-        //       paymenthistory: (
-        //         <PaymentHistory
-        //           applicationStatus={applicationStatus}
-        //           setRouter={setRouter}
-        //           paymentDate={paymentDate}
-        //           amount={amount}
-        //           setRouter={setRouter}
-        //           handleLogout={handleLogout}
-        //         />
-        //       ),
-        //       letterbox: (
-        //         <LetterBox
-        //           myChildren={myChildren}
-        //           handleLogout={handleLogout}
-        //           setLetterBody={setLetterBody}
-        //           selectedChild={selectedChild}
-        //           recievedLetters={recievedLetters}
-        //           writeOrReceive={writeOrReceive}
-        //           setWriteOrReceive={setWriteOrReceive}
-        //           setRouter={setRouter}
-        //           applicationStatus={applicationStatus}
-        //         />
-        //       ),
-        //       childrenprofiles: (
-        //         <ChildrenProfiles
-        //           handleLogout={handleLogout}
-        //           childData={childData}
-        //           setRouter={setRouter}
-        //           applicationStatus={applicationStatus}
-        //         />
-        //       ),
-        //       childrenprofiles: (
-        //         <ChildrenProfiles
-        //           handleLogout={handleLogout}
-        //           childData={childData}
-        //           setRouter={setRouter}
-        //           applicationStatus={applicationStatus}
-        //         />
+        <>
+          {
+            {
+              registered: (
+                <RegisteredSponsorHome
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              unregistered: (
+                <UnregisteredSponsorHome
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              registering: (
+                <RegisterAsSponsor
+                  applicationStatus={applicationStatus}
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  preferredMediumOfCommunication={
+                    preferredMediumOfCommunication
+                  }
+                  setPreferredMediumOfCommunication={
+                    setPreferredMediumOfCommunication
+                  }
+                  numberOfSponsoredChildren={numberOfSponsoredChildren}
+                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  paymentSchedule={paymentSchedule}
+                  setPaymentSchedule={setPaymentSchedule}
+                  createSponsorshipRequest={createSponsorshipRequest}
+                  setRouter={setRouter}
+                />
+              ),
+              editmyprofile: (
+                <EditMyProfileSponsor
+                  applicationStatus={applicationStatus}
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  dateOfBirth={dateOfBirth}
+                  setEmail={setEmail}
+                  handleLogout={handleLogout}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setDateOfBirth={setDateOfBirth}
+                  cnic={cnic}
+                  setCnic={setCnic}
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={setPhoneNumber}
+                  address={address}
+                  setAddress={setAddress}
+                  preferredMediumOfCommunication={
+                    preferredMediumOfCommunication
+                  }
+                  setPreferredMediumOfCommunication={
+                    setPreferredMediumOfCommunication
+                  }
+                  numberOfSponsoredChildren={numberOfSponsoredChildren}
+                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
+                  paymentMethod={paymentMethod}
+                  setPaymentMethod={setPaymentMethod}
+                  paymentSchedule={paymentSchedule}
+                  setPaymentSchedule={setPaymentSchedule}
+                  setRouter={setRouter}
+                  editSponsorProfile={editSponsorProfile}
+                />
+              ),
+              paymenthistory: (
+                <PaymentHistory
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  paymentDate={paymentDate}
+                  amount={amount}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              letterbox: (
+                <LetterBox
+                  myChildren={myChildren}
+                  handleLogout={handleLogout}
+                  setLetterBody={setLetterBody}
+                  selectedChild={selectedChild}
+                  recievedLetters={recievedLetters}
+                  writeOrReceive={writeOrReceive}
+                  setWriteOrReceive={setWriteOrReceive}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
+              ),
+              childrenprofiles: (
+                <ChildrenProfiles
+                  handleLogout={handleLogout}
+                  childData={childData}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
+              ),
+              childrenprofiles: (
+                <ChildrenProfiles
+                  handleLogout={handleLogout}
+                  childData={childData}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
               
-        //       ),
-        //       requestmeeting: (
-        //         <RequestAMeeting
-        //           handleLogout={handleLogout}
-        //           setRouter={setRouter}
-        //           applicationStatus={applicationStatus}
-        //         />
-        //       ),
-        //       academicreports: (
-        //         <AcademicReportsSponsor
-        //           handleLogout={handleLogout}
-        //           setRouter={setRouter}
-        //           applicationStatus={applicationStatus}
-        //           child={myChildren}
-        //         />
-        //       ),
-        //       contactus: (
-        //         <ContactUs
-        //           applicationStatus={applicationStatus}
-        //           setRouter={setRouter}
-        //           handleLogout={handleLogout}
-        //         />
-        //       ),
-        //       faqs: (
-        //         <FAQs
-        //           applicationStatus={applicationStatus}
-        //           setRouter={setRouter}
-        //           handleLogout={handleLogout}
-        //           questions={questions}
-        //           answers={answers}
-        //         />
-        //       ),
-        //     }[router]
-        //   }
-        // </>
+              ),
+              requestmeeting: (
+                <RequestAMeeting
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                />
+              ),
+              academicreports: (
+                <AcademicReportsSponsor
+                  handleLogout={handleLogout}
+                  setRouter={setRouter}
+                  applicationStatus={applicationStatus}
+                  child={myChildren}
+                />
+              ),
+              contactus: (
+                <ContactUs
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                />
+              ),
+              faqs: (
+                <FAQs
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                  questions={questions}
+                  answers={answers}
+                />
+              ),
+            }[router]
+          }
+        </>
       ) : (
         <>
           {hasAccount ? (
