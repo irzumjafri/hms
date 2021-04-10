@@ -35,10 +35,7 @@ const RegisterAsSponsor = (props) => {
     <body>
       <section className="navbar">
         
-        <nav className="navbarContainer">
-          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
-          <h2 className="titletext">REGISTER AS A SPONSOR</h2>
-        </nav>
+      
         <section className="register">
           <div className="registerContainer">
             {/* <h2 className="titletext">REGISTER AS A SPONSOR</h2> */}
@@ -148,6 +145,10 @@ const RegisterAsSponsor = (props) => {
           <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
           <SearchField placeholder ="search..."
           classNames="search"/> 
+            <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">REGISTER AS A SPONSOR</h2>
+        </nav>
           
         </nav>
         <section className="bottombar">

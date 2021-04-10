@@ -1,26 +1,34 @@
 import React from "react";
 import SearchField from "react-search-field";
 import Calendar from "react-calendar";
-
+import logo from "./HMSlogo.png";
+import Button from 'react-bootstrap/Button';
 const AdminHome = (props) => {
   const { handlelogout, setRouter, updatesArray } = props;
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={() => handlelogout()}>Logout</button>
-        </nav>
-        <nav>
-          <h2>Homepage</h2>
-        </nav>
+     <section className="navbar">
+     <section className = "sponsorHomepage">
+        <div className = "sponsorHomepageContainer_left">
         <div>
           <h1 /*Make the updates array work*/>Updates</h1>
           <h2>{updatesArray}</h2>
         </div>
+
         <div>
-          <h1 /*Make the menu drop down*/>Menu</h1>
+           <h1 className="label-left">Menu</h1>
+          <div class = "row">
+              <div class = "col-md-6" >
+          <Button button className = "button_green" onClick={() => setRouter("editmyprofile")} variant="primary" size="lg" block>
+          Edit My Profile
+          </Button>{'  '}
+          </div>
+              <div class = "col-md-6" >
+          <Button button className = "button_green" onClick={() => setRouter("paymenthistory")} variant="primary" size="lg" block>
+          Payment History
+          </Button>
+          </div>
+            </div>
           <button onClick={() => setRouter("editmyprofile")}>
             Edit My Profile
           </button>
@@ -56,8 +64,26 @@ const AdminHome = (props) => {
           <button>Add Event</button>
           <button>Remove Event</button>
         </div>
-        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
-        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
+
+        </div>
+        </section>
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={() => handlelogout()}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          <nav className="navbarContainer">
+            <h2 className="titletext">Homepage</h2>
+        </nav>
+        </nav>
+
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+        </section>
       </section>
     </body>
   );
