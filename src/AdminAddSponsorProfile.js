@@ -1,35 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
 
 const AdminAddSponsorProfile = (props) => {
   const {
-    firstName,
-    lastName,
-    email,
-    dateOfBirth,
-    setEmail,
-    handleLogout,
-    setFirstName,
-    setLastName,
-    setDateOfBirth,
-    cnic,
-    setCnic,
-    phoneNumber,
-    setPhoneNumber,
-    address,
-    setAddress,
+    setRouter,
+    addSponsorProfile,
+    handlelogout,
+  } = props;
+
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [cnic, setCnic] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [
     preferredMediumOfCommunication,
     setPreferredMediumOfCommunication,
-    numberOfSponsoredChildren,
-    setNumberOfSponsoredChildren,
-    paymentMethod,
-    setPaymentMethod,
-    paymentSchedule,
-    setPaymentSchedule,
-    setRouter,
-    applicationStatus,
-    addSponsorProfile,
-  } = props;
+  ] = useState("");
+  const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
+    ""
+  );
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentSchedule, setPaymentSchedule] = useState("");
 
   return (
     <body>
@@ -37,15 +31,13 @@ const AdminAddSponsorProfile = (props) => {
         <nav>
           <h2>Hunehar Management System</h2>
           <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handlelogout}>Logout</button>
         </nav>
         <section>
           <h2>SPONSOR PROFILES</h2>
           <button
             onClick={() =>
-              applicationStatus
-                ? setRouter("registered")
-                : setRouter("unregistered")
+              setRouter('home')
             }
           >
             {" "}
@@ -136,16 +128,29 @@ const AdminAddSponsorProfile = (props) => {
             ></input>
 
             <div className="btnContainer">
-              <button
-                onClick={() => {
-                  setRouter("home");
-                  addSponsorProfile();
-                }}
-                className="button_red"
-              >
+              <button onClick={() => setRouter("home")} className="button_red">
                 ❌ Discard Profile
               </button>
-              <button onClick={() => setRouter("home")} className="buttongreen">
+              <button onClick=
+                {() => {
+                  setRouter("home");
+                  addSponsorProfile({
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    dateOfBirth: dateOfBirth,
+                    cnic: cnic,
+                    phoneNumber: phoneNumber,
+                    address: address,
+                    preferredMediumOfCommunication: preferredMediumOfCommunication,
+                    numberOfSponsoredChildren: numberOfSponsoredChildren,
+                    paymentMethod: paymentMethod,
+                    paymentSchedule: paymentSchedule,
+                    applicationStatus: "Accepted",
+                    howToAssignChildren: "auto",
+                  });
+                }} className="buttongreen">
+                
                 ✅ Create Profile
               </button>
             </div>

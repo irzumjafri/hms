@@ -1,37 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
 
 const AdminAddChildrenProfiles = (props) => {
-  const {
-    handleLogout,
-    setRouter,
-    childName,
-    setChildName,
-    childDateOfBirth,
-    setChildDateOfBirth,
-    childGender,
-    setChildGender,
-    childCurrentAddress,
-    setChildCurrentAddress,
-    childGrade,
-    setChildGrade,
-    childContactInformation,
-    setChildContactInformation,
-    childGuardian1Name,
-    setChildGuardian1Name,
-    childGuardian1Relation,
-    setChildGuardian1Relation,
-    childGuardian1Occupation,
-    setChildGuardian1Occupation,
-    childGuardian1CNIC,
-    setChildGuardian1CNIC,
-    childGuardian2Name,
-    setChildGuardian2Name,
-    childGuardian2Relation,
-    setChildGuardian2Relation,
-    childFamilyBackground,
-    setchildFamilyBackground,
-  } = props;
+  const { handlelogout, setRouter, addChildProfile } = props;
+
+  const [childName, setChildName] = useState("");
+  const [childDateOfBirth, setChildDateOfBirth] = useState("");
+  const [childGender, setChildGender] = useState("");
+  const [childCurrentAddress, setChildCurrentAddress] = useState("");
+  const [childGrade, setChildGrade] = useState("");
+  const [childContactInformation, setChildContactInformation] = useState("");
+  const [childGuardian1Name, setChildGuardian1Name] = useState("");
+  const [childGuardian1Relation, setChildGuardian1Relation] = useState("");
+  const [childGuardian1Occupation, setChildGuardian1Occupation] = useState("");
+  const [childGuardian1CNIC, setChildGuardian1CNIC] = useState("");
+  const [childGuardian2Name, setChildGuardian2Name] = useState("");
+  const [childGuardian2Relation, setChildGuardian2Relation] = useState("");
+  const [childFamilyBackground, setchildFamilyBackground] = useState("");
 
   return (
     <body>
@@ -39,21 +24,11 @@ const AdminAddChildrenProfiles = (props) => {
         <nav>
           <h2>Hunehar Management System</h2>
           <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handlelogout}>Logout</button>
         </nav>
         <section>
           <h2>CHILDREN PROFILES</h2>
-          <button
-          // Make new onclick Function
-          // onClick={() =>
-          //   applicationStatus
-          //     ? setRouter("registered")
-          //     : setRouter("unregistered")
-          // }
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
+          <button onClick={() => setRouter("home")}> HOME PAGE </button>
         </section>
         <section className="adminChildrenProfiles">
           <div className="adminChildrenProfilesContainer">
@@ -179,7 +154,7 @@ const AdminAddChildrenProfiles = (props) => {
 
               <div className="btnContainer">
                 <button
-                  // MakeonClick Function onClick={() => setRouter("registered")}
+                  onClick={() => setRouter("home")}
                   className="button_red"
                 >
                   ❌ Discard Changes
@@ -187,7 +162,19 @@ const AdminAddChildrenProfiles = (props) => {
               </div>
               <div className="btnContainer">
                 <button
-                  // MakeonClick Function onClick={() => setRouter("registered")}
+                  onClick={() => {setRouter("home");addChildProfile({'name':childName,
+                    'dateOfBirth':childDateOfBirth, 
+                    'gender':childGender,
+                    'currentAddress':childCurrentAddress,
+                    'grade':childGrade,
+                    'contactInformation':childContactInformation,
+                    'guardian1Name':childGuardian1Name,
+                    'guardian1Relation':childGuardian1Relation,
+                    'guardian1Occupation':childGuardian1Occupation,
+                    'guardian1CCnic':childGuardian1CNIC,
+                    'guardian2Name':childGuardian2Name,
+                    'guardian2Relation':childGuardian2Relation,
+                    'familyBackground':childFamilyBackground,})}}
                   className="buttongreen"
                 >
                   ✅ Add Child

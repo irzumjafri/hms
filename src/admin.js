@@ -18,6 +18,8 @@ import AdminSponsorshipRequests from "./AdminSponsorshipRequests";
 import AdminLogin from "./AdminLogin";
 import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
 import AdminAddSponsorProfile from "./AdminAddSponsorProfile";
+import AdminAddChildrenProfiles from "./AdminAddChildrenProfiles";
+import AdminEditChildrenProfiles from "./AdminEditChildrenProfiles";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -398,36 +400,24 @@ const Admin = () => {
   };
 
   // On sponsor profile page, this function allows admin to add a sponsor profile (Registered one)
-  const addSponsorProfile = (
-    fn,
-    ln,
-    e,
-    doob,
-    c,
-    pn,
-    a,
-    pmcc,
-    nocc,
-    pmm,
-    pss,
-    appS,
-    hta
-  ) => {
+  const addSponsorProfile = (spon) => {
+    console.log(spon);
+    console.log("called");
     db.collection("registeredSponsors")
       .add({
-        firstName: fn,
-        lastName: ln,
-        email: e,
-        dateOfBirth: doob,
-        cnic: c,
-        phoneNumber: pn,
-        address: a,
-        preferredMediumOfCommunication: pmcc,
-        numberOfSponsoredChildren: nocc,
-        paymentMethod: pmm,
-        paymentSchedule: pss,
+        firstName: spon.firstName,
+        lastName: spon.lastName,
+        email: spon.email,
+        dateOfBirth: spon.dateOfBirth,
+        cnic: spon.cnic,
+        phoneNumber: spon.phoneNumber,
+        address: spon.address,
+        preferredMediumOfCommunication: spon.preferredMediumOfCommunication,
+        numberOfSponsoredChildren: spon.numberOfSponsoredChildren,
+        paymentMethod: spon.paymentMethod,
+        paymentSchedule: spon.paymentSchedule,
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-        applicationStatus: appS,
+        applicationStatus: "Accepted",
         howToAssignChildren: "auto", // hardcoding right now to "auto"
       })
       .then((value) => {
@@ -511,36 +501,22 @@ const Admin = () => {
   };
 
   // This function allows admin users to add a child profile
-  const addChildProfile = (
-    n,
-    dob,
-    g,
-    ca,
-    G,
-    ci,
-    g1n,
-    g1r,
-    g1o,
-    g1c,
-    g2n,
-    g2r,
-    fb
-  ) => {
+  const addChildProfile = (child) => {
     db.collection("childrenProfiles")
       .add({
-        name: n,
-        dateOfBirth: dob,
-        gender: g,
-        currentAddress: ca,
-        grade: G,
-        contactInformation: ci,
-        guardian1Name: g1n,
-        guardian1Relation: g1r,
-        guardian1Occupation: g1o,
-        guardian1Cnic: g1c,
-        guardian2Name: g2n,
-        guardian2Relation: g2r,
-        familyBackground: fb,
+        name: child.name,
+        dateOfBirth: child.dateOfBirth,
+        gender: child.gender,
+        currentAddress: child.currentAddress,
+        grade: child.gender,
+        contactInformation: child.contactInformation,
+        guardian1Name: child.guardian1Name,
+        guardian1Relation: child.guardian1Relation,
+        guardian1Occupation: child.guardian1Occupation,
+        guardian1Cnic: child.guardian1Cnic,
+        guardian2Name: child.guardian2Name,
+        guardian2Relation: child.guardian2Relation,
+        familyBackground: child.familyBackground,
       })
       .then((value) => {
         // set this id as its own attribte
@@ -554,6 +530,10 @@ const Admin = () => {
           });
       });
   };
+
+  const editChildProfile = (child) => {
+    
+  }
 
   const fetchPaymentHistory = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL PAYMENT DETAILS JUST LIKE IN SPONSOR MAKE A LISTTT.
@@ -597,35 +577,8 @@ const Admin = () => {
               ),
               adminaddsponsorprofile: (
                 <AdminAddSponsorProfile
-                  firstName={firstName}
-                  lastName={lastName}
-                  email={email}
-                  dateOfBirth={dateOfBirth}
-                  setEmail={setEmail}
-                  handleLogout={handleAdminLogout}
-                  setFirstName={setFirstName}
-                  setLastName={setLastName}
-                  setDateOfBirth={setDateOfBirth}
-                  cnic={cnic}
-                  setCnic={setCnic}
-                  phoneNumber={phoneNumber}
-                  setPhoneNumber={setPhoneNumber}
-                  address={address}
-                  setAddress={setAddress}
-                  preferredMediumOfCommunication={
-                    preferredMediumOfCommunication
-                  }
-                  setPreferredMediumOfCommunication={
-                    setPreferredMediumOfCommunication
-                  }
-                  numberOfSponsoredChildren={numberOfSponsoredChildren}
-                  setNumberOfSponsoredChildren={setNumberOfSponsoredChildren}
-                  paymentMethod={paymentMethod}
-                  setPaymentMethod={setPaymentMethod}
-                  paymentSchedule={paymentSchedule}
-                  setPaymentSchedule={setPaymentSchedule}
+                  handlelogout={handleAdminLogout}
                   setRouter={setRouter}
-                  applicationStatus={applicationStatus}
                   addSponsorProfile={addSponsorProfile}
                 />
               ),
@@ -700,6 +653,20 @@ const Admin = () => {
                   childData={childData}
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
+                  addChildProfile={addChildProfile}
+                />
+              ),
+              addchildrenprofile: (
+                <AdminAddChildrenProfiles
+                  handlelogout={handleAdminLogout}
+                  setRouter={setRouter}
+                />
+              ),
+              editchildrenprofile: (
+                <AdminEditChildrenProfiles
+                  handlelogout={handleAdminLogout}
+                  setRouter={setRouter}
+                  editChildProfile={editChildProfile}
                 />
               ),
               academicrecords: (
