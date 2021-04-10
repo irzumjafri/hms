@@ -192,6 +192,7 @@ const Admin = () => {
           })
           .then(() => {
             console.log("Document successfully updated!");
+            fetchAdminProfile(); // update the changes in states as well
 
             // update email in adminLogin as well
           })
@@ -201,6 +202,7 @@ const Admin = () => {
       });
   };
 
+  // This function gets all the current data of sposorship applications on db and sets them here to be displayed
   const fetchSponsorshipApplications = () => {
     let tempApplications = [];
     db.collection("sponsorshipApplicants")
@@ -232,7 +234,6 @@ const Admin = () => {
             });
           });
         }
-        console.log(tempApplications);
         setSponsorshipApplicationData(tempApplications);
       });
   };
@@ -308,13 +309,67 @@ const Admin = () => {
             });
             fetchSponsorshipApplications();
             fetchSponsorData();
-
             // assign children to sponsors as well acc to how to
+            assignChildrenToSponsor(email, noc); // store email in children profile which are to be assigned
           });
       })
 
       .catch((error) => {
         console.error("Error removing document: ", error);
+      });
+  };
+
+  // this function takes CNIC of number and assigns noc which are unsassigned to assigned and adds cnic of sponsor there
+  // for identification
+  const assignChildrenToSponsor = (mail, noc) => {
+    db.collection("childrenProfiles")
+      .where("status", "==", "unassigned")
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.log("No unassigned child in the database");
+          return;
+        } else {
+          // set all the fields
+          let count = 0;
+          querySnapshot.forEach((doc) => {
+            count = count + 1;
+          });
+
+          if (count < noc) {
+            console.log(
+              `Not enough unassigned children in the database. Number of unassigned children is: ${count}`
+            );
+            return;
+          } else {
+            // get IDs of profiles of children that will be assigned to this sponsor
+            let childIDs = [];
+            for (let i = 0; i < noc; i++) {
+              console.log(querySnapshot[i].data().id); //////////////////////////////////////
+              childIDs.append(querySnapshot[i].data().id);
+            }
+
+            // update each ID of that child with sponsors CNIC and update its status as well
+            childIDs.map((idOfChild) => {
+              let profileToEdit = db
+                .collection("childrenProfiles")
+                .doc(idOfChild);
+
+              return profileToEdit
+                .update({
+                  sponsorEmail: mail,
+                  status: "assigned",
+                })
+                .then(() => {
+                  console.log("Document successfully updated!");
+                  fetchChildrenProfiles(); // update the changes in states as well
+                })
+                .catch((error) => {
+                  console.error("Error updating document: ", error);
+                });
+            });
+          }
+        }
       });
   };
 
@@ -467,7 +522,11 @@ const Admin = () => {
   };
 
   const deleteSponsorProfile = (i) => {
-    console.log(i.toString().replace(/\s/g, ""));
+    // get nic of the sponsor profile we want to delete to set their children to unassigned
+    let mail = db
+      .collection("registeredSponsors")
+      .doc(i.toString().replace(/\s/g, ""))
+      .data().email; ////////////////////////////////////////////////////////
 
     db.collection("registeredSponsors")
       .doc(i.toString().replace(/\s/g, ""))
@@ -475,6 +534,52 @@ const Admin = () => {
       .then(() => {
         console.log("Document successfully deleted!");
         fetchSponsorData();
+        // update children profiles with nic and unassigned status for assigend children of this sponsor
+        unassignChildren(mail);
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
+
+  // This function allows is called to unassign the children assigend to a given sponsor email
+  const unassignChildren = (mail) => {
+    db.collection("childrenProfiles")
+      .where("sponsorEmail", "==", mail)
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.log("No children were assigned to this sponsor");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update the status and sponsorCNIC of the children profiles here
+            return doc
+              .update({
+                sponsorEmail: "",
+                status: "unassigned",
+              })
+              .then(() => {
+                console.log("Document successfully updated!");
+                fetchChildrenProfiles(); // update the changes in states as well
+              })
+              .catch((error) => {
+                console.error("Error updating document: ", error);
+              });
+          });
+        }
+      });
+  };
+
+  // Given the ID of profile, the admin user can delete that child
+  const deleteChildrenProfile = (i) => {
+    db.collection("childrenProfiles")
+      .doc(i.toString().replace(/\s/g, ""))
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        // call fucntion to update states of children profiles acc to the updated db
+        fetchChildrenProfiles();
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
@@ -512,6 +617,8 @@ const Admin = () => {
         guardian2Name: g2n,
         guardian2Relation: g2r,
         familyBackground: fb,
+        status: "unassigned",
+        sponsorEmail: "",
       })
       .then((value) => {
         // set this id as its own attribte
@@ -562,7 +669,7 @@ const Admin = () => {
               gender: doc.data().gender,
               currentAddress: doc.data().currentAddress,
               grade: doc.data().grade,
-
+              status: doc.data().status,
               contactInformation: doc.data().contactInformation,
               guardian1Name: doc.data().guardian1Name,
               guardian1Relation: doc.data().guardian1Relation,
@@ -572,6 +679,7 @@ const Admin = () => {
               guardian2Relation: doc.data().guardian2Relation,
               familyBackground: doc.data().familyBackground,
               id: doc.data().id,
+              sponsorEmail: doc.data().sponsorEmail,
             });
           });
         }
