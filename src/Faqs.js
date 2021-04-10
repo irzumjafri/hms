@@ -23,8 +23,10 @@ const AdminFAQs = (props) => {
         
         <section className="faqs">
         <div className="faqsContainer">
+
           {questions.map((con, i) => {
             return (
+
               
 
               <Form>
@@ -52,6 +54,11 @@ const AdminFAQs = (props) => {
           <SearchField placeholder ="search..."
           classNames="search"/> 
           
+          <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">FREQUENTLY ASKED QUESTIONS</h2>
+        </nav>
+          
         </nav>
         <section className="bottombar">
           <navbar className="bottombarContainer">
@@ -59,10 +66,6 @@ const AdminFAQs = (props) => {
             <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
           </navbar>
 
-          <nav className="navbarContainer">
-          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
-          <h2 className="titletext">FREQUENTLY ASKED QUESTIONS</h2>
-        </nav>
         </section>
       </section>
     </body>

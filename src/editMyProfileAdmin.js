@@ -26,95 +26,153 @@ const EditMyProfileAdmin = (props) => {
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handleLogout}>Logout</button>
-        </nav>
-        <section>
-          <h2>EDIT MY PROFILE</h2>
-          <button /*make on click function*/> HOME PAGE </button>
-        </section>
-        <section className="editMyProfileAdmin">
-          <div className="editMyProfileAdminContainer">
-            <label>First Name *</label>
-            <input
+      <section className="navbar">
+     
+     <section>
+     </section>
+     <section className="editMyProfileSponsor">
+       <div className="editMyProfileSponsorContainer">
+
+       <Form>
+              <Form.Row >
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">First Name *</Form.Label>
+            <Form.Control
               type="text"
               autoFocus
               required
               value={firstname}
               onChange={(e) => setFirstName(e.target.value)}
-            ></input>
-            <label>Last Name *</label>
-            <input
+            ></Form.Control>
+            </div >
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Last Name *</Form.Label>
+            <Form.Control
               type="text"
               required
-              value={lastname}
+              value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-            ></input>
-            <label>Email *</label>
-            <input
+            ></Form.Control>
+              </div>
+              </Form.Row>
+
+              <Form.Row>
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Email *</Form.Label>
+            <Form.Control
               type="text"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            ></input>
-            <label>Date of Birth (DD-MM-YYYY) *</label>
-            <input
+            >
+            </Form.Control>
+            </div>
+            <div  class = "col-md-6">
+            <Form.Label className= "label-right">Date of Birth (DD-MM-YYYY) *</Form.Label>
+            <Form.Control
               type="text"
               required
-              value={dateofbirth}
+              value={dateOfBirth}
               onChange={(e) => setDateOfBirth(e.target.value)}
-            ></input>
-            <label>CNIC *</label>
-            <input
-              type="text"
-              required
-              value={cnic}
-              onChange={(e) => setCnic(e.target.value)}
-            ></input>
-            <label>Phone Number *</label>
-            <input
-              type="text"
-              required
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            ></input>
-            <label>Address *</label>
-            <input
+            >
+              </Form.Control>
+            </div >
+            </Form.Row>
+
+            <Form.Row>
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">CNIC</Form.Label>
+            <Form.Control
+             type="text"
+             required
+             value={cnic}
+             onChange={(e) => setCnic(e.target.value)}
+            >
+            </Form.Control>
+            </div>
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Phone Number *</Form.Label>
+            <Form.Control
+             type="text"
+             required
+             value={phoneNumber}
+             onChange={(e) => setPhoneNumber(e.target.value)}
+            >
+              </Form.Control>
+            </div >
+            </Form.Row >
+
+            <Form.Row> 
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Address *</Form.Label>
+            <Form.Control
               type="text"
               required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-            ></input>
-            <label>Department *</label>
-            <input
-              type="text"
-              required
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
-            ></input>
-            <label>Institution *</label>
-            <input
+            >
+            </Form.Control>
+            </div>
+
+            <div class = "col-md-6">
+            <Form.Label className= "label-left">Department *</Form.Label>
+            <Form.Control
+                type="text"
+                required
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+            >
+            </Form.Control>
+            </div>
+
+
+
+            </Form.Row>
+
+            <Form.Row> 
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Institution *</Form.Label>
+            <Form.Control
               type="text"
               required
               value={institution}
               onChange={(e) => setInstitution(e.target.value)}
-            ></input>
-
-            <div className="btnContainer">
-              <button /* make on click function*/ className="button_green">
-                ✅ Save Changes
-              </button>
-              <button /* make on click function*/ className="button_red">
-                ❌ Discard Changes
-              </button>
+            >
+            </Form.Control>
             </div>
+
+            </Form.Row>
+            <div class = "row">
+              <div class = "col-md-6" >
+                <div onClick={() => {setRouter("registered");editSponsorProfile();}} class = "Button" className="button_green">Save Changes</div>
+              </div>
+              <div class = "col-md-6" >
+                <div onClick={() => setRouter("registered")} class = "Button" className="button_redd">Discard Changes</div>
+              </div>
+            </div>
+
+            </Form>
           </div>
         </section>
-        <button>Contact Us</button>
-        <button>FAQs</button>
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          
+          <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">EDIT MY PROFILE</h2>
+        </nav>
+        
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+        </section>
       </section>
     </body>
   );

@@ -5,6 +5,11 @@
   font-family: "Roboto", sans-serif;
 }
 
+.label-leftt {
+  color: black;
+  font-size: 18px;
+  margin-top: 5px;
+}
 .login {
   overflow: hidden;
   width: 100%;
@@ -1120,6 +1125,7 @@
   border-radius: 10px;
   align-items: center;
   justify-content: center;
+  margin-top: 10%;
 }
 
 .editMyProfileSponsor .editMyProfileSponsorContainer .button_green {

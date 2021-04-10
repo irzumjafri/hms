@@ -1,6 +1,8 @@
 import React from "react";
 import SearchField from "react-search-field";
+import logo from "./HMSlogo.png";
 import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
+import { Button, Form } from 'react-bootstrap';
 
 const AdminSponsorProfiles = (props) => {
   const {
@@ -13,82 +15,151 @@ const AdminSponsorProfiles = (props) => {
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handlelogout}>Logout</button>
-        </nav>
+      <section className="navbar">
+
         <section>
-          <h2>SPONSOR PROFILES</h2>
-          <button onClick={() => setRouter("home")}>HOME PAGE</button>
-        </section>
-        <section>
-          <button /*Make this drop down*/> Add Filter </button>
+          <p className="label-leftt"> Add Filter </p>
           <textbox>Total Active Sponsors: {sponsorData.length}</textbox>
-          <button className="buttongreen" onClick={() => setRouter("home")}>
-            {" "}
-            Add New Sponsor{" "}
-          </button>
+          <button className="buttongreen" onClick={() => setRouter('home')}> Add New Sponsor </button>
           {/* fix this */}
         </section>
-        <section className="adminSponsorProfiles">
-          {sponsorData.map((con, i) => {
-            return (
-              <div className="adminSponsorProfilesContainer">
+
+        <section className="editMyProfileSponsor">
+
+
+          <div className="editMyProfileSponsorContainer">
+            {sponsorData.map((con, i) => {
+              return (
+
                 <div>
-                  <section>
-                    <label>First Name</label>
-                    <textbox>{sponsorData[i].firstName}</textbox>
-                  </section>
-                  <section>
-                    <label>Last Name</label>
-                    <textbox>{sponsorData[i].lastName}</textbox>
-                  </section>
-                  <section>
-                    <label>Email</label>
-                    <textbox>{sponsorData[i].emailaddress}</textbox>
-                  </section>
-                  <section>
-                    <label>Date of Birth (DD-MM-YYYY)</label>
-                    <textbox>{sponsorData[i].dateOfBirth}</textbox>
-                  </section>
-                  <section>
-                    <label>CNIC</label>
-                    <textbox>{sponsorData[i].cnic}</textbox>
-                  </section>
-                  <section>
-                    <label>Phone Number</label>
-                    <textbox>{sponsorData[i].phoneNumber}</textbox>
-                  </section>
-                  <section>
-                    <label>Address</label>
-                    <textbox>{sponsorData.address}</textbox>
-                  </section>
-                  <section>
-                    <label>Preferred Medium of Communication</label>
-                    <textbox>
-                      {sponsorData[i].preferredMediumOfCommunication}
-                    </textbox>
-                  </section>
-                  <section>
-                    <label>Number of Sponsored Children</label>
-                    <textbox>
-                      {sponsorData[i].numberofSponsoredChildren}
-                    </textbox>
-                  </section>
-                  <section>
-                    <label>Payment Method</label>
-                    <textbox>{sponsorData[i].paymentMethod}</textbox>
-                  </section>
-                  <section>
-                    <label>Payment Schedule</label>
-                    <textbox>{sponsorData[i].paymentSchedule}</textbox>
-                  </section>
-                  <section>
-                    <label>Status</label>
-                    <textbox>{sponsorData[i].status}</textbox>
-                  </section>
+                  <Form>
+                    <Form.Row >
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">First Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          autoFocus
+                          required
+                          value={sponsorData[i].firstName}
+                        ></Form.Control>
+                      </div >
+                      <div class="col-md-6">
+                        <Form.Label className="label-right">Last Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].lastName}
+                        ></Form.Control>
+                      </div>
+                    </Form.Row>
+
+                    <Form.Row>
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">Email</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].email}
+
+                        >
+                        </Form.Control>
+                      </div>
+                      <div class="col-md-6">
+                        <Form.Label className="label-right">Date of Birth (DD-MM-YYYY)</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].dateOfBirth}
+                        >
+                        </Form.Control>
+                      </div >
+                    </Form.Row>
+
+                    <Form.Row>
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">CNIC</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].cnic}
+                        >
+                        </Form.Control>
+                      </div>
+                      <div class="col-md-6">
+                        <Form.Label className="label-right">Phone Number</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].phoneNumber}
+                        >
+                        </Form.Control>
+                      </div >
+                    </Form.Row >
+
+                    <Form.Row>
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">Address</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].address}
+                        >
+                        </Form.Control>
+                      </div>
+
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">Preferred Medium of Communication</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i]
+                            .preferredMediumOfCommunication}
+
+
+                        >
+                        </Form.Control>
+                      </div>
+
+
+
+                    </Form.Row>
+
+                    <Form.Row>
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">Number of Sponsored Children</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].numberofSponsoredChildren}
+                        >
+                        </Form.Control>
+                      </div>
+
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">Payment Method</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].paymentMethod}
+                        >
+                        </Form.Control>
+                      </div>
+
+
+                    </Form.Row>
+
+                    <Form.Row>
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">Status</Form.Label>
+                        <Form.Control
+                          type="text"
+                          required
+                          value={sponsorData[i].status}
+                        >
+                        </Form.Control>
+                      </div>
+                    </Form.Row>
+                  </Form>
 
                   <div className="btnContainer">
                     <button
@@ -114,15 +185,34 @@ const AdminSponsorProfiles = (props) => {
                     </button>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+
+              );
+            })}
+          </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handlelogout}><span>Logout</span></p>
+          <SearchField placeholder="search..."
+            classNames="search" />
+
+          <nav className="navbarContainer">
+            <p className="smalltext" onClick={() => setRouter("home")}><span>HOME PAGE</span></p>
+            <h2 className="titletext">SPONSORSHIP PROFILE</h2>
+          </nav>
+
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+
+
+        </section>
       </section>
     </body>
   );
 };
-
 export default AdminSponsorProfiles;
