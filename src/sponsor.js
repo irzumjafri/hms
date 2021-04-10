@@ -276,50 +276,50 @@ const Sponsor = () => {
   };
 
 
-//sponsor checking his payment history
-  const checkingPaymentHistory = () => {
-    db.collection("paymentHistory")
-    .where("id", "==", user.id)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshot
-        console.log(doc.id, " => ", doc.data());
-      });
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-    });
-  }
+// //sponsor checking his payment history
+//   const checkingPaymentHistory = () => {
+//     db.collection("paymentHistory")
+//     .where("id", "==", user.id)
+//     .get()
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         // doc.data() is never undefined for query doc snapshot
+//         console.log(doc.id, " => ", doc.data());
+//       });
+//     })
+//     .catch((error) => {
+//       console.log("Error getting documents: ", error);
+//     });
+//   }
 
-  //Sponsors sending letters to child
-    const sendLettersToChild = () => {
-      db.collection("lettersToChild")
-      .doc(user.uid)
-      .set({
-        sponsorId : user.uid,
-        sponsorName : sponsorName,
-        childName : childName,
-        message : message,
-        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-      });
-    };
+//   //Sponsors sending letters to child
+//     const sendLettersToChild = () => {
+//       db.collection("lettersToChild")
+//       .doc(user.uid)
+//       .set({
+//         sponsorId : user.uid,
+//         sponsorName : sponsorName,
+//         childName : childName,
+//         message : message,
+//         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+//       });
+//     };
 
-  // sponsors checking letters sent by child
-  const getLettersByChild = () => {
-    db.collection("lettersFromChild")
-    .where("sponsorId", "==", user.id)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshot
-        console.log(doc.id, " => ", doc.data());
-      });
-    })
-    .catch((error) => {
-      console.log("Error getting documents: ", error);
-    });
-  }
+//   // sponsors checking letters sent by child
+//   const getLettersByChild = () => {
+//     db.collection("lettersFromChild")
+//     .where("sponsorId", "==", user.id)
+//     .get()
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         // doc.data() is never undefined for query doc snapshot
+//         console.log(doc.id, " => ", doc.data());
+//       });
+//     })
+//     .catch((error) => {
+//       console.log("Error getting documents: ", error);
+//     });
+//   }
 
 
 
