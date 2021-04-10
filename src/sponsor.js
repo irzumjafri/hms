@@ -229,7 +229,7 @@ const Sponsor = () => {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
+        console.log("Document data:", doc.data());  // how to show this data on frontend???
       } else {
         console.log("No such document!");
       }
@@ -238,7 +238,7 @@ const Sponsor = () => {
       console.log("Error getting document:", error);
     });
 
-  //fetching multiple documents (like when displaying all sponsorship requests on the admin interface)
+  //fetching multiple documents (for example when displaying all sponsorship requests on the admin interface)
   db.collection("sponsorshipApplicants")
     .where("applicationStatus", "==", false)
     .get()
@@ -347,18 +347,48 @@ const Sponsor = () => {
 
   // where does admin enters the name of sponsor for whom he wants to save his payment history
 
+  //var fName = window.prompt("Sponsor First Name: ")
+  //var lNname = window.prompt("Sponsor Last Name: ")
+
+  var fName = "Ali"
+  var lNname = "ahmed"
+
+
   //admin saving payment history for each sponsor
-  // const paymentHistory = () => {
-  //   db.collection("paymentHistory")
-  //     .doc(user.uid) //  fetch this ID for sponsor
-  //     .set({
-  //       sponsorName: sponsorName,
-  //       paymentDate: paymentDate,
-  //       childName: childName,
-  //       paymentAmount: paymentAmount,
-  //       paymentType: paymentType,
-  //     });
-  // };
+  const paymentHistory = () => {
+    let sponsorDocId = ""
+
+    db.collection("registeredSponsors")
+    .where("firstName", "==", fName)
+    .where("lastName","==",lNname)
+    .get()
+    .then((querySnapshot) => {
+      // no email match found hence an attempt at unauthorized access to prevent
+      if (querySnapshot.empty) {
+        console.log("Empty");
+        return;
+      } else {
+        querySnapshot.forEach((doc) => {
+          // extract and store id to reference the doc to be edited
+          sponsorDocId = doc.data().id;
+        });
+      }
+
+      db.collection("paymentHistory")
+      .doc(sponsorDocId) //  fetch this ID for sponsor
+      .set({
+      firstName: firstName,
+      lastName : lastName,
+      paymentDate: paymentDate,
+      //childName: childName,
+      //paymentAmount: paymentAmount,
+      //paymentType: paymentType,
+    });
+    });
+  };
+
+
+
 
   // Sponsors sending letters to child
 
