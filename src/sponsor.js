@@ -73,6 +73,8 @@ const Sponsor = () => {
   const [backUpDatesAndTimes, setBackUpDatesAndTimes] = useState("");
   const [purpose, setPurpose] = useState("");
 
+
+
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
@@ -252,22 +254,6 @@ const Sponsor = () => {
     }
   };
 
-  // //sponsor checking his payment history
-  //   const checkingPaymentHistory = () => {
-  //     db.collection("paymentHistory")
-  //     .where("id", "==", user.id)
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         // doc.data() is never undefined for query doc snapshot
-  //         console.log(doc.id, " => ", doc.data());
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error getting documents: ", error);
-  //     });
-  //   }
-
   const meetingrequest = () => {
     db.collection("Meeting").doc(user.id).set({
       email:email,
@@ -291,7 +277,11 @@ const Sponsor = () => {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
+
+          setAmount(doc.data().amount),
+          setPaymentDate(doc.data().paymentDate)
+
+          console.log(doc.id, " => ", doc.data())
         });
       })
       .catch((error) => {
@@ -305,28 +295,31 @@ const Sponsor = () => {
       .doc(user.uid)
       .set({
         sponsorId: user.uid,
-        //sponsorName : sponsorName,
-        //childName : childName,
-        //message : message,
+        firstName: firstName,
+        lastName: lastName,
+        selectedChild : selectedChild,
+        letterBody : letterBody,
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
       });
   };
 
-  //   // sponsors checking letters sent by child
-  //   const getLettersByChild = () => {
-  //     db.collection("lettersFromChild")
-  //     .where("sponsorId", "==", user.id)
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         // doc.data() is never undefined for query doc snapshot
-  //         console.log(doc.id, " => ", doc.data());
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error getting documents: ", error);
-  //     });
-  //   }
+    // sponsors checking letters sent by child
+    const getLettersByChild = () => {
+      db.collection("lettersFromChild")
+      .where("sponsorId", "==", user.id)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshot
+          console.log(doc.id, " => ", doc.data());
+          setLetterBody(doc.data().letterBody)
+          setSelectedChild(doc.data().selectedChild)
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+    }
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = (id) => {
