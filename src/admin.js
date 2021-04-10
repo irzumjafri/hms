@@ -47,9 +47,7 @@ const Admin = () => {
     []
   );
   const [sponsorData, setSponsorData] = useState([
-    {firstName: "Maha", 
-    lastName : "Sajid"}
-
+    { firstName: "Maha", lastName: "Sajid" },
   ]);
   const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
     ""
@@ -146,6 +144,9 @@ const Admin = () => {
           querySnapshot.forEach((doc) => {
             if (password === doc.data().password) {
               setLoggedIn(true);
+              fetchSponsorshipApplications();
+              fetchSponsorData();
+              fetchAdminProfile();
             } else {
               clearInputs();
               setLoggedIn(false);
@@ -154,9 +155,6 @@ const Admin = () => {
           });
         }
       });
-    fetchSponsorshipApplications();
-    fetchSponsorData();
-    fetchAdminProfile();
   };
 
   const handleAdminLogout = () => {
@@ -166,14 +164,14 @@ const Admin = () => {
 
   // this function reads and sets all of the logged in admin's data for their profile
   const fetchAdminProfile = () => {
-    console.log(email);
+    // console.log(email);
 
     db.collection("adminProfiles")
       .where("email", "==", email)
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
-          console.log("Email not associated with this account");
+          // console.log("Email not associated with this account");
           return;
         } else {
           // set all the fields
@@ -297,7 +295,7 @@ const Admin = () => {
           return;
         } else {
           querySnapshot.forEach((doc) => {
-            if (doc.data().id === i && doc.data().toDisplay === "true") {
+            if (doc.data().id === i) {
               first = doc.data().firstName;
               last = doc.data().lastName;
               email = doc.data().email;
@@ -341,6 +339,7 @@ const Admin = () => {
               howToAssignChildren: howTo,
             });
             fetchSponsorshipApplications();
+            fetchSponsorData();
 
             // assign children to sponsors as well acc to how to
           });
@@ -365,6 +364,7 @@ const Admin = () => {
       });
   };
 
+  // This fucntion fetches all the sponsor profiles to be displayed
   var tempData = [];
   const fetchSponsorData = () => {
     db.collection("registeredSponsors")
@@ -400,9 +400,8 @@ const Admin = () => {
       });
   };
 
-  const addSponsorProfile = (i) => {
-    //CREATE FUNCTION SIMILAR TO EDIT WITHOUT SEARCHING JUST NEED TO ADD NEW DOCUMENT, i WILL HAVE ALL THE VALUES.
-  };
+  // On sponsor profile page, this function allows admin to add another sponsor from sponsor side
+  const addSponsorProfile = (i) => {};
 
   const editSponsorProfile = (i, howTo, appStatus) => {
     let profileToEdit = db.collection("registeredSponsors").doc(i.id);
@@ -433,6 +432,8 @@ const Admin = () => {
   };
 
   const deleteSponsorProfile = (i) => {
+    console.log(i.toString().replace(/\s/g, ""));
+
     db.collection("registeredSponsors")
       .doc(i.toString().replace(/\s/g, ""))
       .delete()
