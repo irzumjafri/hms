@@ -212,7 +212,134 @@ const Admin = () => {
       });
   };
 
-  var tempApplications = [];
+  ///////////////////////////////////////////////////////////////////////////// needs to be tested
+  // This function gets all of sponsors' data from db and set it to be displayed
+  const fetchSponsorData = () => {
+    db.collection("registeredSponsors")
+      .get()
+      .then((querySnapshot) => {
+        // Registered sponsors' db is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No registered sponsors exist in the database yet");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all sponsors present in current snapshot of the db
+            setSponsorData([
+              ...sponsorData,
+              {
+                firstName: doc.data().firstName,
+                lastName: doc.data().lastName,
+                email: doc.data().email,
+                dateOfBirth: doc.data().dateOfBirth,
+                cnic: doc.data().cnic,
+                phoneNumber: doc.data().phoneNumber,
+                address: doc.data().address,
+                preferredMediumOfCommunication: doc.data()
+                  .preferredMediumOfCommunication,
+                numberOfSponsoredChildren: doc.data().numberOfSponsoredChildren,
+                paymentMethod: doc.data().paymentMethod,
+                paymentSchedule: doc.data().paymentSchedule,
+                status: doc.data().status,
+                howToAssignChildren: doc.data().howToAssignChildren,
+                id: doc.data().id,
+              },
+            ]);
+          });
+        }
+      });
+  };
+
+  var fName = "Ali";
+  var lNname = "ahmed";
+
+  //admin saving payment history for each sponsor
+  // const addingPaymentHistory = () => {
+  //   let sponsorDocId = ""
+  //   db.collection("registeredSponsors")
+  //   .where("firstName", "==", fName)
+  //   .where("lastName","==",lNname)
+  //   .get()
+  //   .then((querySnapshot) => {
+  //     // no email match found hence an attempt at unauthorized access to prevent
+  //     if (querySnapshot.empty) {
+  //       console.log("Empty");
+  //       return;
+  //     } else {
+  //       querySnapshot.forEach((doc) => {
+  //         // extract and store id to reference the doc to be edited
+  //         sponsorDocId = doc.data().id;
+  //       });
+  //     }
+  //     db.collection("paymentHistory")
+  //     .doc(sponsorDocId) //  fetch this ID for sponsor
+  //     .set({
+  //     firstName: firstName,
+  //     lastName : lastName,
+  //     paymentDate: paymentDate,
+  //     childName: childName,
+  //     paymentAmount: paymentAmount,
+  //     paymentType: paymentType,
+  //   });
+  //   });
+  // };
+
+  // const childId = 1000;
+  // // Function that creates profile of the child
+  // const createChildProfile = () => {
+  //   const childUniqueId = childId
+  //   db.collection("childProfile")
+  //     .doc(childUniqueId)  //      unique ID for child???
+  //     .set({
+  //       // child profile data
+  //       firstName: firstName,
+  //       lastName: lastName,
+  //       dateOfBirth: dateOfBirth,
+  //       gender : gender,
+  //       address: address,
+  //       guardian1Name : guardian1Name,
+  //       guardian1Relation : guardian1Relation,
+  //       guardian1Cnic : guardian1Cnic,
+  //       guardian1Occupation : guardian1Occupation,
+  //       guardian2Name :guardian2Name,
+  //       guardian2Relation : guardian2Relation,
+  //       guardian2Cnic : guardian2Cnic,
+  //       guardian2Occupation : guardian2Occupation,
+  //       familyBackground : familyBackground,
+  //       contactInformation : contactInformation,
+  //       grade : grade,
+  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  //       id : chil
+  //     });
+  //     //childcount = childcount + 1 //increasing child count
+  // };
+
+  // // how to get child doc ID ??????????????????
+  // const editChildProfile = () => {
+  //   let profileToEdit = db.collection("childProfile").doc(childUniqueId); // or search through name?
+
+  //   return profileToEdit.update({
+  //     firstName: firstName,
+  //     lastName: lastName,
+  //     dateOfBirth: dateOfBirth,
+  //     gender : gender,
+  //     address: address,
+  //     guardian1Name : guardian1Name,
+  //     guardian1Relation : guardian1Relation,
+  //     guardian1Cnic : guardian1Cnic,
+  //     guardian1Occupation : guardian1Occupation,
+  //     guardian2Name :guardian2Name,
+  //     guardian2Relation : guardian2Relation,
+  //     guardian2Cnic : guardian2Cnic,
+  //     guardian2Occupation : guardian2Occupation,
+  //     familyBackground : familyBackground,
+  //     contactInformation : contactInformation,
+  //     grade : grade,
+  //     timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  //   });
+  // };
+
+  // This function gets all of sponsors' data from db and set it to be displayed
   const fetchSponsorshipApplications = () => {
     db.collection("sponsorshipApplicants")
       .get()
@@ -363,22 +490,22 @@ const Admin = () => {
   }
 
   const editSponsorProfile = (i, howTo, appStatus) => {
-    let profileToEdit = db.collection("registeredSponsors").doc(i);
+    let profileToEdit = db.collection("registeredSponsors").doc(i.id);
     return profileToEdit
       .update({
-        firstName: i.firstName,
-        lastName: i.lastName,
-        emailAddress: i.email,
-        dateOfBirth: i.dateOfBirth,
-        cnic: i.cnic,
-        phoneNumber: i.phoneNumber,
-        address: i.address,
-        preferredMediumOfCommunication: i.preferredMediumOfCommunication,
-        numberOfSponsoredChildren: i.numberOfSponsoredChildren,
-        paymentMethod: i.paymentMethod,
-        paymentSchedule: i.paymentSchedule,
-        applicationStatus: i.appStatus,
-        howToAssignChildren: i.howToAssignChildren,
+        firstName: firstName,
+        lastName: lastName,
+        emailAddress: email,
+        dateOfBirth: dateOfBirth,
+        cnic: cnic,
+        phoneNumber: phoneNumber,
+        address: address,
+        preferredMediumOfCommunication: preferredMediumOfCommunication,
+        numberOfSponsoredChildren: numberOfSponsoredChildren,
+        paymentMethod: paymentMethod,
+        paymentSchedule: paymentSchedule,
+        applicationStatus: appStatus,
+        howToAssignChildren: howTo,
         id: i.id,
       })
       .then(() => {
