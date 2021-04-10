@@ -101,7 +101,7 @@ const SponsorshipRequests = (props) => {
                       onClick={() =>{
                         setRouter('home');
                         acceptSponsorshipRequest(
-                          sponsorshipApplicationData[i].id
+                          sponsorshipApplicationData[i].id,"manual"
                         )
                       
           }}
