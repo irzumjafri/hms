@@ -39,7 +39,7 @@ const ChildrenProfiles = (props) => {
             <Form.Control
               type="text"
               required
-              value={childData[i].name}
+              value={childData[i].dateOfBirth}
             ></Form.Control>
               </div>
               </Form.Row>

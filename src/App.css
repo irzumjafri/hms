@@ -1305,6 +1305,24 @@
   padding: 10px;
 }
 
+.childrenProfiles .childrenProfilesContainer .button_blue {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  letter-spacing: 1px;
+  background: #529cea;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
 .childrenProfiles .childrenProfilesContainer .button_redd {
   border: none;
   outline: none;

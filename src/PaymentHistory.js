@@ -28,7 +28,7 @@ const PaymentHistory = (props) => {
            
 
                 <Form>
-
+                <Form.Row>
                 <div class = "col">
                 <Form.Label className= "label-left">Amount</Form.Label>
                 <Form.Control
@@ -47,6 +47,9 @@ const PaymentHistory = (props) => {
                 value={paymentDate[i]}
                 ></Form.Control>
                 </div>
+                </Form.Row>
+
+
                 </Form>
             
           );

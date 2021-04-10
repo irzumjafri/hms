@@ -31,90 +31,10 @@ const AdminEditMyProfile = (props) => {
   return (
     <body>
       <section className="navbar">
-     
      <section>
      </section>
      <section className="editMyProfileSponsor">
        <div className="editMyProfileSponsorContainer">
-            {/* <label>First Name *</label>
-            <input
-              type="text"
-              autoFocus
-              required
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            ></input>
-            <label>Last Name *</label>
-            <input
-              type="text"
-              required
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            ></input>
-            <label>Email *</label>
-            <input
-              type="text"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></input>
-            <label>Date of Birth (DD-MM-YYYY) *</label>
-            <input
-              type="text"
-              required
-              value={dateOfBirth}
-              onChange={(e) => setDateOfBirth(e.target.value)}
-            ></input>
-            <label>CNIC </label>
-            <input
-              type="text"
-              required
-              value={cnic}
-              onChange={(e) => setCnic(e.target.value)}
-            ></input>
-            <label>Phone Number *</label>
-            <input
-              type="text"
-              required
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            ></input>
-            <label>Address *</label>
-            <input
-              type="text"
-              required
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            ></input>
-            <label>Department *</label>
-            <input
-              type="text"
-              required
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
-            ></input>
-            <label>Institution *</label>
-            <input
-              type="text"
-              required
-              value={institution}
-              onChange={(e) => setInstitution(e.target.value)}
-            ></input>
-
-            <div className="btnContainer">
-              <button onClick={() => setRouter("home")} className="button_red">
-                ❌ Discard Profile
-              </button>
-              <button
-                onClick={() => {
-                  setRouter("home");
-                  editAdminProfile();
-                }}
-                className="buttongreen"
-              >
-                ✅ Save Changes
-              </button>
-            </div> */}
              <Form>
               <Form.Row >
               <div class = "col-md-6">
