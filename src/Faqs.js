@@ -15,10 +15,7 @@ const AdminFAQs = (props) => {
   return (
     <body>
       <section className="navbar">
-      <nav className="navbarContainer">
-          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
-          <h2 className="titletext">FREQUENTLY ASKED QUESTIONS</h2>
-        </nav>
+     
         <section>
           <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
@@ -61,6 +58,11 @@ const AdminFAQs = (props) => {
             <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
             <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
           </navbar>
+
+          <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">FREQUENTLY ASKED QUESTIONS</h2>
+        </nav>
         </section>
       </section>
     </body>

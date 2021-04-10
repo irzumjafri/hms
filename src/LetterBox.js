@@ -1,5 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
+import logo from "./HMSlogo.png";
+import {Button, Form} from 'react-bootstrap';
 
 const LetterBox = (props) => {
   const {
@@ -16,25 +18,9 @@ const LetterBox = (props) => {
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handleLogout}>Logout</button>
-        </nav>
-        <section>
-          <h2>LETTER BOX</h2>
-          <button
-            onClick={() =>
-              applicationStatus
-                ? setRouter("registered")
-                : setRouter("unregistered")
-            }
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
-        </section>
+       <section className="navbar">
+     
+
         <section className="letterBox">
           <div className="letterBoxContainer">
             <nav>
@@ -50,18 +36,30 @@ const LetterBox = (props) => {
                 <div>
                   <h2>SENDING LETTERS</h2>
                   <div>
-                    <label>To *</label>
-                    <button>DropDown Select a child</button>
-                  </div>
-                  <div>
-                    <label>Letter *</label>
-                    <input
-                      className="input-left"
-                      type="text"
-                      required
-                      onChange={(e) => setLetterBody(e.target.value)}
-                    ></input>
-                  </div>
+
+              <Form>
+              <div class = "col-md-5">
+                
+            <Form.Label className= "label-left">To *</Form.Label>
+            <Form.Control
+              type="text"
+              autoFocus
+              required
+            ></Form.Control>
+            </div >
+
+            <div class = "col-md-12">
+                
+            <Form.Label className= "label-left">Letter *</Form.Label>
+            <Form.Control
+            className="input-left"
+            type="text"
+            required
+            onChange={(e) => setLetterBody(e.target.value)}
+            ></Form.Control>
+            </div >
+            </Form>
+              </div>
                 </div>
               ) : (
                 <div>
@@ -69,14 +67,22 @@ const LetterBox = (props) => {
                   {recievedLetters.map((con, i) => {
                     return (
                       <div className="letterContainer">
-                        <div>
-                          <label>From</label>
-                          <textbox>{recievedLetters[i].from}</textbox>
-                        </div>
-                        <div>
-                          <label>Letter</label>
-                          <textbox>{recievedLetters[i].message}</textbox>
-                        </div>
+                         <Form>
+                        <div class = "col-md-6">
+                          
+                      <Form.Label className= "label-left">From</Form.Label>
+                      <Form.Control as = "text-area"
+                        value={recievedLetters[i].from}
+                      ></Form.Control>
+                      </div >
+                      <div class = "col-md-6">
+                      <Form.Label className= "label-left">Letter</Form.Label>
+                      <Form.Control as = "text-area"
+                        value={recievedLetters[i].message}
+                      ></Form.Control>
+                      </div >
+
+                      </Form>
                       </div>
                     );
                   })}
@@ -84,9 +90,27 @@ const LetterBox = (props) => {
               )}
             </>
           </div>
+          </section>
+          <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/>   
+
+          <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">LETTER BOX</h2>
+        </nav> 
+
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+        
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
       </section>
     </body>
   );

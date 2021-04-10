@@ -15,12 +15,9 @@ const PaymentHistory = (props) => {
   return (
     <body>
        <section className="navbar">
-      <nav className="navbarContainer">
-          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
-          <h2 className="titletext">PAYMENT HISTORY</h2>
-        </nav>
+     
         <section>
-          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
+
         </section>
 
 
@@ -62,6 +59,10 @@ const PaymentHistory = (props) => {
           <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
           <SearchField placeholder ="search..."
           classNames="search"/> 
+           <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">PAYMENT HISTORY</h2>
+        </nav>
           
         </nav>
         <section className="bottombar">
