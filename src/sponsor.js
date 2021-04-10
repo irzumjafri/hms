@@ -18,6 +18,10 @@ import ChildrenProfiles from "./ChildrenProfiles";
 import LetterBox from "./LetterBox";
 import RequestAMeeting from "./RequestAMeeting";
 import AcademicReportsSponsor from "./AcademicReportsSponsor";
+//-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
@@ -61,13 +65,9 @@ const Sponsor = () => {
   const [letterBody, setLetterBody] = useState("");
   const [selectedChild, setSelectedChild] = useState("");
   const [writeOrReceive, setWriteOrReceive] = useState(true);
-  const [recievedLetters, setRecievedLetters] = useState([
-    { from: "irtasam", message: "Ki haal chaal ai?" },
-    { from: "irtasam", message: "paisay bhijwao, creately lena hai" },
-    { from: "irtasam", message: "credit card bhi donate kardo" },
-  ]);
+  const [recievedLetters, setRecievedLetters] = useState([]);
+    //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
-  //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
   const createSponsorshipRequest = () => {
