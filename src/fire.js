@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 var firebaseConfig = {
   apiKey: "AIzaSyBQw13bxxgXGvAhlxMxfQiSGNAIvuHxQNw",
@@ -8,10 +8,9 @@ var firebaseConfig = {
   messagingSenderId: "98674088411",
   appId: "1:98674088411:web:98a0c0cee83340deeceffe",
   measurementId: "G-GSKESMESSH"
-  };
+};
+// Initialize Firebase
+const fire = firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
-  const fire = firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-
-  export default fire;
-  
+export default fire;
