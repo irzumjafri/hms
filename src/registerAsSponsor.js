@@ -133,7 +133,7 @@ const RegisterAsSponsor = (props) => {
             ></input>
 
             <div className="btnContainer">
-              <button onClick={() => createSponsorshipRequest()} className="button_green">
+              <button onClick={() => {createSponsorshipRequest();applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}} className="button_green">
                 Register Me!
               </button>
             </div>
