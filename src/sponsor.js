@@ -284,6 +284,8 @@ const Sponsor = () => {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshot
+
+
         console.log(doc.id, " => ", doc.data());
       });
     })
@@ -298,9 +300,9 @@ const Sponsor = () => {
       .doc(user.uid)
       .set({
         sponsorId : user.uid,
-        sponsorName : sponsorName,
-        childName : childName,
-        message : message,
+        //sponsorName : sponsorName,
+        //childName : childName,
+        //message : message,
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
       });
     };
