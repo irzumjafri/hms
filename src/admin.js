@@ -498,7 +498,7 @@ const Admin = () => {
         numberOfSponsoredChildren: i.numberOfSponsoredChildren,
         paymentMethod: i.paymentMethod,
         paymentSchedule: i.paymentSchedule,
-        applicationStatus: i.appStatus,
+        applicationStatus: i.applicationStatus,
         howToAssignChildren: i.howToAssignChildren,
         id: i.id,
       })
