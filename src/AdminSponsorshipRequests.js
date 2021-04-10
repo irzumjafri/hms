@@ -12,6 +12,8 @@ const SponsorshipRequests = (props) => {
     acceptSponsorshipRequest,
   } = props;
 
+  console.log(sponsorshipApplicationData)
+
   return (
     <body>
        <section className="navbar">
@@ -121,7 +123,7 @@ const SponsorshipRequests = (props) => {
             <Form.Control
               type="text"
               required
-              value={sponsorshipApplicationData[i].numberofSponsoredChildren}
+              value={sponsorshipApplicationData[i].numberOfSponsoredChildren}
             >
             </Form.Control>
             </div>
@@ -139,17 +141,6 @@ const SponsorshipRequests = (props) => {
 
             </Form.Row>
 
-            <Form.Row> 
-              <div class = "col-md-6">
-            <Form.Label className= "label-left">Status</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              value={sponsorshipApplicationData[i].status}
-            >
-            </Form.Control>
-            </div>
-            </Form.Row>
             
             <div class = "row">
               <div class = "col-md-6" >

@@ -165,7 +165,7 @@ const Admin = () => {
     console.log(email);
 
     db.collection("adminProfiles")
-      .where("emailAddress", "==", email)
+      .where("email", "==", email)
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
@@ -179,7 +179,7 @@ const Admin = () => {
             setAddress(doc.data().address);
             setCnic(doc.data().cnic);
             setDateOfBirth(doc.data().dateOfBirth);
-            setEmail(doc.data().emailAddress);
+            setEmail(doc.data().email);
             setId(doc.data().id);
             setPhoneNumber(doc.data().phoneNumber);
             setInstitution(doc.data().institution);
@@ -192,7 +192,7 @@ const Admin = () => {
   const editAdminProfile = () => {
     let idofDoc = 0;
     db.collection("adminProfiles")
-      .where("emailAddress", "==", email)
+      .where("email", "==", email)
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
@@ -210,7 +210,7 @@ const Admin = () => {
           .update({
             firstName: firstName,
             lastName: lastName,
-            emailAddress: email,
+            email: email,
             dateOfBirth: dateOfBirth,
             cnic: cnic,
             phoneNumber: phoneNumber,
@@ -243,7 +243,7 @@ const Admin = () => {
             tempApplications.push({
               firstName: doc.data().firstName,
               lastName: doc.data().lastName,
-              emailAddress: doc.data().emailAddress,
+              email: doc.data().email,
               dateOfBirth: doc.data().dateOfBirth,
               cnic: doc.data().cnic,
               phoneNumber: doc.data().phoneNumber,
@@ -296,7 +296,7 @@ const Admin = () => {
             if (doc.data().id === i && doc.data().toDisplay === "true") {
               first = doc.data().firstName;
               last = doc.data().lastName;
-              email = doc.data().emailAddress;
+              email = doc.data().email;
               dob = doc.data().dateOfBirth;
               nic = doc.data().cnic;
               phone = doc.data().phoneNumber;
@@ -322,7 +322,7 @@ const Admin = () => {
             db.collection("registeredSponsors").doc(identity).set({
               firstName: first,
               lastName: last,
-              emailAddress: email,
+              email: email,
               dateOfBirth: dob,
               cnic: nic,
               phoneNumber: phone,
@@ -406,7 +406,7 @@ const Admin = () => {
       .update({
         firstName: i.firstName,
         lastName: i.lastName,
-        emailAddress: i.email,
+        email: i.email,
         dateOfBirth: i.dateOfBirth,
         cnic: i.cnic,
         phoneNumber: i.phoneNumber,

@@ -75,7 +75,7 @@ const Sponsor = () => {
       .set({
         firstName: firstName,
         lastName: lastName,
-        emailAddress: email,
+        email: email,
         dateOfBirth: dateOfBirth,
         cnic: cnic,
         phoneNumber: phoneNumber,
@@ -97,7 +97,7 @@ const Sponsor = () => {
     let howTo = "";
 
     db.collection("registeredSponsors")
-      .where("emailAddress", "==", email)
+      .where("email", "==", email)
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
@@ -118,7 +118,7 @@ const Sponsor = () => {
           .update({
             firstName: firstName,
             lastName: lastName,
-            emailAddress: email,
+            email: email,
             dateOfBirth: dateOfBirth,
             cnic: cnic,
             phoneNumber: phoneNumber,
@@ -140,34 +140,9 @@ const Sponsor = () => {
       });
   };
 
-  const fetchLogin = (u) => {
-    var docRef = db.collection("userAccounts").doc(u);
-    console.log(u);
-    docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          console.log("Document data:", doc.data());
-          setFirstName(doc.data().firstName);
-          setLastName(doc.data().lastName);
-          setEmail(doc.data().emailAddress);
-          setDateOfBirth(doc.data().dateOfBirth);
-          setApplicationStatus(doc.data().applicationStatus);
-          applicationStatus
-            ? setRouter("registered")
-            : setRouter("unregistered");
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  };
-
-  const fetchSponsorData = () => {
+  const fetchSponsorData = (id) => {
     let refdoc = "";
-    refdoc = db.collection("registeredSponsors").doc(user.uid);
+    refdoc = db.collection("registeredSponsors").doc(id);
     refdoc
       .get()
       .then((doc) => {
@@ -175,7 +150,7 @@ const Sponsor = () => {
           console.log("Document data:", doc.data());
           setFirstName(doc.data().firstName);
           setLastName(doc.data().lastName);
-          setEmail(doc.data().emailAddress);
+          setEmail(doc.data().email);
           setDateOfBirth(doc.data().dateOfBirth);
           setCnic(doc.data().cnic);
           setPhoneNumber(doc.data().phoneNumber);
@@ -189,6 +164,34 @@ const Sponsor = () => {
           setApplicationStatus(doc.data().applicationStatus);
           setHowToAssignChildren(doc.data().howToAssignChildren);
           console.log(applicationStatus);
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  };
+
+  const fetchLogin = (id) => {
+    var docRef = db.collection("userAccounts").doc(id);
+    console.log(id);
+    docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          setFirstName(doc.data().firstName);
+          setLastName(doc.data().lastName);
+          setEmail(doc.data().email);
+          setDateOfBirth(doc.data().dateOfBirth);
+          setApplicationStatus(doc.data().applicationStatus);
+          if (applicationStatus) {
+            setRouter("registered");
+            fetchSponsorData(user.uid);
+          } else {
+            setRouter("unregistered");
+          }
         } else {
           console.log("No such document!");
         }
@@ -258,8 +261,6 @@ const Sponsor = () => {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshot
-
           console.log(doc.id, " => ", doc.data());
         });
       })
