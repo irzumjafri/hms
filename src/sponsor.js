@@ -277,10 +277,8 @@ const Sponsor = () => {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-
-          setAmount(doc.data().amount),
-          setPaymentDate(doc.data().paymentDate)
-
+          setAmount(doc.data().amount);
+          setPaymentDate(doc.data().paymentDate);
           console.log(doc.id, " => ", doc.data())
         });
       })
