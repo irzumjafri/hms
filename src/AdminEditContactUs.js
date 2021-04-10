@@ -31,12 +31,7 @@ const AdminEditContactUs = (props) => {
         </nav>
         <section>
           <h2>EDIT CONTACT US</h2>
-          <button
-          onClick={() => setRouter("home")}
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
+          <button onClick={() => setRouter("home")}> HOME PAGE </button>
         </section>
         <section className="adminEditContactUs">
           <div className="adminEditContactUsContainer">
@@ -123,8 +118,8 @@ const AdminEditContactUs = (props) => {
             </div>
           </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
+        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
       </section>
     </body>
   );

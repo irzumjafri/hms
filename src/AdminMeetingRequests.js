@@ -1,7 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
-import {Button, Form} from 'react-bootstrap';
+import { Button, Form } from "react-bootstrap";
 
 const AdminMeetingRequests = (props) => {
   const {
@@ -12,17 +12,15 @@ const AdminMeetingRequests = (props) => {
     amPm,
     backUpDatesAndTimes,
     purpose,
-    setRouter
+    setRouter,
   } = props;
 
   return (
     <body>
-    <section className="navbar">
-     
-       <section>
-       </section>
-       <section className="requestAMeeting">
-         <div className="requestAMeetingContainer">
+      <section className="navbar">
+        <section></section>
+        <section className="requestAMeeting">
+          <div className="requestAMeetingContainer">
             <label>Preferred Meeting Date (DD-MM-YYYY)</label>
             {/* Refer to sigma to make a drop down menu for selecting the request */}
             <textbox>{preferredMeetingDate}</textbox>
@@ -52,33 +50,39 @@ const AdminMeetingRequests = (props) => {
                 ✅ Acknowledge
               </button>
             </div>
-
-
           </div>
         </section>
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
-          < h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
-          <SearchField placeholder ="search..."
-          classNames="search"/>   
+          <h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}>
+            <span>Logout</span>
+          </p>
+          <SearchField placeholder="search..." classNames="search" />
 
           <nav className="navbarContainer">
-          <p className="smalltext"  onClick={() => setRouter("home")}><span>HOME PAGE</span></p>
-          <h2 className="titletext">MEETING REQUESTS</h2>
-        </nav>
-
+            <p className="smalltext" onClick={() => setRouter("home")}>
+              <span>HOME PAGE</span>
+            </p>
+            <h2 className="titletext">MEETING REQUESTS</h2>
+          </nav>
         </nav>
         <section className="bottombar">
           <navbar className="bottombarContainer">
-            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
-            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+            <p
+              className="smalltext"
+              onClick={() => setRouter("admincontactus")}
+            >
+              <span>Contact Us</span>
+            </p>
+            <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
+              <span>FAQs</span>
+            </p>
           </navbar>
         </section>
       </section>
     </body>
   );
 };
-
 
 export default AdminMeetingRequests;

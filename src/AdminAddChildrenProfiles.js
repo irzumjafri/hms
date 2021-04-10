@@ -196,8 +196,8 @@ const AdminAddChildrenProfiles = (props) => {
             </div>
           </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
+        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
       </section>
     </body>
   );

@@ -20,12 +20,7 @@ const AdminEditFAQs = (props) => {
         </nav>
         <section>
           <h2>Edit Frequently Asked Questions (FAQs)</h2>
-          <button
-          onClick={() => setRouter("home")}
-          >
-            {" "}
-            HOME PAGE{" "}
-          </button>
+          <button onClick={() => setRouter("home")}> HOME PAGE </button>
         </section>
         <section className="adminEditFaqs">
           {questions.map((con, i) => {
@@ -64,8 +59,8 @@ const AdminEditFAQs = (props) => {
             </button>
           </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
+        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
       </section>
     </body>
   );

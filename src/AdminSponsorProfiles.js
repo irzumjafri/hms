@@ -10,7 +10,7 @@ const AdminSponsorProfiles = (props) => {
     sponsorData,
     deleteSponsorProfile,
     setRouter,
-    calladmineditprofile
+    calladmineditprofile,
   } = props;
 
   return (
@@ -156,27 +156,22 @@ const AdminSponsorProfiles = (props) => {
                     </Form.Row>
 
                     <button
-                    onClick={() => (
-                      calladmineditprofile(sponsorData[i])
-                    )}
-                  >
-                    {" "}
-                    Edit this Profile
-                  </button>
-                  <button
-                    onClick={() => (
-                      deleteSponsorProfile(sponsorData[i].id)
-                    )}
-                  >
-                    {" "}
-                    Delete this Profile
-                  </button>
+                      onClick={() => calladmineditprofile(sponsorData[i])}
+                    >
+                      {" "}
+                      Edit this Profile
+                    </button>
+                    <button
+                      onClick={() => deleteSponsorProfile(sponsorData[i].id)}
+                    >
+                      {" "}
+                      Delete this Profile
+                    </button>
 
                     <div class="row">
                       <div class="col-md-6">
                         <div
-                          onClick={() => (calladmineditprofile(sponsorData[i])
-                          )}
+                          onClick={() => calladmineditprofile(sponsorData[i])}
                           class="Button"
                           className="button_blue"
                         >
@@ -198,8 +193,6 @@ const AdminSponsorProfiles = (props) => {
                       </div>
                     </div>
                   </Form>
-
-                  
                 </div>
               );
             })}
@@ -222,10 +215,13 @@ const AdminSponsorProfiles = (props) => {
         </nav>
         <section className="bottombar">
           <navbar className="bottombarContainer">
-            <p className="smalltext" onClick={() => setRouter("contactus")}>
+            <p
+              className="smalltext"
+              onClick={() => setRouter("admincontactus")}
+            >
               <span>Contact Us</span>
             </p>
-            <p className="smalltext" onClick={() => setRouter("faqs")}>
+            <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
               <span>FAQs</span>
             </p>
           </navbar>

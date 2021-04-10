@@ -137,22 +137,22 @@ const AdminAddSponsorProfile = (props) => {
 
             <div className="btnContainer">
               <button
-                onClick={() => {setRouter("home");addSponsorProfile()}}
+                onClick={() => {
+                  setRouter("home");
+                  addSponsorProfile();
+                }}
                 className="button_red"
               >
                 ❌ Discard Profile
               </button>
-              <button
-                onClick={() => setRouter("home")}
-                className="buttongreen"
-              >
+              <button onClick={() => setRouter("home")} className="buttongreen">
                 ✅ Create Profile
               </button>
             </div>
           </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
+        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
       </section>
     </body>
   );

@@ -22,8 +22,12 @@ const AdminEditSponsorProfile = (props) => {
   const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
     sponsorProfile.numberOfSponsoredChildren
   );
-  const [paymentMethod, setPaymentMethod] = useState(sponsorProfile.paymentMethod);
-  const [paymentSchedule, setPaymentSchedule] = useState(sponsorProfile.paymentSchedule);
+  const [paymentMethod, setPaymentMethod] = useState(
+    sponsorProfile.paymentMethod
+  );
+  const [paymentSchedule, setPaymentSchedule] = useState(
+    sponsorProfile.paymentSchedule
+  );
 
   return (
     <body>
@@ -59,35 +63,35 @@ const AdminEditSponsorProfile = (props) => {
               type="text"
               required
               value={email}
-              onChange={(e) => (setEmail(e.target.value))}
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
             <label>Date of Birth (DD-MM-YYYY) *</label>
             <input
               type="text"
               required
               value={dateOfBirth}
-              onChange={(e) => (setDateOfBirth(e.target.value))}
+              onChange={(e) => setDateOfBirth(e.target.value)}
             ></input>
             <label>CNIC </label>
             <input
               type="text"
               required
               value={cnic}
-              onChange={(e) => (setCnic(e.target.value))}
+              onChange={(e) => setCnic(e.target.value)}
             ></input>
             <label>Phone Number *</label>
             <input
               type="text"
               required
               value={phoneNumber}
-              onChange={(e) => (setPhoneNumber(e.target.value))}
+              onChange={(e) => setPhoneNumber(e.target.value)}
             ></input>
             <label>Address *</label>
             <input
               type="text"
               required
               value={address}
-              onChange={(e) => (setAddress(e.target.value))}
+              onChange={(e) => setAddress(e.target.value)}
             ></input>
             <label>Preferred Medium of Communication *</label>
             <input
@@ -95,7 +99,7 @@ const AdminEditSponsorProfile = (props) => {
               required
               value={preferredMediumOfCommunication}
               onChange={(e) =>
-                (setPreferredMediumOfCommunication(e.target.value))
+                setPreferredMediumOfCommunication(e.target.value)
               } // make it into drop down menu
             ></input>
             <label>Number of Sponsored Children *</label>
@@ -103,21 +107,21 @@ const AdminEditSponsorProfile = (props) => {
               type="text"
               required
               value={numberOfSponsoredChildren}
-              onChange={(e) => (setNumberOfSponsoredChildren(e.target.value))}
+              onChange={(e) => setNumberOfSponsoredChildren(e.target.value)}
             ></input>
             <label>Payment Method *</label>
             <input
               type="text"
               required
               value={paymentMethod}
-              onChange={(e) => (setPaymentMethod(e.target.value))} // make it into drop down menu
+              onChange={(e) => setPaymentMethod(e.target.value)} // make it into drop down menu
             ></input>
             <label>Payment Schedule *</label>
             <input
               type="text"
               required
               value={paymentSchedule}
-              onChange={(e) => (setPaymentSchedule(e.target.value))} // make it into drop down menu
+              onChange={(e) => setPaymentSchedule(e.target.value)} // make it into drop down menu
             ></input>
 
             <div className="btnContainer">
@@ -156,8 +160,8 @@ const AdminEditSponsorProfile = (props) => {
             </div>
           </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
+        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
       </section>
     </body>
   );

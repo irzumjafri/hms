@@ -24,7 +24,7 @@ const AdminAcademicReports = (props) => {
     setPercentage,
     grade,
     setGrade,
-    setRouter
+    setRouter,
   } = props;
 
   return (
@@ -170,8 +170,8 @@ const AdminAcademicReports = (props) => {
             </div>
           </div>
         </section>
-        <button /*make on click function*/>Contact Us</button>
-        <button /*make on click function*/>FAQs</button>
+        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
+        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
       </section>
     </body>
   );
