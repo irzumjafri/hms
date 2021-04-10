@@ -259,11 +259,14 @@ const Admin = () => {
       });
   };
 
-  var fName = "Ali"
-  var lNname = "ahmed"
-
 
   //admin saving payment history for each sponsor
+    // where does admin enters the name of sponsor for whom he wants to save his payment history
+  //var fName = window.prompt("Sponsor First Name: ")
+  //var lNname = window.prompt("Sponsor Last Name: ")
+    // var fName = "Ali"
+  // var lNname = "ahmed"
+
   // const addingPaymentHistory = () => {
   //   let sponsorDocId = ""
   //   db.collection("registeredSponsors")
