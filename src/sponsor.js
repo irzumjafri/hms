@@ -20,7 +20,6 @@ import RequestAMeeting from "./RequestAMeeting";
 import AcademicReportsSponsor from "./AcademicReportsSponsor";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
-
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
@@ -67,17 +66,14 @@ const Sponsor = () => {
   const [writeOrReceive, setWriteOrReceive] = useState(true);
   const [recievedLetters, setRecievedLetters] = useState([]);
 
-  const [preferredMeetingDate,setPreferredMeetingDate] = useState("")
-  const [hour, setHour] = useState("")
-  const [minutes, setMinutes] = useState("")
-  const [amPm, setAmPm] = useState("")
-  const [backUpDatesAndTimes, setBackUpDatesAndTimes] = useState("")
-  const [purpose, setPurpose] = useState("")
+  const [preferredMeetingDate, setPreferredMeetingDate] = useState("");
+  const [hour, setHour] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [amPm, setAmPm] = useState("");
+  const [backUpDatesAndTimes, setBackUpDatesAndTimes] = useState("");
+  const [purpose, setPurpose] = useState("");
 
-
-
-    //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
-
+  //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
   const createSponsorshipRequest = () => {
@@ -153,7 +149,7 @@ const Sponsor = () => {
 
   const fetchSponsorData = (id) => {
     let refdoc = "";
-    console.log("fetching sponsor data")
+    console.log("fetching sponsor data");
     refdoc = db.collection("registeredSponsors").doc(id);
     refdoc
       .get()
@@ -192,13 +188,13 @@ const Sponsor = () => {
   const fetchLogin = (id) => {
     var docRef = db.collection("userAccounts").doc(id);
     console.log(id);
-    console.log('fetching login data')
+    console.log("fetching login data");
     docRef
       .get()
       .then((doc) => {
         if (doc.exists) {
           console.log("Document data:", doc.data());
-          console.log('call fetch')
+          console.log("call fetch");
           setFirstName(doc.data().firstName);
           setLastName(doc.data().lastName);
           setEmail(doc.data().email);
@@ -206,7 +202,6 @@ const Sponsor = () => {
           setApplicationStatus(doc.data().applicationStatus);
           if (applicationStatus) {
             setRouter("registered");
-            
           } else {
             setRouter("unregistered");
           }
@@ -273,16 +268,15 @@ const Sponsor = () => {
   //     });
   //   }
 
-
   const meetingrequest = () => {
     db.collection("Meeting").doc(user.id).set({
-      meetingdata : preferredMeetingDate,
-      hour : hour,
-      min : minutes,
-      ampm : amPm,
-      backupdate : backUpDatesAndTimes,
-      purpose : purpose,
-      id : user.uid
+      meetingdata: preferredMeetingDate,
+      hour: hour,
+      min: minutes,
+      ampm: amPm,
+      backupdate: backUpDatesAndTimes,
+      purpose: purpose,
+      id: user.uid,
     });
   };
 
@@ -294,8 +288,6 @@ const Sponsor = () => {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           console.log(doc.id, " => ", doc.data());
-          
-
         });
       })
       .catch((error) => {
@@ -331,7 +323,6 @@ const Sponsor = () => {
   //       console.log("Error getting documents: ", error);
   //     });
   //   }
-
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
   const createUserAccount = (id) => {
@@ -523,17 +514,17 @@ const Sponsor = () => {
                   handleLogout={handleLogout}
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
-                  setPreferredMeetingDate = {setPreferredMeetingDate}
-                  hour = {hour}
-                  setHour = {setHour}
-                  minutes = {minutes}
-                  setMinutes = {setMinutes}
-                  amPm = {amPm}
-                  setAmPm = {setAmPm}
-                  backUpDatesAndTimes = {backUpDatesAndTimes}
-                  setBackUpDatesAndTimes = {setBackUpDatesAndTimes}
-                  purpose = {purpose}
-                  setPurpose = {setPurpose}
+                  setPreferredMeetingDate={setPreferredMeetingDate}
+                  hour={hour}
+                  setHour={setHour}
+                  minutes={minutes}
+                  setMinutes={setMinutes}
+                  amPm={amPm}
+                  setAmPm={setAmPm}
+                  backUpDatesAndTimes={backUpDatesAndTimes}
+                  setBackUpDatesAndTimes={setBackUpDatesAndTimes}
+                  purpose={purpose}
+                  setPurpose={setPurpose}
                 />
               ),
               academicreports: (

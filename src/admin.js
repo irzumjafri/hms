@@ -165,14 +165,11 @@ const Admin = () => {
 
   // this function reads and sets all of the logged in admin's data for their profile
   const fetchAdminProfile = () => {
-    // console.log(email);
-
     db.collection("adminProfiles")
       .where("email", "==", email)
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
-          // console.log("Email not associated with this account");
           return;
         } else {
           // set all the fields
@@ -271,7 +268,6 @@ const Admin = () => {
   // this function allows admin users to accept the application with id = i and sets HowToAssign children according to
   // the popup. It will either be "Auto-assign" or "Assign Manually"
   const acceptSponsorshipRequest = (i, howTo) => {
-    console.log("in accept"); ////////////////////////////////////
     let first = "";
     let last = "";
     let email = "";
@@ -401,8 +397,53 @@ const Admin = () => {
       });
   };
 
-  // On sponsor profile page, this function allows admin to add another sponsor from sponsor side
-  const addSponsorProfile = (i) => {};
+  // On sponsor profile page, this function allows admin to add a sponsor profile (Registered one)
+  const addSponsorProfile = (
+    fn,
+    ln,
+    e,
+    doob,
+    c,
+    pn,
+    a,
+    pmcc,
+    nocc,
+    pmm,
+    pss,
+    appS,
+    hta
+  ) => {
+    db.collection("registeredSponsors")
+      .add({
+        firstName: fn,
+        lastName: ln,
+        email: e,
+        dateOfBirth: doob,
+        cnic: c,
+        phoneNumber: pn,
+        address: a,
+        preferredMediumOfCommunication: pmcc,
+        numberOfSponsoredChildren: nocc,
+        paymentMethod: pmm,
+        paymentSchedule: pss,
+        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+        applicationStatus: appS,
+        howToAssignChildren: "auto", // hardcoding right now to "auto"
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("registeredSponsors").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+            fetchSponsorshipApplications();
+            fetchSponsorData();
+          });
+      });
+  };
 
   const calladmineditprofile = (spon) => {
     console.log(spon);
@@ -425,6 +466,7 @@ const Admin = () => {
 
     setRouter("admineditsponsorprofile");
   };
+
   const editSponsorProfile = (i, howTo, appStatus) => {
     let profileToEdit = db.collection("registeredSponsors").doc(i.id);
     return profileToEdit
@@ -465,6 +507,51 @@ const Admin = () => {
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
+      });
+  };
+
+  // This function allows admin users to add a child profile
+  const addChildProfile = (
+    n,
+    dob,
+    g,
+    ca,
+    G,
+    ci,
+    g1n,
+    g1r,
+    g1o,
+    g1c,
+    g2n,
+    g2r,
+    fb
+  ) => {
+    db.collection("childrenProfiles")
+      .add({
+        name: n,
+        dateOfBirth: dob,
+        gender: g,
+        currentAddress: ca,
+        grade: G,
+        contactInformation: ci,
+        guardian1Name: g1n,
+        guardian1Relation: g1r,
+        guardian1Occupation: g1o,
+        guardian1Cnic: g1c,
+        guardian2Name: g2n,
+        guardian2Relation: g2r,
+        familyBackground: fb,
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("childrenProfiles").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+          });
       });
   };
 
