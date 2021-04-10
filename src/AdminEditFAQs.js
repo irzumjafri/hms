@@ -41,10 +41,6 @@ const AdminEditFAQs = (props) => {
             ></Form.Control>
 
             </div>
-            
-            </Form>
-            );
-          })}
 
             <div class="row">
                 <div class="col-md-6">
@@ -67,6 +63,12 @@ const AdminEditFAQs = (props) => {
                 </div>
               </div>
 
+            
+            </Form>
+            );
+          })}
+
+            
           </div>
           </section>
           <nav className="navbarContainer_gray">
