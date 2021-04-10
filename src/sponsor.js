@@ -270,6 +270,10 @@ const Sponsor = () => {
 
   const meetingrequest = () => {
     db.collection("Meeting").doc(user.id).set({
+      email:email,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber:phoneNumber,
       meetingdata: preferredMeetingDate,
       hour: hour,
       min: minutes,
