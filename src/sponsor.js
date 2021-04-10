@@ -141,8 +141,8 @@ const Sponsor = () => {
   };
 
   const fetchLogin = (u) => {
-    var docRef = db.collection("userAccounts").doc(u.uid);
-    console.log(u.uid);
+    var docRef = db.collection("userAccounts").doc(u);
+    console.log(u);
     docRef
       .get()
       .then((doc) => {
@@ -155,7 +155,6 @@ const Sponsor = () => {
           setApplicationStatus(doc.data().applicationStatus);
           console.log(applicationStatus);
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       })
@@ -313,15 +312,14 @@ const Sponsor = () => {
   //   }
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
-  const createUserAccount = () => {
+  const createUserAccount = (id) => {
     db.collection("userAccounts")
-      .doc(user.uid.toString)
+      .doc(id.toString())
       .set({
         firstName: firstName,
         lastName: lastName,
         dateOfBirth: dateOfBirth,
         email: email,
-        id: user.uid.toString,
         password: confirmPassword,
         applicationStatus: "",
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
@@ -331,8 +329,14 @@ const Sponsor = () => {
   const handleSignUp = () => {
     clearErrors();
     if (signupErrorCheck()) {
-      fire.auth().createUserWithEmailAndPassword(email, password);
-      createUserAccount();
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    setUser(userCredential.user)
+    createUserAccount(userCredential.user.uid)
+  })
+  .catch((error) => {
+    setErrorMessage(error.message);
+  });
     }
   };
 
@@ -346,7 +350,7 @@ const Sponsor = () => {
       if (user) {
         clearInputs();
         setUser(user);
-        fetchLogin(user);
+        fetchLogin(user.uid);
       }
     });
   };
