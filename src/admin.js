@@ -16,6 +16,7 @@ import AdminContactUs from "./AdminContactUs";
 import AdminFAQs from "./AdminFaqs";
 import AdminSponsorshipRequests from "./AdminSponsorshipRequests";
 import AdminLogin from "./AdminLogin";
+import AdminEditSponsorProfile from './AdminEditSponsorProfile'
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -28,6 +29,7 @@ const Admin = () => {
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
   const [loggedIn, setLoggedIn] = useState(true);
   const [id, setId] = useState("");
+  const [i, setI] = useState('');
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -46,11 +48,7 @@ const Admin = () => {
   const [sponsorshipApplicationData, setSponsorshipApplicationData] = useState(
     []
   );
-  const [sponsorData, setSponsorData] = useState([
-    {firstName: "Maha", 
-    lastName : "Sajid"}
-
-  ]);
+  const [sponsorData, setSponsorData] = useState([]);
   const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
     ""
   );
@@ -526,6 +524,15 @@ const Admin = () => {
                   setRouter={setRouter}
                   deleteSponsorProfile={deleteSponsorProfile}
                   editSponsorProfile={editSponsorProfile}
+                  setI = {setI}
+                />
+              ),
+              admineditsponsorprofile: (
+                <AdminEditSponsorProfile
+                  sponsorProfile={sponsorData[i]}
+                  setRouter={setRouter}
+                  editSponsorProfile={editSponsorProfile}
+                  handlelogout={handleAdminLogout}
                 />
               ),
               paymenthistory: (

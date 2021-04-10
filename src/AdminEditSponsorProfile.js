@@ -1,8 +1,8 @@
 import React from "react";
-import SearchField from "react-search-field";
+import SearchField from "react-search-field"; 
 
 const AdminEditSponsorProfile = (props) => {
-  const { sponsorProfile, setRouter, editSponsorProfile, handlelogout, fetchSponsorData } = props;
+  const { sponsorProfile, setRouter, editSponsorProfile, handlelogout } = props;
 
   var firstName=sponsorProfile.firstName;
   var lastName=sponsorProfile.lastName; 

@@ -18,6 +18,7 @@ import ChildrenProfiles from "./ChildrenProfiles";
 import LetterBox from "./LetterBox";
 import RequestAMeeting from "./RequestAMeeting";
 import AcademicReportsSponsor from "./AcademicReportsSponsor";
+
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -142,6 +143,7 @@ const Sponsor = () => {
 
   const fetchSponsorData = (id) => {
     let refdoc = "";
+    console.log("fetching sponsor data")
     refdoc = db.collection("registeredSponsors").doc(id);
     refdoc
       .get()
@@ -162,8 +164,12 @@ const Sponsor = () => {
           setPaymentMethod(doc.data().paymentMethod);
           setPaymentSchedule(doc.data().paymentSchedule);
           setApplicationStatus(doc.data().applicationStatus);
+          if (doc.data().applicationStatus) {
+            setRouter("registered");
+          } else {
+            setRouter("unregistered");
+          }
           setHowToAssignChildren(doc.data().howToAssignChildren);
-          console.log(applicationStatus);
         } else {
           console.log("No such document!");
         }
@@ -176,11 +182,13 @@ const Sponsor = () => {
   const fetchLogin = (id) => {
     var docRef = db.collection("userAccounts").doc(id);
     console.log(id);
+    console.log('fetching login data')
     docRef
       .get()
       .then((doc) => {
         if (doc.exists) {
           console.log("Document data:", doc.data());
+          console.log('call fetch')
           setFirstName(doc.data().firstName);
           setLastName(doc.data().lastName);
           setEmail(doc.data().email);
@@ -188,10 +196,11 @@ const Sponsor = () => {
           setApplicationStatus(doc.data().applicationStatus);
           if (applicationStatus) {
             setRouter("registered");
-            fetchSponsorData(user.uid);
+            
           } else {
             setRouter("unregistered");
           }
+          fetchSponsorData(id);
         } else {
           console.log("No such document!");
         }
