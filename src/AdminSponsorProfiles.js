@@ -17,17 +17,26 @@ const AdminSponsorProfiles = (props) => {
     <body>
       <section className="navbar">
 
-        <section>
-          <p className="label-leftt"> Add Filter </p>
-          <textbox>Total Active Sponsors: {sponsorData.length}</textbox>
-          <button className="buttongreen" onClick={() => setRouter('home')}> Add New Sponsor </button>
-          {/* fix this */}
-        </section>
+      
 
         <section className="editMyProfileSponsor">
 
 
           <div className="editMyProfileSponsorContainer">
+          <div class = "row">
+          <div class = "col-md-6" >
+                <textbox className="label-left"> Add Filter</textbox>    
+                {/* convert to dropdown */}
+          </div>
+          <div class = "col-md-6" >
+                <textbox className="label-left">Total Active Sponsors: {sponsorData.length}</textbox>       
+            </div>
+              <div class = "col-md-12" >
+                <div onClick={() => setRouter('home')} class = "Button" className="button_green"> Add New Sponsors</div>
+              </div>
+            </div>
+         
+
             {sponsorData.map((con, i) => {
               return (
 
@@ -38,7 +47,6 @@ const AdminSponsorProfiles = (props) => {
                         <Form.Label className="label-left">First Name</Form.Label>
                         <Form.Control
                           type="text"
-                          autoFocus
                           required
                           value={sponsorData[i].firstName}
                         ></Form.Control>
@@ -159,36 +167,41 @@ const AdminSponsorProfiles = (props) => {
                         </Form.Control>
                       </div>
                     </Form.Row>
-                  </Form>
 
-                  <div className="btnContainer">
-                    <button
-                      onClick={() => deleteSponsorProfile(sponsorData[i].id)}
-                      className="button_red"
-                    >
-                      ❌ Delete this Profile
-                    </button>
-                  </div>
-                  <div className="btnContainer">
-                    <button
-                      onClick={() => (
+                    <div class = "row">
+              <div class = "col-md-6" >
+                <div  onClick={() => (
                         <AdminEditSponsorProfile
                           sponsorProfile={sponsorData[i]}
                           setRouter={setRouter}
                           editSponsorProfile={editSponsorProfile}
                           handlelogout={handlelogout}
-                        />
-                      )}
-                      className="buttonblue"
-                    >
-                      Edit this Profile
-                    </button>
-                  </div>
+                        />   )} class = "Button" className="button_blue"> Edit this Profile</div>
+                        
+              </div>
+              <div class = "col-md-6" >
+                <div onClick={() => deleteSponsorProfile(sponsorData[i].id)} class = "Button" className="button_redd"> Delete this Profile</div>
+              </div>
+            </div>
+
+
+                  </Form>
+
+                  
+
                 </div>
 
               );
             })}
+
+
+
           </div>
+         
+
+
+
+
         </section>
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
