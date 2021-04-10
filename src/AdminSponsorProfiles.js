@@ -155,19 +155,6 @@ const AdminSponsorProfiles = (props) => {
                       </div>
                     </Form.Row>
 
-                    <button
-                      onClick={() => calladmineditprofile(sponsorData[i])}
-                    >
-                      {" "}
-                      Edit this Profile
-                    </button>
-                    <button
-                      onClick={() => deleteSponsorProfile(sponsorData[i].id)}
-                    >
-                      {" "}
-                      Delete this Profile
-                    </button>
-
                     <div class="row">
                       <div class="col-md-6">
                         <div

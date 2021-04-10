@@ -17,7 +17,6 @@ const AdminFAQs = (props) => {
       <section className="navbar">
      
         <section>
-          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
 
         

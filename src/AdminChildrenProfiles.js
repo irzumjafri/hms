@@ -35,7 +35,7 @@ const AdminChildrenProfiles = (props) => {
                   className="button_green"
                 >
                   {" "}
-                  Add New Sponsors
+                  Add New Children
                 </div>
               </div>
             </div>
