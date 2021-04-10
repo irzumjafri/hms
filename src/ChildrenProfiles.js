@@ -22,9 +22,11 @@ const ChildrenProfiles = (props) => {
         </section>
 
         <section className="childrenProfiles">
+        <div className="childrenProfilesContainer">
         {childData.map((con, i) => {
+          
           return (
-            <div className="childrenProfilesContainer">
+         
               <Form>
               <Form.Row >
               <div class = "col-md-6">
@@ -171,10 +173,13 @@ const ChildrenProfiles = (props) => {
                 </button>
               </div>
             </Form>
-          </div>
+          
           
           );
+         
         })}
+        </div>
+        
           
         </section>
         <nav className="navbarContainer_gray">

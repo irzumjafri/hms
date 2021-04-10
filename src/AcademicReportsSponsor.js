@@ -1,6 +1,8 @@
 import React from "react";
 import SearchField from "react-search-field";
 import Select from 'react-select';
+import logo from "./HMSlogo.png";
+import {Button, Form} from 'react-bootstrap';
 
 const AcademicReportsSponsor = (props) => {
   const {
@@ -22,67 +24,144 @@ const AcademicReportsSponsor = (props) => {
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handleLogout}>Logout</button>
+     <section className="navbar">
+      <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <h2 className="titletext">ACADEMIC REPORTS</h2>
         </nav>
         <section>
-          <h2>ACADEMIC REPORTS</h2>
-          <button onClick={() =>
-              applicationStatus
-                ? setRouter("registered")
-                : setRouter("unregistered")
-            }> HOME PAGE </button>
+          <button onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}> HOME PAGE </button>
         </section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
+          <Form>
+              <Form.Row >
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Child</Form.Label>
+            {/* <Form.Select options={child}/> */}
+            <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={child}
+            ></Form.Control>
+            </div >
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Report Type</Form.Label>
+            {/* <Form.Select options={reportType}/> */}
+            <Form.Control
+              type="text"
+              required
+              value={reportType}
+            ></Form.Control>
+              </div>
+              </Form.Row>
+
+
+
+              <Form.Row >
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Subject 1</Form.Label>
+            {/* <Form.Select options={marks1}/> */}
+            <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={marks1}
+            ></Form.Control>
+            </div >
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Subject 2</Form.Label>
+            {/* <Form.Select options={marks2}/> */}
+            <Form.Control
+              type="text"
+              required
+              value={marks2}
+            ></Form.Control>
+              </div>
+              </Form.Row>
+
+              <Form.Row >
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Subject 3</Form.Label>
+            {/* <Form.Select options={marks3}/> */}
+            <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={marks3}
+            ></Form.Control>
+            </div >
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Subject 4</Form.Label>
+            {/* <Form.Select options={marks4}/> */}
+            <Form.Control
+              type="text"
+              required
+              value={marks4}
+            ></Form.Control>
+              </div>
+              </Form.Row>
+
+
+              <Form.Row >
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Subject 5</Form.Label>
+            {/* <Form.Select options={marks5}/> */}
+            <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={marks5}
+            ></Form.Control>
+            </div >
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Subject 6</Form.Label>
+            {/* <Form.Select options={marks6}/> */}
+            <Form.Control
+              type="text"
+              required
+              value={marks6}
+            ></Form.Control>
+              </div>
+              </Form.Row>
+
+              <Form.Row >
+              <div class = "col-md-6">
+            <Form.Label className= "label-left">Total Marks</Form.Label>
+            {/* <Form.Select options={totalMarks}/> */}
+            <Form.Control
+              type="text"
+              autoFocus
+              required
+              value={marks5}
+            ></Form.Control>
+            </div >
+            <div class = "col-md-6">
+            <Form.Label className= "label-right">Percentage</Form.Label>
+            {/* <Form.Select options={percentage}/> */}
+            <Form.Control
+              type="text"
+              required
+              value={marks6}
+            ></Form.Control>
+              </div>
+              </Form.Row>
+
+              <Form.Row>
+              <div class = "col-md-6">
+            <Form.Label className= "label-right">Grade</Form.Label>
+            {/* <Form.Select options={grade}/> */}
+            <Form.Control
+              type="text"
+              required
+              value={grade}
+            ></Form.Control>
+              </div>
+              </Form.Row>
+
+              </Form>
             <div>
-              <section>
-                <label>Child</label>
-                <Select options={child}/>
-              </section>
-              <section>
-                <label>Report Type</label>
-                <textbox /*Make drop down menu */>{reportType}</textbox>
-              </section>
-              <section>
-                <label>Subject 1</label>
-                <textbox>{marks1}</textbox>
-              </section>
-              <section>
-                <label>Subject 2</label>
-                <textbox>{marks2}</textbox>
-              </section>
-              <section>
-                <label>Subject 3</label>
-                <textbox>{marks3}</textbox>
-              </section>
-              <section>
-                <label>Subject 4</label>
-                <textbox>{marks4}</textbox>
-              </section>
-              <section>
-                <label>Subject 5</label>
-                <textbox>{marks5}</textbox>
-              </section>
-              <section>
-                <label>Subject 6</label>
-                <textbox>{marks6}</textbox>
-              </section>
-              <section>
-                <label>Total Marks</label>
-                <textbox>{totalMarks}</textbox>
-              </section>
-              <section>
-                <label>Percentage</label>
-                <textbox>{percentage}</textbox>
-              </section>
-              <section>
-                <label>Grade</label>
-                <textbox>{grade}</textbox>
-              </section>
 
               <div className="btnContainer">
                 <button
@@ -95,8 +174,20 @@ const AcademicReportsSponsor = (props) => {
             </div>
           </div>
         </section>
-        <button onClick={() => setRouter("contactus")}>Contact Us</button>
-        <button onClick={() => setRouter("faqs")}>FAQs</button>
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          < h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <SearchField placeholder ="search..."
+          classNames="search"/> 
+          
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
+            <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
+          </navbar>
+        </section>
       </section>
     </body>
   );

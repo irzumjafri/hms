@@ -25,9 +25,10 @@ const PaymentHistory = (props) => {
 
 
         <section className="paymentHistory">
+        <div className="paymentHistoryContainer">
         {paymentDate.map((con, i) => {
           return (
-            <div className="paymentHistoryContainer">
+           
 
                 <Form>
 
@@ -50,9 +51,10 @@ const PaymentHistory = (props) => {
                 ></Form.Control>
                 </div>
                 </Form>
-            </div>
+            
           );
         })}
+        </div>
         </section>
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />

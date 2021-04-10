@@ -25,9 +25,10 @@ const AdminFAQs = (props) => {
 
         
         <section className="faqs">
+        <div className="faqsContainer">
           {questions.map((con, i) => {
             return (
-              <div className="faqsContainer">
+              
 
               <Form>
 
@@ -42,9 +43,10 @@ const AdminFAQs = (props) => {
             </div>
             </Form>
           
-              </div>
+              
             );
           })}
+          </div>
         </section>
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
