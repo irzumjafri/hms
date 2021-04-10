@@ -12,12 +12,10 @@ const RegisteredSponsorHome = (props) => {
   } = props
   return (
     <body>
-      <section className="navbar">
-     
-        
-        
+      <section className="navbar">  
         <section className = "sponsorHomepage">
         <div className = "sponsorHomepageContainer_left">
+
           <h1 className="label-left">Menu</h1>
           <div class = "row">
               <div class = "col-md-6" >
@@ -57,13 +55,7 @@ const RegisteredSponsorHome = (props) => {
           </Button>
           </div>
             </div>
-
-          {/* <button className = "button_green" onClick={() => setRouter("editmyprofile")}>Edit My Profile</button>
-          <button className = "button_green" onClick={() => setRouter("paymenthistory")}>Payment History</button>
-          <button className = "button_green"onClick={() => setRouter("childrenprofiles")}>Children Profiles</button>
-          <button className = "button_green"onClick={() => setRouter("academicreports")}>Academic Reports</button>
-          <button className = "button_green" onClick={() => setRouter("requestmeeting")}>Request a Meeting</button>
-          <button className = "button_green" onClick={() => setRouter("letterbox")}>Letter Box</button> */}
+       
         </div>
         <div className = "sponsorHomepageContainer_right">
           <h1 className="label-right" >Calendar</h1>
@@ -84,9 +76,7 @@ const RegisteredSponsorHome = (props) => {
           </Button>
           </div>
             </div>
-{/* 
-        <button className ="button_blue">Add Event</button>
-        <button className = "button_red">Remove Event</button>  */}
+
         </div>
         </section>
         <nav className="navbarContainer_gray">
