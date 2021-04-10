@@ -35,7 +35,7 @@ const AdminEditMyProfile = (props) => {
           <button onClick={handlelogout}>Logout</button>
         </nav>
         <section>
-          <h2>SPONSOR PROFILES</h2>
+          <h2>EDIT MY PROFILE</h2>
           <button onClick={() => setRouter("home")}> HOME PAGE </button>
         </section>
         <section className="adminEditSponsorProfile">
