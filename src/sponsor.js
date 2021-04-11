@@ -254,7 +254,27 @@ const Sponsor = () => {
     }
   };
 
+<<<<<<< Updated upstream
   const meetingrequest = () => {
+=======
+  // //sponsor checking his payment history
+  //   const checkingPaymentHistory = () => {
+  //     db.collection("paymentHistory")
+  //     .where("id", "==", user.id)
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         // doc.data() is never undefined for query doc snapshot
+  //         console.log(doc.id, " => ", doc.data());
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error getting documents: ", error);
+  //     });
+  //   }
+
+  const addMeetingRequest = () => {
+>>>>>>> Stashed changes
     db.collection("Meeting").doc(user.id).set({
       email:email,
       firstName: firstName,
@@ -520,6 +540,7 @@ const Sponsor = () => {
                   setBackUpDatesAndTimes={setBackUpDatesAndTimes}
                   purpose={purpose}
                   setPurpose={setPurpose}
+                  addMeetingRequest={addMeetingRequest}
                 />
               ),
               academicreports: (
