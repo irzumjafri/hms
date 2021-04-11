@@ -41,51 +41,17 @@ const Admin = () => {
   const [address, setAddress] = useState("");
   const [department, setDepartment] = useState("");
   const [institution, setInstitution] = useState("");
-  const [
-    preferredMediumOfCommunication,
-    setPreferredMediumOfCommunication,
-  ] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
   const [sponsorshipApplicationData, setSponsorshipApplicationData] = useState(
     []
   );
   const [sponsorData, setSponsorData] = useState([]);
-  const [numberOfSponsoredChildren, setNumberOfSponsoredChildren] = useState(
-    ""
-  );
-  const [paymentMethod, setPaymentMethod] = useState("");
-  const [paymentSchedule, setPaymentSchedule] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [hasAccount, setHasAccount] = useState(true);
   const [router, setRouter] = useState("home");
-  const [applicationStatus, setApplicationStatus] = useState(true);
-  const [howToAssignChildren, setHowToAssignChildren] = useState("");
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [contactUs, setContactUs] = useState();
-  const [paymentDate, setPaymentDate] = useState([
-    "01-01-0001",
-    "02-01-0001",
-    "03-01-0001",
-    "04-01-0001",
-  ]);
-  const [amount, setAmount] = useState(["1000", "2000", "3000", "4000"]);
   const [childData, setChildData] = useState([]);
-  const [myChildren, setMyChildren] = useState([
-    { value: 1, label: "shabbir" },
-    { value: 2, label: "altaf" },
-    { value: 3, label: "bashir" },
-    { value: 4, label: "naseem" },
-  ]);
-  const [letterBody, setLetterBody] = useState("");
-  const [selectedChild, setSelectedChild] = useState("");
-  const [writeOrReceive, setWriteOrReceive] = useState(true);
-  const [recievedLetters, setRecievedLetters] = useState([
-    { from: "irtasam", message: "Ki haal chaal ai?" },
-    { from: "irtasam", message: "paisay bhijwao, creately lena hai" },
-    { from: "irtasam", message: "credit card bhi donate kardo" },
-  ]);
   const [editingProfile, setEditingProfile] = useState();
   const [editingChildProfile, setEditingChildProfile] = useState();
 
@@ -120,6 +86,8 @@ const Admin = () => {
               fetchSponsorData();
               fetchAdminProfile();
               fetchChildrenProfiles();
+              fetchContactUs();
+              fetchFAQs();
             } else {
               clearInputs();
               setLoggedIn(false);
@@ -739,6 +707,85 @@ const Admin = () => {
       });
   };
 
+  const fetchContactUs = () => {
+    let tempData = [];
+    db.collection("contactUs")
+      .get()
+      .then((querySnapshot) => {
+        // contact us is not defined
+        if (querySnapshot.empty) {
+          setErrorMessage("No contact us information is available");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all all of ways to conatct hunehar
+            tempData={
+              address: doc.data().address,
+              email: doc.data().email,
+              facebook: doc.data().facebook,
+              instagram: doc.data().instagram,
+              phoneNumber: doc.data().phoneNumber,
+              twitter: doc.data().twitter,
+              youtube: doc.data().youtube,
+            }
+          });
+        }
+        setContactUs(tempData);
+      });
+  };
+
+  const editContactUs = (newContact) => {
+    let profileToEdit = db.collection("contactUs").doc(newContact.id);
+    return profileToEdit
+      .update({
+        address: newContact.address,
+        email: newContact.email,
+        facebook: newContact.facebook,
+        instagram: newContact.instagram,
+        phoneNumber: newContact.phoneNumber,
+        twitter: newContact.twitter,
+        youtube: newContact.youtube,
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+        fetchContactUs();
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
+  };
+
+  const fetchFAQs = () => {
+    let tempDataQ = [];
+    let tempDataA = [];
+
+    db.collection("FAQs")
+      .get()
+      .then((querySnapshot) => {
+        // FAQs is not defined
+        if (querySnapshot.empty) {
+          setErrorMessage("No FAQs to show");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all children profiles present in current snapshot of the db
+            tempDataA.push({
+              answer: doc.data().answer,
+              id: doc.data().id,
+            });
+            tempDataQ.push({
+              question: doc.data().question,
+              id: doc.data().id,
+            });
+          });
+        }
+        console.log(tempDataA)
+        console.log(tempDataQ)
+        setQuestions(tempDataQ);
+        setAnswers(tempDataA);
+      });
+  };
+
   const fetchAcademicRecords = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
   };
@@ -869,24 +916,27 @@ const Admin = () => {
                   setRouter={setRouter}
                   questions={questions}
                   answers={answers}
+                  setQuestions={setQuestions}
+                  setAnswers={setAnswers}
                 />
               ),
               editcontactinformation: (
                 <AdminEditContactUs
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
+                  contactUs={contactUs}
+                  editContactUs={editContactUs}
                 />
               ),
               admincontactus: (
                 <AdminContactUs
-                  applicationStatus={applicationStatus}
+                  contactUs={contactUs}
                   setRouter={setRouter}
                   handlelogout={handleAdminLogout}
                 />
               ),
               adminfaqs: (
                 <AdminFAQs
-                  applicationStatus={applicationStatus}
                   setRouter={setRouter}
                   handlelogout={handleAdminLogout}
                   questions={questions}

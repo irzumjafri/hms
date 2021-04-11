@@ -9,9 +9,8 @@ const AdminFAQs = (props) => {
     answers,
     handlelogout,
     setRouter,
-    applicationStatus,
   } = props;
-
+ 
   return (
     <body>
       <section className="navbar">
@@ -31,12 +30,12 @@ const AdminFAQs = (props) => {
               <Form>
 
               <div class = "col">
-            <Form.Label className= "label-left">{questions[i]}</Form.Label>
+            <Form.Label className= "label-left">{questions[i].question}</Form.Label>
             <Form.Control
               type="text"
               autoFocus
               required
-              value={answers[i]}
+              value={answers[i].answer}
             ></Form.Control>
             </div>
             </Form>

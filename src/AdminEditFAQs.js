@@ -10,7 +10,6 @@ const AdminEditFAQs = (props) => {
     answers,
     handleLogout,
     setRouter,
-    applicationStatus,
   } = props;
 
   return (

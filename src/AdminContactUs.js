@@ -7,14 +7,10 @@ const AdminContactUs = (props) => {
   const {
     handlelogout,
     setRouter,
-    contactPhoneNumber,
-    contactEmail,
-    contactAddress,
-    contactFacebook,
-    contactInstagram,
-    contactTwitter,
-    contactYoutube,
+    contactUs
   } = props;
+  console.log(contactUs,"inside0")
+  console.log(contactUs.phoneNumber,"inside")
 
   return (
     <body>
@@ -22,8 +18,6 @@ const AdminContactUs = (props) => {
       
       <section>
       </section>
-
-{/* CREATE ONCHANGEEEEEE */}
       <section className="contactUs">
         <div className="contactUsContainer">
         <Form>
@@ -31,14 +25,14 @@ const AdminContactUs = (props) => {
               <Form.Label className= "label-left">Phone Number</Form.Label>
               <Form.Control
               type="text"
-              value={contactPhoneNumber}
+              value={contactUs.phoneNumber}
               ></Form.Control>
               </div>
               <div class = "col">
               <Form.Label className= "label-left">Email Address</Form.Label>
               <Form.Control
               type="text"
-              value={contactEmail}
+              value={contactUs.email}
               ></Form.Control>
               </div>
 
@@ -46,14 +40,14 @@ const AdminContactUs = (props) => {
               <Form.Label className= "label-left">Address</Form.Label>
               <Form.Control
               type="text"
-              value={contactAddress}
+              value={contactUs.address}
               ></Form.Control>
               </div>
               <div class = "col">
               <Form.Label className= "label-left">Facebook</Form.Label>
               <Form.Control
               type="text"
-              value={contactFacebook}
+              value={contactUs.facebook}
               ></Form.Control>
               </div>
               
@@ -61,14 +55,14 @@ const AdminContactUs = (props) => {
               <Form.Label className= "label-left">Instagram</Form.Label>
               <Form.Control
               type="text"
-              value={contactInstagram}
+              value={contactUs.instagram}
               ></Form.Control>
               </div>
               <div class = "col">
               <Form.Label className= "label-left">Twitter</Form.Label>
               <Form.Control
               type="text"
-              value={contactTwitter}
+              value={contactUs.twitter}
               ></Form.Control>
               </div>
 
@@ -76,7 +70,7 @@ const AdminContactUs = (props) => {
               <Form.Label className= "label-left">YouTube</Form.Label>
               <Form.Control
               type="text"
-              value={contactYoutube}
+              value={contactUs.youtube}
               ></Form.Control>
               </div>
               </Form>

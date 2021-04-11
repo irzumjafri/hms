@@ -1,27 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
 import {Button, Form} from 'react-bootstrap';
 import logo from "./HMSlogo.png";
  
 const AdminEditContactUs = (props) => {
   const {
-    handleLogout,
+    handlelogout,
     setRouter,
-    contactPhoneNumber,
-    setContactPhoneNumber,
-    contactEmail,
-    setContactEmail,
-    contactAddress,
-    setContactAddress,
-    contactFacebook,
-    setContactFacebook,
-    contactInstagram,
-    setContactInstagram,
-    contactTwitter,
-    setContactTwitter,
-    contactYoutube,
-    setContactYoutube,
+    contactUs,
+    editContactUs
   } = props;
+
+  console.log(contactUs)
+
+  const [phoneNumber, setPhoneNumber] = useState(contactUs.phoneNumber);
+  const [address, setAddress] = useState(contactUs.address);
+  const [facebook, setFacebook] = useState(contactUs.facebook);
+  const [twitter, setTwitter] = useState(contactUs.twitter);
+  const [youtube, setYoutube] = useState(contactUs.youtube);
+  const [email, setEmail] = useState(contactUs.email);
+  const [instagram, setInstagram] = useState(contactUs.instagram);
+
+
 
   return (
     <body>
@@ -38,16 +38,16 @@ const AdminEditContactUs = (props) => {
               <Form.Label className= "label-left">Phone Number</Form.Label>
               <Form.Control
               type="text"
-              value={contactPhoneNumber}
-              onChange={(e) => setContactPhoneNumber(e.target.value)}
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               ></Form.Control>
               </div>
               <div class = "col">
               <Form.Label className= "label-left">Email Address</Form.Label>
               <Form.Control
               type="text"
-              value={contactEmail}
-              onChange={(e) => setContactEmail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               ></Form.Control>
               </div>
 
@@ -55,16 +55,16 @@ const AdminEditContactUs = (props) => {
               <Form.Label className= "label-left">Address</Form.Label>
               <Form.Control
               type="text"
-              value={contactAddress}
-              onChange={(e) => setContactAddress(e.target.value)}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               ></Form.Control>
               </div>
               <div class = "col">
               <Form.Label className= "label-left">Facebook</Form.Label>
               <Form.Control
               type="text"
-              value={contactFacebook}
-              onChange={(e) => setContactFacebook(e.target.value)}
+              value={facebook}
+              onChange={(e) => setFacebook(e.target.value)}
               ></Form.Control>
               </div>
               
@@ -72,16 +72,16 @@ const AdminEditContactUs = (props) => {
               <Form.Label className= "label-left">Instagram</Form.Label>
               <Form.Control
               type="text"
-              value={contactInstagram}
-              onChange={(e) => setContactInstagram(e.target.value)}
+              value={instagram}
+              onChange={(e) => setInstagram(e.target.value)}
               ></Form.Control>
               </div>
               <div class = "col">
               <Form.Label className= "label-left">Twitter</Form.Label>
               <Form.Control
               type="text"
-              value={contactTwitter}
-              onChange={(e) => setContactTwitter(e.target.value)}
+              value={twitter}
+              onChange={(e) => setTwitter(e.target.value)}
               ></Form.Control>
               </div>
 
@@ -89,14 +89,22 @@ const AdminEditContactUs = (props) => {
               <Form.Label className= "label-left">YouTube</Form.Label>
               <Form.Control
               type="text"
-              value={contactYoutube}
-              onChange={(e) => setContactYoutube(e.target.value)}
+              value={youtube}
+              onChange={(e) => setYoutube(e.target.value)}
               ></Form.Control>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div
-                  // make onclick
+                    onClick={() => {setRouter("home");editContactUs({
+                      'twitter': twitter,
+                      'facebook': facebook,
+                      'youtube': youtube,
+                      'phoneNumber': phoneNumber,
+                      'address': address,
+                      'email': email,
+                      'instagram':instagram
+                    })}}
                     class="Button"
                     className="button_green"
                   >
@@ -105,7 +113,7 @@ const AdminEditContactUs = (props) => {
                 </div>
                 <div class="col-md-6">
                   <div
-                    onClick={() => setRouter("registered")}
+                    onClick={() => setRouter("home")}
                     class="Button"
                     className="button_redd"
                   >
@@ -121,7 +129,7 @@ const AdminEditContactUs = (props) => {
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <p className="smalltext" onClick={handlelogout}><span>Logout</span></p>
           <SearchField placeholder ="search..."
           classNames="search"/> 
           
