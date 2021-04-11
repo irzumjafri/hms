@@ -29,7 +29,7 @@ const AdminHome = (props) => {
                     size="lg"
                     block
                   >
-                    Edit My Profile
+                    Edit My Profile{"         "}
                   </Button>
                   {"  "}
                 </div>
@@ -42,7 +42,7 @@ const AdminHome = (props) => {
                     size="lg"
                     block
                   >
-                    Sponsorship Requests
+                    Sponsorship Requests{"    "}
                   </Button>
                 </div>
               </div>
@@ -57,7 +57,7 @@ const AdminHome = (props) => {
                     size="lg"
                     block
                   >
-                    Sponsor Profiles
+                    Sponsor Profiles{"        "}
                   </Button>
                   {"  "}
                 </div>
@@ -85,7 +85,7 @@ const AdminHome = (props) => {
                     size="lg"
                     block
                   >
-                    Meeting Requests
+                    Meeting Requests{"        "}
                   </Button>
                   {"  "}
                 </div>
@@ -98,7 +98,7 @@ const AdminHome = (props) => {
                     size="lg"
                     block
                   >
-                    Letter Box
+                    Letter Box{"              "}
                   </Button>
                 </div>
               </div>
@@ -113,7 +113,7 @@ const AdminHome = (props) => {
                     size="lg"
                     block
                   >
-                    Children Profiles
+                    Children Profiles{"       "}
                   </Button>
                   {"  "}
                 </div>
@@ -126,7 +126,7 @@ const AdminHome = (props) => {
                     size="lg"
                     block
                   >
-                    Academic Records
+                    Academic Records{"        "}
                   </Button>
                 </div>
               </div>
@@ -141,7 +141,7 @@ const AdminHome = (props) => {
                     size="lg"
                     block
                   >
-                    Edit FAQs
+                    Edit FAQs{"               "}
                   </Button>
                   {"  "}
                 </div>
