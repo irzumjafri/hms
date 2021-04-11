@@ -730,7 +730,7 @@ const Admin = () => {
   };
 
   const editContactUs = (newContact) => {
-    let profileToEdit = db.collection("contactUs").doc(newContact.id);
+    let profileToEdit = db.collection("contactUs").doc('contactDoc');
     return profileToEdit
       .update({
         address: newContact.address,
