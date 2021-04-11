@@ -7,7 +7,8 @@ const ChildrenProfiles = (props) => {
     handleLogout,
     childData,
     setRouter,
-    applicationStatus
+    applicationStatus,
+    withdrawchild
   } = props;
 
   return (
@@ -139,7 +140,7 @@ const ChildrenProfiles = (props) => {
             <Form.Control
               type="text"
               required
-              value={childData[i].guardian2Realtion}
+              value={childData[i].guardian2Relation}
             ></Form.Control>
               </div>
               </Form.Row>
