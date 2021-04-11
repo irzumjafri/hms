@@ -1105,7 +1105,7 @@ const Admin = () => {
                   answers={answers}
                   setQuestions={setQuestions}
                   setAnswers={setAnswers}
-                  editfaqs={editFAQs}
+                  editFAQs={editFAQs}
                 />
               ),
               editcontactinformation: (

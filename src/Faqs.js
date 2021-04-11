@@ -12,6 +12,10 @@ const AdminFAQs = (props) => {
     applicationStatus,
   } = props;
 
+  console.log(questions)
+  console.log(answers)
+
+
   return (
     <body>
       <section className="navbar">

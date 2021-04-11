@@ -139,7 +139,7 @@ const AdminEditFAQs = (props) => {
                 <div class="col-md-6">
                   <div
                     onClick={() =>
-                      editFAQs([{
+                      {editFAQs([{
                         question: editQuestion1,
                         answer: editAnswer1,
                         id: questions[0].id,
@@ -159,7 +159,7 @@ const AdminEditFAQs = (props) => {
                         question: editQuestion5,
                         answer: editAnswer5,
                         id: questions[4].id,
-                      }])
+                      }]);setRouter('home')}
                     }
                     class="Button"
                     className="button_green"
