@@ -22,7 +22,7 @@ const RegisteredSponsorHome = (props) => {
                   size="lg"
                   block
                 >
-                  Edit My Profile
+                  Edit My Profile{"  "}
                 </Button>
                 {"  "}
               </div>
@@ -35,7 +35,7 @@ const RegisteredSponsorHome = (props) => {
                   size="lg"
                   block
                 >
-                  Payment History
+                  Payment History{"  "}
                 </Button>
               </div>
             </div>
@@ -61,7 +61,7 @@ const RegisteredSponsorHome = (props) => {
                   size="lg"
                   block
                 >
-                  Academic Reports
+                  Academic Reports{" "}
                 </Button>
               </div>
             </div>
@@ -76,7 +76,7 @@ const RegisteredSponsorHome = (props) => {
                   size="lg"
                   block
                 >
-                  Request Meeting
+                  Request Meeting{"  "}
                 </Button>
               </div>
               <div class="col-md-6">
@@ -88,7 +88,7 @@ const RegisteredSponsorHome = (props) => {
                   size="lg"
                   block
                 >
-                  Letter Box
+                  Letter Box{"       "}
                 </Button>
               </div>
             </div>
