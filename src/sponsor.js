@@ -273,17 +273,30 @@ const Sponsor = () => {
     setPurpose("");
   };
 
-  //sponsor checking his payment history
+  // sponsor checking his payment history
   const checkingPaymentHistory = () => {
+    let tempData = [];
     db.collection("paymentHistory")
-      .where("id", "==", user.id)
+      .where("senderId", "==", user.id)
       .get()
       .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          setAmount(doc.data().amount);
-          setPaymentDate(doc.data().paymentDate);
-          console.log(doc.id, " => ", doc.data());
-        });
+        // No meeting request is in db and it is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No payment history for this sponsor exists");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all meeting requests
+            tempData.push({
+              senderName: doc.data().senderName,
+              amount: doc.data().amount,
+              paymentDate: doc.data().paymentDate,
+              senderId: doc.data().senderId,
+              id: doc.data().id,
+            });
+          });
+        }
+        setPaymentData(tempData);
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);

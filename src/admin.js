@@ -765,7 +765,7 @@ const Admin = () => {
             });
           });
         }
-        console.log(tempData);
+        // console.log(tempData);
         setmeetingRecords(tempData);
       });
   };
