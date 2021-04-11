@@ -22,7 +22,7 @@ const PaymentHistory = (props) => {
 
         <section className="paymentHistory">
         <div className="paymentHistoryContainer">
-        {paymentDate.map((con, i) => {
+        {paymentData.map((con, i) => {
           return (
                 <Form>
                 <Form.Row>

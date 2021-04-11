@@ -485,8 +485,7 @@ const Sponsor = () => {
                 <PaymentHistory
                   applicationStatus={applicationStatus}
                   setRouter={setRouter}
-                  paymentDate={paymentDate}
-                  amount={amount}
+                  paymentData={paymentData}
                   setRouter={setRouter}
                   handleLogout={handleLogout}
                 />
