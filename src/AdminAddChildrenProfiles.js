@@ -162,19 +162,25 @@ const AdminAddChildrenProfiles = (props) => {
               </div>
               <div className="btnContainer">
                 <button
-                  onClick={() => {setRouter("home");addChildProfile({'name':childName,
-                    'dateOfBirth':childDateOfBirth, 
-                    'gender':childGender,
-                    'currentAddress':childCurrentAddress,
-                    'grade':childGrade,
-                    'contactInformation':childContactInformation,
-                    'guardian1Name':childGuardian1Name,
-                    'guardian1Relation':childGuardian1Relation,
-                    'guardian1Occupation':childGuardian1Occupation,
-                    'guardian1CCnic':childGuardian1CNIC,
-                    'guardian2Name':childGuardian2Name,
-                    'guardian2Relation':childGuardian2Relation,
-                    'familyBackground':childFamilyBackground,})}}
+                  onClick={() => {
+                    setRouter("home");
+                    addChildProfile({
+                      name: childName,
+                      dateOfBirth: childDateOfBirth,
+                      gender: childGender,
+                      currentAddress: childCurrentAddress,
+                      grade: childGrade,
+                      contactInformation: childContactInformation,
+                      guardian1Name: childGuardian1Name,
+                      guardian1Relation: childGuardian1Relation,
+                      guardian1Occupation: childGuardian1Occupation,
+                      guardian1Cnic: childGuardian1CNIC,
+                      guardian2Name: childGuardian2Name,
+                      guardian2Relation: childGuardian2Relation,
+                      familyBackground: childFamilyBackground,
+                      status: "unassigned",
+                    });
+                  }}
                   className="buttongreen"
                 >
                   ✅ Add Child

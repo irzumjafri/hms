@@ -91,6 +91,8 @@ const Admin = () => {
     { from: "irtasam", message: "credit card bhi donate kardo" },
   ]);
   const [editingProfile, setEditingProfile] = useState();
+  const [editingChildProfile, setEditingChildProfile] = useState();
+
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
@@ -121,6 +123,7 @@ const Admin = () => {
               fetchSponsorshipApplications();
               fetchSponsorData();
               fetchAdminProfile();
+              fetchChildrenProfiles();
             } else {
               clearInputs();
               setLoggedIn(false);
@@ -328,6 +331,7 @@ const Admin = () => {
       .where("status", "==", "unassigned")
       .get()
       .then((querySnapshot) => {
+        console.log(querySnapshot)
         if (querySnapshot.empty) {
           console.log("No unassigned child in the database");
           return;
@@ -483,6 +487,29 @@ const Admin = () => {
     setRouter("admineditsponsorprofile");
   };
 
+  const callchildeditprofile = (child) => {
+    console.log(child);
+    setEditingChildProfile({
+      name: child.name,
+      dateOfBirth: child.dateOfBirth,
+      gender: child.gender,
+      currentAddress: child.currentAddress,
+      grade: child.gender,
+      contactInformation: child.contactInformation,
+      guardian1Name: child.guardian1Name,
+      guardian1Relation: child.guardian1Relation,
+      guardian1Occupation: child.guardian1Occupation,
+      guardian1Cnic: child.guardian1Cnic,
+      guardian2Name: child.guardian2Name,
+      guardian2Relation: child.guardian2Relation,
+      familyBackground: child.familyBackground,
+      id: child.id,
+      status: child.status
+    });
+
+    setRouter("editchildrenprofile");
+  };
+
   const editSponsorProfile = (i, howTo, appStatus) => {
     let profileToEdit = db.collection("registeredSponsors").doc(i.id);
     return profileToEdit
@@ -516,8 +543,10 @@ const Admin = () => {
     let mail = db
       .collection("registeredSponsors")
       .doc(i.toString().replace(/\s/g, ""))
-      .data().email; ////////////////////////////////////////////////////////
-
+      .email; ////////////////////////////////////////////////////////
+    console.log(db
+      .collection("registeredSponsors")
+      .doc(i.toString().replace(/\s/g, "")))
     db.collection("registeredSponsors")
       .doc(i.toString().replace(/\s/g, ""))
       .delete()
@@ -593,6 +622,7 @@ const Admin = () => {
         guardian2Name: child.guardian2Name,
         guardian2Relation: child.guardian2Relation,
         familyBackground: child.familyBackground,
+        status: child.status
       })
       .then((value) => {
         // set this id as its own attribte
@@ -609,6 +639,8 @@ const Admin = () => {
   };
 
   const editChildProfile = (child) => {
+    console.log("EDITING CHILD")
+    console.log(child)
     let profileToEdit = db.collection("childrenProfiles").doc(child.id);
     return profileToEdit
       .update({
@@ -616,7 +648,7 @@ const Admin = () => {
         dateOfBirth: child.dateOfBirth,
         gender: child.gender,
         currentAddress: child.currentAddress,
-        grade: child.gender,
+        grade: child.grade,
         contactInformation: child.contactInformation,
         guardian1Name: child.guardian1Name,
         guardian1Relation: child.guardian1Relation,
@@ -626,6 +658,7 @@ const Admin = () => {
         guardian2Relation: child.guardian2Relation,
         familyBackground: child.familyBackground,
         id: child.id,
+        status: child.status,
       })
       .then(() => {
         console.log("Document successfully updated!");
@@ -655,6 +688,7 @@ const Admin = () => {
   // This function fetches all the children profiles stored in the current snapshot of database and lets admin users see them
   const fetchChildrenProfiles = () => {
     let tempData = [];
+    console.log("HEREERERERERE");
     db.collection("childrenProfiles")
       .get()
       .then((querySnapshot) => {
@@ -686,6 +720,7 @@ const Admin = () => {
             });
           });
         }
+        console.log(tempData);
         setChildData(tempData);
       });
   };
@@ -789,17 +824,21 @@ const Admin = () => {
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   addChildProfile={addChildProfile}
+                  deleteChildrenProfile={deleteChildrenProfile}
+                  callchildeditprofile={callchildeditprofile}
                 />
               ),
               addchildrenprofile: (
                 <AdminAddChildrenProfiles
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
+                  addChildProfile={addChildProfile}
                 />
               ),
               editchildrenprofile: (
                 <AdminEditChildrenProfiles
                   handlelogout={handleAdminLogout}
+                  childData={editingChildProfile}
                   setRouter={setRouter}
                   editChildProfile={editChildProfile}
                 />

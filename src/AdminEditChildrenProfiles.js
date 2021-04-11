@@ -2,22 +2,26 @@ import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
 
 const AdminEditChildrenProfiles = (props) => {
-  const { handlelogout, setRouter, editChildProfile } = props;
+  const { handlelogout, setRouter, editChildProfile, childData } = props;
 
-  const [childName, setChildName] = useState("");
-  const [childDateOfBirth, setChildDateOfBirth] = useState("");
-  const [childGender, setChildGender] = useState("");
-  const [childCurrentAddress, setChildCurrentAddress] = useState("");
-  const [childGrade, setChildGrade] = useState("");
-  const [childContactInformation, setChildContactInformation] = useState("");
-  const [childGuardian1Name, setChildGuardian1Name] = useState("");
-  const [childGuardian1Relation, setChildGuardian1Relation] = useState("");
-  const [childGuardian1Occupation, setChildGuardian1Occupation] = useState("");
-  const [childGuardian1CNIC, setChildGuardian1CNIC] = useState("");
-  const [childGuardian2Name, setChildGuardian2Name] = useState("");
-  const [childGuardian2Relation, setChildGuardian2Relation] = useState("");
-  const [childFamilyBackground, setchildFamilyBackground] = useState("");
+  console.log(childData)
 
+  const [childName, setChildName] = useState(childData.name);
+  const [childDateOfBirth, setChildDateOfBirth] = useState(childData.dateOfBirth);
+  const [childGender, setChildGender] = useState(childData.gender);
+  const [childCurrentAddress, setChildCurrentAddress] = useState(childData.currentAddress);
+  const [childGrade, setChildGrade] = useState(childData.grade);
+  const [childContactInformation, setChildContactInformation] = useState(childData.contactInformation);
+  const [childGuardian1Name, setChildGuardian1Name] = useState(childData.guardian1Name);
+  const [childGuardian1Relation, setChildGuardian1Relation] = useState(childData.guardian1Relation);
+  const [childGuardian1Occupation, setChildGuardian1Occupation] = useState(childData.guardian1Occupation);
+  const [childGuardian1Cnic, setChildGuardian1Cnic] = useState(childData.guardian1Cnic);
+  const [childGuardian2Name, setChildGuardian2Name] = useState(childData.guardian2Name);
+  const [childGuardian2Relation, setChildGuardian2Relation] = useState(childData.guardian2Relation);
+  const [childFamilyBackground, setchildFamilyBackground] = useState(childData.familyBackground);
+
+  console.log(childGuardian1Occupation)
+  console.log(childGuardian1Cnic)
   return (
     <body>
       <section>
@@ -120,8 +124,8 @@ const AdminEditChildrenProfiles = (props) => {
                 <input
                   type="text"
                   required
-                  value={childGuardian1CNIC}
-                  onChange={(e) => setChildGuardian1CNIC(e.target.value)}
+                  value={childGuardian1Cnic}
+                  onChange={(e) => setChildGuardian1Cnic(e.target.value)}
                 ></input>
               </section>
               <section>
@@ -174,10 +178,12 @@ const AdminEditChildrenProfiles = (props) => {
                       guardian1Name: childGuardian1Name,
                       guardian1Relation: childGuardian1Relation,
                       guardian1Occupation: childGuardian1Occupation,
-                      guardian1CCnic: childGuardian1CNIC,
+                      guardian1Cnic: childGuardian1Cnic,
                       guardian2Name: childGuardian2Name,
                       guardian2Relation: childGuardian2Relation,
                       familyBackground: childFamilyBackground,
+                      id: childData.id,
+                      status: childData.status,
                     });
                   }}
                   className="buttongreen"

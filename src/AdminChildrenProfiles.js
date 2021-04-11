@@ -7,8 +7,9 @@ const AdminChildrenProfiles = (props) => {
     handleLogout,
     childData,
     setRouter,
-    applicationStatus,
     totalChildren,
+    deleteChildrenProfile,
+    callchildeditprofile
   } = props;
 
   return (
@@ -30,7 +31,7 @@ const AdminChildrenProfiles = (props) => {
               </div>
               <div class="col-md-12">
                 <div
-                  // ADD onclick
+                  onClick={() => setRouter("addchildrenprofile")}
                   class="Button"
                   className="button_green"
                 >
@@ -82,7 +83,7 @@ const AdminChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            value={childData.currentAddress}
+                            value={childData[i].currentAddress}
                           ></Form.Control>
                         </div>
                       </Form.Row>
@@ -196,7 +197,7 @@ const AdminChildrenProfiles = (props) => {
                       <div class="row">
                         <div class="col-md-6">
                           <div
-                            // make onclick
+                            onClick={() => callchildeditprofile(childData[i])}
                             class="Button"
                             className="button_blue"
                           >
@@ -206,7 +207,8 @@ const AdminChildrenProfiles = (props) => {
                         </div>
                         <div class="col-md-6">
                           <div
-                            // make onclick
+                            onClick={() => deleteChildrenProfile(childData[i].id)
+                            }
                             class="Button"
                             className="button_redd"
                           >
