@@ -21,36 +21,79 @@ const AdminMeetingRequests = (props) => {
         <section></section>
         <section className="requestAMeeting">
           <div className="requestAMeetingContainer">
-            <label>Preferred Meeting Date (DD-MM-YYYY)</label>
-            {/* Refer to sigma to make a drop down menu for selecting the request */}
-            <textbox>{preferredMeetingDate}</textbox>
-            <section>
-              <label>Preferred Meeting Time</label>
-              <textbox>
-                {hour} : {minutes} {amPm}
-              </textbox>
-            </section>
-            <section>
-              <label>Backup Date(s) and Time(s)</label>
-              <textbox>{backUpDatesAndTimes}</textbox>
-            </section>
-            <section>
-              <label>Purpose</label>
-              <textbox>{purpose}</textbox>
-            </section>
-            <div className="btnContainer">
-              <button
-                // Make the onclick function
-                // onClick={() => {
-                //   setRouter("registered");
-                //   editSponsorProfile();
-                // }}
-                className="buttongreen"
-              >
-                ✅ Acknowledge
-              </button>
-            </div>
 
+
+          <Form>
+              <Form.Row>
+                <div class="col-md-6">
+                  <Form.Label className="label-left">
+                    Meeting Date (DD-MM-YYYY) *
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    autoFocus
+                    required
+                    value={preferredMeetingDate}
+                  ></Form.Control>
+                </div>
+                <div class="col-md-6">
+                  <Form.Label className="label-right">
+                    Meeting Time (hh:mm)
+                  </Form.Label>
+                  <div class="form-row">
+                    <div class="col-md-3">
+                      <Form.Control
+                        type="text"
+                        value={hour}
+                      ></Form.Control>
+                    </div>
+                    <p className="label-right">:</p>
+                    <div class="col-md-3">
+                      <Form.Control
+                        type="text"
+                        value={minutes}
+    
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-3">
+                      <Form.Control
+                        type="text"
+                        value={amPm} 
+                      ></Form.Control>
+                    </div>
+                  </div>
+                </div>
+              </Form.Row>
+
+              <div class="col-md-13">
+                <Form.Label className="label-left">
+                  Backup Date(s) and Time(s)
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  value={backUpDatesAndTimes}
+                ></Form.Control>
+              </div>
+              <div class="col-md-13">
+                <Form.Label className="label-left">Purpose</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={purpose}
+                ></Form.Control>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="Button" className="button_green">
+                    {" "}
+                    Add Payment
+                  </div>
+                </div>
+              </div>
+
+            </Form>
+
+          
 
           </div>
         </section>
