@@ -103,7 +103,8 @@ const AdminEditContactUs = (props) => {
                       'phoneNumber': phoneNumber,
                       'address': address,
                       'email': email,
-                      'instagram':instagram
+                      'instagram':instagram,
+                      'id': contactUs.id
                     })}}
                     class="Button"
                     className="button_green"
