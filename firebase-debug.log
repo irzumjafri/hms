@@ -1,0 +1,21 @@
+[debug] [2021-04-11T10:28:28.252Z] ----------------------------------------------------------------------
+[debug] [2021-04-11T10:28:28.254Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Irtasam Ali Wains\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2021-04-11T10:28:28.254Z] CLI Version:   9.9.0
+[debug] [2021-04-11T10:28:28.254Z] Platform:      win32
+[debug] [2021-04-11T10:28:28.254Z] Node Version:  v14.16.0
+[debug] [2021-04-11T10:28:28.258Z] Time:          Sun Apr 11 2021 15:28:28 GMT+0500 (Pakistan Standard Time)
+[debug] [2021-04-11T10:28:28.258Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-04-11T10:28:28.264Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-11T10:28:28.264Z] > authorizing via signed-in user (22100286@lums.edu.pk)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\HMS\hms
+
