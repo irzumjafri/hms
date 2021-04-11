@@ -12,7 +12,7 @@ const UnregisteredSponsorHome = (props) => {
 
   return (
     <body>
-     <section className="navbar">
+     <section className="navbarhome">
        
         <section className = "unregistered">
         <div className = "unregisteredContainer_left">
@@ -49,7 +49,7 @@ const UnregisteredSponsorHome = (props) => {
         </section>
 
        
-        <nav className="navbarContainer_gray">
+        <nav className="navbarhomeContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
           <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
@@ -57,7 +57,7 @@ const UnregisteredSponsorHome = (props) => {
           classNames="search"/> 
           
            
-        <nav className="navbarContainer">
+        <nav className="navbarhomeContainer">
           <h2 className="titletext">Homepage</h2>
         </nav>
         </nav>

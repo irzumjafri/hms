@@ -51,10 +51,9 @@ const PaymentHistory = (props) => {
             
           );
         })}
-        console.log({amount})
-        console.log({paymentDate})
         </div>
         </section>
+
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
@@ -65,14 +64,18 @@ const PaymentHistory = (props) => {
           <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
           <h2 className="titletext">PAYMENT HISTORY</h2>
         </nav>
-          
         </nav>
+
+
         <section className="bottombar">
           <navbar className="bottombarContainer">
             <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
             <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
           </navbar>
         </section>
+
+
+        
       </section>
     </body>
   );
