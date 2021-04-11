@@ -30,7 +30,6 @@ const PaymentHistory = (props) => {
                 <Form.Label className= "label-left">Amount</Form.Label>
                 <Form.Control
                 type="text"
-                autoFocus
                 required
                 value={paymentData[i].amount}
                 ></Form.Control>
@@ -39,7 +38,6 @@ const PaymentHistory = (props) => {
                 <Form.Label className= "label-left">Payment Date (DD-MM-YYYY)</Form.Label>
                 <Form.Control
                 type="text"
-                autoFocus
                 required
                 value={paymentData[i].paymentDate}
                 ></Form.Control>

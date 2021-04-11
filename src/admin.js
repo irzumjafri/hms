@@ -85,6 +85,7 @@ const Admin = () => {
             if (password === doc.data().password) {
               setLoggedIn(true);
               fetchSponsorshipApplications();
+              fetchPaymentHistory();
               fetchSponsorData();
               fetchAdminProfile();
               fetchChildrenProfiles();
@@ -654,6 +655,7 @@ const Admin = () => {
   // This function gets all the payment histories and sets them in states to be diplayed
   const fetchPaymentHistory = () => {
     let tempData = [];
+    console.log('functioncalled')
     db.collection("paymentHistory")
       .get()
       .then((querySnapshot) => {
@@ -673,6 +675,7 @@ const Admin = () => {
             });
           });
         }
+        console.log('PAYMENT',tempData)
         setpaymentRecords(tempData);
       });
   };
@@ -1023,6 +1026,7 @@ const Admin = () => {
                 <AdminPaymentHistory
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
+                  paymentRecords={paymentRecords}
                 />
               ),
               meetingrequests: (
