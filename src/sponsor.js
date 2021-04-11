@@ -71,10 +71,70 @@ const Sponsor = () => {
   const [amPm, setAmPm] = useState("");
   const [backUpDatesAndTimes, setBackUpDatesAndTimes] = useState("");
   const [purpose, setPurpose] = useState("");
+  const [contactUs, setContactUs] = useState();
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
+
+  // This function fetches all FAQs to be displayed
+  const fetchFAQs = () => {
+    let tempDataQ = [];
+    let tempDataA = [];
+
+    db.collection("FAQs")
+      .get()
+      .then((querySnapshot) => {
+        // FAQs is not defined
+        if (querySnapshot.empty) {
+          setErrorMessage("No FAQs to show");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all children profiles present in current snapshot of the db
+            tempDataA.push({
+              answer: doc.data().answer,
+              id: doc.data().id,
+            });
+            tempDataQ.push({
+              question: doc.data().question,
+              id: doc.data().id,
+            });
+          });
+        }
+        setQuestions(tempDataQ);
+        setAnswers(tempDataA);
+      });
+  };
+
+  // This function fetches all Contact US to be displayed
+  const fetchContactUs = () => {
+    let tempData = [];
+    db.collection("contactUs")
+      .get()
+      .then((querySnapshot) => {
+        // contact us is not defined
+        if (querySnapshot.empty) {
+          setErrorMessage("No contact us information is available");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all all of ways to conatct hunehar
+            tempData = {
+              address: doc.data().address,
+              email: doc.data().email,
+              facebook: doc.data().facebook,
+              instagram: doc.data().instagram,
+              phoneNumber: doc.data().phoneNumber,
+              twitter: doc.data().twitter,
+              youtube: doc.data().youtube,
+            };
+          });
+        }
+        setContactUs(tempData);
+      });
+  };
+
   const createSponsorshipRequest = () => {
     db.collection("sponsorshipApplicants")
       .doc(user.uid)
@@ -201,7 +261,8 @@ const Sponsor = () => {
           fetchSponsorData(id);
           fetchChildProfiles(doc.data().email);
           checkingPaymentHistory(id);
-
+          fetchFAQs();
+          fetchContactUs();
         } else {
           console.log("No such document!");
         }
@@ -209,9 +270,6 @@ const Sponsor = () => {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-
-
-
   };
 
   const clearInputs = () => {
@@ -273,56 +331,65 @@ const Sponsor = () => {
     setPurpose("");
   };
 
-// withdraw child
-
-const withdrawchild = (i) => {
-
-  let profileupdate = db.collection("childrenProfiles").doc(i)
-    console.log('FUNCTION CALLED')
-    return profileupdate.update({
-      sponsorEmail : "" , 
-      status : "unassigned",
-    })
-    .then(() => {
-      console.log("Document successfully updated!");
-      fetchChildProfiles();
-    })
+  // withdraw child
+  const withdrawchild = (i) => {
+    console.log("Inside withdraw", i);
+    let profileupdate = db.collection("childrenProfiles").doc(i);
+    console.log("FUNCTION CALLED");
+    return profileupdate
+      .update({
+        sponsorEmail: "",
+        status: "unassigned",
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+        fetchChildProfiles();
+      });
   };
 
   //fetch child profiles for sponsor
   const fetchChildProfiles = (e) => {
     let tempData = [];
-    db.collection("childrenProfiles").where("sponsorEmail","==",e).get().then((querySnapshot) => {
-        if (querySnapshot.empty) {
-          //console.log("No child profiles exists for sponsor");
-          return;
-        } else {
-          querySnapshot.forEach((doc) => {
-            // update state to store data of child 
-            tempData.push({
-              name : doc.data().name,
-              dateOfBirth: doc.data().dateOfBirth,
-              gender: doc.data().gender,
-              currentAddress: doc.data().currentAddress,
-              grade: doc.data().grade,
-              contactInformation: doc.data().contactInformation,
-              guardian1Name: doc.data().guardian1Name,
-              guardian1Relation: doc.data().guardian1Relation,
-              guardian1Occupation: doc.data().guardian1Occupation,
-              guardian1Cnic: doc.data().guardian1Cnic,
-              guardian2Name: doc.data().guardian2Name,
-              guardian2Relation: doc.data().guardian2Relation,
-              familyBackground: doc.data().familyBackground,
+    try {
+      db.collection("childrenProfiles")
+        .where("sponsorEmail", "==", e)
+        .get()
+        .then((querySnapshot) => {
+          if (querySnapshot.empty) {
+            //console.log("No child profiles exists for sponsor");
+            return;
+          } else {
+            querySnapshot.forEach((doc) => {
+              // update state to store data of child
+              tempData.push({
+                name: doc.data().name,
+                dateOfBirth: doc.data().dateOfBirth,
+                gender: doc.data().gender,
+                currentAddress: doc.data().currentAddress,
+                grade: doc.data().grade,
+                contactInformation: doc.data().contactInformation,
+                guardian1Name: doc.data().guardian1Name,
+                guardian1Relation: doc.data().guardian1Relation,
+                guardian1Occupation: doc.data().guardian1Occupation,
+                guardian1Cnic: doc.data().guardian1Cnic,
+                guardian2Name: doc.data().guardian2Name,
+                guardian2Relation: doc.data().guardian2Relation,
+                familyBackground: doc.data().familyBackground,
+                id: doc.data().id,
+              });
             });
-          });
-        }
-        console.log(tempData)
-        setChildData(tempData);
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-};
+          }
+          setChildData(tempData);
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    } catch {
+      setChildData([]);
+      console.log("No Child Assigned");
+      return;
+    }
+  };
 
   // sponsor checking his payment history
   const checkingPaymentHistory = (i) => {
@@ -333,7 +400,7 @@ const withdrawchild = (i) => {
       .then((querySnapshot) => {
         // No meeting request is in db and it is empty
         if (querySnapshot.empty) {
-          setErrorMessage("No payment history for this sponsor exists");
+          console.log("No payment history for this sponsor exists");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -355,7 +422,6 @@ const withdrawchild = (i) => {
   };
 
   //Sponsors sending letters to child
-
 
   // const sendLettersToChild = () => {
   //   db.collection("lettersToChild")
@@ -388,8 +454,7 @@ const withdrawchild = (i) => {
   // };
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
-  
-  
+
   const createUserAccount = (id) => {
     db.collection("userAccounts")
       .doc(id.toString())
@@ -432,7 +497,6 @@ const withdrawchild = (i) => {
         clearInputs();
         setUser(user);
         fetchLogin(user.uid);
-
       }
     });
   };
@@ -564,10 +628,10 @@ const withdrawchild = (i) => {
                   childData={childData}
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
-                  withdrawchild = {withdrawchild}
+                  withdrawchild={withdrawchild}
                 />
               ),
-                
+
               requestmeeting: (
                 <RequestAMeeting
                   handleLogout={handleLogout}
