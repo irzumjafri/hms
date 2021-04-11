@@ -21,6 +21,7 @@ const AdminFAQs = (props) => {
                 <Form>
                   <div class="col">
                     <Form.Label className="label-left">
+                      
                       {questions[i].question}
                     </Form.Label>
                     <Form.Control

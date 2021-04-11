@@ -13,6 +13,7 @@ const AdminEditPaymentHistory = (props) => {
     editPaymentHistory
   } = props;
 
+  console.log(paymentData, 'editing admin')
   const [amount, setAmount] = useState(paymentData.amount);
   const [paymentDate, setPaymentDate] = useState(paymentData.paymentDate);
 

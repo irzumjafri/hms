@@ -102,6 +102,7 @@ const Sponsor = () => {
             });
           });
         }
+        console.log(tempDataQ)
         setQuestions(tempDataQ);
         setAnswers(tempDataA);
       });
