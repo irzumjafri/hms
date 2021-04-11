@@ -727,8 +727,6 @@ const Admin = () => {
             });
           });
         }
-        console.log(tempDataA);
-        console.log(tempDataQ);
         setQuestions(tempDataQ);
         setAnswers(tempDataA);
       });
@@ -771,7 +769,7 @@ const Admin = () => {
         } else {
           querySnapshot.forEach((doc) => {
             // update state to store data of all all of ways to conatct hunehar
-            tempData.push({
+            tempData={
               address: doc.data().address,
               email: doc.data().email,
               facebook: doc.data().facebook,
@@ -779,10 +777,9 @@ const Admin = () => {
               phoneNumber: doc.data().phoneNumber,
               twitter: doc.data().twitter,
               youtube: doc.data().youtube,
-            });
+            }
           });
         }
-        // console.log("Hereeee", tempData);
         setContactUs(tempData);
       });
   };
@@ -936,6 +933,7 @@ const Admin = () => {
                   answers={answers}
                   setQuestions={setQuestions}
                   setAnswers={setAnswers}
+                  editfaqs={editfaqs}
                 />
               ),
               editcontactinformation: (
