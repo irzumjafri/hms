@@ -564,7 +564,6 @@ const Admin = () => {
       });
   };
 
-
   // This function allows is called to unassign the children assigend to a given sponsor email
   const unassignChildren = (mail) => {
     db.collection("childrenProfiles")
@@ -702,7 +701,6 @@ const Admin = () => {
   // This function fetches all the children profiles stored in the current snapshot of database and lets admin users see them
   const fetchChildrenProfiles = () => {
     let tempData = [];
-    console.log("HEREERERERERE");
     db.collection("childrenProfiles")
       .get()
       .then((querySnapshot) => {
@@ -734,13 +732,39 @@ const Admin = () => {
             });
           });
         }
-        console.log(tempData);
         setChildData(tempData);
       });
   };
 
   const fetchAcademicRecords = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
+  };
+
+  const fetchContactUs = () => {
+    let tempData = [];
+    db.collection("contactUs")
+      .get()
+      .then((querySnapshot) => {
+        // contact us is not defined
+        if (querySnapshot.empty) {
+          setErrorMessage("No contact us information is available");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all children profiles present in current snapshot of the db
+            tempData.push({
+              address: doc.data().address,
+              email: doc.data().address,
+              facebook: doc.data().address,
+              instagram: doc.data().instagram,
+              phoneNumber: doc.data().phoneNumber,
+              twitter: doc.data().twitter,
+              youtube: doc.data().youtube,
+            });
+          });
+        }
+        setContactUs(tempData);
+      });
   };
 
   //-----------------------------------------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------------------
