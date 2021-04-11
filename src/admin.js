@@ -54,6 +54,8 @@ const Admin = () => {
   const [childData, setChildData] = useState([]);
   const [editingProfile, setEditingProfile] = useState();
   const [editingChildProfile, setEditingChildProfile] = useState();
+  const [paymentRecords, setpaymentRecords] = useState([]);
+  const [meetingRecords, setmeetingRecords] = useState([]);
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
@@ -88,6 +90,7 @@ const Admin = () => {
               fetchChildrenProfiles();
               fetchContactUs();
               fetchFAQs();
+              fetchMeetingRequests();
             } else {
               clearInputs();
               setLoggedIn(false);
@@ -648,20 +651,138 @@ const Admin = () => {
       });
   };
 
+  // This function gets all the payment histories and sets them in states to be diplayed
   const fetchPaymentHistory = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL PAYMENT DETAILS JUST LIKE IN SPONSOR MAKE A LISTTT.
+    let tempData = [];
+    db.collection("paymentHistory")
+      .get()
+      .then((querySnapshot) => {
+        // No payement hisotry is in db and it is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No payment history exists in the database");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all payment histories
+            tempData.push({
+              senderName: doc.data().senderName,
+              amount: doc.data().amount,
+              paymentDate: doc.data().paymentDate,
+              senderId: doc.data().senderId,
+              id: doc.data().id,
+            });
+          });
+        }
+        setpaymentRecords(tempData);
+      });
   };
 
+  // This function allows admin users to delete a payment history entry with id = i
+  const deletePaymentHistory = (i) => {
+    db.collection("paymentHistory")
+      .doc(i.toString().replace(/\s/g, ""))
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        // call fucntion to update states of payemnt histories acc to the updated db
+        fetchPaymentHistory();
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
+
+  // This function allows admin users to add a payment history for a sponsor wih the given email
+  // New payment is an object being passed. It has sender's name, amount and payment date
+  const addPaymentHistory = (newPayment) => {
+    db.collection("paymentHistory")
+      .add({
+        senderName: newPayment.senderName,
+        amount: newPayment.amount,
+        paymentDate: newPayment.paymentDate,
+        senderId: newPayment.senderId,
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("paymentHistory").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+            fetchPaymentHistory();
+          });
+      });
+  };
+
+  // This function allows the admin user to edit a payment history with id = i.id
+  const editPaymentHistory = (i) => {
+    let profileToEdit = db.collection("paymentHistory").doc(i.id);
+    return profileToEdit
+      .update({
+        senderName: i.senderName,
+        amount: i.amount,
+        paymentDate: i.paymentDate,
+        id: i.id,
+        senderId: i.senderId,
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+        fetchPaymentHistory();
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
+  };
+
+  // This function gets all the meetign requests from sponsors and sets them in states to be diplayed
   const fetchMeetingRequests = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
+    console.log("Fetching Meeting Requests");
+    let tempData = [];
+    db.collection("meeting")
+      .get()
+      .then((querySnapshot) => {
+        // No meeting request is in db and it is empty
+        if (querySnapshot.empty) {
+          setErrorMessage("No meeting request exists in the database");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all meeting requests
+            tempData.push({
+              ampm: doc.data().ampm,
+              backupDate: doc.data().backupDate,
+              email: doc.data().email,
+              firstName: doc.data().firstName,
+              hour: doc.data().hour,
+              id: doc.data().id,
+              lastName: doc.data().lastName,
+              meetingDate: doc.data().meetingDate,
+              min: doc.data().min,
+              phoneNumber: doc.data().phoneNumber,
+              purpose: doc.data().purpose,
+            });
+          });
+        }
+        console.log(tempData);
+        setmeetingRecords(tempData);
+      });
   };
 
-  const fetchSentLetters = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
-  };
-
-  const fetchReceivedLetters = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
+  // This function allows admin users to acknoweldge meeting request wth the id = i
+  const acknoweldgeMeetingRequest = (i) => {
+    db.collection("meeting")
+      .doc(i.toString().replace(/\s/g, ""))
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        // call fucntion to update states of meeting requests acc to the updated db
+        fetchMeetingRequests();
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
   };
 
   // This function fetches all the children profiles stored in the current snapshot of database and lets admin users see them
@@ -680,7 +801,6 @@ const Admin = () => {
             tempData.push({
               name: doc.data().name,
               dateOfBirth: doc.data().dateOfBirth,
-              gender: doc.data().gender,
               gender: doc.data().gender,
               currentAddress: doc.data().currentAddress,
               grade: doc.data().grade,
@@ -734,26 +854,32 @@ const Admin = () => {
 
   // This function allows admin users to edit the already present FAQs
   const editFAQs = (newFAQs) => {
-    let faqToAAEdit = db.collection("FAQs").doc(newFAQs.id);
+    // newFAQs is a list of all FAQs so we extract their IDs first of all
+    let FAQIDs = [];
+    newFAQs.map((doc) => {
+      FAQIDs.push(doc.id);
+    });
 
-    return faqToAAEdit
-      .update({
-        id: newFAQs.id,
-        answer: newFAQs.answer,
-        question: newFAQs.question,
-      })
-      .then(() => {
-        console.log("Document successfully updated!");
-        // Update the states of FAQs to reflect the changes
-        fetchFAQs();
-      })
-      .catch((error) => {
-        console.error("Error updating document: ", error);
-      });
-  };
+    // we now use these IDs to edit all the questions
+    let count = 0;
+    FAQIDs.map((idOfFAQ) => {
+      let profileToEdit = db.collection("FAQs").doc(idOfFAQ);
 
-  const fetchAcademicRecords = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
+      return profileToEdit
+        .update({
+          id: newFAQs[count].id,
+          answer: newFAQs[count].answer,
+          question: newFAQs[count].question,
+        })
+        .then(() => {
+          count = count + 1;
+          console.log("Document successfully updated!");
+          fetchFAQs(); // update the changes in states as well
+        })
+        .catch((error) => {
+          console.error("Error updating document: ", error);
+        });
+    });
   };
 
   // This function fetches all Contact US to be displayed
@@ -769,7 +895,7 @@ const Admin = () => {
         } else {
           querySnapshot.forEach((doc) => {
             // update state to store data of all all of ways to conatct hunehar
-            tempData={
+            tempData = {
               address: doc.data().address,
               email: doc.data().email,
               facebook: doc.data().facebook,
@@ -777,7 +903,7 @@ const Admin = () => {
               phoneNumber: doc.data().phoneNumber,
               twitter: doc.data().twitter,
               youtube: doc.data().youtube,
-            }
+            };
           });
         }
         setContactUs(tempData);
@@ -803,6 +929,18 @@ const Admin = () => {
       .catch((error) => {
         console.error("Error updating document: ", error);
       });
+  };
+
+  const fetchAcademicRecords = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
+  };
+
+  const fetchSentLetters = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
+  };
+
+  const fetchReceivedLetters = () => {
+    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
   };
 
   //-----------------------------------------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------------------
