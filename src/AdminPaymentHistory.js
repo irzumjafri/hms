@@ -16,7 +16,7 @@ const AdminPaymentHistory = (props) => {
         <section className="paymentHistory">
           <div className="paymentHistoryContainer">
             <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div
                   onClick={() => setRouter("adminaddsponsorprofile")}
                   class="Button"
@@ -75,25 +75,44 @@ const AdminPaymentHistory = (props) => {
                     </Form.Row>
 
                     <div class="row">
-                    <div class="col-md-6">
+                        <div class="col-md-6">
+                          <div
+                            class="Button"
+                            className="button_blue"
+                            onClick={() => setRouter('home')}
+                          >
+                            {" "}Edit Payment
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                           onClick={() => setRouter("home")}
+                            class="Button"
+                            className="button_purple"
+                          >
+                            {" "}
+                            Delete Payment
+                          </div>
+                        </div>
+                      </div>
+                    {/* <div class="row">
+                    <div class="col-auto">
                         <div
                           onClick={() => setRouter('home')}
                           class="Button"
                           className="button_blue"
-                        >
-                          {" "}
-                          Edit Payment
+                        >{" "}Edit Payment
                         </div>
+                        <div class="col-auto">
                         <div
                           onClick={() => setRouter('home')}
                           class="Button"
-                          className="button_red"
-                        >
-                          {" "}
-                          Delete Payment
+                          className= "button_blue"
+                        >{" "} Delete Payment
+                        </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </Form>
                 </div>
               );

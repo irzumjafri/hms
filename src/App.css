@@ -552,7 +552,9 @@
 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
 
 .bottombarhome {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bottombarhome .bottombarhomeContainer {
   width: 100%;
@@ -1909,18 +1911,17 @@
   padding: 10px;
 }
 
-.paymentHistory .paymentHistoryContainer .button_redd {
+.paymentHistory .paymentHistoryContainer .button_purple {
   border: none;
   outline: none;
   color: #fff;
   font-size: 18px;
-  width: 100%;
   letter-spacing: 1px;
   background: #ff5a5a;
   border-radius: 10px;
   height: 50px;
   margin: 10px 0px auto 10px;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   text-align: center;
