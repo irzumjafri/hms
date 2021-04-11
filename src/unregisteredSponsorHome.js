@@ -61,11 +61,11 @@ const UnregisteredSponsorHome = (props) => {
           <h2 className="titletext">Homepage</h2>
         </nav>
         </nav>
-        <section className="bottombar">
-          <navbar className="bottombarContainer">
+        <section className="bottombarhome">
+          <div className="bottombarhomeContainer">
             <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
             <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
-          </navbar>
+          </div>
         </section>
       </section>
     </body>

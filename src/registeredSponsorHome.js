@@ -90,11 +90,11 @@ const RegisteredSponsorHome = (props) => {
         </nav>
         </nav>
 
-        <section className="bottombar">
-          <navbarhome className="bottombarContainer">
+        <section className="bottombarhome">
+          <div className="bottombarhomeContainer">
             <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
             <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
-          </navbarhome>
+          </div>
         </section>
       </section>
     </body>

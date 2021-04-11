@@ -209,18 +209,18 @@ const AdminHome = (props) => {
           </nav>
         </nav>
 
-        <section className="bottombar">
-          <navbarhome className="bottombarContainer">
+        <section className="bottombarhome">
+          <div className="bottombarhomeContainer">
             <p
-              className="smalltext"
+              className="smallltext"
               onClick={() => setRouter("admincontactus")}
             >
               <span>Contact Us</span>
             </p>
-            <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
+            <p className="smallltext" onClick={() => setRouter("adminfaqs")}>
               <span>FAQs</span>
             </p>
-          </navbarhome>
+          </div>
         </section>
       </section>
     </body>
