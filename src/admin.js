@@ -603,13 +603,38 @@ const Admin = () => {
           })
           .then(() => {
             console.log("Document successfully updated!");
+            fetchChildrenProfiles();
           });
       });
   };
 
   const editChildProfile = (child) => {
-    
-  }
+    let profileToEdit = db.collection("childrenProfiles").doc(child.id);
+    return profileToEdit
+      .update({
+        name: child.name,
+        dateOfBirth: child.dateOfBirth,
+        gender: child.gender,
+        currentAddress: child.currentAddress,
+        grade: child.gender,
+        contactInformation: child.contactInformation,
+        guardian1Name: child.guardian1Name,
+        guardian1Relation: child.guardian1Relation,
+        guardian1Occupation: child.guardian1Occupation,
+        guardian1Cnic: child.guardian1Cnic,
+        guardian2Name: child.guardian2Name,
+        guardian2Relation: child.guardian2Relation,
+        familyBackground: child.familyBackground,
+        id: child.id,
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+        fetchChildrenProfiles();
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
+  };
 
   const fetchPaymentHistory = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL PAYMENT DETAILS JUST LIKE IN SPONSOR MAKE A LISTTT.
