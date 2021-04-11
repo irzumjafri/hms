@@ -12,6 +12,8 @@ const AdminChildrenProfiles = (props) => {
     callchildeditprofile
   } = props;
 
+  console.log(childData)
+
   return (
     <body>
       <section className="navbar">
@@ -129,7 +131,7 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Control
                             type="text"
                             required
-                            value={childData[i].guardian1Realtion}
+                            value={childData[i].guardian1Relation}
                           ></Form.Control>
                         </div>
                       </Form.Row>
@@ -177,7 +179,7 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Control
                             type="text"
                             required
-                            value={childData[i].guardian2Realtion}
+                            value={childData[i].guardian2Relation}
                           ></Form.Control>
                         </div>
                       </Form.Row>
@@ -187,7 +189,6 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Label>Family Background</Form.Label>
                           <Form.Control
                             type="text"
-                            
                             required
                             value={childData[i].familyBackground}
                           ></Form.Control>

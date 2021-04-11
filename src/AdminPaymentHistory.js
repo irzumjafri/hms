@@ -16,14 +16,14 @@ const AdminPaymentHistory = (props) => {
         <section className="paymentHistory">
           <div className="paymentHistoryContainer">
             <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div
-                  onClick={() => setRouter("adminaddsponsorprofile")}
+                  onClick={() => setRouter("addpaymenthistory")}
                   class="Button"
                   className="button_green"
                 >
                   {" "}
-                  Add New Sponsors
+                  Add New Payment History
                 </div>
               </div>
             </div>
@@ -33,17 +33,7 @@ const AdminPaymentHistory = (props) => {
                 <div>
                   <Form>
                     <Form.Row>
-                      <div class="col-md-6">
-                        <Form.Label className="label-left">
-                          Sender ID
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          required
-                          value={paymentRecords[i].senderId}
-                        ></Form.Control>
-                      </div>
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <Form.Label className="label-right">
                           Sender Name
                         </Form.Label>
@@ -75,25 +65,44 @@ const AdminPaymentHistory = (props) => {
                     </Form.Row>
 
                     <div class="row">
-                    <div class="col-md-6">
+                        <div class="col-md-6">
+                          <div
+                            class="Button"
+                            className="button_blue"
+                            onClick={() => setRouter('home')}
+                          >
+                            {" "}Edit Payment
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                           onClick={() => setRouter("home")}
+                            class="Button"
+                            className="button_purple"
+                          >
+                            {" "}
+                            Delete Payment
+                          </div>
+                        </div>
+                      </div>
+                    {/* <div class="row">
+                    <div class="col-auto">
                         <div
                           onClick={() => setRouter('home')}
                           class="Button"
                           className="button_blue"
-                        >
-                          {" "}
-                          Edit Payment
+                        >{" "}Edit Payment
                         </div>
+                        <div class="col-auto">
                         <div
                           onClick={() => setRouter('home')}
                           class="Button"
-                          className="button_red"
-                        >
-                          {" "}
-                          Delete Payment
+                          className= "button_blue"
+                        >{" "} Delete Payment
+                        </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </Form>
                 </div>
               );
@@ -112,7 +121,7 @@ const AdminPaymentHistory = (props) => {
             <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
             </p>
-            <h2 className="titletext">SPONSORSHIP PROFILE</h2>
+            <h2 className="titletext"> PAYMENT HISTORY </h2>
           </nav>
         </nav>
         <section className="bottombar">
