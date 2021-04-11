@@ -658,7 +658,6 @@ const Admin = () => {
   // This function gets all the payment histories and sets them in states to be diplayed
   const fetchPaymentHistory = () => {
     let tempData = [];
-    console.log("functioncalled");
     db.collection("paymentHistory")
       .get()
       .then((querySnapshot) => {
@@ -678,7 +677,6 @@ const Admin = () => {
             });
           });
         }
-        console.log("PAYMENT", tempData);
         setpaymentRecords(tempData);
       });
   };
@@ -754,7 +752,6 @@ const Admin = () => {
 
   // This function gets all the meetign requests from sponsors and sets them in states to be diplayed
   const fetchMeetingRequests = () => {
-    console.log("Fetching Meeting Requests");
     let tempData = [];
     db.collection("meeting")
       .get()
@@ -869,36 +866,147 @@ const Admin = () => {
   };
 
   // This function allows admin users to edit the already present FAQs
-  const editFAQs = (newFAQs) => {
-    // newFAQs is a list of all FAQs so we extract their IDs first of all
-    let FAQIDs = [];
-    newFAQs.map((doc) => {
-      FAQIDs.push(doc.id);
-    });
+  // const editFAQs = (newFAQs) => {
+  //   console.log("In Edit: ", newFAQs);
+  //   // newFAQs is a list of all FAQs so we extract their IDs first of all
+  //   let FAQIDs = [];
+  //   newFAQs.map((doc) => {
+  //     FAQIDs.push(doc.id);
+  //   });
 
-    // we now use these IDs to edit all the questions
-    let count = 0;
-    FAQIDs.map((idOfFAQ) => {
-      let profileToEdit = db.collection("FAQs").doc(idOfFAQ);
+  //   console.log(FAQIDs);
+  //   // delete all sponsor profiles
 
-      return profileToEdit
-        .update({
-          id: newFAQs[count].id,
-          answer: newFAQs[count].answer,
-          question: newFAQs[count].question,
-        })
-        .then(() => {
-          count = count + 1;
-          console.log("Document successfully updated!");
-          fetchFAQs(); // update the changes in states as well
-        })
-        .catch((error) => {
-          console.error("Error updating document: ", error);
-        });
-    });
-  };
+  //   db.collection("FAQs")
+  //     .doc(FAQIDs[0].toString().replace(/\s/g, ""))
+  //     .delete()
+  //     .then(() => {
+  //       console.log("Document successfully deleted!");
+
+  //       db.collection("FAQs")
+  //         .doc(FAQIDs[1].toString().replace(/\s/g, ""))
+  //         .delete()
+  //         .then(() => {
+  //           console.log("Document successfully deleted!");
+
+  //           db.collection("FAQs")
+  //             .doc(FAQIDs[2].toString().replace(/\s/g, ""))
+  //             .delete()
+  //             .then(() => {
+  //               console.log("Document successfully deleted!");
+
+  //               db.collection("FAQs")
+  //                 .doc(FAQIDs[3].toString().replace(/\s/g, ""))
+  //                 .delete()
+  //                 .then(() => {
+  //                   console.log("Document successfully deleted!");
+
+  //                   db.collection("FAQs")
+  //                     .doc(FAQIDs[4].toString().replace(/\s/g, ""))
+  //                     .delete()
+  //                     .then(() => {
+  //                       console.log("Document successfully deleted!");
+
+  //                       // all FAQs deleted now add new ones
+
+  //                       db.collection("FAQs")
+  //                         .add({
+  //                           id: FAQIDs[0].toString().replace(/\s/g, ""),
+  //                           question: newFAQs[0].question,
+  //                           answer: newFAQs[0].answer,
+  //                         })
+  //                         .then(() => {
+  //                           db.collection("FAQs")
+  //                             .add({
+  //                               id: FAQIDs[1].toString().replace(/\s/g, ""),
+  //                               question: newFAQs[1].question,
+  //                               answer: newFAQs[1].answer,
+  //                             })
+  //                             .then(() => {
+  //                               db.collection("FAQs")
+  //                                 .add({
+  //                                   id: FAQIDs[2].toString().replace(/\s/g, ""),
+  //                                   question: newFAQs[2].question,
+  //                                   answer: newFAQs[2].answer,
+  //                                 })
+  //                                 .then(() => {
+  //                                   db.collection("FAQs")
+  //                                     .add({
+  //                                       id: FAQIDs[3]
+  //                                         .toString()
+  //                                         .replace(/\s/g, ""),
+  //                                       question: newFAQs[3].question,
+  //                                       answer: newFAQs[3].answer,
+  //                                     })
+  //                                     .then(() => {
+  //                                       db.collection("FAQs")
+  //                                         .add({
+  //                                           id: FAQIDs[4]
+  //                                             .toString()
+  //                                             .replace(/\s/g, ""),
+  //                                           question: newFAQs[4].question,
+  //                                           answer: newFAQs[4].answer,
+  //                                         })
+  //                                         .then(() => {
+  //                                           console.log(
+  //                                             "All FAQs should be updated now"
+  //                                           );
+  //                                         });
+  //                                     });
+  //                                 });
+  //                             });
+  //                         });
+
+  //                       ////////////////////////////////////////////
+  //                     })
+  //                     .catch((error) => {
+  //                       console.error("Error removing document: ", error);
+  //                     });
+  //                 })
+  //                 .catch((error) => {
+  //                   console.error("Error removing document: ", error);
+  //                 });
+  //             })
+  //             .catch((error) => {
+  //               console.error("Error removing document: ", error);
+  //             });
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error removing document: ", error);
+  //         });
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error removing document: ", error);
+  //     });
+
+  //   console.log();
+
+  //   // we now use these IDs to edit all the questions
+  //   // let count = 0;
+  //   // FAQIDs.map((idOfFAQ) => {
+  //   //   let profileToEdit = db
+  //   //     .collection("FAQs")
+  //   //     .doc(idOfFAQ.toString().replace(/\s/g, ""));
+
+  //   //   return profileToEdit
+  //   //     .update({
+  //   //       id: newFAQs[count].id,
+  //   //       answer: newFAQs[count].answer,
+  //   //       question: newFAQs[count].question,
+  //   //     })
+  //   //     .then(() => {
+  //   //       count = count + 1;
+  //   //       console.log("Document successfully updated!");
+  //   //       fetchFAQs(); // update the changes in states as well
+  //   //     })
+  //   //     .catch((error) => {
+  //   //       console.error("Error updating document: ", error);
+  //   //     });
+  //   // });
+  // };
 
   // This function fetches all Contact US to be displayed
+
   const fetchContactUs = () => {
     let tempData = [];
     db.collection("contactUs")
