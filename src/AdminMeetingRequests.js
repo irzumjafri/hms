@@ -17,13 +17,11 @@ const AdminMeetingRequests = (props) => {
 
   return (
     <body>
-     <section className="navbar">
+      <section className="navbar">
         <section></section>
         <section className="requestAMeeting">
           <div className="requestAMeetingContainer">
-
-
-          <Form>
+            <Form>
               <Form.Row>
                 <div class="col-md-6">
                   <Form.Label className="label-left">
@@ -42,24 +40,14 @@ const AdminMeetingRequests = (props) => {
                   </Form.Label>
                   <div class="form-row">
                     <div class="col-md-3">
-                      <Form.Control
-                        type="text"
-                        value={hour}
-                      ></Form.Control>
+                      <Form.Control type="text" value={hour}></Form.Control>
                     </div>
                     <p className="label-right">:</p>
                     <div class="col-md-3">
-                      <Form.Control
-                        type="text"
-                        value={minutes}
-    
-                      ></Form.Control>
+                      <Form.Control type="text" value={minutes}></Form.Control>
                     </div>
                     <div class="col-md-3">
-                      <Form.Control
-                        type="text"
-                        value={amPm} 
-                      ></Form.Control>
+                      <Form.Control type="text" value={amPm}></Form.Control>
                     </div>
                   </div>
                 </div>
@@ -76,25 +64,18 @@ const AdminMeetingRequests = (props) => {
               </div>
               <div class="col-md-13">
                 <Form.Label className="label-left">Purpose</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={purpose}
-                ></Form.Control>
+                <Form.Control type="text" value={purpose}></Form.Control>
               </div>
 
               <div class="row">
                 <div class="col-md-12">
                   <div class="Button" className="button_green">
                     {" "}
-                    Add Payment
+                    Acknowledge
                   </div>
                 </div>
               </div>
-
             </Form>
-
-          
-
           </div>
         </section>
         <nav className="navbarContainer_gray">
@@ -129,6 +110,5 @@ const AdminMeetingRequests = (props) => {
     </body>
   );
 };
-
 
 export default AdminMeetingRequests;
