@@ -18,12 +18,12 @@ const AdminPaymentHistory = (props) => {
             <div class="row">
             <div class="col-md-12">
                 <div
-                  onClick={() => setRouter("adminaddsponsorprofile")}
+                  onClick={() => setRouter("addpaymenthistory")}
                   class="Button"
                   className="button_green"
                 >
                   {" "}
-                  Add New Sponsors
+                  Add New Payment History
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@ const AdminPaymentHistory = (props) => {
             <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
             </p>
-            <h2 className="titletext">SPONSORSHIP PROFILE</h2>
+            <h2 className="titletext"> PAYMENT HISTORY </h2>
           </nav>
         </nav>
         <section className="bottombar">
