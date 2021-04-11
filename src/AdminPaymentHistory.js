@@ -52,7 +52,7 @@ const AdminPaymentHistory = (props) => {
               </Form.Row>
 
               <div class="row">
-                <div class="col-auto">
+                <div class="col-md-12">
                   <div class="Button" className="button_blue">
                     {" "}
                     Edit Payment
