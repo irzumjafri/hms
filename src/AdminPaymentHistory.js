@@ -82,7 +82,15 @@ const AdminPaymentHistory = (props) => {
                           className="button_blue"
                         >
                           {" "}
-                          Edit this Profile
+                          Edit Payment
+                        </div>
+                        <div
+                          onClick={() => setRouter('home')}
+                          class="Button"
+                          className="button_red"
+                        >
+                          {" "}
+                          Delete Payment
                         </div>
                       </div>
                     </div>

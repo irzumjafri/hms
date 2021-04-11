@@ -163,7 +163,7 @@ const ChildrenProfiles = (props) => {
 
               <div className="btnContainer">
                 <button
-                  // MakeonClick Function onClick={() => setRouter("registered")}
+                  onClick={() => withdrawchild()}
                   className="button_redd"
                 >
                   Withdraw Sponsorship for This Child
