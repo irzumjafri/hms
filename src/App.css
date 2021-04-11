@@ -503,7 +503,97 @@
   }
 } */
 /* #######################################NavBarHome##################### */
+.bottombar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.bottombar .bottombarContainer {
+  width: 100%;
+  padding: 10px 2px;
+  /* background: linear-gradient(
+    0deg,
+    rgba(151, 151, 151, 0.15) -61.36%,
+    rgba(151, 151, 151, 0) 254.55%
+  ); */
 
+  background-color: #f2f2f2;
+  margin: auto auto auto 0px;
+
+  position: fixed;
+  bottom: 0;
+  left: 0px;
+  right: 0px;
+}
+
+.bottombar .bottombarContainer p span {
+  color: black;
+  font-weight: 200;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: 5px auto;
+  cursor: pointer;
+  display: flex;
+  float: right;
+  transition: all 400ms ease-in-out;
+}
+.bottombar .bottombarContainer .smalltext {
+  color: black;
+  margin: auto 10px;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: italic;
+  float: right;
+}
+.bottombar .bottombarContainer p span:hover {
+  text-decoration: underline;
+}
+
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+
+.bottombarhome {
+  display: block;
+}
+.bottombarhome .bottombarhomeContainer {
+  width: 100%;
+  padding: 10px 2px;
+  /* background: linear-gradient(
+    0deg,
+    rgba(151, 151, 151, 0.15) -61.36%,
+    rgba(151, 151, 151, 0) 254.55%
+  ); */
+
+  background-color: #f2f2f2;
+  margin: auto auto auto 0px;
+
+  position: fixed;
+  bottom: 0;
+  left: 0px;
+  right: 0px;
+}
+
+.bottombarhome .bottombarhomeContainer p span {
+  color: black;
+  font-weight: 200;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: 5px auto;
+  cursor: pointer;
+  display: flex;
+  float: right;
+  transition: all 400ms ease-in-out;
+}
+.bottombarhome .bottombarhomeContainer .smalltext {
+  color: black;
+  margin: auto 10px;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: italic;
+  float: right;
+}
+.bottombarhome .bottombarhomeContainer p span:hover {
+  text-decoration: underline;
+}
 /* ################### Navbar ################ */
 .navbar {
   width: 100%;
@@ -816,51 +906,7 @@
 }
 
 /* ################### BottomBar ################ */
-.bottombar {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.bottombar .bottombarContainer {
-  width: 100%;
-  padding: 10px 2px;
-  /* background: linear-gradient(
-    0deg,
-    rgba(151, 151, 151, 0.15) -61.36%,
-    rgba(151, 151, 151, 0) 254.55%
-  ); */
 
-  background-color: #f2f2f2;
-  margin: auto auto auto 0px;
-
-  position: fixed;
-  bottom: 0;
-  left: 0px;
-  right: 0px;
-}
-
-.bottombar .bottombarContainer p span {
-  color: black;
-  font-weight: 200;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  margin: 5px auto;
-  cursor: pointer;
-  display: flex;
-  float: right;
-  transition: all 400ms ease-in-out;
-}
-.bottombar .bottombarContainer .smalltext {
-  color: black;
-  margin: auto 10px;
-  font-size: 14px;
-  line-height: 1;
-  text-decoration: italic;
-  float: right;
-}
-.bottombar .bottombarContainer p span:hover {
-  text-decoration: underline;
-}
 /* ################### Register ################ */
 .register {
   width: 100%;

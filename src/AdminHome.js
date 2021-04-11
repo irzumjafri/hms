@@ -209,8 +209,8 @@ const AdminHome = (props) => {
           </nav>
         </nav>
 
-        <section className="bottombar">
-          <navbarhome className="bottombarContainer">
+        <section className="bottombarhome">
+          <div className="bottombarhomeContainer">
             <p
               className="smalltext"
               onClick={() => setRouter("admincontactus")}
@@ -220,7 +220,7 @@ const AdminHome = (props) => {
             <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
               <span>FAQs</span>
             </p>
-          </navbarhome>
+          </div>
         </section>
       </section>
     </body>
