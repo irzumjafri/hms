@@ -727,10 +727,30 @@ const Admin = () => {
             });
           });
         }
-        // console.log(tempDataA);
-        // console.log(tempDataQ);
+        console.log(tempDataA);
+        console.log(tempDataQ);
         setQuestions(tempDataQ);
         setAnswers(tempDataA);
+      });
+  };
+
+  // This function allows admin users to edit the already present FAQs
+  const editFAQs = (newFAQs) => {
+    let faqToAAEdit = db.collection("FAQs").doc(newFAQs.id);
+
+    return faqToAAEdit
+      .update({
+        id: newFAQs.id,
+        answer: newFAQs.answer,
+        question: newFAQs.question,
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+        // Update the states of FAQs to reflect the changes
+        fetchFAQs();
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
       });
   };
 
