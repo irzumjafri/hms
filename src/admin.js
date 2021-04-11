@@ -20,6 +20,7 @@ import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
 import AdminAddSponsorProfile from "./AdminAddSponsorProfile";
 import AdminAddChildrenProfiles from "./AdminAddChildrenProfiles";
 import AdminEditChildrenProfiles from "./AdminEditChildrenProfiles";
+import AdminAddPayment from './AdminAddPayment'
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -695,6 +696,11 @@ const Admin = () => {
       });
   };
 
+  const calleditpaymenthistory = (paym) => {
+    //SET STATE
+    //SET ROUTER
+  }
+
   // This function allows admin users to add a payment history for a sponsor wih the given email
   // New payment is an object being passed. It has sender's name, amount and payment date
   const addPaymentHistory = (newPayment) => {
@@ -1028,6 +1034,14 @@ const Admin = () => {
                   setRouter={setRouter}
                   paymentRecords={paymentRecords}
                 />
+              ),
+              addpaymenthistory: (
+                <AdminAddPayment 
+                handlelogout={handleAdminLogout}
+                  setRouter={setRouter}
+                  addPaymentHistory={addPaymentHistory}
+                />
+
               ),
               meetingrequests: (
                 <AdminMeetingRequests
