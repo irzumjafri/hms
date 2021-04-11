@@ -740,6 +740,7 @@ const Admin = () => {
     //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
   };
 
+  // This function fetches all Contact US to be displayed
   const fetchContactUs = () => {
     let tempData = [];
     db.collection("contactUs")
@@ -751,7 +752,7 @@ const Admin = () => {
           return;
         } else {
           querySnapshot.forEach((doc) => {
-            // update state to store data of all children profiles present in current snapshot of the db
+            // update state to store data of all all of ways to conatct hunehar
             tempData.push({
               address: doc.data().address,
               email: doc.data().address,
@@ -764,6 +765,36 @@ const Admin = () => {
           });
         }
         setContactUs(tempData);
+      });
+  };
+
+  // This function fetches all FAQs to be displayed
+  const fetchFAQs = () => {
+    let tempDataQ = [];
+    let tempDataA = [];
+
+    db.collection("FAQs")
+      .get()
+      .then((querySnapshot) => {
+        // FAQs is not defined
+        if (querySnapshot.empty) {
+          setErrorMessage("No FAQs to show");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all children profiles present in current snapshot of the db
+            tempDataA.push({
+              answers: doc.data().answers,
+              id: doc.data().id,
+            });
+            tempDataQ.push({
+              question: doc.data().question,
+              id: doc.data().id,
+            });
+          });
+        }
+        setQuestions(tempDataQ);
+        setAnswers(tempDataA);
       });
   };
 
