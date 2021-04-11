@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SearchField from "react-search-field";
+import logo from "./HMSlogo.png";
+import { Button, Form } from "react-bootstrap";
+import { useState, useEffect } from "react";
+
 
 const AdminAddChildrenProfiles = (props) => {
   const { handlelogout, setRouter, addChildProfile } = props;
@@ -19,180 +23,250 @@ const AdminAddChildrenProfiles = (props) => {
   const [childFamilyBackground, setchildFamilyBackground] = useState("");
 
   return (
-    <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handlelogout}>Logout</button>
-        </nav>
-        <section>
-          <h2>CHILDREN PROFILES</h2>
-          <button onClick={() => setRouter("home")}> HOME PAGE </button>
-        </section>
-        <section className="adminChildrenProfiles">
-          <div className="adminChildrenProfilesContainer">
-            <div>
-              <section>
-                <label>Name *</label>
-                <input
-                  type="text"
-                  autoFocus
-                  required
-                  value={childName}
-                  onChange={(e) => setChildName(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Date of Birth (DD-MM-YYYY) *</label>
-                <input
-                  type="text"
-                  required
-                  value={childDateOfBirth}
-                  onChange={(e) => setChildDateOfBirth(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Gender *</label>
-                <input
-                  type="text"
-                  required
-                  value={childGender}
-                  onChange={(e) => setChildGender(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Current Address *</label>
-                <input
-                  type="text"
-                  required
-                  value={childCurrentAddress}
-                  onChange={(e) => setChildCurrentAddress(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Grade *</label>
-                <input
-                  type="text"
-                  required
-                  value={childGrade}
-                  onChange={(e) => setChildGrade(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Contact Information *</label>
-                <input
-                  type="text"
-                  required
-                  value={childContactInformation}
-                  onChange={(e) => setChildContactInformation(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Guardian 1’s Name *</label>
-                <input
-                  type="text"
-                  required
-                  value={childGuardian1Name}
-                  onChange={(e) => setChildGuardian1Name(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Guardian 1’s Relation *</label>
-                <input
-                  type="text"
-                  required
-                  value={childGuardian1Relation}
-                  onChange={(e) => setChildGuardian1Relation(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Guardian 1’s Occupation *</label>
-                <input
-                  type="text"
-                  required
-                  value={childGuardian1Occupation}
-                  onChange={(e) => setChildGuardian1Occupation(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Guardian 1’s CNIC *</label>
-                <input
-                  type="text"
-                  required
-                  value={childGuardian1CNIC}
-                  onChange={(e) => setChildGuardian1CNIC(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Guardian 2’s Name *</label>
-                <input
-                  type="text"
-                  required
-                  value={childGuardian2Name}
-                  onChange={(e) => setChildGuardian2Name(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Guardian 2’s Relation *</label>
-                <input
-                  type="text"
-                  required
-                  value={childGuardian2Relation}
-                  onChange={(e) => setChildGuardian2Relation(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Family Background *</label>
-                <input
-                  type="text"
-                  required
-                  value={childFamilyBackground}
-                  onChange={(e) => setchildFamilyBackground(e.target.value)}
-                ></input>
-              </section>
 
-              <div className="btnContainer">
-                <button
-                  onClick={() => setRouter("home")}
-                  className="button_red"
-                >
-                  ❌ Discard Changes
-                </button>
-              </div>
-              <div className="btnContainer">
-                <button
-                  onClick={() => {
-                    setRouter("home");
-                    addChildProfile({
-                      name: childName,
-                      dateOfBirth: childDateOfBirth,
-                      gender: childGender,
-                      currentAddress: childCurrentAddress,
-                      grade: childGrade,
-                      contactInformation: childContactInformation,
-                      guardian1Name: childGuardian1Name,
-                      guardian1Relation: childGuardian1Relation,
-                      guardian1Occupation: childGuardian1Occupation,
-                      guardian1Cnic: childGuardian1CNIC,
-                      guardian2Name: childGuardian2Name,
-                      guardian2Relation: childGuardian2Relation,
-                      familyBackground: childFamilyBackground,
-                      status: "unassigned",
-                    });
-                  }}
-                  className="buttongreen"
-                >
-                  ✅ Add Child
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
-        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
-      </section>
-    </body>
+    <body>
+    <section className="navbar">
+     <section></section>
+     <section className="childrenProfiles">
+       <div className="childrenProfilesContainer">
+
+       <div>
+               <div>
+                 <Form>
+                   <Form.Row>
+                     <div class="col-md-6">
+                       <Form.Label className="label-left">Name</Form.Label>
+                       <Form.Control
+                          type="text"
+
+                          required
+                          value={childName}
+                          onChange={(e) => setChildName(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                     <div class="col-md-6">
+                       <Form.Label className="label-right">
+                         Date of Birth (DD-MM-YYYY)
+                       </Form.Label>
+                       <Form.Control
+                          type="text"
+                          required
+                          value={childDateOfBirth}
+                          onChange={(e) => setChildDateOfBirth(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                   </Form.Row>
+
+                   <Form.Row>
+                     <div class="col-md-6">
+                       <Form.Label className="label-left">Gender</Form.Label>
+                       <Form.Control
+                         type="text"
+                         required
+                         value={childGender}
+                         onChange={(e) => setChildGender(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                     <div class="col-md-6">
+                       <Form.Label className="label-right">
+                         Current Address
+                       </Form.Label>
+                       <Form.Control
+                          type="text"
+                          required
+                          value={childCurrentAddress}
+                          onChange={(e) => setChildCurrentAddress(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                   </Form.Row>
+
+                   <Form.Row>
+                     <div class="col-md-6">
+                       <Form.Label className="label-left">Grade</Form.Label>
+                       <Form.Control
+                         type="text"
+                         required
+                         value={childGrade}
+                         onChange={(e) => setChildGrade(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                     <div class="col-md-6">
+                       <Form.Label className="label-right">
+                         Contact Information
+                       </Form.Label>
+                       <Form.Control
+                         type="text"
+                         required
+                         value={childContactInformation}
+                         onChange={(e) => setChildContactInformation(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                   </Form.Row>
+
+                   <Form.Row>
+                     <div class="col-md-6">
+                       <Form.Label className="label-left">
+                         Guardian 1’s Name
+                       </Form.Label>
+                       <Form.Control
+                         type="text"
+                         required
+                         value={childGuardian1Name}
+                         onChange={(e) => setChildGuardian1Name(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                     <div class="col-md-6">
+                       <Form.Label className="label-right">
+                         Guardian 1’s Relation
+                       </Form.Label>
+                       <Form.Control
+                          type="text"
+                          required
+                          value={childGuardian1Relation}
+                          onChange={(e) => setChildGuardian1Relation(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                   </Form.Row>
+
+                   <Form.Row>
+                     <div class="col-md-6">
+                       <Form.Label className="label-left">
+                         Guardian 1’s Occupation
+                       </Form.Label>
+                       <Form.Control
+                         type="text"
+                         required
+                         value={childGuardian1Occupation}
+                         onChange={(e) => setChildGuardian1Occupation(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                     <div class="col-md-6">
+                       <Form.Label className="label-right">
+                         Guardian 1’s CNIC
+                       </Form.Label>
+                       <Form.Control
+                          type="text"
+                          required
+                          value={childGuardian1CNIC}
+                          onChange={(e) =>  setChildGuardian1CNIC(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                   </Form.Row>
+
+                   <Form.Row>
+                     <div class="col-md-6">
+                       <Form.Label className="label-left">
+                         Guardian 2’s Name
+                       </Form.Label>
+                       <Form.Control
+                          type="text"
+                          required
+                          value={childGuardian2Name}
+                          onChange={(e) => setChildGuardian2Name(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                     <div class="col-md-6">
+                       <Form.Label className="label-right">
+                         Guardian 2’s Relation
+                       </Form.Label>
+                       <Form.Control
+                        type="text"
+                        required
+                        value={childGuardian2Relation}
+                        onChange={(e) => setChildGuardian2Relation(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                   </Form.Row>
+
+                   <Form.Row>
+                     <div class="col">
+                       <Form.Label>Family Background</Form.Label>
+                       <Form.Control
+                         type="text"
+                         required
+                         value={childFamilyBackground}
+                         onChange={(e) => setchildFamilyBackground(e.target.value)}
+                       ></Form.Control>
+                     </div>
+                   </Form.Row>
+
+                   <div class="row">
+                     <div class="col-md-6">
+                       <div
+                           onClick={() => {
+                            setRouter("home");
+                            addChildProfile({
+                              name: childName,
+                              dateOfBirth: childDateOfBirth,
+                              gender: childGender,
+                              currentAddress: childCurrentAddress,
+                              grade: childGrade,
+                              contactInformation: childContactInformation,
+                              guardian1Name: childGuardian1Name,
+                              guardian1Relation: childGuardian1Relation,
+                              guardian1Occupation: childGuardian1Occupation,
+                              guardian1Cnic: childGuardian1CNIC,
+                              guardian2Name: childGuardian2Name,
+                              guardian2Relation: childGuardian2Relation,
+                              familyBackground: childFamilyBackground,
+                              status: "unassigned",
+                            });
+                          }}
+                         class="Button"
+                         className="button_green"
+                       >
+                         {" "}
+                         Add New Child
+                       </div>
+                     </div>
+                     <div class="col-md-6">
+                       <div
+                        onClick={() => setRouter("home")}
+                         class="Button"
+                         className="button_redd"
+                       >
+                         {" "}
+                        Discard Changes
+                       </div>
+                     </div>
+                   </div>
+
+                 </Form>
+               </div>
+             </div>
+       </div>
+     </section>
+     <nav className="navbarContainer_gray">
+       <img src={logo} className="Applogo" alt="logo" />
+       <h2 className="titletext">Hunehar Management System</h2>
+       <p className="smalltext" onClick={handlelogout}>
+         <span>Logout</span>
+       </p>
+       <SearchField placeholder="search..." classNames="search" />
+       <nav className="navbarContainer">
+         <p className="smalltext" onClick={() => setRouter("home")}>
+           <span>HOME PAGE</span>
+         </p>
+         <h2 className="titletext"> ADD CHILDREN PROFILES</h2>
+       </nav>
+     </nav>
+     <section className="bottombar">
+       <navbar className="bottombarContainer">
+         <p
+           className="smalltext"
+           onClick={() => setRouter("admincontactus")}
+         >
+           <span>Contact Us</span>
+         </p>
+         <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
+           <span>FAQs</span>
+         </p>
+       </navbar>
+     </section>
+   </section>
+ </body>
+ 
+   
   );
 };
 

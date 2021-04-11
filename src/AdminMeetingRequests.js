@@ -50,6 +50,8 @@ const AdminMeetingRequests = (props) => {
                 ✅ Acknowledge
               </button>
             </div>
+
+
           </div>
         </section>
         <nav className="navbarContainer_gray">
@@ -84,5 +86,6 @@ const AdminMeetingRequests = (props) => {
     </body>
   );
 };
+
 
 export default AdminMeetingRequests;

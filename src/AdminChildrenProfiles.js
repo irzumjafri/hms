@@ -4,7 +4,7 @@ import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
 const AdminChildrenProfiles = (props) => {
   const {
-    handleLogout,
+    handlelogout,
     childData,
     setRouter,
     totalChildren,
@@ -50,7 +50,7 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Label className="label-left">Name</Form.Label>
                           <Form.Control
                             type="text"
-                            autoFocus
+                            
                             required
                             value={childData[i].name}
                           ></Form.Control>
@@ -72,7 +72,7 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Label className="label-left">Gender</Form.Label>
                           <Form.Control
                             type="text"
-                            autoFocus
+                            
                             required
                             value={childData[i].gender}
                           ></Form.Control>
@@ -93,7 +93,7 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Label className="label-left">Grade</Form.Label>
                           <Form.Control
                             type="text"
-                            autoFocus
+                            
                             required
                             value={childData[i].grade}
                           ></Form.Control>
@@ -117,7 +117,7 @@ const AdminChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            autoFocus
+                            
                             required
                             value={childData[i].guardian1Name}
                           ></Form.Control>
@@ -141,7 +141,7 @@ const AdminChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            autoFocus
+                            
                             required
                             value={childData[i].guardian1Occupation}
                           ></Form.Control>
@@ -165,7 +165,7 @@ const AdminChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            autoFocus
+                            
                             required
                             value={childData[i].guardian2Name}
                           ></Form.Control>
@@ -187,7 +187,7 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Label>Family Background</Form.Label>
                           <Form.Control
                             type="text"
-                            autoFocus
+                            
                             required
                             value={childData[i].familyBackground}
                           ></Form.Control>
@@ -227,7 +227,7 @@ const AdminChildrenProfiles = (props) => {
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}>
+          <p className="smalltext" onClick={handlelogout}>
             <span>Logout</span>
           </p>
           <SearchField placeholder="search..." classNames="search" />
