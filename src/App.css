@@ -631,17 +631,45 @@
 .navbar .navbarContainer_gray p span:hover {
   text-decoration: underline;
 }
-/* @media only screen and (max-width: 768px) {
-  .navbar .navbarContainer {
-    transform: translateY(100px);
+
+@media only screen and (max-width: 400px) {
+  .navbar .navbarContainer_gray {
+    display: contents;
+  }
+  .navbar .navbarContainer_gray .search {
+    display: none;
+  }
+  .navbar .navbarContainer_gray .titletext {
+    display: none;
+  }
+  .navbar .navbarContainer_gray .navbarContainer {
+    display: contents;
   }
 
-  .navbar .navbarContainer .titletext {
-    font-size: 18px;
-
-    line-height: 1;
+  .navbar .navbarContainer_gray .Applogo {
+    display: none;
   }
-} */
+  .navbar .navbarContainer_gray .navbarContainer .titletext {
+    color: #4c8dc3;
+    position: absolute;
+    top: 5px;
+    left: 10%;
+    font-size: 15px;
+    font-weight: 1000px;
+  }
+  .navbar .navbarContainer_gray p span {
+    color: black;
+    position: fixed;
+    top: 5px;
+    right: 10px;
+  }
+  .navbar .navbarContainer_gray .smalltext {
+    color: black;
+  }
+  .navbar .navbarContainer_gray p span:hover {
+    text-decoration: underline;
+  }
+}
 /* ################### BottomBar ################ */
 .bottombar {
   width: 100%;
@@ -1004,7 +1032,6 @@
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  float: left;
 }
 
 .sponsorHomepage .sponsorHomepageContainer_right {
@@ -1016,7 +1043,19 @@
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  float: right;
+}
+
+.sponsorHomepage .sponsorHomepageContainer_inter {
+  padding: 60px;
+  margin: 60px 60px 60px 60px;
+  width: 100%;
+  min-height: 400px;
+  background: white;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  float: none;
+  display: none;
 }
 
 .sponsorHomepage .sponsorHomepageContainer_right .button_blue {
@@ -1115,18 +1154,34 @@
   }
 }
 
-@media only screen and (max-width: 736px) {
-  /* .sponsorHomepage .sponsorHomepageContainer_left {
-    padding: 100px;
-    margin: 60px 60px 60px 60px;
-    width: 50%;
-    background-color: #192539;
-  } */
-  .sponsorHomepage .sponsorHomepageContainer_left .button_green {
-    margin-bottom: 10px;
-    padding: none;
+/* @media only screen and (max-width: 411px) {
+  .sponsorHomepage .sponsorHomepageContainer_left {
+    width: 900%;
+    margin: 60px;
+    background-color: red;
+    padding: auto;
+    float: none;
   }
-}
+  .sponsorHomepage .sponsorHomepageContainer_inter {
+    padding: 60px;
+    margin: 60px 60px 60px 60px;
+    width: 100%;
+    min-height: 400px;
+    background: black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+  }
+
+  .sponsorHomepage .sponsorHomepageContainer_right {
+    width: 900%;
+    margin: 60px;
+    background-color: #61ce7d;
+    padding: auto;
+    float: none;
+  }
+} */
 
 /* ######################################EditmyprofileSponsor#################### */
 .editMyProfileSponsor {

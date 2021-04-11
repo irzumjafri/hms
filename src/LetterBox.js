@@ -43,7 +43,6 @@ const LetterBox = (props) => {
             <Form.Label className= "label-left">To *</Form.Label>
             <Form.Control
               type="text"
-              autoFocus
               required
             ></Form.Control>
             </div >
