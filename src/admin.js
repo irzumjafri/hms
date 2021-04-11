@@ -702,54 +702,7 @@ const Admin = () => {
       });
   };
 
-  const fetchContactUs = () => {
-    let tempData = [];
-    db.collection("contactUs")
-      .get()
-      .then((querySnapshot) => {
-        // contact us is not defined
-        if (querySnapshot.empty) {
-          setErrorMessage("No contact us information is available");
-          return;
-        } else {
-          querySnapshot.forEach((doc) => {
-            // update state to store data of all all of ways to conatct hunehar
-            tempData={
-              address: doc.data().address,
-              email: doc.data().email,
-              facebook: doc.data().facebook,
-              instagram: doc.data().instagram,
-              phoneNumber: doc.data().phoneNumber,
-              twitter: doc.data().twitter,
-              youtube: doc.data().youtube,
-            }
-          });
-        }
-        setContactUs(tempData);
-      });
-  };
-
-  const editContactUs = (newContact) => {
-    let profileToEdit = db.collection("contactUs").doc('contactDoc');
-    return profileToEdit
-      .update({
-        address: newContact.address,
-        email: newContact.email,
-        facebook: newContact.facebook,
-        instagram: newContact.instagram,
-        phoneNumber: newContact.phoneNumber,
-        twitter: newContact.twitter,
-        youtube: newContact.youtube,
-      })
-      .then(() => {
-        console.log("Document successfully updated!");
-        fetchContactUs();
-      })
-      .catch((error) => {
-        console.error("Error updating document: ", error);
-      });
-  };
-
+  // This function fetches all FAQs to be displayed
   const fetchFAQs = () => {
     let tempDataQ = [];
     let tempDataA = [];
@@ -774,8 +727,8 @@ const Admin = () => {
             });
           });
         }
-        console.log(tempDataA)
-        console.log(tempDataQ)
+        // console.log(tempDataA);
+        // console.log(tempDataQ);
         setQuestions(tempDataQ);
         setAnswers(tempDataA);
       });
@@ -809,12 +762,13 @@ const Admin = () => {
             });
           });
         }
+        // console.log("Hereeee", tempData);
         setContactUs(tempData);
       });
   };
 
   const editContactUs = (newContact) => {
-    let profileToEdit = db.collection("contactUs").doc(newContact.id);
+    let profileToEdit = db.collection("contactUs").doc("contactDoc");
     return profileToEdit
       .update({
         address: newContact.address,
@@ -831,36 +785,6 @@ const Admin = () => {
       })
       .catch((error) => {
         console.error("Error updating document: ", error);
-      });
-  };
-
-  // This function fetches all FAQs to be displayed
-  const fetchFAQs = () => {
-    let tempDataQ = [];
-    let tempDataA = [];
-
-    db.collection("FAQs")
-      .get()
-      .then((querySnapshot) => {
-        // FAQs is not defined
-        if (querySnapshot.empty) {
-          setErrorMessage("No FAQs to show");
-          return;
-        } else {
-          querySnapshot.forEach((doc) => {
-            // update state to store data of all children profiles present in current snapshot of the db
-            tempDataA.push({
-              answers: doc.data().answers,
-              id: doc.data().id,
-            });
-            tempDataQ.push({
-              question: doc.data().question,
-              id: doc.data().id,
-            });
-          });
-        }
-        setQuestions(tempDataQ);
-        setAnswers(tempDataA);
       });
   };
 
