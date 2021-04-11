@@ -17,6 +17,16 @@ const AdminPaymentHistory = (props) => {
       <section className="navbar">
         <section className="paymentHistory">
           <div className="paymentHistoryContainer">
+
+          <div class="row">
+                <div class="col-md-12">
+                  <div class="Button" className="button_green">
+                    {" "}
+                    Add Payment
+                  </div>
+                </div>
+              </div>
+
             {/* ONCHANGE */}
 
             <Form>
@@ -42,19 +52,18 @@ const AdminPaymentHistory = (props) => {
               </Form.Row>
 
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-auto">
                   <div class="Button" className="button_blue">
                     {" "}
                     Edit Payment
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="Button" className="button_green">
-                    {" "}
-                    Add Payment
-                  </div>
-                </div>
               </div>
+
+
+
+
+              
             </Form>
           </div>
         </section>
@@ -71,7 +80,7 @@ const AdminPaymentHistory = (props) => {
             <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
             </p>
-            <h2 className="titletext"> ADD NEW SPONSOR PROFILE</h2>
+            <h2 className="titletext"> ADMIN PAYMENT HISTORY</h2>
           </nav>
         </nav>
 

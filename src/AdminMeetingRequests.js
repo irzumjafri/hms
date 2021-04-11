@@ -17,7 +17,7 @@ const AdminMeetingRequests = (props) => {
 
   return (
     <body>
-      <section className="navbar">
+     <section className="navbar">
         <section></section>
         <section className="requestAMeeting">
           <div className="requestAMeetingContainer">
