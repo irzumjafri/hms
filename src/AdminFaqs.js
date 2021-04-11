@@ -3,11 +3,11 @@ import SearchField from "react-search-field";
 import {Button, Form} from 'react-bootstrap';
 import logo from "./HMSlogo.png";
 
-const FAQs = (props) => {
+const AdminFAQs = (props) => {
   const {
     questions,
     answers,
-    handleLogout,
+    handlelogout,
     setRouter,
     applicationStatus,
   } = props;
@@ -49,12 +49,12 @@ const FAQs = (props) => {
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <p className="smalltext" onClick={handlelogout}><span>Logout</span></p>
           <SearchField placeholder ="search..."
           classNames="search"/> 
           
           <nav className="navbarContainer">
-          <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
+          <p className="smalltext" onClick={() => setRouter('home')}><span>HOME PAGE</span></p>
           <h2 className="titletext">FREQUENTLY ASKED QUESTIONS</h2>
         </nav>
           
@@ -71,4 +71,4 @@ const FAQs = (props) => {
   );
 };
 
-export default FAQs;
+export default AdminFAQs;

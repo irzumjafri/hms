@@ -5,7 +5,7 @@ import logo from "./HMSlogo.png";
 
 const AdminContactUs = (props) => {
   const {
-    handleLogout,
+    handlelogout,
     setRouter,
     contactPhoneNumber,
     contactEmail,
@@ -85,7 +85,7 @@ const AdminContactUs = (props) => {
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <p className="smalltext" onClick={handlelogout}><span>Logout</span></p>
           <SearchField placeholder ="search..."
           classNames="search"/> 
           

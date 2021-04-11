@@ -61,13 +61,9 @@ const Admin = () => {
   const [router, setRouter] = useState("home");
   const [applicationStatus, setApplicationStatus] = useState(true);
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
-  const [questions, setQuestions] = useState([
-    "are you okay",
-    "are you ok",
-    "are you oka",
-    "are you k",
-  ]);
-  const [answers, setAnswers] = useState(["no", "yes", "no", "yes"]);
+  const [questions, setQuestions] = useState([]);
+  const [answers, setAnswers] = useState([]);
+  const [contactUs, setContactUs] = useState();
   const [paymentDate, setPaymentDate] = useState([
     "01-01-0001",
     "02-01-0001",
@@ -537,26 +533,37 @@ const Admin = () => {
   };
 
   const deleteSponsorProfile = (i) => {
-    // get nic of the sponsor profile we want to delete to set their children to unassigned
-    let mail = db
-      .collection("registeredSponsors")
-      .doc(i.toString().replace(/\s/g, "")).email; ////////////////////////////////////////////////////////
-    console.log(
-      db.collection("registeredSponsors").doc(i.toString().replace(/\s/g, ""))
-    );
+    let mail = "";
+
     db.collection("registeredSponsors")
-      .doc(i.toString().replace(/\s/g, ""))
-      .delete()
-      .then(() => {
-        console.log("Document successfully deleted!");
-        fetchSponsorData();
-        // update children profiles with nic and unassigned status for assigend children of this sponsor
-        unassignChildren(mail);
-      })
-      .catch((error) => {
-        console.error("Error removing document: ", error);
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.log("No sposnor profile against this ID");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            if (doc.data().id === i.toString().replace(/\s/g, "")) {
+              mail = doc.data().email;
+            }
+          });
+
+          db.collection("registeredSponsors")
+            .doc(i.toString().replace(/\s/g, ""))
+            .delete()
+            .then(() => {
+              console.log("Document successfully deleted!");
+              // update children profiles with nic and unassigned status for assigend children of this sponsor
+              unassignChildren(mail);
+              fetchSponsorData();
+            })
+            .catch((error) => {
+              console.error("Error removing document: ", error);
+            });
+        }
       });
   };
+
 
   // This function allows is called to unassign the children assigend to a given sponsor email
   const unassignChildren = (mail) => {
@@ -568,9 +575,19 @@ const Admin = () => {
           console.log("No children were assigned to this sponsor");
           return;
         } else {
+          let idToDelete = [];
           querySnapshot.forEach((doc) => {
-            // update the status and sponsorCNIC of the children profiles here
-            return doc
+            // fetch IDs of the profile associated with the email address
+            idToDelete.push(doc.data().id);
+          });
+
+          // get child profile assocated to the id
+          idToDelete.map((idOfChild) => {
+            let profileToEdit = db
+              .collection("childrenProfiles")
+              .doc(idOfChild);
+
+            return profileToEdit
               .update({
                 sponsorEmail: "",
                 status: "unassigned",

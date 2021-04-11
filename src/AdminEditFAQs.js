@@ -3,7 +3,7 @@ import SearchField from "react-search-field";
 import {Button, Form} from 'react-bootstrap';
 import logo from "./HMSlogo.png";
 
-
+ 
 const AdminEditFAQs = (props) => {
   const {
     questions,
