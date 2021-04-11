@@ -933,7 +933,7 @@ const Admin = () => {
                   answers={answers}
                   setQuestions={setQuestions}
                   setAnswers={setAnswers}
-                  editfaqs={editfaqs}
+                  editfaqs={editFAQs}
                 />
               ),
               editcontactinformation: (

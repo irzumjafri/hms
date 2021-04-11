@@ -9,7 +9,7 @@ const AdminEditFAQs = (props) => {
   const [editQuestion1, setEditQuestion1] = useState(questions[0]);
   const [editAnswer1, setEditAnswer1] = useState(answers[0]);
   const [editQuestion2, setEditQuestion2] = useState(questions[1]);
-  const [editAnswer2, setEditAnswer] = useState(answers[1]);
+  const [editAnswer2, setEditAnswer2] = useState(answers[1]);
   const [editQuestion3, setEditQuestion3] = useState(questions[2]);
   const [editAnswer3, setEditAnswer3] = useState(answers[2]);
   const [editQuestion4, setEditQuestion4] = useState(questions[3]);
