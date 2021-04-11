@@ -57,8 +57,7 @@ const Sponsor = () => {
   const [howToAssignChildren, setHowToAssignChildren] = useState("");
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [paymentDate, setPaymentDate] = useState([]);
-  const [amount, setAmount] = useState([]);
+  const [paymentData, setPaymentData] = useState([]);
   const [childData, setChildData] = useState([]);
   const [myChildren, setMyChildren] = useState([]);
   const [letterBody, setLetterBody] = useState("");
@@ -252,36 +251,26 @@ const Sponsor = () => {
     }
   };
 
-  // //sponsor checking his payment history
-  //   const checkingPaymentHistory = () => {
-  //     db.collection("paymentHistory")
-  //     .where("id", "==", user.id)
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         // doc.data() is never undefined for query doc snapshot
-  //         console.log(doc.id, " => ", doc.data());
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error getting documents: ", error);
-  //     });
-  //   }
-
   const addMeetingRequest = () => {
-    db.collection("Meeting").doc(user.id).set({
+    db.collection("meeting").doc(user.id).set({
       email: email,
       firstName: firstName,
       lastName: lastName,
       phoneNumber: phoneNumber,
-      meetingdata: preferredMeetingDate,
+      meetingDate: preferredMeetingDate,
       hour: hour,
       min: minutes,
       ampm: amPm,
-      backupdate: backUpDatesAndTimes,
+      backupDate: backUpDatesAndTimes,
       purpose: purpose,
       id: user.uid,
     });
+    setPreferredMeetingDate("");
+    setHour("");
+    setMinutes("");
+    setAmPm("");
+    setBackUpDatesAndTimes("");
+    setPurpose("");
   };
 
   //sponsor checking his payment history

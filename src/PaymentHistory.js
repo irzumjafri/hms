@@ -6,8 +6,7 @@ import logo from "./HMSlogo.png";
 const PaymentHistory = (props) => {
   const {
     handleLogout,
-    paymentDate,
-    amount,
+    paymentData,
     setRouter,
     applicationStatus
   } = props;
@@ -25,8 +24,6 @@ const PaymentHistory = (props) => {
         <div className="paymentHistoryContainer">
         {paymentDate.map((con, i) => {
           return (
-           
-
                 <Form>
                 <Form.Row>
                 <div class = "col">
@@ -35,7 +32,7 @@ const PaymentHistory = (props) => {
                 type="text"
                 autoFocus
                 required
-                value={amount[i]}
+                value={paymentData[i].amount}
                 ></Form.Control>
                 </div>
                 <div class = "col">
@@ -44,7 +41,7 @@ const PaymentHistory = (props) => {
                 type="text"
                 autoFocus
                 required
-                value={paymentDate[i]}
+                value={paymentData[i].paymentDate}
                 ></Form.Control>
                 </div>
                 </Form.Row>
