@@ -285,6 +285,7 @@ const withdrawchild = (i) => {
     })
     .then(() => {
       console.log("Document successfully updated!");
+      fetchChildProfiles();
     })
   };
 
