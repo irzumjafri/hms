@@ -11,6 +11,7 @@ const ChildrenProfiles = (props) => {
     withdrawchild
   } = props;
 
+  console.log(childData)
   return (
     <body>
     <section className="navbar">
@@ -59,7 +60,7 @@ const ChildrenProfiles = (props) => {
             <Form.Label className= "label-right">Current Address</Form.Label>
             <Form.Control
               type="text"
-              value={childData.currentAddress}
+              value={childData[i].currentAddress}
             ></Form.Control>
               </div>
               </Form.Row>
@@ -99,7 +100,7 @@ const ChildrenProfiles = (props) => {
             <Form.Control
               type="text"
               required
-              value={childData[i].guardian1Realtion}
+              value={childData[i].guardian1Relation}
             ></Form.Control>
               </div>
               </Form.Row>
@@ -163,7 +164,7 @@ const ChildrenProfiles = (props) => {
 
               <div className="btnContainer">
                 <button
-                  onClick={() => withdrawchild()}
+                  onClick={() => withdrawchild(childData[i].id)}
                   className="button_redd"
                 >
                   Withdraw Sponsorship for This Child

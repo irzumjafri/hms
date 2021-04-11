@@ -278,13 +278,13 @@ const Sponsor = () => {
 const withdrawchild = (i) => {
 
   let profileupdate = db.collection("childrenProfiles").doc(i)
+    console.log('FUNCTION CALLED')
     return profileupdate.update({
       sponsorEmail : "" , 
       status : "unassigned",
     })
     .then(() => {
       console.log("Document successfully updated!");
-      fetchChildProfiles();
     })
   };
 
@@ -306,7 +306,7 @@ const withdrawchild = (i) => {
               grade: doc.data().grade,
               contactInformation: doc.data().contactInformation,
               guardian1Name: doc.data().guardian1Name,
-              guardian1Realtion: doc.data().guardian1Realtion,
+              guardian1Relation: doc.data().guardian1Relation,
               guardian1Occupation: doc.data().guardian1Occupation,
               guardian1Cnic: doc.data().guardian1Cnic,
               guardian2Name: doc.data().guardian2Name,
@@ -315,6 +315,7 @@ const withdrawchild = (i) => {
             });
           });
         }
+        console.log(tempData)
         setChildData(tempData);
       })
       .catch((error) => {
