@@ -583,7 +583,7 @@
   float: right;
   transition: all 400ms ease-in-out;
 }
-.bottombarhome .bottombarhomeContainer .smallltext {
+.bottombarhome .bottombarhomeContainer .smalltext {
   color: black;
   margin: auto 10px;
   font-size: 14px;

@@ -212,12 +212,12 @@ const AdminHome = (props) => {
         <section className="bottombarhome">
           <div className="bottombarhomeContainer">
             <p
-              className="smallltext"
+              className="smalltext"
               onClick={() => setRouter("admincontactus")}
             >
               <span>Contact Us</span>
             </p>
-            <p className="smallltext" onClick={() => setRouter("adminfaqs")}>
+            <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
               <span>FAQs</span>
             </p>
           </div>
