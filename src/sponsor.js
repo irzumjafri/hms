@@ -148,13 +148,11 @@ const Sponsor = () => {
 
   const fetchSponsorData = (id) => {
     let refdoc = "";
-    console.log("fetching sponsor data");
     refdoc = db.collection("registeredSponsors").doc(id);
     refdoc
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
           setFirstName(doc.data().firstName);
           setLastName(doc.data().lastName);
           setEmail(doc.data().email);
@@ -186,14 +184,10 @@ const Sponsor = () => {
 
   const fetchLogin = (id) => {
     var docRef = db.collection("userAccounts").doc(id);
-    console.log(id);
-    console.log("fetching login data");
     docRef
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
-          console.log("call fetch");
           setFirstName(doc.data().firstName);
           setLastName(doc.data().lastName);
           setEmail(doc.data().email);
@@ -205,6 +199,9 @@ const Sponsor = () => {
             setRouter("unregistered");
           }
           fetchSponsorData(id);
+          fetchChildProfiles(doc.data().email);
+          checkingPaymentHistory(id);
+
         } else {
           console.log("No such document!");
         }
@@ -212,6 +209,9 @@ const Sponsor = () => {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
+
+
+
   };
 
   const clearInputs = () => {
@@ -273,11 +273,60 @@ const Sponsor = () => {
     setPurpose("");
   };
 
+// withdraw child
+
+const withdrawchild = (i) => {
+
+  let profileupdate = db.collection("childrenProfiles").doc(i)
+    return profileupdate.update({
+      sponsorEmail : "" , 
+      status : "unassigned",
+    })
+    .then(() => {
+      console.log("Document successfully updated!");
+      fetchChildProfiles();
+    })
+  };
+
+  //fetch child profiles for sponsor
+  const fetchChildProfiles = (e) => {
+    let tempData = [];
+    db.collection("childrenProfiles").where("sponsorEmail","==",e).get().then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          //console.log("No child profiles exists for sponsor");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of child 
+            tempData.push({
+              name : doc.data().name,
+              dateOfBirth: doc.data().dateOfBirth,
+              gender: doc.data().gender,
+              currentAddress: doc.data().currentAddress,
+              grade: doc.data().grade,
+              contactInformation: doc.data().contactInformation,
+              guardian1Name: doc.data().guardian1Name,
+              guardian1Realtion: doc.data().guardian1Realtion,
+              guardian1Occupation: doc.data().guardian1Occupation,
+              guardian1Cnic: doc.data().guardian1Cnic,
+              guardian2Name: doc.data().guardian2Name,
+              guardian2Relation: doc.data().guardian2Relation,
+              familyBackground: doc.data().familyBackground,
+            });
+          });
+        }
+        setChildData(tempData);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+};
+
   // sponsor checking his payment history
-  const checkingPaymentHistory = () => {
+  const checkingPaymentHistory = (i) => {
     let tempData = [];
     db.collection("paymentHistory")
-      .where("senderId", "==", user.id)
+      .where("senderId", "==", i)
       .get()
       .then((querySnapshot) => {
         // No meeting request is in db and it is empty
@@ -304,38 +353,41 @@ const Sponsor = () => {
   };
 
   //Sponsors sending letters to child
-  const sendLettersToChild = () => {
-    db.collection("lettersToChild")
-      .doc(user.uid)
-      .set({
-        sponsorId: user.uid,
-        firstName: firstName,
-        lastName: lastName,
-        selectedChild: selectedChild,
-        letterBody: letterBody,
-        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-      });
-  };
 
-  // sponsors checking letters sent by child
-  const getLettersByChild = () => {
-    db.collection("lettersFromChild")
-      .where("sponsorId", "==", user.id)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshot
-          console.log(doc.id, " => ", doc.data());
-          setLetterBody(doc.data().letterBody);
-          setSelectedChild(doc.data().selectedChild);
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-  };
+
+  // const sendLettersToChild = () => {
+  //   db.collection("lettersToChild")
+  //     .doc(user.uid)
+  //     .set({
+  //       sponsorId: user.uid,
+  //       firstName: firstName,
+  //       lastName: lastName,
+  //       selectedChild: selectedChild,
+  //       letterBody: letterBody,
+  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+  //     });
+  // };
+
+  // // sponsors checking letters sent by child
+  // const getLettersByChild = () => {
+  //   db.collection("lettersFromChild")
+  //     .where("sponsorId", "==", user.id)
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         // doc.data() is never undefined for query doc snapshot
+  //         setLetterBody(doc.data().letterBody);
+  //         setSelectedChild(doc.data().selectedChild);
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error getting documents: ", error);
+  //     });
+  // };
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
+  
+  
   const createUserAccount = (id) => {
     db.collection("userAccounts")
       .doc(id.toString())
@@ -378,6 +430,7 @@ const Sponsor = () => {
         clearInputs();
         setUser(user);
         fetchLogin(user.uid);
+
       }
     });
   };
@@ -509,16 +562,10 @@ const Sponsor = () => {
                   childData={childData}
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
+                  withdrawchild = {withdrawchild}
                 />
               ),
-              childrenprofiles: (
-                <ChildrenProfiles
-                  handleLogout={handleLogout}
-                  childData={childData}
-                  setRouter={setRouter}
-                  applicationStatus={applicationStatus}
-                />
-              ),
+                
               requestmeeting: (
                 <RequestAMeeting
                   handleLogout={handleLogout}
