@@ -33,17 +33,7 @@ const AdminPaymentHistory = (props) => {
                 <div>
                   <Form>
                     <Form.Row>
-                      <div class="col-md-6">
-                        <Form.Label className="label-left">
-                          Sender ID
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          required
-                          value={paymentRecords[i].senderId}
-                        ></Form.Control>
-                      </div>
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <Form.Label className="label-right">
                           Sender Name
                         </Form.Label>
