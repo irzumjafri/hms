@@ -331,15 +331,17 @@ const Admin = () => {
       .where("status", "==", "unassigned")
       .get()
       .then((querySnapshot) => {
-        console.log(querySnapshot)
+        console.log(querySnapshot);
         if (querySnapshot.empty) {
           console.log("No unassigned child in the database");
           return;
         } else {
           // set all the fields
+          let childIDs = [];
           let count = 0;
           querySnapshot.forEach((doc) => {
             count = count + 1;
+            childIDs.push(doc.data().id);
           });
 
           if (count < noc) {
@@ -349,30 +351,26 @@ const Admin = () => {
             return;
           } else {
             // get IDs of profiles of children that will be assigned to this sponsor
-            let childIDs = [];
-            for (let i = 0; i < noc; i++) {
-              console.log(querySnapshot[i].data().id); //////////////////////////////////////
-              childIDs.append(querySnapshot[i].data().id);
-            }
-
             // update each ID of that child with sponsors CNIC and update its status as well
-            childIDs.map((idOfChild) => {
-              let profileToEdit = db
-                .collection("childrenProfiles")
-                .doc(idOfChild);
+            childIDs.map((idOfChild, i) => {
+              if (i < noc) {
+                let profileToEdit = db
+                  .collection("childrenProfiles")
+                  .doc(idOfChild);
 
-              return profileToEdit
-                .update({
-                  sponsorEmail: mail,
-                  status: "assigned",
-                })
-                .then(() => {
-                  console.log("Document successfully updated!");
-                  fetchChildrenProfiles(); // update the changes in states as well
-                })
-                .catch((error) => {
-                  console.error("Error updating document: ", error);
-                });
+                return profileToEdit
+                  .update({
+                    sponsorEmail: mail,
+                    status: "assigned",
+                  })
+                  .then(() => {
+                    console.log("Document successfully updated!");
+                    fetchChildrenProfiles(); // update the changes in states as well
+                  })
+                  .catch((error) => {
+                    console.error("Error updating document: ", error);
+                  });
+              }
             });
           }
         }
@@ -504,7 +502,7 @@ const Admin = () => {
       guardian2Relation: child.guardian2Relation,
       familyBackground: child.familyBackground,
       id: child.id,
-      status: child.status
+      status: child.status,
     });
 
     setRouter("editchildrenprofile");
@@ -542,11 +540,10 @@ const Admin = () => {
     // get nic of the sponsor profile we want to delete to set their children to unassigned
     let mail = db
       .collection("registeredSponsors")
-      .doc(i.toString().replace(/\s/g, ""))
-      .email; ////////////////////////////////////////////////////////
-    console.log(db
-      .collection("registeredSponsors")
-      .doc(i.toString().replace(/\s/g, "")))
+      .doc(i.toString().replace(/\s/g, "")).email; ////////////////////////////////////////////////////////
+    console.log(
+      db.collection("registeredSponsors").doc(i.toString().replace(/\s/g, ""))
+    );
     db.collection("registeredSponsors")
       .doc(i.toString().replace(/\s/g, ""))
       .delete()
@@ -622,7 +619,7 @@ const Admin = () => {
         guardian2Name: child.guardian2Name,
         guardian2Relation: child.guardian2Relation,
         familyBackground: child.familyBackground,
-        status: child.status
+        status: child.status,
       })
       .then((value) => {
         // set this id as its own attribte
@@ -639,8 +636,8 @@ const Admin = () => {
   };
 
   const editChildProfile = (child) => {
-    console.log("EDITING CHILD")
-    console.log(child)
+    console.log("EDITING CHILD");
+    console.log(child);
     let profileToEdit = db.collection("childrenProfiles").doc(child.id);
     return profileToEdit
       .update({
