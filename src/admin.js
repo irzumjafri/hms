@@ -652,8 +652,6 @@ const Admin = () => {
   };
 
   const editChildProfile = (child) => {
-    console.log("EDITING CHILD");
-    console.log(child);
     let profileToEdit = db.collection("childrenProfiles").doc(child.id);
     return profileToEdit
       .update({
@@ -755,8 +753,8 @@ const Admin = () => {
             // update state to store data of all all of ways to conatct hunehar
             tempData.push({
               address: doc.data().address,
-              email: doc.data().address,
-              facebook: doc.data().address,
+              email: doc.data().email,
+              facebook: doc.data().facebook,
               instagram: doc.data().instagram,
               phoneNumber: doc.data().phoneNumber,
               twitter: doc.data().twitter,
@@ -765,6 +763,27 @@ const Admin = () => {
           });
         }
         setContactUs(tempData);
+      });
+  };
+
+  const editContactUs = (newContact) => {
+    let profileToEdit = db.collection("contactUs").doc(newContact.id);
+    return profileToEdit
+      .update({
+        address: newContact.address,
+        email: newContact.email,
+        facebook: newContact.facebook,
+        instagram: newContact.instagram,
+        phoneNumber: newContact.phoneNumber,
+        twitter: newContact.twitter,
+        youtube: newContact.youtube,
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+        fetchContactUs();
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
       });
   };
 
