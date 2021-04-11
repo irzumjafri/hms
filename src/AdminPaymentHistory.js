@@ -8,6 +8,8 @@ const AdminPaymentHistory = (props) => {
     handlelogout,
     paymentRecords,
     setRouter,
+    calleditpaymenthistory,
+    deletePaymentHistory
   } = props;
 
   return (
@@ -69,14 +71,14 @@ const AdminPaymentHistory = (props) => {
                           <div
                             class="Button"
                             className="button_blue"
-                            onClick={() => setRouter('home')}
+                            onClick={() => calleditpaymenthistory(paymentRecords[i])}
                           >
                             {" "}Edit Payment
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div
-                           onClick={() => setRouter("home")}
+                           onClick={() => deletePaymentHistory(paymentRecords[i].id)}
                             class="Button"
                             className="button_purple"
                           >

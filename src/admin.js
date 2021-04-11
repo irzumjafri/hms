@@ -20,7 +20,8 @@ import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
 import AdminAddSponsorProfile from "./AdminAddSponsorProfile";
 import AdminAddChildrenProfiles from "./AdminAddChildrenProfiles";
 import AdminEditChildrenProfiles from "./AdminEditChildrenProfiles";
-import AdminAddPayment from './AdminAddPayment'
+import AdminAddPayment from "./AdminAddPayment";
+import AdminEditPaymentHistory from "./AdminEditPaymentHistory";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -56,6 +57,7 @@ const Admin = () => {
   const [editingProfile, setEditingProfile] = useState();
   const [editingChildProfile, setEditingChildProfile] = useState();
   const [paymentRecords, setpaymentRecords] = useState([]);
+  const [editingPaymentHistory, setEditingPaymentHistory] = useState();
   const [meetingRecords, setmeetingRecords] = useState([]);
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
@@ -656,7 +658,7 @@ const Admin = () => {
   // This function gets all the payment histories and sets them in states to be diplayed
   const fetchPaymentHistory = () => {
     let tempData = [];
-    console.log('functioncalled')
+    console.log("functioncalled");
     db.collection("paymentHistory")
       .get()
       .then((querySnapshot) => {
@@ -676,7 +678,7 @@ const Admin = () => {
             });
           });
         }
-        console.log('PAYMENT',tempData)
+        console.log("PAYMENT", tempData);
         setpaymentRecords(tempData);
       });
   };
@@ -697,9 +699,14 @@ const Admin = () => {
   };
 
   const calleditpaymenthistory = (paym) => {
-    //SET STATE
-    //SET ROUTER
-  }
+    setEditingPaymentHistory({
+      senderId: paym.senderId,
+      senderName: paym.senderName,
+      amount: paym.amount,
+      paymentDate: paym.paymentDate,
+    });
+    setRouter("editpaymenthistory");
+  };
 
   // This function allows admin users to add a payment history for a sponsor wih the given email
   // New payment is an object being passed. It has sender's name, amount and payment date
@@ -1032,16 +1039,25 @@ const Admin = () => {
                 <AdminPaymentHistory
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
+                  calleditpaymenthistory={calleditpaymenthistory}
                   paymentRecords={paymentRecords}
+                  deletePaymentHistory={deletePaymentHistory}
                 />
               ),
               addpaymenthistory: (
-                <AdminAddPayment 
-                handlelogout={handleAdminLogout}
+                <AdminAddPayment
+                  handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   addPaymentHistory={addPaymentHistory}
                 />
-
+              ),
+              editpaymenthistory: (
+                <AdminEditPaymentHistory
+                  paymentData={editingPaymentHistory}
+                  setRouter={setRouter}
+                  handlelogout={handleAdminLogout}
+                  editPaymentHistory={editPaymentHistory}
+                />
               ),
               meetingrequests: (
                 <AdminMeetingRequests

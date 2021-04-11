@@ -2,16 +2,19 @@ import React from "react";
 import SearchField from "react-search-field";
 import { Button, Form } from "react-bootstrap";
 import logo from "./HMSlogo.png";
+import { useState, useEffect } from "react";
+
 
 const AdminEditPaymentHistory = (props) => {
   const {
-    handleLogout,
-    paymentDate,
-    setPaymentDate,
-    amount,
-    setAmount,
+    handlelogout,
+    paymentData,
     setRouter,
+    editPaymentHistory
   } = props;
+
+  const [amount, setAmount] = useState(paymentData.amount);
+  const [paymentDate, setPaymentDate] = useState(paymentData.paymentDate);
 
   return (
     <body>
@@ -19,8 +22,6 @@ const AdminEditPaymentHistory = (props) => {
         <section></section>
         <section className="editMyProfileSponsor">
           <div className="editMyProfileSponsorContainer">
-            {/* make map functionality */}
-
             <Form>
               <Form.Row>
                 <div class="col">
@@ -47,12 +48,12 @@ const AdminEditPaymentHistory = (props) => {
               </Form.Row>
               <div class="row">
                 <div class="col-md-6">
-                  <div class="Button" className="button_green">
+                  <div onClick={() => {setRouter("paymenthistory");editPaymentHistory({'senderId': paymentData.senderId, 'senderName': paymentData.senderName, 'amount': amount, 'paymentDate': paymentDate})}} class="Button" className="button_green">
                     Save Changes
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="Button" className="button_redd">
+                  <div  onClick={() => setRouter("paymenthistory")} class="Button" className="button_redd">
                     Discard Changes
                   </div>
                 </div>
@@ -63,7 +64,7 @@ const AdminEditPaymentHistory = (props) => {
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout()}>
+          <p className="smalltext" onClick={handlelogout()}>
             <span>Logout</span>
           </p>
           <SearchField placeholder="search..." classNames="search" />
