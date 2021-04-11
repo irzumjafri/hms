@@ -665,6 +665,7 @@ const Sponsor = () => {
                   applicationStatus={applicationStatus}
                   setRouter={setRouter}
                   handleLogout={handleLogout}
+                  contactUs={contactUs}
                 />
               ),
               faqs: (

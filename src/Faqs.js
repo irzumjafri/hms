@@ -11,7 +11,7 @@ const AdminFAQs = (props) => {
     setRouter,
     applicationStatus,
   } = props;
-
+ 
   console.log(questions)
   console.log(answers)
 
@@ -35,12 +35,12 @@ const AdminFAQs = (props) => {
               <Form>
 
               <div class = "col">
-            <Form.Label className= "label-left">{questions[i]}</Form.Label>
+            <Form.Label className= "label-left">{questions[i].question}</Form.Label>
             <Form.Control
               type="text"
               autoFocus
               required
-              value={answers[i]}
+              value={answers[i].answer}
             ></Form.Control>
             </div>
             </Form>

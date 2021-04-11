@@ -355,6 +355,7 @@ const Admin = () => {
       .delete()
       .then(() => {
         console.log("Document successfully deleted!", i);
+        setSponsorshipApplicationData([])
         fetchSponsorshipApplications();
       })
       .catch((error) => {
@@ -529,6 +530,7 @@ const Admin = () => {
             .then(() => {
               console.log("Document successfully deleted!");
               // update children profiles with nic and unassigned status for assigend children of this sponsor
+              setSponsorshipApplicationData([])
               unassignChildren(mail);
               fetchSponsorData();
             })
@@ -865,144 +867,21 @@ const Admin = () => {
       });
   };
 
-  // This function allows admin users to edit the already present FAQs
   const editFAQs = (newFAQs) => {
-    console.log("In Edit: ", newFAQs);
-    // newFAQs is a list of all FAQs so we extract their IDs first of all
-    let FAQIDs = [];
-    newFAQs.map((doc) => {
-      FAQIDs.push(doc.id);
-    });
-
-    console.log(FAQIDs);
-    // delete all sponsor profiles
-
-    db.collection("FAQs")
-      .doc(FAQIDs[0].toString().replace(/\s/g, ""))
-      .delete()
+    let profileToEdit = db.collection("FAQs").doc(newFAQs.id);
+    return profileToEdit
+      .update({
+        id: newFAQs.id,
+        answer: newFAQs.answer.answer,
+        question: newFAQs.question.question,
+      })
       .then(() => {
-        console.log("Document successfully deleted!");
-
-        db.collection("FAQs")
-          .doc(FAQIDs[1].toString().replace(/\s/g, ""))
-          .delete()
-          .then(() => {
-            console.log("Document successfully deleted!");
-
-            db.collection("FAQs")
-              .doc(FAQIDs[2].toString().replace(/\s/g, ""))
-              .delete()
-              .then(() => {
-                console.log("Document successfully deleted!");
-
-                db.collection("FAQs")
-                  .doc(FAQIDs[3].toString().replace(/\s/g, ""))
-                  .delete()
-                  .then(() => {
-                    console.log("Document successfully deleted!");
-
-                    db.collection("FAQs")
-                      .doc(FAQIDs[4].toString().replace(/\s/g, ""))
-                      .delete()
-                      .then(() => {
-                        console.log("Document successfully deleted!");
-
-                        // all FAQs deleted now add new ones
-
-                        db.collection("FAQs")
-                          .add({
-                            id: FAQIDs[0].toString().replace(/\s/g, ""),
-                            question: newFAQs[0].question,
-                            answer: newFAQs[0].answer,
-                          })
-                          .then(() => {
-                            db.collection("FAQs")
-                              .add({
-                                id: FAQIDs[1].toString().replace(/\s/g, ""),
-                                question: newFAQs[1].question,
-                                answer: newFAQs[1].answer,
-                              })
-                              .then(() => {
-                                db.collection("FAQs")
-                                  .add({
-                                    id: FAQIDs[2].toString().replace(/\s/g, ""),
-                                    question: newFAQs[2].question,
-                                    answer: newFAQs[2].answer,
-                                  })
-                                  .then(() => {
-                                    db.collection("FAQs")
-                                      .add({
-                                        id: FAQIDs[3]
-                                          .toString()
-                                          .replace(/\s/g, ""),
-                                        question: newFAQs[3].question,
-                                        answer: newFAQs[3].answer,
-                                      })
-                                      .then(() => {
-                                        db.collection("FAQs")
-                                          .add({
-                                            id: FAQIDs[4]
-                                              .toString()
-                                              .replace(/\s/g, ""),
-                                            question: newFAQs[4].question,
-                                            answer: newFAQs[4].answer,
-                                          })
-                                          .then(() => {
-                                            console.log(
-                                              "All FAQs should be updated now"
-                                            );
-                                          });
-                                      });
-                                  });
-                              });
-                          });
-
-                        ////////////////////////////////////////////
-                      })
-                      .catch((error) => {
-                        console.error("Error removing document: ", error);
-                      });
-                  })
-                  .catch((error) => {
-                    console.error("Error removing document: ", error);
-                  });
-              })
-              .catch((error) => {
-                console.error("Error removing document: ", error);
-              });
-          })
-          .catch((error) => {
-            console.error("Error removing document: ", error);
-          });
+        console.log("Document successfully updated!");
+        fetchFAQs();
       })
       .catch((error) => {
-        console.error("Error removing document: ", error);
+        console.error("Error updating document: ", error);
       });
-
-    console.log();
-
-    // we now use these IDs to edit all the questions
-    // let count = 0;
-    // FAQIDs.map((idOfFAQ) => {
-    //   let profileToEdit = db
-    //     .collection("FAQs")
-    //     .doc(idOfFAQ.toString().replace(/\s/g, ""));
-
-    //   return profileToEdit
-    //     .update({
-    //       id: newFAQs[count].id,
-    //       answer: newFAQs[count].answer,
-    //       question: newFAQs[count].question,
-    //     })
-    //     .then(() => {
-    //       count = count + 1;
-    //       console.log("Document successfully updated!");
-    //       fetchFAQs(); // update the changes in states as well
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error updating document: ", error);
-    //     });
-    // });
   };
 
   // This function fetches all Contact US to be displayed

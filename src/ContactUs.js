@@ -8,15 +8,10 @@ const ContactUs = (props) => {
     handleLogout,
     setRouter,
     applicationStatus,
-    contactPhoneNumber,
-    contactEmail,
-    contactAddress,
-    contactFacebook,
-    contactInstagram,
-    contactTwitter,
-    contactYoutube,
+    contactUs
   } = props;
 
+  console.log(contactUs)
   return (
     <body>
       <section className="navbar">
@@ -35,7 +30,7 @@ const ContactUs = (props) => {
               type="text"
               autoFocus
               required
-              value={contactPhoneNumber}
+              value={contactUs.phoneNumber}
               ></Form.Control>
               </div>
               <div class = "col">
@@ -44,7 +39,7 @@ const ContactUs = (props) => {
               type="text"
               autoFocus
               required
-              value={contactEmail}
+              value={contactUs.email}
               ></Form.Control>
               </div>
 
@@ -54,7 +49,7 @@ const ContactUs = (props) => {
               type="text"
               autoFocus
               required
-              value={contactAddress}
+              value={contactUs.address}
               ></Form.Control>
               </div>
               <div class = "col">
@@ -63,7 +58,7 @@ const ContactUs = (props) => {
               type="text"
               autoFocus
               required
-              value={contactFacebook}
+              value={contactUs.facebook}
               ></Form.Control>
               </div>
               
@@ -73,7 +68,7 @@ const ContactUs = (props) => {
               type="text"
               autoFocus
               required
-              value={contactInstagram}
+              value={contactUs.instagram}
               ></Form.Control>
               </div>
               <div class = "col">
@@ -82,7 +77,7 @@ const ContactUs = (props) => {
               type="text"
               autoFocus
               required
-              value={contactTwitter}
+              value={contactUs.twitter}
               ></Form.Control>
               </div>
 
@@ -92,7 +87,7 @@ const ContactUs = (props) => {
               type="text"
               autoFocus
               required
-              value={contactYoutube}
+              value={contactUs.youtube}
               ></Form.Control>
               </div>
               </Form>

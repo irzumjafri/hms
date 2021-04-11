@@ -49,7 +49,7 @@ const AdminEditPaymentHistory = (props) => {
               </Form.Row>
               <div class="row">
                 <div class="col-md-6">
-                  <div onClick={() => {setRouter("paymenthistory");editPaymentHistory({'senderId': paymentData.senderId, 'senderName': paymentData.senderName, 'amount': amount, 'paymentDate': paymentDate})}} class="Button" className="button_green">
+                  <div onClick={() => setRouter("home")} class="Button" className="button_green">
                     Save Changes
                   </div>
                 </div>

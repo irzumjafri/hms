@@ -161,7 +161,7 @@ const ChildrenProfiles = (props) => {
 
                   <Form.Row>
                     <div class="col">
-                      <Form.Label>Family Background</Form.Label>
+                      <Form.Label className="label-right">Family Background</Form.Label>
                       <Form.Control
                         type="text"
                         autoFocus

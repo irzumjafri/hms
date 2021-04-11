@@ -67,16 +67,7 @@ const AdminPaymentHistory = (props) => {
                     </Form.Row>
 
                     <div class="row">
-                        <div class="col-md-6">
-                          <div
-                            class="Button"
-                            className="button_blue"
-                            onClick={() => calleditpaymenthistory(paymentRecords[i])}
-                          >
-                            {" "}Edit Payment
-                          </div>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <div
                            onClick={() => deletePaymentHistory(paymentRecords[i].id)}
                             class="Button"
@@ -114,9 +105,9 @@ const AdminPaymentHistory = (props) => {
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handlelogout}>
+          {/* <p className="smalltext" onClick={handlelogout}>
             <span>Logout</span>
-          </p>
+          </p> */}
           <SearchField placeholder="search..." classNames="search" />
 
           <nav className="navbarContainer">

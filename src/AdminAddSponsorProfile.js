@@ -115,6 +115,7 @@ const AdminAddSponsorProfile = (props) => {
                           type="text"
                           required
                           value={address}
+                          onChange={(e) => setAddress(e.target.value)}
                         ></Form.Control>
                       </div>
 
@@ -140,6 +141,7 @@ const AdminAddSponsorProfile = (props) => {
                           type="text"
                           required
                           value={numberOfSponsoredChildren}
+                          onChange={(e) => setNumberOfSponsoredChildren(e.target.value)}
                         ></Form.Control>
                       </div>
 
@@ -151,9 +153,24 @@ const AdminAddSponsorProfile = (props) => {
                           type="text"
                           required
                           value={paymentMethod}
+                          onChange={(e) => setPaymentMethod(e.target.value)}
                         ></Form.Control>
                       </div>
                     </Form.Row>
+
+                    <Form.Row>
+                  <div class="col-md-6">
+                    <Form.Label className="label-left">
+                      Payment Schedule
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      required
+                      value={paymentSchedule}
+                      onChange={(e) => setPaymentSchedule(e.target.value)}
+                    ></Form.Control>
+                  </div>
+                </Form.Row>
 
                     <div class="row">
                       <div class="col-md-6">

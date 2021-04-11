@@ -39,31 +39,25 @@ const AdminEditFAQs = (props) => {
                     });
                   }}
                 ></Form.Control>
-                 <div class="row">
+                <Form.Control
+                  type="text"
+                  value={editAnswer1.answer}
+                  onChange={(e) =>
+                    setEditAnswer1({
+                      answer: e.target.value,
+                      id: answers[0].id,
+                    })
+                  }
+                ></Form.Control>
+                <div class="row">
                 <div class="col-md-6">
                   <div
                     onClick={() =>
-                      {editFAQs([{
+                      {editFAQs({
                         question: editQuestion1,
                         answer: editAnswer1,
                         id: questions[0].id,
-                      },{
-                        question: editQuestion2,
-                        answer: editAnswer2,
-                        id: questions[1].id,
-                      },{
-                        question: editQuestion3,
-                        answer: editAnswer3,
-                        id: questions[2].id,
-                      },{
-                        question: editQuestion4,
-                        answer: editAnswer4,
-                        id: questions[3].id,
-                      },{
-                        question: editQuestion5,
-                        answer: editAnswer5,
-                        id: questions[4].id,
-                      }]);setRouter('home')}
+                      });setRouter('home')}
                     }
                     class="Button"
                     className="button_green"
@@ -81,16 +75,6 @@ const AdminEditFAQs = (props) => {
                   </div>
                 </div>
               </div>
-                <Form.Control
-                  type="text"
-                  value={editAnswer1.answer}
-                  onChange={(e) =>
-                    setEditAnswer1({
-                      answer: e.target.value,
-                      id: answers[0].id,
-                    })
-                  }
-                ></Form.Control>
                 <Form.Label className="label-left">Question 2</Form.Label>
                 <Form.Control
                   type="text"
@@ -112,6 +96,32 @@ const AdminEditFAQs = (props) => {
                     })
                   }
                 ></Form.Control>
+                <div class="row">
+                <div class="col-md-6">
+                  <div
+                    onClick={() =>
+                      {editFAQs({
+                        question: editQuestion2,
+                        answer: editAnswer2,
+                        id: questions[1].id,
+                      });setRouter('home')}
+                    }
+                    class="Button"
+                    className="button_green"
+                  >
+                    Save Changes
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div
+                    onClick={() => setRouter("home")}
+                    class="Button"
+                    className="button_redd"
+                  >
+                    Discard Changes
+                  </div>
+                </div>
+              </div>
                 <Form.Label className="label-left">Question 3</Form.Label>
                 <Form.Control
                   type="text"
@@ -133,6 +143,32 @@ const AdminEditFAQs = (props) => {
                     })
                   }
                 ></Form.Control>
+                <div class="row">
+                <div class="col-md-6">
+                  <div
+                    onClick={() =>
+                      {editFAQs({
+                        question: editQuestion3,
+                        answer: editAnswer3,
+                        id: questions[2].id,
+                      });setRouter('home')}
+                    }
+                    class="Button"
+                    className="button_green"
+                  >
+                    Save Changes
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div
+                    onClick={() => setRouter("home")}
+                    class="Button"
+                    className="button_redd"
+                  >
+                    Discard Changes
+                  </div>
+                </div>
+              </div>
                 <Form.Label className="label-left">Question 4</Form.Label>
                 <Form.Control
                   type="text"
@@ -154,6 +190,32 @@ const AdminEditFAQs = (props) => {
                     })
                   }
                 ></Form.Control>
+                <div class="row">
+                <div class="col-md-6">
+                  <div
+                    onClick={() =>
+                      {editFAQs({
+                        question: editQuestion4,
+                        answer: editAnswer4,
+                        id: questions[3].id,
+                      });setRouter('home')}
+                    }
+                    class="Button"
+                    className="button_green"
+                  >
+                    Save Changes
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div
+                    onClick={() => setRouter("home")}
+                    class="Button"
+                    className="button_redd"
+                  >
+                    Discard Changes
+                  </div>
+                </div>
+              </div>
                 <Form.Label className="label-left">Question 5</Form.Label>
                 <Form.Control
                   type="text"
@@ -175,33 +237,15 @@ const AdminEditFAQs = (props) => {
                     })
                   }
                 ></Form.Control>
-              </div>
-
-              <div class="row">
+                <div class="row">
                 <div class="col-md-6">
                   <div
                     onClick={() =>
-                      {editFAQs([{
-                        question: editQuestion1,
-                        answer: editAnswer1,
-                        id: questions[0].id,
-                      },{
-                        question: editQuestion2,
-                        answer: editAnswer2,
-                        id: questions[1].id,
-                      },{
-                        question: editQuestion3,
-                        answer: editAnswer3,
-                        id: questions[2].id,
-                      },{
-                        question: editQuestion4,
-                        answer: editAnswer4,
-                        id: questions[3].id,
-                      },{
+                      {editFAQs({
                         question: editQuestion5,
                         answer: editAnswer5,
                         id: questions[4].id,
-                      }]);setRouter('home')}
+                      });setRouter('home')}
                     }
                     class="Button"
                     className="button_green"
@@ -218,6 +262,7 @@ const AdminEditFAQs = (props) => {
                     Discard Changes
                   </div>
                 </div>
+              </div>
               </div>
             </Form>
             );

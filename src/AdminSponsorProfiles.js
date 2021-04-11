@@ -155,6 +155,19 @@ const AdminSponsorProfiles = (props) => {
                       </div>
                     </Form.Row>
 
+                    <Form.Row>
+                  <div class="col-md-6">
+                    <Form.Label className="label-left">
+                      Payment Schedule
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      required
+                      value={sponsorData[i].paymentSchedule}
+                    ></Form.Control>
+                  </div>
+                </Form.Row>
+
                     <div class="row">
                       <div class="col-md-6">
                         <div
