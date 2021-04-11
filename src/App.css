@@ -502,6 +502,134 @@
     margin-top: 0%;
   }
 } */
+/* #######################################NavBarHome##################### */
+.navbarhome {
+  width: 100%;
+  display: flex;
+}
+.navbarhome .navbarhomeContainer_gray {
+  width: 100%;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  /* background-color: linear-gradient(
+    0deg,
+    rgba(151, 151, 151, 0.15) -61.36%,
+    rgba(151, 151, 151, 0) 254.55%
+  ); */
+  background-color: #f2f2f2;
+  position: fixed;
+  top: 0;
+  margin: 0px;
+  left: 0px;
+  right: 0px;
+}
+.navbarhome .navbarhomeContainer_gray .navbarhomeContainer {
+  width: 100%;
+  background: #529cea;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* position: fixed;
+  top: 45px;
+  left: 0px;
+  right: 0px; */
+  margin: 0px;
+  /* transform: translateY(52px); */
+}
+.navbarhome .navbarhomeContainer_gray .navbarhomeContainer p span {
+  color: white;
+  font-weight: 200;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 400ms ease-in-out;
+}
+.navbarhome .navbarhomeContainer_gray .navbarhomeContainer .smalltext {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  font-size: 14px;
+  line-height: 2;
+  text-decoration: italic;
+  margin: 10px 10px;
+}
+.navbarhome .navbarhomeContainer_gray .navbarhomeContainer p span:hover {
+  text-decoration: underline;
+}
+.navbarhome .navbarhomeContainer_gray .navbarhomeContainer .titletext {
+  color: white;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 2;
+  transform: translateX(-30px);
+}
+.navbarhome .navbarhomeContainer_gray .Applogo {
+  width: 10%;
+  margin: auto;
+  display: block;
+  float: left;
+}
+.navbarhome .navbarhomeContainer_gray .titletext {
+  color: #4c8dc3;
+  margin: 20px auto auto 5px;
+  line-height: 25px;
+  font-size: 25px;
+  font-weight: 900px;
+  display: block;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbarhome .navbarhomeContainer_gray .search {
+  color: black;
+  margin: 10px auto;
+  font-size: 18px;
+  font-weight: 500px;
+  border-radius: 100%;
+  background: transparent;
+  background-color: transparent;
+  display: block;
+  float: right;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbarhome .navbarhomeContainer_gray p span {
+  color: black;
+  font-weight: 200;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: 10px 10px;
+  cursor: pointer;
+  display: block;
+  transition: all 400ms ease-in-out;
+  float: right;
+}
+.navbarhome .navbarhomeContainer_gray .smalltext {
+  color: black;
+  margin: 10px 10px;
+  display: block;
+  float: right;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: italic;
+}
+.navbarhome .navbarhomeContainer_gray p span:hover {
+  text-decoration: underline;
+}
 
 /* ################### Navbar ################ */
 .navbar {
@@ -652,10 +780,10 @@
   .navbar .navbarContainer_gray .navbarContainer .titletext {
     color: #4c8dc3;
     position: absolute;
-    top: 5px;
+    top: 7px;
     left: 10%;
-    font-size: 15px;
-    font-weight: 1000px;
+    font-size: 14px;
+    font-weight: 500px;
   }
   .navbar .navbarContainer_gray p span {
     color: black;
@@ -668,6 +796,19 @@
   }
   .navbar .navbarContainer_gray p span:hover {
     text-decoration: underline;
+  }
+
+  .navbar .navbarContainer_gray .navbarContainer .smalltext span {
+    color: black;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: italic;
+    transform: translateX(-60%);
   }
 }
 /* ################### BottomBar ################ */
@@ -1736,6 +1877,23 @@
   padding: 10px;
 }
 
+.paymentHistory .paymentHistoryContainer .button_blue {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #529cea;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
 .paymentHistory .paymentHistoryContainer .titletext {
   color: white;
   margin-bottom: 10px;
@@ -1756,6 +1914,7 @@
   background-color: #192539;
   border: none;
 }
+
 .paymentHistory .paymentHistoryContainer .input-left {
   width: 40%;
 }

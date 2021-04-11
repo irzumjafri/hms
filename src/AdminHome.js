@@ -7,7 +7,7 @@ const AdminHome = (props) => {
   const { handlelogout, setRouter, updatesArray } = props;
   return (
     <body>
-      <section className="navbar">
+      <section className="navbarhome">
         <section className="sponsorHomepage">
           <div className="sponsorHomepageContainer_left">
             <div>
@@ -197,20 +197,20 @@ const AdminHome = (props) => {
             </div>
           </div>
         </section>
-        <nav className="navbarContainer_gray">
+        <nav className="navbarhomeContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
           <p className="smalltext" onClick={() => handlelogout()}>
             <span>Logout</span>
           </p>
           <SearchField placeholder="search..." classNames="search" />
-          <nav className="navbarContainer">
+          <nav className="navbarhomeContainer">
             <h2 className="titletext">Homepage</h2>
           </nav>
         </nav>
 
         <section className="bottombar">
-          <navbar className="bottombarContainer">
+          <navbarhome className="bottombarContainer">
             <p
               className="smalltext"
               onClick={() => setRouter("admincontactus")}
@@ -220,7 +220,7 @@ const AdminHome = (props) => {
             <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
               <span>FAQs</span>
             </p>
-          </navbar>
+          </navbarhome>
         </section>
       </section>
     </body>

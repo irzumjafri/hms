@@ -12,7 +12,7 @@ const RegisteredSponsorHome = (props) => {
   } = props
   return (
     <body>
-      <section className="navbar">  
+      <section className="navbarhome">  
         <section className = "sponsorHomepage">
         <div className = "sponsorHomepageContainer_left">
 
@@ -79,22 +79,22 @@ const RegisteredSponsorHome = (props) => {
 
         </div>
         </section>
-        <nav className="navbarContainer_gray">
+        <nav className="navbarhomeContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
           <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
           <SearchField placeholder ="search..."
           classNames="search"/> 
-          <nav className="navbarContainer">
+          <nav className="navbarhomeContainer">
             <h2 className="titletext">Homepage</h2>
         </nav>
         </nav>
 
         <section className="bottombar">
-          <navbar className="bottombarContainer">
+          <navbarhome className="bottombarContainer">
             <p className="smalltext" onClick={() => setRouter("contactus")}><span>Contact Us</span></p>
             <p className="smalltext" onClick={() => setRouter("faqs")}><span>FAQs</span></p>
-          </navbar>
+          </navbarhome>
         </section>
       </section>
     </body>
