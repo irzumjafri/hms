@@ -15,57 +15,49 @@ const AdminPaymentHistory = (props) => {
   return (
     <body>
       <section className="navbar">
+        <section className="paymentHistory">
+          <div className="paymentHistoryContainer">
+            {/* ONCHANGE */}
 
-     <section className="paymentHistory">
-     <div className="paymentHistoryContainer">
-       {/* ONCHANGE */}
-
-
-                <Form>
-                <Form.Row>
-                <div class = "col">
-                <Form.Label className= "label-left">Amount</Form.Label>
-                <Form.Control
-                type="text"
-                required
-                value={amount}
-                ></Form.Control>
+            <Form>
+              <Form.Row>
+                <div class="col">
+                  <Form.Label className="label-left">Amount</Form.Label>
+                  <Form.Control
+                    type="text"
+                    required
+                    value={amount}
+                  ></Form.Control>
                 </div>
-                <div class = "col">
-                <Form.Label className= "label-left">Payment Date (DD-MM-YYYY)</Form.Label>
-                <Form.Control
-                type="text"
-                required
-                value={paymentDate}
-                ></Form.Control>
+                <div class="col">
+                  <Form.Label className="label-left">
+                    Payment Date (DD-MM-YYYY)
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    required
+                    value={paymentDate}
+                  ></Form.Control>
                 </div>
-                </Form.Row>
+              </Form.Row>
 
-                <div class="row">
-                        <div class="col-md-6">
-                          <div
-                            class="Button"
-                            className="button_blue"
-                          >
-                            {" "}
-                            Edit Payment
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div
-                            class="Button"
-                            className="button_green"
-                          >
-                            {" "}
-                            Add Payment
-                          </div>
-                        </div>
-                      </div>
-
-                
-                </Form>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="Button" className="button_blue">
+                    {" "}
+                    Edit Payment
+                  </div>
                 </div>
-                </section>    
+                <div class="col-md-6">
+                  <div class="Button" className="button_green">
+                    {" "}
+                    Add Payment
+                  </div>
+                </div>
+              </div>
+            </Form>
+          </div>
+        </section>
 
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
@@ -83,8 +75,6 @@ const AdminPaymentHistory = (props) => {
           </nav>
         </nav>
 
-
-
         <section className="bottombar">
           <navbar className="bottombarContainer">
             <p
@@ -98,9 +88,6 @@ const AdminPaymentHistory = (props) => {
             </p>
           </navbar>
         </section>
-
-
-
       </section>
     </body>
   );
