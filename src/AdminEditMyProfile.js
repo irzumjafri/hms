@@ -140,7 +140,7 @@ const AdminEditMyProfile = (props) => {
                 <div class="col-md-6">
                   <div
                     onClick={() => {
-                      setRouter("registered");
+                      setRouter("home");
                       editAdminProfile();
                     }}
                     class="Button"
@@ -151,7 +151,7 @@ const AdminEditMyProfile = (props) => {
                 </div>
                 <div class="col-md-6">
                   <div
-                    onClick={() => setRouter("registered")}
+                    onClick={() => setRouter("home")}
                     class="Button"
                     className="button_redd"
                   >
