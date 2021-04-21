@@ -36,14 +36,31 @@ const Signup = (props) => {
   justify-content: center;
   margin: auto;
   background: white;
-  width: 50%;
+  width: 40%;
   padding: 5px;
   border-radius: 10px;
+  font-size: 18px;
+  padding: 2%;
 }
 
-.popup .button_green
+&-content .button_green
 {
-  background: green;
+  border: none;
+  outline: none;
+  width: 50%;
+  padding: 10px 0px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #33773d;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 `,
   
@@ -138,30 +155,30 @@ const Signup = (props) => {
             confirmpassword === password ? (
               // <button className="button_green" onClick={handleSignUp}>
               //   Create My Account!</button>
-              
-                <StyledPopup  trigger={<button className="button_green" onClick={handleSignUp}>
-                Create My Account!</button>} position="center" modal >
+            
+              <button className="button_green" onClick={handleSignUp}>  Create My Account! </button>
 
-              <Form>
-            <div>
-              
-              All the required fields have not been filled. Press okay to go back and fill in the missing information
-              </div>
-              <div>
-
-              <button className="button_green" onClick={handleSignUp}> OKAY! </button>
-
-              </div>
-
-            </Form>
-              
-              
-                </StyledPopup>
               
             ) : (
-              <button onClick={handleSignUp} className="button_gray">
-                Create My Account!
-              </button>
+
+                <StyledPopup  trigger={<button className="button_gray" onClick={handleSignUp}>
+                Create My Account!</button>} position="center" modal >
+
+                <Form>
+                <div>
+
+                All the required fields have not been filled. Press okay to go back and fill in the missing information
+                </div>
+                <div>
+
+                <button className="button_green" onClick={handleSignUp}> OKAY! </button>
+
+                </div>
+
+                </Form>
+
+
+                </StyledPopup>
             )}
             {/*CSS: CHANGE BUTTON COLOR WHEN FIELDS AREN'T COMPLETE */}
             <p>
