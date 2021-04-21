@@ -3,6 +3,16 @@ import SearchField from "react-search-field";
 import Calendar from "react-calendar";
 import logo from "./HMSlogo.png";
 import Button from "react-bootstrap/Button";
+// import Dropdown from "react-dropdown";
+// import "react-dropdown/style.css";
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
+
+const options = [
+  { value: 'one', label: 'One' },
+  { value: 'editmyprofile', label: 'Edit' },
+  { value: 'one', label: 'One' }
+];
 
 const RegisteredSponsorHome = (props) => {
   const { handleLogout, setRouter } = props;
@@ -136,10 +146,18 @@ const RegisteredSponsorHome = (props) => {
           <p className="smalltext" onClick={handleLogout}>
             <span>Logout</span>
           </p>
+          ; ;
           <SearchField placeholder="search..." classNames="search" />
           <nav className="navbarhomeContainer">
             <h2 className="titletext">Homepage</h2>
           </nav>
+          <Dropdown
+            className="my-className"
+            options={options}
+            placeholder = "My Account"
+            value="My Account"
+            onSelect={(i) => {setRouter(i.value);console.log(i)}} // always fires once a selection happens even if there is no change
+          />
         </nav>
 
         <section className="bottombarhome">
