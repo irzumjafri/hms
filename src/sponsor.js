@@ -422,37 +422,100 @@ const Sponsor = () => {
       });
   };
 
-  //Sponsors sending letters to child
 
-  // const sendLettersToChild = () => {
-  //   db.collection("lettersToChild")
-  //     .doc(user.uid)
-  //     .set({
-  //       sponsorId: user.uid,
-  //       firstName: firstName,
-  //       lastName: lastName,
-  //       selectedChild: selectedChild,
-  //       letterBody: letterBody,
-  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-  //     });
-  // };
 
-  // // sponsors checking letters sent by child
-  // const getLettersByChild = () => {
-  //   db.collection("lettersFromChild")
-  //     .where("sponsorId", "==", user.id)
+  // const [myChildren, setMyChildren] = useState([]);
+  // const [letterBody, setLetterBody] = useState("");
+  // const [selectedChild, setSelectedChild] = useState("");
+  
+  // const [recievedLetters, setRecievedLetters] = useState([]);
+
+
+  // const fetchFAQs = () => {
+  //   let tempDataQ = [];
+  //   let tempDataA = [];
+
+  //   db.collection("FAQs")
   //     .get()
   //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         // doc.data() is never undefined for query doc snapshot
-  //         setLetterBody(doc.data().letterBody);
-  //         setSelectedChild(doc.data().selectedChild);
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error getting documents: ", error);
+  //       // FAQs is not defined
+  //       if (querySnapshot.empty) {
+  //         setErrorMessage("No FAQs to show");
+  //         return;
+  //       } else {
+  //         querySnapshot.forEach((doc) => {
+  //           // update state to store data of all children profiles present in current snapshot of the db
+  //           tempDataA.push({
+  //             answer: doc.data().answer,
+  //             id: doc.data().id,
+  //           });
+  //           tempDataQ.push({
+  //             question: doc.data().question,
+  //             id: doc.data().id,
+  //           });
+  //         });
+  //       }
+  //       console.log(tempDataQ)
+  //       setQuestions(tempDataQ);
+  //       setAnswers(tempDataA);
   //     });
   // };
+
+ // Sponsors sending letters to child
+  const sendLetters = () => {
+      let childarr = [];
+      db.collection("childrenProfiles").where("sponsorEmail","==",email)
+      .get()
+      .then((querySnapshot) => {
+        // childrenProfiles is not defined
+        if (querySnapshot.empty) {
+          setErrorMessage("No children Profiles to show");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            childarr.push({
+              childName: doc.data().name,
+              childId: doc.data().id,
+            });
+          });
+        }
+        console.log(childarr)
+        setMyChildren(childarr);
+      });
+
+    db.collection("lettersToChild")
+      .doc(user.uid)
+      .set({
+        sponsorId: user.uid,
+        firstName: firstName,
+        lastName: lastName,
+        selectedChild: selectedChild,
+        letterBody: letterBody,
+        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+      });
+  };
+
+  // sponsors checking letters sent by child
+  const fetchLetters = () => {
+    let letters = [];
+    db.collection("lettersFromChild")
+      .where("sponsorEmail", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshot
+          letters.push({
+            childname: doc.data().name,
+            letterBody: doc.data().letterBody
+          });
+        });
+        setRecievedLetters(letters);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+
+  };
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
 
