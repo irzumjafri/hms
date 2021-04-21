@@ -2,6 +2,10 @@ import React from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import {Button, Form} from 'react-bootstrap';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import Styled from 'styled-components';
+
 
 const Signup = (props) => {
   const {
@@ -21,6 +25,28 @@ const Signup = (props) => {
     setLastName,
     setConfirmPassword,
     setDateOfBirth,
+    StyledPopup = Styled(Popup)`
+// use your custom style for ".popup-overlay"
+&-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+// use your custom style for ".popup-content"
+&-content {
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  background: white;
+  width: 50%;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.popup .button_green
+{
+  background: green;
+}
+`,
+  
   } = props;
 
   return (
@@ -110,9 +136,28 @@ const Signup = (props) => {
             dateofbirth &&
             confirmpassword &&
             confirmpassword === password ? (
-              <button className="button_green" onClick={handleSignUp}>
-                Create My Account!
-              </button>
+              // <button className="button_green" onClick={handleSignUp}>
+              //   Create My Account!</button>
+              
+                <StyledPopup  trigger={<button className="button_green" onClick={handleSignUp}>
+                Create My Account!</button>} position="center" modal >
+
+              <Form>
+            <div>
+              
+              All the required fields have not been filled. Press okay to go back and fill in the missing information
+              </div>
+              <div>
+
+              <button className="button_green" onClick={handleSignUp}> OKAY! </button>
+
+              </div>
+
+            </Form>
+              
+              
+                </StyledPopup>
+              
             ) : (
               <button onClick={handleSignUp} className="button_gray">
                 Create My Account!
