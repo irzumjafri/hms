@@ -355,7 +355,7 @@ const Admin = () => {
       .delete()
       .then(() => {
         console.log("Document successfully deleted!", i);
-        setSponsorshipApplicationData([])
+        setSponsorshipApplicationData([]);
         fetchSponsorshipApplications();
       })
       .catch((error) => {
@@ -530,7 +530,7 @@ const Admin = () => {
             .then(() => {
               console.log("Document successfully deleted!");
               // update children profiles with nic and unassigned status for assigend children of this sponsor
-              setSponsorshipApplicationData([])
+              setSponsorshipApplicationData([]);
               unassignChildren(mail);
               fetchSponsorData();
             })
@@ -786,18 +786,18 @@ const Admin = () => {
 
   // This function allows admin users to acknoweldge meeting request wth the id = i
   const acknoweldgeMeetingRequest = (i) => {
-    console.log(i)
-    // db.collection("meeting")
-    //   .doc(i.toString().replace(/\s/g, ""))
-    //   .delete()
-    //   .then(() => {
-    //     console.log("Document successfully deleted!");
-    //     // call fucntion to update states of meeting requests acc to the updated db
-    //     fetchMeetingRequests();
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error removing document: ", error);
-    //   });
+    console.log(i);
+    db.collection("meeting")
+      .doc(i.toString().replace(/\s/g, ""))
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        // call fucntion to update states of meeting requests acc to the updated db
+        fetchMeetingRequests();
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
   };
 
   // This function fetches all the children profiles stored in the current snapshot of database and lets admin users see them

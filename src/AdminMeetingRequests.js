@@ -8,10 +8,10 @@ const AdminMeetingRequests = (props) => {
     handleLogout,
     meetingRecords,
     setRouter,
-    acknoweldgeMeetingRequest
+    acknoweldgeMeetingRequest,
   } = props;
 
-  console.log(meetingRecords)
+  console.log(meetingRecords);
 
   return (
     <body>
@@ -19,61 +19,80 @@ const AdminMeetingRequests = (props) => {
         <section></section>
         <section className="requestAMeeting">
           <div className="requestAMeetingContainer">
-          {meetingRecords.map((con, i) => {
-            return(
-            <Form>
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">
-                    Meeting Date (DD-MM-YYYY) *
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={meetingRecords[i].meetingDate}
-                  ></Form.Control>
-                </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">
-                    Meeting Time (hh:mm)
-                  </Form.Label>
-                  <div class="form-row">
-                    <div class="col-md-3">
-                      <Form.Control type="text" value={meetingRecords[i].hour}></Form.Control>
+            {meetingRecords.map((con, i) => {
+              return (
+                <div>
+                  <Form>
+                    <Form.Row>
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">
+                          Meeting Date (DD-MM-YYYY) *
+                        </Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={meetingRecords[i].meetingDate}
+                        ></Form.Control>
+                      </div>
+                      <div class="col-md-6">
+                        <Form.Label className="label-right">
+                          Meeting Time (hh:mm)
+                        </Form.Label>
+                        <div class="form-row">
+                          <div class="col-md-3">
+                            <Form.Control
+                              type="text"
+                              value={meetingRecords[i].hour}
+                            ></Form.Control>
+                          </div>
+                          <p className="label-right">:</p>
+                          <div class="col-md-3">
+                            <Form.Control
+                              type="text"
+                              value={meetingRecords[i].min}
+                            ></Form.Control>
+                          </div>
+                          <div class="col-md-3">
+                            <Form.Control
+                              type="text"
+                              value={meetingRecords[i].ampm}
+                            ></Form.Control>
+                          </div>
+                        </div>
+                      </div>
+                    </Form.Row>
+
+                    <div class="col-md-13">
+                      <Form.Label className="label-left">
+                        Backup Date(s) and Time(s)
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={meetingRecords[i].backupDate}
+                      ></Form.Control>
                     </div>
-                    <p className="label-right">:</p>
-                    <div class="col-md-3">
-                      <Form.Control type="text" value={meetingRecords[i].min}></Form.Control>
+                    <div class="col-md-13">
+                      <Form.Label className="label-left">Purpose</Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={meetingRecords[i].purpose}
+                      ></Form.Control>
                     </div>
-                    <div class="col-md-3">
-                      <Form.Control type="text" value={meetingRecords[i].ampm}></Form.Control>
+                  </Form>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button
+                        className="button_green"
+                        onClick={() =>
+                          acknoweldgeMeetingRequest(meetingRecords[i].id)
+                        }
+                      >
+                        Acknowledge
+                      </button>
                     </div>
                   </div>
                 </div>
-              </Form.Row>
-
-              <div class="col-md-13">
-                <Form.Label className="label-left">
-                  Backup Date(s) and Time(s)
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  value={meetingRecords[i].backupDate}
-                ></Form.Control>
-              </div>
-              <div class="col-md-13">
-                <Form.Label className="label-left">Purpose</Form.Label>
-                <Form.Control type="text" value={meetingRecords[i].purpose}></Form.Control>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <button className="button_green" onClick={() => acknoweldgeMeetingRequest(meetingRecords[i].id)}>
-                    Acknowledge
-                  </button>
-                </div>
-              </div>
-            </Form>
-            )})}
+              );
+            })}
           </div>
         </section>
         <nav className="navbarContainer_gray">
