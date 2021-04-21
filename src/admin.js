@@ -780,24 +780,24 @@ const Admin = () => {
             });
           });
         }
-        // console.log(tempData);
         setmeetingRecords(tempData);
       });
   };
 
   // This function allows admin users to acknoweldge meeting request wth the id = i
   const acknoweldgeMeetingRequest = (i) => {
-    db.collection("meeting")
-      .doc(i.toString().replace(/\s/g, ""))
-      .delete()
-      .then(() => {
-        console.log("Document successfully deleted!");
-        // call fucntion to update states of meeting requests acc to the updated db
-        fetchMeetingRequests();
-      })
-      .catch((error) => {
-        console.error("Error removing document: ", error);
-      });
+    console.log(i)
+    // db.collection("meeting")
+    //   .doc(i.toString().replace(/\s/g, ""))
+    //   .delete()
+    //   .then(() => {
+    //     console.log("Document successfully deleted!");
+    //     // call fucntion to update states of meeting requests acc to the updated db
+    //     fetchMeetingRequests();
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error removing document: ", error);
+    //   });
   };
 
   // This function fetches all the children profiles stored in the current snapshot of database and lets admin users see them
@@ -1050,6 +1050,8 @@ const Admin = () => {
                 <AdminMeetingRequests
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
+                  meetingRecords={meetingRecords}
+                  acknoweldgeMeetingRequest={acknoweldgeMeetingRequest}
                 />
               ),
               // letterbox: (<AdminLetterBox/>),

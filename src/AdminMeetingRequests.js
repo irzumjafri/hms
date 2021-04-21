@@ -6,14 +6,12 @@ import { Button, Form } from "react-bootstrap";
 const AdminMeetingRequests = (props) => {
   const {
     handleLogout,
-    preferredMeetingDate,
-    hour,
-    minutes,
-    amPm,
-    backUpDatesAndTimes,
-    purpose,
+    meetingRecords,
     setRouter,
+    acknoweldgeMeetingRequest
   } = props;
+
+  console.log(meetingRecords)
 
   return (
     <body>
@@ -21,6 +19,8 @@ const AdminMeetingRequests = (props) => {
         <section></section>
         <section className="requestAMeeting">
           <div className="requestAMeetingContainer">
+          {meetingRecords.map((con, i) => {
+            return(
             <Form>
               <Form.Row>
                 <div class="col-md-6">
@@ -29,9 +29,7 @@ const AdminMeetingRequests = (props) => {
                   </Form.Label>
                   <Form.Control
                     type="text"
-                    autoFocus
-                    required
-                    value={preferredMeetingDate}
+                    value={meetingRecords[i].meetingDate}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -40,14 +38,14 @@ const AdminMeetingRequests = (props) => {
                   </Form.Label>
                   <div class="form-row">
                     <div class="col-md-3">
-                      <Form.Control type="text" value={hour}></Form.Control>
+                      <Form.Control type="text" value={meetingRecords[i].hour}></Form.Control>
                     </div>
                     <p className="label-right">:</p>
                     <div class="col-md-3">
-                      <Form.Control type="text" value={minutes}></Form.Control>
+                      <Form.Control type="text" value={meetingRecords[i].min}></Form.Control>
                     </div>
                     <div class="col-md-3">
-                      <Form.Control type="text" value={amPm}></Form.Control>
+                      <Form.Control type="text" value={meetingRecords[i].ampm}></Form.Control>
                     </div>
                   </div>
                 </div>
@@ -59,23 +57,23 @@ const AdminMeetingRequests = (props) => {
                 </Form.Label>
                 <Form.Control
                   type="text"
-                  value={backUpDatesAndTimes}
+                  value={meetingRecords[i].backupDate}
                 ></Form.Control>
               </div>
               <div class="col-md-13">
                 <Form.Label className="label-left">Purpose</Form.Label>
-                <Form.Control type="text" value={purpose}></Form.Control>
+                <Form.Control type="text" value={meetingRecords[i].purpose}></Form.Control>
               </div>
 
               <div class="row">
                 <div class="col-md-12">
-                  <div class="Button" className="button_green">
-                    {" "}
+                  <button className="button_green" onClick={() => acknoweldgeMeetingRequest(meetingRecords[i].id)}>
                     Acknowledge
-                  </div>
+                  </button>
                 </div>
               </div>
             </Form>
+            )})}
           </div>
         </section>
         <nav className="navbarContainer_gray">
