@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import AdminEditSponsorProfile from "./AdminEditSponsorProfile";
@@ -13,6 +13,8 @@ const AdminSponsorProfiles = (props) => {
     calladmineditprofile,
   } = props;
 
+  const [i, setI] = useState(0);
+
   return (
     <body>
       <section className="navbar">
@@ -24,6 +26,9 @@ const AdminSponsorProfiles = (props) => {
                 {/* convert to dropdown */}
               </div>
               <div class="col-md-6">
+              <textbox className="label-left">
+              Page Number {i+1} / {sponsorData.length}
+                </textbox>
                 <textbox className="label-left">
                   Total Active Sponsors: {sponsorData.length}
                 </textbox>
@@ -39,8 +44,6 @@ const AdminSponsorProfiles = (props) => {
                 </div>
               </div>
             </div>
-
-            {sponsorData.map((con, i) => {
               return (
                 <div>
                   <Form>
@@ -193,9 +196,39 @@ const AdminSponsorProfiles = (props) => {
                       </div>
                     </div>
                   </Form>
+                  {i ? (<button
+                  onClick={() => setI(i-1)}
+                  class="Button"
+                  className="button_redd"
+                >
+                  {" "}
+                  Prev Page
+                </button>) : (<button
+                  class="Button"
+                  //MAKE THIS GREYED OUT
+                >
+                  {" "}
+                  Prev Page
+                </button>)}
+
+                {i+1==sponsorData.length ? (<button
+                  class="Button"
+                  //MAKE THIS GREYED OUT
+                >
+                  {" "}
+                  Next Page
+                </button>) : (<button
+                  onClick={() => setI(i+1)}
+                  class="Button"
+                  className="button_green"
+                >
+                  {" "}
+                  Next Page
+                </button>)}
+                  
+                
                 </div>
               );
-            })}
           </div>
         </section>
         <nav className="navbarContainer_gray">

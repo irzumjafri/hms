@@ -59,12 +59,7 @@ const Sponsor = () => {
   const [answers, setAnswers] = useState([]);
   const [paymentData, setPaymentData] = useState([]);
   const [childData, setChildData] = useState([]);
-  const [myChildren, setMyChildren] = useState([]);
-  const [letterBody, setLetterBody] = useState("");
-  const [selectedChild, setSelectedChild] = useState("");
-  const [writeOrReceive, setWriteOrReceive] = useState(true);
   const [recievedLetters, setRecievedLetters] = useState([]);
-
   const [preferredMeetingDate, setPreferredMeetingDate] = useState("");
   const [hour, setHour] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -423,76 +418,39 @@ const Sponsor = () => {
       });
   };
 
-  // const [myChildren, setMyChildren] = useState([]);
-  // const [letterBody, setLetterBody] = useState("");
-  // const [selectedChild, setSelectedChild] = useState("");
-
-  // const [recievedLetters, setRecievedLetters] = useState([]);
-
-  // const fetchFAQs = () => {
-  //   let tempDataQ = [];
-  //   let tempDataA = [];
-
-  //   db.collection("FAQs")
+  // Sponsors sending letters to child
+  // const sendLetters = () => {
+  //   let childarr = [];
+  //   db.collection("childrenProfiles")
+  //     .where("sponsorEmail", "==", email)
   //     .get()
   //     .then((querySnapshot) => {
-  //       // FAQs is not defined
+  //       // childrenProfiles is not defined
   //       if (querySnapshot.empty) {
-  //         setErrorMessage("No FAQs to show");
+  //         setErrorMessage("No children Profiles to show");
   //         return;
   //       } else {
   //         querySnapshot.forEach((doc) => {
-  //           // update state to store data of all children profiles present in current snapshot of the db
-  //           tempDataA.push({
-  //             answer: doc.data().answer,
-  //             id: doc.data().id,
-  //           });
-  //           tempDataQ.push({
-  //             question: doc.data().question,
-  //             id: doc.data().id,
+  //           childarr.push({
+  //             childName: doc.data().name,
+  //             childId: doc.data().id,
   //           });
   //         });
   //       }
-  //       console.log(tempDataQ)
-  //       setQuestions(tempDataQ);
-  //       setAnswers(tempDataA);
+  //       console.log(childarr);
+  //       setMyChildren(childarr);
+  //     });
+  //   db.collection("lettersToChild")
+  //     .doc(user.uid)
+  //     .set({
+  //       sponsorId: user.uid,
+  //       firstName: firstName,
+  //       lastName: lastName,
+  //       selectedChild: selectedChild,
+  //       letterBody: letterBody,
+  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
   //     });
   // };
-
-  // Sponsors sending letters to child
-  const sendLetters = () => {
-    let childarr = [];
-    db.collection("childrenProfiles")
-      .where("sponsorEmail", "==", email)
-      .get()
-      .then((querySnapshot) => {
-        // childrenProfiles is not defined
-        if (querySnapshot.empty) {
-          setErrorMessage("No children Profiles to show");
-          return;
-        } else {
-          querySnapshot.forEach((doc) => {
-            childarr.push({
-              childName: doc.data().name,
-              childId: doc.data().id,
-            });
-          });
-        }
-        console.log(childarr);
-        setMyChildren(childarr);
-      });
-
-    db.collection("lettersToChild")
-      .doc(user.uid)
-      .set({
-        sponsorId: user.uid,
-        firstName: firstName,
-        lastName: lastName,
-        selectedChild: selectedChild,
-        letterBody: letterBody,
-        timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-      });
-  };
 
   // sponsors checking letters sent by child
   const fetchLetters = () => {
@@ -731,13 +689,8 @@ const Sponsor = () => {
               ),
               letterbox: (
                 <LetterBox
-                  myChildren={myChildren}
+                  childData={childData}
                   handleLogout={handleLogout}
-                  setLetterBody={setLetterBody}
-                  selectedChild={selectedChild}
-                  recievedLetters={recievedLetters}
-                  writeOrReceive={writeOrReceive}
-                  setWriteOrReceive={setWriteOrReceive}
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
                 />
@@ -776,7 +729,8 @@ const Sponsor = () => {
                   handleLogout={handleLogout}
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
-                  child={myChildren}
+                  childData={childData}
+
                 />
               ),
               contactus: (

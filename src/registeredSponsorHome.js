@@ -154,7 +154,9 @@ const RegisteredSponsorHome = (props) => {
             placeholder = "My Account"
             
        
-            onSelect={(i) => {setRouter(i.value);console.log(i)}} // always fires once a selection happens even if there is no change
+            onSelect={(i) => {if (i.value == 'logout'){
+              handleLogout();
+            };console.log(i)}} // always fires once a selection happens even if there is no change
           />
           </div>
           <SearchField placeholder="search..." classNames="search" />
