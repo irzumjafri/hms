@@ -307,25 +307,37 @@ const Sponsor = () => {
   };
 
   const addMeetingRequest = () => {
-    db.collection("meeting").doc(user.id).set({
-      email: email,
-      firstName: firstName,
-      lastName: lastName,
-      phoneNumber: phoneNumber,
-      meetingDate: preferredMeetingDate,
-      hour: hour,
-      min: minutes,
-      ampm: amPm,
-      backupDate: backUpDatesAndTimes,
-      purpose: purpose,
-      id: user.uid,
-    });
-    setPreferredMeetingDate("");
-    setHour("");
-    setMinutes("");
-    setAmPm("");
-    setBackUpDatesAndTimes("");
-    setPurpose("");
+    db.collection("meeting")
+      .add({
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        meetingDate: preferredMeetingDate,
+        hour: hour,
+        min: minutes,
+        ampm: amPm,
+        backupDate: backUpDatesAndTimes,
+        purpose: purpose,
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("meeting").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+
+            setPreferredMeetingDate("");
+            setHour("");
+            setMinutes("");
+            setAmPm("");
+            setBackUpDatesAndTimes("");
+            setPurpose("");
+          });
+      });
   };
 
   // withdraw child
@@ -452,20 +464,49 @@ const Sponsor = () => {
   //     });
   // };
 
+  // Sponsors sending letters to child
+  const sendLetters = (i) => {
+    // once we have the sponsorEmail, we can now create the record easily now
+    db.collection("letters")
+      .add({
+        receiverEmail: i.name, // when sponsor sends email, they sent receiverName to email to show who it is intended for // children donot have emails
+        content: i.content,
+        senderName: firstName + lastName, // do these need to be passed as arguments as well ???
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("letters").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+          });
+      });
+  };
+
   // sponsors checking letters sent by child
   const fetchLetters = () => {
+    // should they also be able to see their sent letters ???
     let letters = [];
-    db.collection("lettersFromChild")
-      .where("sponsorEmail", "==", email)
+    db.collection("letters")
+      .where("receiverEmail", "==", email) // this should be passed as argument e as done previously ???
       .get()
       .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshot
-          letters.push({
-            childname: doc.data().name,
-            letterBody: doc.data().letterBody,
+        if (querySnapshot.empty) {
+          console.log("No letters to show");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            letters.push({
+              receiverEmail: doc.data().receiverEmail,
+              content: doc.data().content,
+              id: doc.data().id,
+              senderName: doc.data().senderName,
+            });
           });
-        });
+        }
         setRecievedLetters(letters);
       })
       .catch((error) => {

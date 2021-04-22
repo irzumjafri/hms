@@ -1,5 +1,12 @@
 import React from "react";
 import logo from "./HMSlogo.png"
+
+import { Button, Form } from "react-bootstrap";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import Styled from 'styled-components';
+
+
 const Login = (props) => {
   const {
     email,
@@ -9,7 +16,45 @@ const Login = (props) => {
     handleLogin,
     hasAccount,
     setHasAccount,
-    errorMessage
+    errorMessage,
+    StyledPopup = Styled(Popup)`
+    // use your custom style for ".popup-overlay"
+    &-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    // use your custom style for ".popup-content"
+    &-content {
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      background: white;
+      width: 40%;
+      padding: 5px;
+      border-radius: 10px;
+      font-size: 18px;
+      padding: 2%;
+    }
+    
+    &-content .button_green
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #33773d;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    `
   } = props;
 
   return (
@@ -44,7 +89,62 @@ const Login = (props) => {
         <p className="errorMsg">{errorMessage}</p>
               <button className = "button_blue" onClick={handleLogin} >LOG IN</button>
               <p className = "smalltext">
-                Forgot Password? <span onClick={() => setHasAccount(!hasAccount)}>Click Here</span>
+                Forgot Password?    
+                <StyledPopup trigger={<span>
+                  Click Here</span>} position="center" modal nested>
+                  <Form>
+                      <Form.Label>Enter Your Email</Form.Label>
+                      <Form.Control
+                        type="text"
+                        // required
+                        // value={childData[i].familyBackground}
+                        // onChange={(e) => setInstitution(e.target.value)}
+                      ></Form.Control>
+                      </Form>
+                      <StyledPopup trigger={<button  className="button_green">
+                      Get Verification Code</button>} modal nested> 
+                      
+                      <Form>
+                      <Form.Label>Enter Verification Code Received on Email</Form.Label>
+                      <Form.Control
+                        type="text"
+                        // required
+                        // value={childData[i].familyBackground}
+                        // onChange={(e) => setInstitution(e.target.value)}
+                      ></Form.Control>
+                      </Form>
+                      <StyledPopup trigger={<button  className="button_green">
+                      Submit</button>} modal> 
+
+
+                      <Form>
+                      <Form.Label>New Password*</Form.Label>
+                      <Form.Control
+                        type="password"
+                        // required
+                        // value={childData[i].familyBackground}
+                        // onChange={(e) => setInstitution(e.target.value)}
+                      ></Form.Control>
+
+                      <Form.Label>Confirm New Password*</Form.Label>
+                      <Form.Control
+                        type="password"
+                        // required
+                        // value={childData[i].familyBackground}
+                        // onChange={(e) => setInstitution(e.target.value)}
+                      ></Form.Control>
+
+
+                      </Form>
+                      <button  className="button_green">
+                     Change Password</button>
+                      
+                      
+                      </StyledPopup>
+
+                      
+                      </StyledPopup>
+                    </StyledPopup>
               </p>
               <div className = "line">___________________________________</div>
               <button className = "button_green" onClick={() => setHasAccount(!hasAccount)}> Create New Account</button>

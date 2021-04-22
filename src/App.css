@@ -515,17 +515,7 @@
 .bottombarhome .bottombarhomeContainer p span:hover {
   text-decoration: underline;
 }
-/* ###################POP UP################# */
-/* .my-popup-content {
-  margin: auto;
-  background: rgb(255, 255, 255);
-  width: 50%;
-  padding: 5px;
-}
 
-.my-popup-overlay {
-  background: rgba(0, 0, 0, 0.5);
-} */
 /* ################### Navbar ################ */
 .navbar {
   width: 100%;
@@ -853,9 +843,6 @@
   min-width: max-content;
 }
 
-.navbarhome .navbarhomeContainer_gray .smalltext .my-className:hover {
-  text-decoration: underline;
-}
 .navbarhome .navbarhomeContainer_gray p span:hover {
   text-decoration: underline;
 }
