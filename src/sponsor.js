@@ -341,8 +341,6 @@ const Sponsor = () => {
             setAmPm("");
             setBackUpDatesAndTimes("");
             setPurpose("");
-
-            fetchChildrenProfiles();
           });
       });
   };
