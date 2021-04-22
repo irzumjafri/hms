@@ -37,18 +37,28 @@ const LetterBox = (props) => {
         <section className="letterBox">
           <div className="letterBoxContainer">
             <nav>
-              <button onClick={(e) => setWriteOrReceive(true)}>
+              {/* <div class ="row">
+              <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(true)}>
                 Write a Letter
               </button>
-              <button onClick={(e) => setWriteOrReceive(false)}>
+              <button className = "button_gray" onClick={(e) => setWriteOrReceive(false)}>
                 Received Letters
               </button>
+              </div> */}
             </nav>
             <>
               {writeOrReceive ? (
                 <div>
-                  <h2>SENDING LETTERS</h2>
+                  {/* <h2>SENDING LETTERS</h2> */}
                   <div>
+                  <div class ="row">
+              <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(true)}>
+                Write a Letter
+              </button>
+              <button className = "button_gray" onClick={(e) => setWriteOrReceive(false)}>
+                Received Letters
+              </button>
+              </div>
                     <Form>
                       <Dropdown
                         className="my-className"
@@ -60,10 +70,10 @@ const LetterBox = (props) => {
                         }} // always fires once a selection happens even if there is no change
                       />
 
-                      <div class="col-md-12">
+                      <div class="col">
                         <Form.Label className="label-left">Letter *</Form.Label>
                         <Form.Control
-                          className="input-left"
+                        className = "input-left"
                           type="text"
                           required
                           value={letterBody}
@@ -86,8 +96,16 @@ const LetterBox = (props) => {
                 </div>
               ) : (
                 <div>
-                  <h2>RECIEVING LETTERS</h2>
+                  {/* <h2>RECIEVING LETTERS</h2> */}
                   <div className="letterContainer">
+                  <div class ="row">
+              <button className = "button_gray" onClick={(e) => setWriteOrReceive(true)}>
+                Write a Letter
+              </button>
+              <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(false)}>
+                Received Letters
+              </button>
+              </div>
                     {recievedLetters.map((con, i) => {
                       return (
                         <Form>

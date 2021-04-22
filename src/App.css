@@ -2191,7 +2191,43 @@
   text-align: center;
   padding: 10px;
 }
+.letterBox .letterBoxContainer .button_darkblue {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #192539;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.letterBox .letterBoxContainer .button_gray {
+  color: #000;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #fff;
+  border-radius: 10px;
+  border-bottom: none;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+}
 
+.letterBox .letterBoxContainer .my-className {
+  border-radius: 5px;
+  padding: 0px;
+  margin: 10px;
+}
 .letterBox .letterBoxContainer .titletext {
   color: white;
   margin-bottom: 10px;
@@ -2209,7 +2245,9 @@
 }
 
 .letterBox .letterBoxContainer .input-left {
-  width: 40%;
+  min-width: 100%;
+  min-height: max-content;
+  margin: 10px;
 }
 .letterBox .letterBoxContainer .label-right {
   color: white;
