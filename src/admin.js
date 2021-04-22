@@ -60,6 +60,7 @@ const Admin = () => {
   const [editingPaymentHistory, setEditingPaymentHistory] = useState();
   const [meetingRecords, setmeetingRecords] = useState([]);
   const [academicRecords, setacademicRecords] = useState([]);
+  const [letters, setLetters] = useState([]);
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
@@ -372,7 +373,7 @@ const Admin = () => {
       .then((querySnapshot) => {
         // Registered sponsors' db is empty
         if (querySnapshot.empty) {
-          setErrorMessage("No registered sponsors exist in the database yet");
+          console.log("No registered sponsors exist in the database yet");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -666,7 +667,7 @@ const Admin = () => {
       .then((querySnapshot) => {
         // No payement hisotry is in db and it is empty
         if (querySnapshot.empty) {
-          setErrorMessage("No payment history exists in the database");
+          console.log("No payment history exists in the database");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -756,12 +757,13 @@ const Admin = () => {
   // This function gets all the meetign requests from sponsors and sets them in states to be diplayed
   const fetchMeetingRequests = () => {
     let tempData = [];
+    setmeetingRecords(tempData);
     db.collection("meeting")
       .get()
       .then((querySnapshot) => {
         // No meeting request is in db and it is empty
         if (querySnapshot.empty) {
-          setErrorMessage("No meeting request exists in the database");
+          console.log("No meeting request exists in the database");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -787,7 +789,6 @@ const Admin = () => {
 
   // This function allows admin users to acknoweldge meeting request wth the id = i
   const acknoweldgeMeetingRequest = (i) => {
-    // WHY AIN'T IT DELETING
     if (i === i.toString().replace(/\s/g, "")) {
       console.log("same");
     } else {
@@ -814,7 +815,7 @@ const Admin = () => {
       .then((querySnapshot) => {
         // Children Profiles' db is empty
         if (querySnapshot.empty) {
-          setErrorMessage("No registered sponsors exist in the database yet");
+          console.log("No registered sponsors exist in the database yet");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -848,12 +849,15 @@ const Admin = () => {
     let tempDataQ = [];
     let tempDataA = [];
 
+    setQuestions(tempDataQ);
+    setAnswers(tempDataA);
+
     db.collection("FAQs")
       .get()
       .then((querySnapshot) => {
         // FAQs is not defined
         if (querySnapshot.empty) {
-          setErrorMessage("No FAQs to show");
+          console.log("No FAQs to show");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -893,12 +897,15 @@ const Admin = () => {
   // This function fetches all Contact US to be displayed
   const fetchContactUs = () => {
     let tempData = [];
+
+    setContactUs(tempData);
+
     db.collection("contactUs")
       .get()
       .then((querySnapshot) => {
         // contact us is not defined
         if (querySnapshot.empty) {
-          setErrorMessage("No contact us information is available");
+          console.log("No contact us information is available");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -942,16 +949,18 @@ const Admin = () => {
   // This function fetches all the Academic Record data on DB at any given time
   const fetchAcademicRecords = (nameToSearch, report) => {
     // using this name and report, search academic records to fetch all the records of that
+    let tempData = [];
+    setacademicRecords(tempData);
 
     // if nane is "" and report is "", fetch all the records of all the types
     if (nameToSearch === "" && report === "") {
-      let tempData = [];
+      tempData = [];
       db.collection("academicRecords")
         .get()
         .then((querySnapshot) => {
           // no record exists is not defined
           if (querySnapshot.empty) {
-            setErrorMessage("No academic records to show");
+            console.log("No academic records to show");
             return;
           } else {
             querySnapshot.forEach((doc) => {
@@ -978,14 +987,14 @@ const Admin = () => {
 
     // if name exists but report is "", fetch all reportTypes of that name
     if (nameToSearch !== "" && report === "") {
-      let tempData = [];
+      tempData = [];
       db.collection("academicRecords")
         .where("name", "==", nameToSearch)
         .get()
         .then((querySnapshot) => {
           // no record exists is not defined
           if (querySnapshot.empty) {
-            setErrorMessage("No academic records to show against this name");
+            console.log("No academic records to show against this name");
             return;
           } else {
             querySnapshot.forEach((doc) => {
@@ -1011,14 +1020,14 @@ const Admin = () => {
 
     // if name is "" and report exists, fetch all reports of that type
     if (nameToSearch === "" && report !== "") {
-      let tempData = [];
+      tempData = [];
       db.collection("academicRecords")
         .where("reportType", "==", report)
         .get()
         .then((querySnapshot) => {
           // no record exists is not defined
           if (querySnapshot.empty) {
-            setErrorMessage("No academic records to show");
+            console.log("No academic records to show");
             return;
           } else {
             querySnapshot.forEach((doc) => {
@@ -1044,13 +1053,13 @@ const Admin = () => {
 
     // if name and report both exist, fetch ony that particular record
     if (nameToSearch !== "" && report !== "") {
-      let tempData = [];
+      tempData = [];
       db.collection("academicRecords")
         .get()
         .then((querySnapshot) => {
           // no record exists is not defined
           if (querySnapshot.empty) {
-            setErrorMessage("No academic records to show");
+            console.log("No academic records to show");
             return;
           } else {
             querySnapshot.forEach((doc) => {
@@ -1167,12 +1176,73 @@ const Admin = () => {
       });
   };
 
-  const fetchSentLetters = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
+  // this function allows for admin to view all the letters in the database
+  const fetchLetters = () => {
+    let tempData = [];
+
+    setLetters(tempData);
+
+    db.collection("letters")
+      .get()
+      .then((querySnapshot) => {
+        // contact us is not defined
+        if (querySnapshot.empty) {
+          console.log("No letters present in the database");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all all of ways to conatct hunehar
+            tempData = {
+              receiverEmail: doc.data().receiverEmail,
+              fromsenderName: doc.data().senderName,
+              content: doc.data().content,
+              id: doc.data().id,
+            };
+          });
+        }
+        setLetters(tempData);
+      });
   };
 
-  const fetchReceivedLetters = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT.
+  // this function allows admin users to send a letter from any child to their sponsor
+  const sendLetter = (i) => {
+    // fromName will always be from children names
+
+    // first search for the sponsorEmail against the person's toName
+    db.collection("childrenProfiles")
+      .where("name", "==", i.fromName)
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.log("No child record against this name exists");
+          return;
+        } else {
+          let toEmail = "";
+          querySnapshot.forEach((doc) => {
+            toEmail = doc.data().sponsorEmail;
+          });
+
+          // once we have the sponsorEmail, we can now create the record easily now
+          db.collection("letters")
+            .add({
+              receiverEmail: toEmail,
+              content: i.content,
+              senderName: i.fromName,
+            })
+            .then((value) => {
+              // set this id as its own attribte
+              let profileToEdit = db.collection("letters").doc(value.id);
+              return profileToEdit
+                .update({
+                  id: value.id,
+                })
+                .then(() => {
+                  console.log("Document successfully updated!");
+                  fetchPaymentHistory();
+                });
+            });
+        }
+      });
   };
 
   //-----------------------------------------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------------------
