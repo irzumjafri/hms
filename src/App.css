@@ -829,12 +829,32 @@
 }
 .navbarhome .navbarhomeContainer_gray .smalltext {
   color: black;
-  margin: 10px 10px;
+  margin: 10px;
   display: block;
   float: right;
   font-size: 14px;
   line-height: 1;
   text-decoration: italic;
+  background-color: #f2f2f2;
+}
+
+.navbarhome .navbarhomeContainer_gray .smalltext .my-className {
+  color: black;
+  margin: 0% 1%;
+  display: block;
+  float: right;
+  /* border: none; */
+  /* border-color: #000;
+  border-width: 2px; */
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: italic;
+  background-color: #f2f2f2;
+  min-width: max-content;
+}
+
+.navbarhome .navbarhomeContainer_gray .smalltext .my-className:hover {
+  text-decoration: underline;
 }
 .navbarhome .navbarhomeContainer_gray p span:hover {
   text-decoration: underline;

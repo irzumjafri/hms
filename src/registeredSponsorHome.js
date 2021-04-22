@@ -7,15 +7,16 @@ import Button from "react-bootstrap/Button";
 // import "react-dropdown/style.css";
 import { Dropdown, Selection } from "react-dropdown-now";
 import "react-dropdown-now/style.css";
-
+import Styled from 'styled-components';
 const options = [
   { value: 'one', label: 'One' },
   { value: 'editmyprofile', label: 'Edit' },
-  { value: 'one', label: 'One' }
+  { value: 'logout', label: 'Log Out' }
 ];
 
 const RegisteredSponsorHome = (props) => {
-  const { handleLogout, setRouter } = props;
+  const { handleLogout, setRouter ,
+} = props;
   return (
     <body>
       <section className="navbarhome">
@@ -143,20 +144,24 @@ const RegisteredSponsorHome = (props) => {
         <nav className="navbarhomeContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}>
+          {/* <p className="smalltext" onClick={handleLogout}>
             <span>Logout</span>
-          </p>
+          </p> */}
+           <div className="smalltext" >
+            <Dropdown
+            className="my-className"
+            options={options}
+            placeholder = "My Account"
+            
+       
+            onSelect={(i) => {setRouter(i.value);console.log(i)}} // always fires once a selection happens even if there is no change
+          />
+          </div>
           <SearchField placeholder="search..." classNames="search" />
           <nav className="navbarhomeContainer">
             <h2 className="titletext">Homepage</h2>
           </nav>
-          <Dropdown
-            className="my-className"
-            options={options}
-            placeholder = "My Account"
-            value="My Account"
-            onSelect={(i) => {setRouter(i.value);console.log(i)}} // always fires once a selection happens even if there is no change
-          />
+        
         </nav>
 
         <section className="bottombarhome">
