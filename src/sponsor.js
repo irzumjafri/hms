@@ -431,10 +431,9 @@ const Sponsor = () => {
       });
   };
 
-
   // Sponsors sending letters to child
   const sendLetters = (i) => {
-    console.log("FUNCTIONCALLED")
+    console.log("FUNCTIONCALLED");
     // once we have the sponsorEmail, we can now create the record easily now
     db.collection("letters")
       .add({
@@ -485,7 +484,6 @@ const Sponsor = () => {
 
   // This function uses email of the sponsor to see their assigned children and fetches records academic associted to them
   const fetchAcademicRecords = (e) => {
-    console.log("FETCHING ACADEMIC RECORDS")
     // use email to fetch children's names and IDs
     let idsOfChildren = [];
     let namesOfChildren = [];
@@ -513,9 +511,7 @@ const Sponsor = () => {
               .then((querySnapshot) => {
                 // no record exists is not defined
                 if (querySnapshot.empty) {
-                  setErrorMessage(
-                    "No academic records to show against this name"
-                  );
+                  console.log("No academic records to show against this name");
                   return;
                 } else {
                   querySnapshot.forEach((doc) => {
@@ -535,10 +531,9 @@ const Sponsor = () => {
                     });
                   });
                 }
-                console.log(tempData)
-                setacademicRecords(tempData);
               });
           });
+          setacademicRecords(tempData);
         }
       });
   };
@@ -745,7 +740,6 @@ const Sponsor = () => {
                   applicationStatus={applicationStatus}
                   childData={childData}
                   academicRecords={academicRecords}
-
                 />
               ),
               contactus: (

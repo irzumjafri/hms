@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
 import Select from "react-select";
 import logo from "./HMSlogo.png";
@@ -11,6 +11,8 @@ const AcademicReportsSponsor = (props) => {
     setRouter,
     applicationStatus,
   } = props;
+
+  const [i, setI] = useState(0);
 
   return (
     <body>
@@ -27,7 +29,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords.child}
+                    value={academicRecords[i].name}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -36,7 +38,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords.reportType}
+                    value={academicRecords[i].reportType}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -49,7 +51,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords.marks1}
+                    value={academicRecords[i].subject1}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -58,7 +60,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords.marks2}
+                    value={academicRecords[i].subject2}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -71,7 +73,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords.marks3}
+                    value={academicRecords[i].subject3}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -80,7 +82,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords.marks4}
+                    value={academicRecords[i].subject4}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -93,7 +95,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords.marks5}
+                    value={academicRecords[i].subject5}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -102,7 +104,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords.marks6}
+                    value={academicRecords[i].subject6}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -115,7 +117,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords.marks5}
+                    value={academicRecords[i].totalMarks}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -124,7 +126,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords.marks6}
+                    value={academicRecords[i].percentage}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -136,19 +138,42 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords.grade}
+                    value={academicRecords[i].grade}
                   ></Form.Control>
                 </div>
               </Form.Row>
             </Form>
             <div>
               <div className="btnContainer">
-                <button
-                  // MakeonClick
+              {i ? (<button
+                  onClick={() => setI(i-1)}
+                  class="Button"
+                  className="button_redd"
+                >
+                  {" "}
+                  Prev Page
+                </button>) : (<button
+                  class="Button"
+                  //MAKE THIS GREYED OUT
+                >
+                  {" "}
+                  Prev Page
+                </button>)}
+
+                {i+1==academicRecords.length ? (<button
+                  class="Button"
+                  //MAKE THIS GREYED OUT
+                >
+                  {" "}
+                  Next Page
+                </button>) : (<button
+                  onClick={() => setI(i+1)}
+                  class="Button"
                   className="button_green"
                 >
-                  View Report
-                </button>
+                  {" "}
+                  Next Page
+                </button>)}
               </div>
             </div>
           </div>

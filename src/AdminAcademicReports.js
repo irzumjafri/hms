@@ -1,177 +1,219 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
+import Select from "react-select";
+import logo from "./HMSlogo.png";
+import { Button, Form } from "react-bootstrap";
 
 const AdminAcademicReports = (props) => {
   const {
     handleLogout,
-    child,
-    reportType,
-    marks1,
-    setMarks1,
-    marks2,
-    setMarks2,
-    marks3,
-    setMarks3,
-    marks4,
-    setMarks4,
-    marks5,
-    setMarks5,
-    marks6,
-    setMarks6,
-    totalMarks,
-    setTotalMarks,
-    percentage,
-    setPercentage,
-    grade,
-    setGrade,
+    academicRecords,
     setRouter,
+    applicationStatus,
   } = props;
+
+  const [i, setI] = useState(0);
+  console.log(academicRecords)
 
   return (
     <body>
-      <section>
-        <nav>
-          <h2>Hunehar Management System</h2>
-          <SearchField />
-          <button onClick={handleLogout}>Logout</button>
-        </nav>
-        <section>
-          <h2>ACADEMIC REPORTS</h2>
-          <button onClick={() => setRouter("home")}> HOME PAGE </button>
-        </section>
-        <section className="adminAcademicReports">
-          <div className="adminAcademicReportsContainer">
-            <div>
-              <section>
-                <button /*Make on click function */>Upload Report</button>
-              </section>
-              <section>
-                <label>Child *</label>
-                <input
-                  type="text"
-                  autoFocus
-                  required
-                  value={child}
-                  // make drop down menu
-                ></input>
-              </section>
-              <h3>OR</h3>
-              <section>
-                <label>Search</label>
-                <SearchField />
-              </section>
-              <section>
-                <label>Report Type</label>
-                <input
-                  type="text"
-                  required
-                  value={reportType}
-                  // Make drop down menu
-                ></input>
-              </section>
-              <section>
-                <label>Subject 1</label>
-                <input
-                  type="text"
-                  required
-                  value={marks1}
-                  onChange={(e) => setMarks1(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Subject 2</label>
-                <input
-                  type="text"
-                  required
-                  value={marks2}
-                  onChange={(e) => setMarks2(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Subject 3</label>
-                <input
-                  type="text"
-                  required
-                  value={marks3}
-                  onChange={(e) => setMarks3(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Subject 4</label>
-                <input
-                  type="text"
-                  required
-                  value={marks4}
-                  onChange={(e) => setMarks4(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Subject 5</label>
-                <input
-                  type="text"
-                  required
-                  value={marks5}
-                  onChange={(e) => setMarks5(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Subject 6</label>
-                <input
-                  type="text"
-                  required
-                  value={marks6}
-                  onChange={(e) => setMarks6(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Total Marks</label>
-                <input
-                  type="text"
-                  required
-                  value={totalMarks}
-                  onChange={(e) => setTotalMarks(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Percentage</label>
-                <input
-                  type="text"
-                  required
-                  value={percentage}
-                  onChange={(e) => setPercentage(e.target.value)}
-                ></input>
-              </section>
-              <section>
-                <label>Grade</label>
-                <input
-                  type="text"
-                  required
-                  value={grade}
-                  onChange={(e) => setGrade(e.target.value)}
-                ></input>
-              </section>
+      <section className="navbar">
+        <section></section>
+        <section className="academicReportsSponsor">
+          <div className="academicReportsSponsorContainer">
+            <Form>
+              <Form.Row>
+                <div class="col-md-6">
+                  <Form.Label className="label-left">Child</Form.Label>
+                  {/* <Form.Select options={child}/> */}
+                  <Form.Control
+                    type="text"
+                    autoFocus
+                    required
+                    value={academicRecords[i].name}
+                  ></Form.Control>
+                </div>
+                <div class="col-md-6">
+                  <Form.Label className="label-right">Report Type</Form.Label>
+                  {/* <Form.Select options={reportType}/> */}
+                  <Form.Control
+                    type="text"
+                    required
+                    value={academicRecords[i].reportType}
+                  ></Form.Control>
+                </div>
+              </Form.Row>
 
+              <Form.Row>
+                <div class="col-md-6">
+                  <Form.Label className="label-left">Subject 1</Form.Label>
+                  {/* <Form.Select options={marks1}/> */}
+                  <Form.Control
+                    type="text"
+                    autoFocus
+                    required
+                    value={academicRecords[i].subject1}
+                  ></Form.Control>
+                </div>
+                <div class="col-md-6">
+                  <Form.Label className="label-right">Subject 2</Form.Label>
+                  {/* <Form.Select options={marks2}/> */}
+                  <Form.Control
+                    type="text"
+                    required
+                    value={academicRecords[i].subject2}
+                  ></Form.Control>
+                </div>
+              </Form.Row>
+
+              <Form.Row>
+                <div class="col-md-6">
+                  <Form.Label className="label-left">Subject 3</Form.Label>
+                  {/* <Form.Select options={marks3}/> */}
+                  <Form.Control
+                    type="text"
+                    autoFocus
+                    required
+                    value={academicRecords[i].subject3}
+                  ></Form.Control>
+                </div>
+                <div class="col-md-6">
+                  <Form.Label className="label-right">Subject 4</Form.Label>
+                  {/* <Form.Select options={marks4}/> */}
+                  <Form.Control
+                    type="text"
+                    required
+                    value={academicRecords[i].subject4}
+                  ></Form.Control>
+                </div>
+              </Form.Row>
+
+              <Form.Row>
+                <div class="col-md-6">
+                  <Form.Label className="label-left">Subject 5</Form.Label>
+                  {/* <Form.Select options={marks5}/> */}
+                  <Form.Control
+                    type="text"
+                    autoFocus
+                    required
+                    value={academicRecords[i].subject5}
+                  ></Form.Control>
+                </div>
+                <div class="col-md-6">
+                  <Form.Label className="label-right">Subject 6</Form.Label>
+                  {/* <Form.Select options={marks6}/> */}
+                  <Form.Control
+                    type="text"
+                    required
+                    value={academicRecords[i].subject6}
+                  ></Form.Control>
+                </div>
+              </Form.Row>
+
+              <Form.Row>
+                <div class="col-md-6">
+                  <Form.Label className="label-left">Total Marks</Form.Label>
+                  {/* <Form.Select options={totalMarks}/> */}
+                  <Form.Control
+                    type="text"
+                    autoFocus
+                    required
+                    value={academicRecords[i].totalMarks}
+                  ></Form.Control>
+                </div>
+                <div class="col-md-6">
+                  <Form.Label className="label-right">Percentage</Form.Label>
+                  {/* <Form.Select options={percentage}/> */}
+                  <Form.Control
+                    type="text"
+                    required
+                    value={academicRecords[i].percentage}
+                  ></Form.Control>
+                </div>
+              </Form.Row>
+
+              <Form.Row>
+                <div class="col-md-6">
+                  <Form.Label className="label-right">Grade</Form.Label>
+                  {/* <Form.Select options={grade}/> */}
+                  <Form.Control
+                    type="text"
+                    required
+                    value={academicRecords[i].grade}
+                  ></Form.Control>
+                </div>
+              </Form.Row>
+            </Form>
+            <div>
               <div className="btnContainer">
-                <button
-                  // MakeonClick Function onClick={() => setRouter("registered")}
-                  className="button_red"
+              {i ? (<button
+                  onClick={() => setI(i-1)}
+                  class="Button"
+                  className="button_redd"
                 >
-                  ❌ Discard Changes
-                </button>
-              </div>
-              <div className="btnContainer">
-                <button
-                  // MakeonClick Function onClick={() => setRouter("registered")}
-                  className="buttongreen"
+                  {" "}
+                  Prev Page
+                </button>) : (<button
+                  class="Button"
+                  //MAKE THIS GREYED OUT
                 >
-                  ✅ Save Changes
-                </button>
+                  {" "}
+                  Prev Page
+                </button>)}
+
+                {i+1==academicRecords.length ? (<button
+                  class="Button"
+                  //MAKE THIS GREYED OUT
+                >
+                  {" "}
+                  Next Page
+                </button>) : (<button
+                  onClick={() => setI(i+1)}
+                  class="Button"
+                  className="button_green"
+                >
+                  {" "}
+                  Next Page
+                </button>)}
               </div>
             </div>
           </div>
         </section>
-        <button onClick={() => setRouter("admincontactus")}>Contact Us</button>
-        <button onClick={() => setRouter("adminfaqs")}>FAQs</button>
+        <nav className="navbarContainer_gray">
+          <img src={logo} className="Applogo" alt="logo" />
+          <h2 className="titletext">Hunehar Management System</h2>
+          <p className="smalltext" onClick={handleLogout}>
+            <span>Logout</span>
+          </p>
+          <SearchField placeholder="search..." classNames="search" />
+
+          <nav className="navbarContainer">
+            <p
+              className="smalltext"
+              onClick={() =>
+                applicationStatus
+                  ? setRouter("registered")
+                  : setRouter("unregistered")
+              }
+            >
+              <span>HOME PAGE</span>
+            </p>
+            <h2 className="titletext">ACADEMIC REPORTS</h2>
+          </nav>
+        </nav>
+        <section className="bottombar">
+          <navbar className="bottombarContainer">
+            <p
+              className="smalltext"
+              onClick={() => setRouter("admincontactus")}
+            >
+              <span>Contact Us</span>
+            </p>
+            <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
+              <span>FAQs</span>
+            </p>
+          </navbar>
+        </section>
       </section>
     </body>
   );

@@ -98,6 +98,7 @@ const Admin = () => {
               fetchContactUs();
               fetchFAQs();
               fetchMeetingRequests();
+              fetchAcademicRecords("","");
               fetchLetters();
             } else {
               clearInputs();
@@ -983,6 +984,7 @@ const Admin = () => {
               });
             });
           }
+          console.log(tempData)
           setacademicRecords(tempData);
         });
     }
@@ -1090,6 +1092,7 @@ const Admin = () => {
           setacademicRecords(tempData);
         });
     }
+    console.log(tempData);
   };
 
   // Let's admin users edit a particular record
@@ -1395,6 +1398,7 @@ const Admin = () => {
                 <AdminAcademicReports
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
+                  academicRecords={academicRecords}
                 />
               ),
               editfaqs: (
