@@ -5,6 +5,9 @@ import { Button, Form } from "react-bootstrap";
 import { Dropdown, Selection } from "react-dropdown-now";
 import "react-dropdown-now/style.css";
 import { useState, useEffect } from "react";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import Styled from 'styled-components';
 
 const LetterBox = (props) => {
   const {
@@ -13,7 +16,89 @@ const LetterBox = (props) => {
     setRouter,
     applicationStatus,
     recievedLetters,
-    sendLetters
+    sendLetters,
+    StyledPopup = Styled(Popup)`
+  // use your custom style for ".popup-overlay"
+  &-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  // use your custom style for ".popup-content"
+  &-content {
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background: white;
+    width: 40%;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 2%;
+  }
+  
+  &-content .button_green
+  {
+    border: none;
+    outline: none;
+    width: 50%;
+    padding: 10px 0px;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background: #33773d;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-content .button_gray
+  {
+    border: none;
+    outline: none;
+    width: 50%;
+    padding: 10px 0px;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background: #d3d3d3;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-content .button_red
+  {
+
+    border: none;
+    outline: none;
+    //padding: 10px 0px;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background: #ff0033;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center
+    min-width: max-content;
+   
+    padding: 10px 10px;
+
+  }
+  `,
   } = props;
 
   const [reciever, setReciever] = useState("");
@@ -80,17 +165,26 @@ const LetterBox = (props) => {
                           onChange={(e) => setLetterBody(e.target.value)}
                         ></Form.Control>
                       </div>
-                      <button
-                        onClick={() => {
+                      <StyledPopup trigger = { <button className= "button_green"> Submit Request</button>} position="center" modal>
+                      <div>
+                      You are about to send the letter you just composed/uploaded. Do you want to continue?
+                      </div>
+                      <div class = "row">
+                        <div class="col-md-6">
+                          <button className = "button_gray"> Cancel</button>
+                        </div>
+                        <div class="col-md-6">
+                          <button className = "button_green"  onClick={() => {
                           {applicationStatus
                             ? setRouter("registered")
                             : setRouter("unregistered");
                           console.log("SENDING LETTER");
-                        };sendLetters({name: reciever,content: letterBody})}}
-                        className="button_green"
-                      >
-                        Submit Request
-                      </button>
+                        };sendLetters({name: reciever,content: letterBody})}}>Send</button>
+                        </div>
+
+
+                      </div>
+                      </StyledPopup>
                     </Form>
                   </div>
                 </div>
@@ -111,13 +205,23 @@ const LetterBox = (props) => {
                         <Form>
                           <div class="col-md-6">
                             <Form.Label className="label-left">From</Form.Label>
-                            <textbox>{recievedLetters[i].senderName}</textbox>
+                            <Form.Control
+                            type = "text"
+                            value={recievedLetters[i].senderName}
+                            >
+                              
+                              </Form.Control>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col">
                             <Form.Label className="label-left">
                               Letter
                             </Form.Label>
-                            <textbox>{recievedLetters[i].content}</textbox>
+                            <Form.Control
+                            type = "text"
+                            value={recievedLetters[i].content}
+                            >
+                              </Form.Control>
+                        
                           </div>
                         </Form>
                       );
