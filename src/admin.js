@@ -59,6 +59,7 @@ const Admin = () => {
   const [paymentRecords, setpaymentRecords] = useState([]);
   const [editingPaymentHistory, setEditingPaymentHistory] = useState();
   const [meetingRecords, setmeetingRecords] = useState([]);
+  const [academicRecords, setacademicRecords] = useState([]);
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
@@ -786,13 +787,18 @@ const Admin = () => {
 
   // This function allows admin users to acknoweldge meeting request wth the id = i
   const acknoweldgeMeetingRequest = (i) => {
-    console.log(i);
+    // WHY AIN'T IT DELETING
+    if (i === i.toString().replace(/\s/g, "")) {
+      console.log("same");
+    } else {
+      console.log("not same");
+    }
+
     db.collection("meeting")
       .doc(i.toString().replace(/\s/g, ""))
       .delete()
       .then(() => {
-        console.log("Document successfully deleted!");
-        // call fucntion to update states of meeting requests acc to the updated db
+        console.log("Document successfully deleted!", i);
         fetchMeetingRequests();
       })
       .catch((error) => {
@@ -885,7 +891,6 @@ const Admin = () => {
   };
 
   // This function fetches all Contact US to be displayed
-
   const fetchContactUs = () => {
     let tempData = [];
     db.collection("contactUs")
@@ -934,8 +939,232 @@ const Admin = () => {
       });
   };
 
-  const fetchAcademicRecords = () => {
-    //MAKE REACT STATE CALL AT LOGIN AND FETCH ALL MEETING REQUESTS JUST LIKE IN SPONSOR MAKE A LISTTT
+  // This function fetches all the Academic Record data on DB at any given time
+  const fetchAcademicRecords = (nameToSearch, report) => {
+    // using this name and report, search academic records to fetch all the records of that
+
+    // if nane is "" and report is "", fetch all the records of all the types
+    if (nameToSearch === "" && report === "") {
+      let tempData = [];
+      db.collection("academicRecords")
+        .get()
+        .then((querySnapshot) => {
+          // no record exists is not defined
+          if (querySnapshot.empty) {
+            setErrorMessage("No academic records to show");
+            return;
+          } else {
+            querySnapshot.forEach((doc) => {
+              // update state to store all the records
+              tempData.push({
+                name: doc.data().name,
+                id: doc.data().id,
+                reportType: doc.data().reportType,
+                subject1: doc.data().subject1,
+                subject2: doc.data().subject2,
+                subject3: doc.data().subject3,
+                subject4: doc.data().subject4,
+                subject5: doc.data().subject5,
+                subject6: doc.data().subject6,
+                totalMarks: doc.data().totalMarks,
+                grade: doc.data().grade,
+                percentage: doc.data().percentage,
+              });
+            });
+          }
+          setacademicRecords(tempData);
+        });
+    }
+
+    // if name exists but report is "", fetch all reportTypes of that name
+    if (nameToSearch !== "" && report === "") {
+      let tempData = [];
+      db.collection("academicRecords")
+        .where("name", "==", nameToSearch)
+        .get()
+        .then((querySnapshot) => {
+          // no record exists is not defined
+          if (querySnapshot.empty) {
+            setErrorMessage("No academic records to show against this name");
+            return;
+          } else {
+            querySnapshot.forEach((doc) => {
+              tempData.push({
+                name: doc.data().name,
+                id: doc.data().id,
+                reportType: doc.data().reportType,
+                subject1: doc.data().subject1,
+                subject2: doc.data().subject2,
+                subject3: doc.data().subject3,
+                subject4: doc.data().subject4,
+                subject5: doc.data().subject5,
+                subject6: doc.data().subject6,
+                totalMarks: doc.data().totalMarks,
+                grade: doc.data().grade,
+                percentage: doc.data().percentage,
+              });
+            });
+          }
+          setacademicRecords(tempData);
+        });
+    }
+
+    // if name is "" and report exists, fetch all reports of that type
+    if (nameToSearch === "" && report !== "") {
+      let tempData = [];
+      db.collection("academicRecords")
+        .where("reportType", "==", report)
+        .get()
+        .then((querySnapshot) => {
+          // no record exists is not defined
+          if (querySnapshot.empty) {
+            setErrorMessage("No academic records to show");
+            return;
+          } else {
+            querySnapshot.forEach((doc) => {
+              tempData.push({
+                name: doc.data().name,
+                id: doc.data().id,
+                reportType: doc.data().reportType,
+                subject1: doc.data().subject1,
+                subject2: doc.data().subject2,
+                subject3: doc.data().subject3,
+                subject4: doc.data().subject4,
+                subject5: doc.data().subject5,
+                subject6: doc.data().subject6,
+                totalMarks: doc.data().totalMarks,
+                grade: doc.data().grade,
+                percentage: doc.data().percentage,
+              });
+            });
+          }
+          setacademicRecords(tempData);
+        });
+    }
+
+    // if name and report both exist, fetch ony that particular record
+    if (nameToSearch !== "" && report !== "") {
+      let tempData = [];
+      db.collection("academicRecords")
+        .get()
+        .then((querySnapshot) => {
+          // no record exists is not defined
+          if (querySnapshot.empty) {
+            setErrorMessage("No academic records to show");
+            return;
+          } else {
+            querySnapshot.forEach((doc) => {
+              // store records where names match only
+              if (
+                nameToSearch === doc.data().name &&
+                report === doc.data().reportType
+              ) {
+                tempData.push({
+                  name: doc.data().name,
+                  id: doc.data().id,
+                  reportType: doc.data().reportType,
+                  subject1: doc.data().subject1,
+                  subject2: doc.data().subject2,
+                  subject3: doc.data().subject3,
+                  subject4: doc.data().subject4,
+                  subject5: doc.data().subject5,
+                  subject6: doc.data().subject6,
+                  totalMarks: doc.data().totalMarks,
+                  grade: doc.data().grade,
+                  percentage: doc.data().percentage,
+                });
+              }
+            });
+          }
+          setacademicRecords(tempData);
+        });
+    }
+  };
+
+  // Let's admin users edit a particular record
+  const editAcademicRecords = (i) => {
+    // i is an object and i.id is the Id of the profile that needs to be edited
+    let profileToEdit = db.collection("academicRecords").doc(i.id);
+    return profileToEdit
+      .update({
+        name: i.name,
+        id: i.id,
+        reportType: i.reportType,
+        subject1: i.subject1,
+        subject2: i.subject2,
+        subject3: i.subject3,
+        subject4: i.subject4,
+        subject5: i.subject5,
+        subject6: i.subject6,
+        totalMarks:
+          i.subject1 +
+          i.subject2 +
+          i.subject3 +
+          i.subject4 +
+          i.subject5 +
+          i.subject6,
+        grade: i.grade,
+        percentage:
+          ((i.subject1 +
+            i.subject2 +
+            i.subject3 +
+            i.subject4 +
+            i.subject5 +
+            i.subject6) /
+            100) *
+          100,
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+        fetchAcademicRecords(i.name, i.reportType);
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
+  };
+
+  // this function let's admin users create new academic records
+  const addAcademicRecord = (i) => {
+    db.collection("academicRecords")
+      .add({
+        name: i.name,
+        reportType: i.reportType,
+        subject1: i.subject1,
+        subject2: i.subject2,
+        subject3: i.subject3,
+        subject4: i.subject4,
+        subject5: i.subject5,
+        subject6: i.subject6,
+        totalMarks:
+          i.subject1 +
+          i.subject2 +
+          i.subject3 +
+          i.subject4 +
+          i.subject5 +
+          i.subject6,
+        grade: i.grade,
+        percentage:
+          ((i.subject1 +
+            i.subject2 +
+            i.subject3 +
+            i.subject4 +
+            i.subject5 +
+            i.subject6) /
+            100) *
+          100,
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("academicRecords").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+            fetchAcademicRecords("", "");
+          });
+      });
   };
 
   const fetchSentLetters = () => {

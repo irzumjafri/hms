@@ -72,6 +72,7 @@ const Sponsor = () => {
   const [backUpDatesAndTimes, setBackUpDatesAndTimes] = useState("");
   const [purpose, setPurpose] = useState("");
   const [contactUs, setContactUs] = useState();
+  const [academicRecords, setacademicRecords] = useState([]);
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
@@ -102,7 +103,7 @@ const Sponsor = () => {
             });
           });
         }
-        console.log(tempDataQ)
+        console.log(tempDataQ);
         setQuestions(tempDataQ);
         setAnswers(tempDataA);
       });
@@ -422,14 +423,11 @@ const Sponsor = () => {
       });
   };
 
-
-
   // const [myChildren, setMyChildren] = useState([]);
   // const [letterBody, setLetterBody] = useState("");
   // const [selectedChild, setSelectedChild] = useState("");
-  
-  // const [recievedLetters, setRecievedLetters] = useState([]);
 
+  // const [recievedLetters, setRecievedLetters] = useState([]);
 
   // const fetchFAQs = () => {
   //   let tempDataQ = [];
@@ -461,10 +459,11 @@ const Sponsor = () => {
   //     });
   // };
 
- // Sponsors sending letters to child
+  // Sponsors sending letters to child
   const sendLetters = () => {
-      let childarr = [];
-      db.collection("childrenProfiles").where("sponsorEmail","==",email)
+    let childarr = [];
+    db.collection("childrenProfiles")
+      .where("sponsorEmail", "==", email)
       .get()
       .then((querySnapshot) => {
         // childrenProfiles is not defined
@@ -479,7 +478,7 @@ const Sponsor = () => {
             });
           });
         }
-        console.log(childarr)
+        console.log(childarr);
         setMyChildren(childarr);
       });
 
@@ -506,7 +505,7 @@ const Sponsor = () => {
           // doc.data() is never undefined for query doc snapshot
           letters.push({
             childname: doc.data().name,
-            letterBody: doc.data().letterBody
+            letterBody: doc.data().letterBody,
           });
         });
         setRecievedLetters(letters);
@@ -514,7 +513,64 @@ const Sponsor = () => {
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
+  };
 
+  // This function uses email of the sponsor to see their assigned children and fetches records academic associted to them
+  const fetchAcademicRecords = (e) => {
+    // use email to fetch children's names and IDs
+    let idsOfChildren = [];
+    let namesOfChildren = [];
+
+    db.collection("childrenProfiles")
+      .where("sponsorEmail", "==", e)
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          //console.log("No child profiles exists for sponsor");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            idsOfChildren.push(doc.data().id);
+            namesOfChildren.push(doc.data().name);
+          });
+
+          // now we have the names and the ids of the assigned children, we can simply fetch the records associated to this name
+          let tempData = [];
+
+          namesOfChildren.forEach((n) => {
+            db.collection("academicRecords")
+              .where("name", "==", n)
+              .get()
+              .then((querySnapshot) => {
+                // no record exists is not defined
+                if (querySnapshot.empty) {
+                  setErrorMessage(
+                    "No academic records to show against this name"
+                  );
+                  return;
+                } else {
+                  querySnapshot.forEach((doc) => {
+                    tempData.push({
+                      name: doc.data().name,
+                      id: doc.data().id,
+                      reportType: doc.data().reportType,
+                      subject1: doc.data().subject1,
+                      subject2: doc.data().subject2,
+                      subject3: doc.data().subject3,
+                      subject4: doc.data().subject4,
+                      subject5: doc.data().subject5,
+                      subject6: doc.data().subject6,
+                      totalMarks: doc.data().totalMarks,
+                      grade: doc.data().grade,
+                      percentage: doc.data().percentage,
+                    });
+                  });
+                }
+                setacademicRecords(tempData);
+              });
+          });
+        }
+      });
   };
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
