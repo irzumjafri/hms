@@ -146,7 +146,6 @@ const RegisteredSponsorHome = (props) => {
           <p className="smalltext" onClick={handleLogout}>
             <span>Logout</span>
           </p>
-          ; ;
           <SearchField placeholder="search..." classNames="search" />
           <nav className="navbarhomeContainer">
             <h2 className="titletext">Homepage</h2>

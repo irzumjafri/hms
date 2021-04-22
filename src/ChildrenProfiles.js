@@ -2,6 +2,9 @@ import React from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import Styled from 'styled-components';
 const ChildrenProfiles = (props) => {
   const {
     handleLogout,
@@ -9,6 +12,86 @@ const ChildrenProfiles = (props) => {
     setRouter,
     applicationStatus,
     withdrawchild,
+    StyledPopup = Styled(Popup)`
+    // use your custom style for ".popup-overlay"
+    &-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    // use your custom style for ".popup-content"
+    &-content {
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      background: white;
+      width: 40%;
+      padding: 5px;
+      border-radius: 10px;
+      font-size: 18px;
+      padding: 2%;
+    }
+    
+    &-content .button_green
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #33773d;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-content .button_gray
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #d3d3d3;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-content .button_red
+    {
+
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #ff0033;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+    `,
   } = props;
 
   console.log(childData);
@@ -21,6 +104,7 @@ const ChildrenProfiles = (props) => {
           <div className="childrenProfilesContainer">
             {childData.map((con, i) => {
               return (
+                <div>
                 <Form>
                   <Form.Row>
                     <div class="col-md-6">
@@ -164,27 +248,73 @@ const ChildrenProfiles = (props) => {
                       <Form.Label className="label-right">Family Background</Form.Label>
                       <Form.Control
                         type="text"
-                        autoFocus
                         required
                         value={childData[i].familyBackground}
                       ></Form.Control>
                     </div>
                   </Form.Row>
 
+              
+                  </Form>
+                  
                   <div className="btnContainer">
-                    <button
-                      onClick={() => {
+
+                  <StyledPopup trigger={<button className="button_redd" >
+                Withdraw Sponsorship for This Child</button>} position="center" modal nested>
+                
+                <div>
+
+                You are about to withdraw sponsorship for this child. Do you want to continue?
+                </div>
+                <div class = "row">
+                <div class = "col-md-6">
+
+                  <button className="button_gray"  onClick={() => setRouter("childrenprofiles")} > Cancel </button>
+
+                </div>
+
+                <div class = "col-md-6">
+
+                    <StyledPopup trigger = {<button className="button_red"> Withdraw </button>} modal>
+                      <Form>
+                      <Form.Label>Would you like to share why do you want to withdraw sponsorship for this child?</Form.Label>
+                      <Form.Control
+                        type="text"
+                        // required
+                        // value={childData[i].familyBackground}
+                        // onChange={(e) => setInstitution(e.target.value)}
+                      ></Form.Control>
+                      </Form>
+                      <div class = "row">
+                      <div class = "col-md-6">
+
+                    <button className="button_gray"  onClick={() => setRouter("childrenprofiles")}> Cancel </button>
+
+                    </div>
+
+                    <div class = "col-md-6">
+                    <button className="button_red"onClick={() => {
                         withdrawchild(childData[i].id);
                         applicationStatus
                           ? setRouter("registered")
                           : setRouter("unregistered");
-                      }}
-                      className="button_redd"
-                    >
-                      Withdraw Sponsorship for This Child
-                    </button>
+                      }}> Withdraw </button>
+
+                    </div>
+
+                      </div>
+                      </StyledPopup>
+
+                </div>
+                </div>
+
+
+
+
+              </StyledPopup>
                   </div>
-                </Form>
+                  </div>
+             
               );
             })}
           </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
-import {Button, Form} from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Styled from 'styled-components';
@@ -63,12 +63,12 @@ const Signup = (props) => {
   justify-content: center;
 }
 `,
-  
+
   } = props;
 
   return (
     <section className="signup">
-    <div className="signupContainer">
+      <div className="signupContainer">
 
 
 
@@ -76,109 +76,108 @@ const Signup = (props) => {
 
 
         <Form>
-              <Form.Row >
-              <div class = "col-md-6">
-            <Form.Label className= "label-left">First Name *</Form.Label>
-            <Form.Control
-              type="text"
-              autoFocus
-              required
-              value={firstname}
-              onChange={(e) => setFirstName(e.target.value)}
-            ></Form.Control>
+          <Form.Row >
+            <div class="col-md-6">
+              <Form.Label className="label-left">First Name *</Form.Label>
+              <Form.Control
+                type="text"
+                autoFocus
+                required
+                value={firstname}
+                onChange={(e) => setFirstName(e.target.value)}
+              ></Form.Control>
             </div >
-            <div class = "col-md-6">
-            <Form.Label className= "label-right">Last Name *</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              value={lastname}
-              onChange={(e) => setLastName(e.target.value)}
-            ></Form.Control>
-              </div>
-              </Form.Row>
-
-              <Form.Row>
-              <div class = "col-md-6">
-            <Form.Label className= "label-left">Email *</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            >
-            </Form.Control>
+            <div class="col-md-6">
+              <Form.Label className="label-right">Last Name *</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                value={lastname}
+                onChange={(e) => setLastName(e.target.value)}
+              ></Form.Control>
             </div>
-            <div  class = "col-md-6">
-            <Form.Label className= "label-right">Date of Birth (DD-MM-YYYY) *</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              value={dateofbirth}
-              onChange={(e) => setDateOfBirth(e.target.value)}
-            >
+          </Form.Row>
+
+          <Form.Row>
+            <div class="col-md-6">
+              <Form.Label className="label-left">Email *</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              >
+              </Form.Control>
+            </div>
+            <div class="col-md-6">
+              <Form.Label className="label-right">Date of Birth (DD-MM-YYYY) *</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                value={dateofbirth}
+                onChange={(e) => setDateOfBirth(e.target.value)}
+              >
               </Form.Control>
             </div >
-            </Form.Row>
+          </Form.Row>
 
-            <Form.Row>
-              <div class = "col-md-6">
-            <Form.Label className= "label-left">Password *</Form.Label>
-            <Form.Control
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            >
-            </Form.Control>
+          <Form.Row>
+            <div class="col-md-6">
+              <Form.Label className="label-left">Password *</Form.Label>
+              <Form.Control
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              >
+              </Form.Control>
             </div>
-            <div class = "col-md-6">
-            <Form.Label className= "label-right">Confirm Password *</Form.Label>
-            <Form.Control
-              type="password"
-              required
-              value={confirmpassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            >
+            <div class="col-md-6">
+              <Form.Label className="label-right">Confirm Password *</Form.Label>
+              <Form.Control
+                type="password"
+                required
+                value={confirmpassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              >
               </Form.Control>
             </div >
-            </Form.Row >
+          </Form.Row >
 
-         </Form>
+        </Form>
         <p className="errorMsg">{errorMessage}</p>
         <div className="btnContainer">
           <>
             {firstname &&
-            lastname &&
-            dateofbirth &&
-            confirmpassword &&
-            confirmpassword === password ? (
+              lastname &&
+              dateofbirth &&
+              confirmpassword &&
+              confirmpassword === password ? (
               // <button className="button_green" onClick={handleSignUp}>
               //   Create My Account!</button>
-            
+
               <button className="button_green" onClick={handleSignUp}>  Create My Account! </button>
 
-              
+
             ) : (
 
-                <StyledPopup  trigger={<button className="button_gray" onClick={handleSignUp}>
+              <StyledPopup trigger={<button className="button_gray" onClick={handleSignUp}>
                 Create My Account!</button>} position="center" modal >
-
-                <Form>
+                
                 <div>
 
-                All the required fields have not been filled. Press okay to go back and fill in the missing information
+                  All the required fields have not been filled. Press okay to go back and fill in the missing information
                 </div>
                 <div>
 
-                <button className="button_green" onClick={handleSignUp}> OKAY! </button>
+                  <button className="button_green" onClick={handleSignUp}> OKAY! </button>
 
                 </div>
 
-                </Form>
 
 
-                </StyledPopup>
+
+              </StyledPopup>
             )}
             {/*CSS: CHANGE BUTTON COLOR WHEN FIELDS AREN'T COMPLETE */}
             <p>
