@@ -312,25 +312,39 @@ const Sponsor = () => {
   };
 
   const addMeetingRequest = () => {
-    db.collection("meeting").doc(user.id).set({
-      email: email,
-      firstName: firstName,
-      lastName: lastName,
-      phoneNumber: phoneNumber,
-      meetingDate: preferredMeetingDate,
-      hour: hour,
-      min: minutes,
-      ampm: amPm,
-      backupDate: backUpDatesAndTimes,
-      purpose: purpose,
-      id: user.uid,
-    });
-    setPreferredMeetingDate("");
-    setHour("");
-    setMinutes("");
-    setAmPm("");
-    setBackUpDatesAndTimes("");
-    setPurpose("");
+    db.collection("meeting")
+      .add({
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        meetingDate: preferredMeetingDate,
+        hour: hour,
+        min: minutes,
+        ampm: amPm,
+        backupDate: backUpDatesAndTimes,
+        purpose: purpose,
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("meeting").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+
+            setPreferredMeetingDate("");
+            setHour("");
+            setMinutes("");
+            setAmPm("");
+            setBackUpDatesAndTimes("");
+            setPurpose("");
+
+            fetchChildrenProfiles();
+          });
+      });
   };
 
   // withdraw child
