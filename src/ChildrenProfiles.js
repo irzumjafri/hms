@@ -335,22 +335,29 @@ const ChildrenProfiles = (props) => {
                   </div>
                 </StyledPopup>
               </div>
+              <div className="btnContainer">
+              <div class = "row">
+                <div class ="col-md-6">
               {i ? (<button
                   onClick={() => setI(i-1)}
                   class="Button"
-                  className="button_redd"
+                  className="button_blue"
                 >
                   {" "}
                   Prev Page
                 </button>) : (<button
                   class="Button"
+                  className = "button_gray"
                   //MAKE THIS GREYED OUT
                 >
                   {" "}
                   Prev Page
                 </button>)}
+                </div>
+                <div class= "col-md-6">
 
                 {i+1==childData.length ? (<button
+                  className = "button_gray"
                   class="Button"
                   //MAKE THIS GREYED OUT
                 >
@@ -359,11 +366,14 @@ const ChildrenProfiles = (props) => {
                 </button>) : (<button
                   onClick={() => setI(i+1)}
                   class="Button"
-                  className="button_green"
+                  className="button_blue"
                 >
                   {" "}
                   Next Page
                 </button>)}
+                </div>
+                </div>
+                </div>
             </div>
             );
           </div>

@@ -2,6 +2,9 @@ import React from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import Styled from 'styled-components';
 
 const RequestAMeeting = (props) => {
   const {
@@ -21,6 +24,7 @@ const RequestAMeeting = (props) => {
     setRouter,
     applicationStatus,
     addMeetingRequest,
+    
   } = props;
 
   return (

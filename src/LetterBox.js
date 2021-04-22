@@ -164,8 +164,10 @@ const LetterBox = (props) => {
                           value={letterBody}
                           onChange={(e) => setLetterBody(e.target.value)}
                         ></Form.Control>
+                        
                       </div>
-                      <StyledPopup trigger = { <button className= "button_green"> Submit Request</button>} position="center" modal>
+                      </Form>
+                      <StyledPopup trigger = { <button className= "button_green"> Send Letter</button>} position="center" modal>
                       <div>
                       You are about to send the letter you just composed/uploaded. Do you want to continue?
                       </div>
@@ -181,11 +183,9 @@ const LetterBox = (props) => {
                           console.log("SENDING LETTER");
                         };sendLetters({name: reciever,content: letterBody})}}>Send</button>
                         </div>
-
-
                       </div>
                       </StyledPopup>
-                    </Form>
+                    
                   </div>
                 </div>
               ) : (
