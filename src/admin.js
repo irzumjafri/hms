@@ -22,6 +22,7 @@ import AdminAddChildrenProfiles from "./AdminAddChildrenProfiles";
 import AdminEditChildrenProfiles from "./AdminEditChildrenProfiles";
 import AdminAddPayment from "./AdminAddPayment";
 import AdminEditPaymentHistory from "./AdminEditPaymentHistory";
+import AdminLetterBox from "./AdminLetterBox"
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -97,6 +98,7 @@ const Admin = () => {
               fetchContactUs();
               fetchFAQs();
               fetchMeetingRequests();
+              fetchLetters();
             } else {
               clearInputs();
               setLoggedIn(false);
@@ -1192,14 +1194,15 @@ const Admin = () => {
         } else {
           querySnapshot.forEach((doc) => {
             // update state to store data of all all of ways to conatct hunehar
-            tempData = {
+            tempData.push({
               receiverEmail: doc.data().receiverEmail,
-              fromsenderName: doc.data().senderName,
+              senderName: doc.data().senderName,
               content: doc.data().content,
               id: doc.data().id,
-            };
+            })
           });
         }
+        // console.log(tempData);
         setLetters(tempData);
       });
   };
@@ -1209,6 +1212,7 @@ const Admin = () => {
     // fromName will always be from children names
 
     // first search for the sponsorEmail against the person's toName
+    console.log(i)
     db.collection("childrenProfiles")
       .where("name", "==", i.fromName)
       .get()
@@ -1353,7 +1357,15 @@ const Admin = () => {
                   acknoweldgeMeetingRequest={acknoweldgeMeetingRequest}
                 />
               ),
-              // letterbox: (<AdminLetterBox/>),
+              letterbox: (
+                <AdminLetterBox
+                  childData={childData}
+                  setRouter={setRouter}
+                  handlelogout={handleAdminLogout}
+                  letters={letters}
+                  sendLetter={sendLetter}
+                />
+              ),
               childrenprofiles: (
                 <AdminChildrenProfiles
                   childData={childData}

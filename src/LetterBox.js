@@ -13,8 +13,10 @@ const LetterBox = (props) => {
     setRouter,
     applicationStatus,
     recievedLetters,
+    sendLetters
   } = props;
 
+  const [reciever, setReciever] = useState("");
   const [letterBody, setLetterBody] = useState("");
   const [writeOrReceive, setWriteOrReceive] = useState(true);
 
@@ -22,7 +24,7 @@ const LetterBox = (props) => {
     var child = [];
     {
       childData.map((con, i) => {
-        child.push({ label: childData[i].name, value: childData[i].id });
+        child.push({ label: childData[i].name, value: childData[i].name });
       });
     }
 
@@ -54,7 +56,7 @@ const LetterBox = (props) => {
                         placeholder="Please select a child"
                         value="Please select a child"
                         onSelect={(i) => {
-                          console.log(i);
+                          setReciever(i.value);
                         }} // always fires once a selection happens even if there is no change
                       />
 
@@ -70,11 +72,11 @@ const LetterBox = (props) => {
                       </div>
                       <button
                         onClick={() => {
-                          applicationStatus
+                          {applicationStatus
                             ? setRouter("registered")
                             : setRouter("unregistered");
                           console.log("SENDING LETTER");
-                        }}
+                        };sendLetters({name: reciever,content: letterBody})}}
                         className="button_green"
                       >
                         Submit Request
@@ -85,25 +87,22 @@ const LetterBox = (props) => {
               ) : (
                 <div>
                   <h2>RECIEVING LETTERS</h2>
-                  return (
                   <div className="letterContainer">
                     {recievedLetters.map((con, i) => {
-                      <Form>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">From</Form.Label>
-                          <Form.Control
-                            as="text-area"
-                            value={recievedLetters[i].from}
-                          ></Form.Control>
-                        </div>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">Letter</Form.Label>
-                          <Form.Control
-                            as="text-area"
-                            value={recievedLetters[i].message}
-                          ></Form.Control>
-                        </div>
-                      </Form>;
+                      return (
+                        <Form>
+                          <div class="col-md-6">
+                            <Form.Label className="label-left">From</Form.Label>
+                            <textbox>{recievedLetters[i].senderName}</textbox>
+                          </div>
+                          <div class="col-md-6">
+                            <Form.Label className="label-left">
+                              Letter
+                            </Form.Label>
+                            <textbox>{recievedLetters[i].content}</textbox>
+                          </div>
+                        </Form>
+                      );
                     })}
                   </div>
                   );

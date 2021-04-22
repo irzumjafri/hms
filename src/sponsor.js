@@ -98,7 +98,6 @@ const Sponsor = () => {
             });
           });
         }
-        console.log(tempDataQ);
         setQuestions(tempDataQ);
         setAnswers(tempDataA);
       });
@@ -260,6 +259,8 @@ const Sponsor = () => {
           checkingPaymentHistory(id);
           fetchFAQs();
           fetchContactUs();
+          fetchLetters(doc.data().email);
+          fetchAcademicRecords(doc.data().email);
         } else {
           console.log("No such document!");
         }
@@ -430,42 +431,10 @@ const Sponsor = () => {
       });
   };
 
-  // Sponsors sending letters to child
-  // const sendLetters = () => {
-  //   let childarr = [];
-  //   db.collection("childrenProfiles")
-  //     .where("sponsorEmail", "==", email)
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       // childrenProfiles is not defined
-  //       if (querySnapshot.empty) {
-  //         setErrorMessage("No children Profiles to show");
-  //         return;
-  //       } else {
-  //         querySnapshot.forEach((doc) => {
-  //           childarr.push({
-  //             childName: doc.data().name,
-  //             childId: doc.data().id,
-  //           });
-  //         });
-  //       }
-  //       console.log(childarr);
-  //       setMyChildren(childarr);
-  //     });
-  //   db.collection("lettersToChild")
-  //     .doc(user.uid)
-  //     .set({
-  //       sponsorId: user.uid,
-  //       firstName: firstName,
-  //       lastName: lastName,
-  //       selectedChild: selectedChild,
-  //       letterBody: letterBody,
-  //       timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-  //     });
-  // };
 
   // Sponsors sending letters to child
   const sendLetters = (i) => {
+    console.log("FUNCTIONCALLED")
     // once we have the sponsorEmail, we can now create the record easily now
     db.collection("letters")
       .add({
@@ -487,11 +456,11 @@ const Sponsor = () => {
   };
 
   // sponsors checking letters sent by child
-  const fetchLetters = () => {
+  const fetchLetters = (e) => {
     // should they also be able to see their sent letters ???
     let letters = [];
     db.collection("letters")
-      .where("receiverEmail", "==", email) // this should be passed as argument e as done previously ???
+      .where("receiverEmail", "==", e) // this should be passed as argument e as done previously ???
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
@@ -516,6 +485,7 @@ const Sponsor = () => {
 
   // This function uses email of the sponsor to see their assigned children and fetches records academic associted to them
   const fetchAcademicRecords = (e) => {
+    console.log("FETCHING ACADEMIC RECORDS")
     // use email to fetch children's names and IDs
     let idsOfChildren = [];
     let namesOfChildren = [];
@@ -525,7 +495,7 @@ const Sponsor = () => {
       .get()
       .then((querySnapshot) => {
         if (querySnapshot.empty) {
-          //console.log("No child profiles exists for sponsor");
+          console.log("No child profiles exists for sponsor");
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -565,6 +535,7 @@ const Sponsor = () => {
                     });
                   });
                 }
+                console.log(tempData)
                 setacademicRecords(tempData);
               });
           });
@@ -734,6 +705,8 @@ const Sponsor = () => {
                   handleLogout={handleLogout}
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
+                  recievedLetters={recievedLetters}
+                  sendLetters={sendLetters}
                 />
               ),
               childrenprofiles: (
@@ -771,6 +744,7 @@ const Sponsor = () => {
                   setRouter={setRouter}
                   applicationStatus={applicationStatus}
                   childData={childData}
+                  academicRecords={academicRecords}
 
                 />
               ),

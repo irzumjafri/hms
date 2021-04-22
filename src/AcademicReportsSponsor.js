@@ -7,17 +7,7 @@ import { Button, Form } from "react-bootstrap";
 const AcademicReportsSponsor = (props) => {
   const {
     handleLogout,
-    child,
-    reportType,
-    marks1,
-    marks2,
-    marks3,
-    marks4,
-    marks5,
-    marks6,
-    totalMarks,
-    percentage,
-    grade,
+    academicRecords,
     setRouter,
     applicationStatus,
   } = props;
@@ -37,7 +27,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={child}
+                    value={academicRecords.child}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -46,7 +36,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={reportType}
+                    value={academicRecords.reportType}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -59,7 +49,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={marks1}
+                    value={academicRecords.marks1}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -68,7 +58,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={marks2}
+                    value={academicRecords.marks2}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -81,7 +71,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={marks3}
+                    value={academicRecords.marks3}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -90,7 +80,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={marks4}
+                    value={academicRecords.marks4}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -103,7 +93,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={marks5}
+                    value={academicRecords.marks5}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -112,7 +102,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={marks6}
+                    value={academicRecords.marks6}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -125,7 +115,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={marks5}
+                    value={academicRecords.marks5}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -134,7 +124,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={marks6}
+                    value={academicRecords.marks6}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -146,7 +136,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={grade}
+                    value={academicRecords.grade}
                   ></Form.Control>
                 </div>
               </Form.Row>
