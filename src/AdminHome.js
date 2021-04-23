@@ -203,7 +203,7 @@ const AdminHome = (props) => {
           <p className="smalltext" onClick={() => handlelogout()}>
             <span>Logout</span>
           </p>
-          <SearchField placeholder="search..." classNames="search" />
+         
           <nav className="navbarhomeContainer">
             <h2 className="titletext">Homepage</h2>
           </nav>

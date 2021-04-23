@@ -98,8 +98,6 @@ const ContactUs = (props) => {
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
           <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
-          <SearchField placeholder ="search..."
-          classNames="search"/> 
           
           <nav className="navbarContainer">
           <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>

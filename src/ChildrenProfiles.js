@@ -385,7 +385,7 @@ const ChildrenProfiles = (props) => {
           <p className="smalltext" onClick={handleLogout}>
             <span>Logout</span>
           </p>
-          <SearchField placeholder="search..." classNames="search" />
+          
           <nav className="navbarContainer">
             <p
               className="smalltext"

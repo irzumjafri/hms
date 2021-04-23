@@ -363,7 +363,7 @@ const AdminChildrenProfiles = (props) => {
           <p className="smalltext" onClick={handlelogout}>
             <span>Logout</span>
           </p>
-          <SearchField placeholder="search..." classNames="search" />
+         
           <nav className="navbarContainer">
             <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
