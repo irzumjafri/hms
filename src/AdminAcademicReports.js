@@ -13,6 +13,8 @@ const AdminAcademicReports = (props) => {
     academicRecords,
     setRouter,
     applicationStatus,
+    addAcademicRecord,
+    editAcademicRecord,
   } = props;
 
   const [childName, setChildName] = useState("");
@@ -54,7 +56,7 @@ const AdminAcademicReports = (props) => {
 
   const setValues = (i) => {
     if (i == -1) {
-      setId("")
+      setId("");
       setN("");
       setRT("");
       setS1("");
@@ -68,7 +70,7 @@ const AdminAcademicReports = (props) => {
       setGrd("");
       setEditing(false);
     } else {
-      setId(academicRecords[i].id)
+      setId(academicRecords[i].id);
       setN(academicRecords[i].name);
       setRT(academicRecords[i].reportType);
       setS1(academicRecords[i].subject1);
@@ -95,15 +97,12 @@ const AdminAcademicReports = (props) => {
         <section></section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
-          <div class="col-md-12">
-                <div
-                  class="Button"
-                  className="button_green"
-                >
-                  {" "}
-                  Add New Children
-                </div>
+            <div class="col-md-12">
+              <div class="Button" className="button_green">
+                {" "}
+                Add New Children
               </div>
+            </div>
             <Form>
               <Form.Row>
                 <Dropdown
@@ -137,7 +136,8 @@ const AdminAcademicReports = (props) => {
                   <Form.Label className="label-left">Subject 1</Form.Label>
                   {/* <Form.Select options={marks1}/> */}
                   <Form.Control
-                    type="text"wha
+                    type="text"
+                    wha
                     autoFocus
                     required
                     value={s1}
@@ -258,8 +258,35 @@ const AdminAcademicReports = (props) => {
               <div className="btnContainer">
                 <button
                   onClick={() => {
-                    setRouter("home");
-                    setRouter("academicrecords");
+                    editing
+                      ? addAcademicRecord({
+                          name: n,
+                          id: id,
+                          reportType: rT,
+                          subject1: s1,
+                          subject2: s2,
+                          subject3: s3,
+                          subject4: s4,
+                          subject5: s5,
+                          subject6: s6,
+                          totalMarks: tM,
+                          grade: grd,
+                          percentage: perc,
+                        })
+                      : editAcademicRecord({
+                          name: n,
+                          id: id,
+                          reportType: rT,
+                          subject1: s1,
+                          subject2: s2,
+                          subject3: s3,
+                          subject4: s4,
+                          subject5: s5,
+                          subject6: s6,
+                          totalMarks: tM,
+                          grade: grd,
+                          percentage: perc,s
+                        });
                   }}
                   class="Button"
                   className="button_blue"
