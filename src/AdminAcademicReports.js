@@ -2,18 +2,92 @@ import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
 import Select from "react-select";
 import logo from "./HMSlogo.png";
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
 import { Button, Form } from "react-bootstrap";
 
 const AdminAcademicReports = (props) => {
   const {
     handleLogout,
+    childData,
     academicRecords,
     setRouter,
     applicationStatus,
   } = props;
 
-  const [i, setI] = useState(0);
-  console.log(academicRecords)
+  const [childName, setChildName] = useState("");
+  const [reportType, setReportType] = useState("");
+  const [id, setId] = useState("");
+  const [n, setN] = useState("");
+  const [rT, setRT] = useState("");
+  const [s1, setS1] = useState("");
+  const [s2, setS2] = useState("");
+  const [s3, setS3] = useState("");
+  const [s4, setS4] = useState("");
+  const [s5, setS5] = useState("");
+  const [s6, setS6] = useState("");
+  const [tM, setTM] = useState("");
+  const [perc, setPerc] = useState("");
+  const [grd, setGrd] = useState("");
+  const [editing, setEditing] = useState(false);
+
+  const fetchChildData = () => {
+    var child = [];
+    {
+      childData.map((con, i) => {
+        child.push({ label: childData[i].name, value: childData[i].name });
+      });
+    }
+
+    return child;
+  };
+
+  const fetchChildReport = (n, t) => {
+    var x = -1;
+    academicRecords.map((con, i) => {
+      if (n == academicRecords[i].name && t == academicRecords[i].reportType) {
+        x = i;
+      }
+    });
+    return x;
+  };
+
+  const setValues = (i) => {
+    if (i == -1) {
+      setId("")
+      setN("");
+      setRT("");
+      setS1("");
+      setS2("");
+      setS3("");
+      setS4("");
+      setS5("");
+      setS6("");
+      setTM("");
+      setPerc("");
+      setGrd("");
+      setEditing(false);
+    } else {
+      setId(academicRecords[i].id)
+      setN(academicRecords[i].name);
+      setRT(academicRecords[i].reportType);
+      setS1(academicRecords[i].subject1);
+      setS2(academicRecords[i].subject2);
+      setS3(academicRecords[i].subject3);
+      setS4(academicRecords[i].subject4);
+      setS5(academicRecords[i].subject5);
+      setS6(academicRecords[i].subject6);
+      setTM(academicRecords[i].totalMarks);
+      setPerc(academicRecords[i].percentage);
+      setGrd(academicRecords[i].grade);
+      setEditing(true);
+    }
+  };
+
+  const reportOptions = [
+    { label: "fall", value: "fall" },
+    { label: "spring", value: "spring" },
+  ];
 
   return (
     <body>
@@ -23,25 +97,30 @@ const AdminAcademicReports = (props) => {
           <div className="academicReportsSponsorContainer">
             <Form>
               <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">Child</Form.Label>
-                  {/* <Form.Select options={child}/> */}
-                  <Form.Control
-                    type="text"
-                    autoFocus
-                    required
-                    value={academicRecords[i].name}
-                  ></Form.Control>
-                </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">Report Type</Form.Label>
-                  {/* <Form.Select options={reportType}/> */}
-                  <Form.Control
-                    type="text"
-                    required
-                    value={academicRecords[i].reportType}
-                  ></Form.Control>
-                </div>
+                <Dropdown
+                  className="my-className"
+                  options={fetchChildData()}
+                  placeholder="Please select a child"
+                  value="Please select a child"
+                  onSelect={(i) => {
+                    {
+                      setChildName(i.value);
+                      setValues(fetchChildReport(i.value, reportType));
+                    }
+                  }} // always fires once a selection happens even if there is no change
+                />
+                <Dropdown
+                  className="my-className"
+                  options={reportOptions}
+                  placeholder="Please select Report Type"
+                  value="Please select Report Type"
+                  onSelect={(i) => {
+                    {
+                      setReportType(i.value);
+                      setValues(fetchChildReport(childName, i.value));
+                    }
+                  }} // always fires once a selection happens even if there is no change
+                />
               </Form.Row>
 
               <Form.Row>
@@ -49,10 +128,11 @@ const AdminAcademicReports = (props) => {
                   <Form.Label className="label-left">Subject 1</Form.Label>
                   {/* <Form.Select options={marks1}/> */}
                   <Form.Control
-                    type="text"
+                    type="text"wha
                     autoFocus
                     required
-                    value={academicRecords[i].subject1}
+                    value={s1}
+                    onChange={(e) => setS1(e.target.value)}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -61,7 +141,8 @@ const AdminAcademicReports = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].subject2}
+                    value={s2}
+                    onChange={(e) => setS2(e.target.value)}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -74,7 +155,8 @@ const AdminAcademicReports = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords[i].subject3}
+                    value={s3}
+                    onChange={(e) => setS3(e.target.value)}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -83,7 +165,8 @@ const AdminAcademicReports = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].subject4}
+                    value={s4}
+                    onChange={(e) => setS4(e.target.value)}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -96,7 +179,8 @@ const AdminAcademicReports = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords[i].subject5}
+                    value={s5}
+                    onChange={(e) => setS5(e.target.value)}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -105,7 +189,8 @@ const AdminAcademicReports = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].subject6}
+                    value={s6}
+                    onChange={(e) => setS6(e.target.value)}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -118,7 +203,8 @@ const AdminAcademicReports = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords[i].totalMarks}
+                    value={tM}
+                    onChange={(e) => setTM(e.target.value)}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -127,7 +213,8 @@ const AdminAcademicReports = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].percentage}
+                    value={perc}
+                    onChange={(e) => setPerc(e.target.value)}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -139,42 +226,38 @@ const AdminAcademicReports = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].grade}
+                    value={grd}
+                    onChange={(e) => setGrd(e.target.value)}
                   ></Form.Control>
                 </div>
               </Form.Row>
             </Form>
             <div>
               <div className="btnContainer">
-              {i ? (<button
-                  onClick={() => setI(i-1)}
+                <button
+                  onClick={() => {
+                    setRouter("home");
+                  }}
                   class="Button"
                   className="button_redd"
                 >
                   {" "}
-                  Prev Page
-                </button>) : (<button
-                  class="Button"
-                  //MAKE THIS GREYED OUT
-                >
-                  {" "}
-                  Prev Page
-                </button>)}
+                  Discard Changes
+                </button>
+              </div>
 
-                {i+1==academicRecords.length ? (<button
-                  class="Button"
-                  //MAKE THIS GREYED OUT
-                >
-                  {" "}
-                  Next Page
-                </button>) : (<button
-                  onClick={() => setI(i+1)}
+              <div className="btnContainer">
+                <button
+                  onClick={() => {
+                    setRouter("home");
+                    setRouter("academicrecords");
+                  }}
                   class="Button"
                   className="button_green"
                 >
                   {" "}
-                  Next Page
-                </button>)}
+                  Save Changes
+                </button>
               </div>
             </div>
           </div>

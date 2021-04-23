@@ -1399,6 +1399,7 @@ const Admin = () => {
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   academicRecords={academicRecords}
+                  childData={childData}
                 />
               ),
               editfaqs: (
