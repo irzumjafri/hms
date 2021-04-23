@@ -51,10 +51,10 @@ const AdminFAQs = (props) => {
         </nav>
         <section className="bottombar">
           <navbar className="bottombarContainer">
-            <p className="smalltext" onClick={() => setRouter("contactus")}>
+            <p className="smalltext" onClick={() => setRouter("admincontactus")}>
               <span>Contact Us</span>
             </p>
-            <p className="smalltext" onClick={() => setRouter("faqs")}>
+            <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
               <span>FAQs</span>
             </p>
           </navbar>

@@ -12,7 +12,8 @@ const AdminLetterBox = (props) => {
     childData,
     setRouter,
     letters,
-    sendLetter
+    sendLetter,
+    fetchLetters
   } = props;
 
   const [reciever, setReciever] = useState("");
@@ -126,6 +127,14 @@ const AdminLetterBox = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">LETTER BOX</h2>
+            <p
+              className="smalltext"
+              onClick={() =>
+                fetchLetters()
+              }
+            >
+              <span>Sync</span>
+            </p>
           </nav>
         </nav>
         <section className="bottombar">

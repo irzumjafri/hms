@@ -1278,6 +1278,7 @@ const Admin = () => {
 
               editmyprofile: (
                 <AdminEditMyProfile
+                fetchAdminProfile={fetchAdminProfile}
                   setRouter={setRouter}
                   firstName={firstName}
                   lastName={lastName}
@@ -1303,6 +1304,7 @@ const Admin = () => {
               ),
               sponsorshiprequests: (
                 <AdminSponsorshipRequests
+                fetchSponsorshipApplications={fetchSponsorshipApplications}
                   setRouter={setRouter}
                   sponsorshipApplicationData={sponsorshipApplicationData}
                   handlelogout={handleAdminLogout}
@@ -1312,6 +1314,7 @@ const Admin = () => {
               ),
               sponsorprofiles: (
                 <AdminSponsorProfiles
+                fetchSponsorData={fetchSponsorData}
                   handlelogout={handleAdminLogout}
                   sponsorData={sponsorData}
                   setRouter={setRouter}
@@ -1330,6 +1333,7 @@ const Admin = () => {
               ),
               paymenthistory: (
                 <AdminPaymentHistory
+                fetchPaymentHistory={fetchPaymentHistory}
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   calleditpaymenthistory={calleditpaymenthistory}
@@ -1354,6 +1358,7 @@ const Admin = () => {
               ),
               meetingrequests: (
                 <AdminMeetingRequests
+                fetchMeetingRequests={fetchMeetingRequests}
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   meetingRecords={meetingRecords}
@@ -1362,6 +1367,7 @@ const Admin = () => {
               ),
               letterbox: (
                 <AdminLetterBox
+                fetchLetters={fetchLetters}
                   childData={childData}
                   setRouter={setRouter}
                   handlelogout={handleAdminLogout}
@@ -1372,6 +1378,7 @@ const Admin = () => {
               childrenprofiles: (
                 <AdminChildrenProfiles
                   childData={childData}
+                  fetchChildrenProfiles={fetchChildrenProfiles}
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   addChildProfile={addChildProfile}
@@ -1396,6 +1403,7 @@ const Admin = () => {
               ),
               academicrecords: (
                 <AdminAcademicReports
+                fetchAcademicRecords={fetchAcademicRecords}
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   academicRecords={academicRecords}

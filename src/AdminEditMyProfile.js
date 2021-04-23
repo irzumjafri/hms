@@ -26,6 +26,7 @@ const AdminEditMyProfile = (props) => {
     setInstitution,
     setRouter,
     editAdminProfile,
+    fetchAdminProfile
   } = props;
 
   return (
@@ -175,6 +176,9 @@ const AdminEditMyProfile = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">EDIT MY PROFILE</h2>
+            <p className="smalltext" onClick={() => fetchAdminProfile()}>
+              <span>Sync</span>y
+            </p>
           </nav>
         </nav>
         <section className="bottombar">

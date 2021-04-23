@@ -15,6 +15,7 @@ const SponsorshipRequests = (props) => {
     setRouter,
     rejectSponsorshipRequest,
     acceptSponsorshipRequest,
+    fetchSponsorshipApplications,
     StyledPopup = Styled(Popup)`
   // use your custom style for ".popup-overlay"
   &-overlay {
@@ -350,6 +351,9 @@ const SponsorshipRequests = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">SPONSORSHIP REQUESTS</h2>
+            <p className="smalltext" onClick={() => fetchSponsorshipApplications()}>
+              <span>Sync</span>
+            </p>
           </nav>
         </nav>
         <section className="bottombar">

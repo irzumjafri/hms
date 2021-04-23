@@ -9,7 +9,8 @@ const AdminChildrenProfiles = (props) => {
     setRouter,
     totalChildren,
     deleteChildrenProfile,
-    callchildeditprofile
+    callchildeditprofile,
+    fetchChildrenProfiles
   } = props;
 
   console.log(childData)
@@ -237,6 +238,9 @@ const AdminChildrenProfiles = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">CHILDREN PROFILES</h2>
+            <p className="smalltext" onClick={() => fetchChildrenProfiles()}>
+              <span>Sync</span>
+            </p>
           </nav>
         </nav>
         <section className="bottombar">

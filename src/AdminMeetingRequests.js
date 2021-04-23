@@ -9,6 +9,7 @@ const AdminMeetingRequests = (props) => {
     meetingRecords,
     setRouter,
     acknoweldgeMeetingRequest,
+    fetchMeetingRequests
   } = props;
 
   console.log(meetingRecords);
@@ -108,6 +109,9 @@ const AdminMeetingRequests = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">MEETING REQUESTS</h2>
+            <p className="smalltext" onClick={() => fetchMeetingRequests()}>
+              <span>Sync</span>
+            </p>
           </nav>
         </nav>
         <section className="bottombar">

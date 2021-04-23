@@ -11,6 +11,7 @@ const AdminSponsorProfiles = (props) => {
     deleteSponsorProfile,
     setRouter,
     calladmineditprofile,
+    fetchSponsorData
   } = props;
 
   const [i, setI] = useState(0);
@@ -253,6 +254,9 @@ const AdminSponsorProfiles = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">SPONSORSHIP PROFILE</h2>
+            <p className="smalltext" onClick={() => fetchSponsorData()}>
+              <span>Sync</span>
+            </p>
           </nav>
         </nav>
         <section className="bottombar">

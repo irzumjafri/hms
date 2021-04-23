@@ -12,9 +12,9 @@ const AdminAcademicReports = (props) => {
     childData,
     academicRecords,
     setRouter,
-    applicationStatus,
     addAcademicRecord,
     editAcademicRecord,
+    fetchAcademicRecords
   } = props;
 
   const [childName, setChildName] = useState("");
@@ -97,12 +97,6 @@ const AdminAcademicReports = (props) => {
         <section></section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
-            <div class="col-md-12">
-              <div class="Button" className="button_green">
-                {" "}
-                Add New Children
-              </div>
-            </div>
             <Form>
               <Form.Row>
                 <Dropdown
@@ -130,7 +124,6 @@ const AdminAcademicReports = (props) => {
                   }} // always fires once a selection happens even if there is no change
                 />
               </Form.Row>
-
               <Form.Row>
                 <div class="col-md-6">
                   <Form.Label className="label-left">Subject 1</Form.Label>
@@ -285,7 +278,7 @@ const AdminAcademicReports = (props) => {
                           subject6: s6,
                           totalMarks: tM,
                           grade: grd,
-                          percentage: perc,s
+                          percentage: perc,
                         });
                   }}
                   class="Button"
@@ -310,14 +303,19 @@ const AdminAcademicReports = (props) => {
             <p
               className="smalltext"
               onClick={() =>
-                applicationStatus
-                  ? setRouter("registered")
-                  : setRouter("unregistered")
+                setRouter('home')
               }
             >
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">ACADEMIC REPORTS</h2>
+            <p
+              className="smalltext"
+              onClick={() =>
+                fetchAcademicRecords()}
+            >
+              <span>Sync</span>
+            </p>
           </nav>
         </nav>
         <section className="bottombar">

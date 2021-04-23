@@ -9,7 +9,8 @@ const AdminPaymentHistory = (props) => {
     paymentRecords,
     setRouter,
     calleditpaymenthistory,
-    deletePaymentHistory
+    deletePaymentHistory,
+    fetchPaymentHistory
   } = props;
 
   return (
@@ -115,6 +116,9 @@ const AdminPaymentHistory = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext"> PAYMENT HISTORY </h2>
+            <p className="smalltext" onClick={() => fetchPaymentHistory()}>
+              <span>Sync</span>
+            </p>
           </nav>
         </nav>
         <section className="bottombar">

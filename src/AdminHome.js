@@ -162,7 +162,7 @@ const AdminHome = (props) => {
           </div>
           <div className="sponsorHomepageContainer_right">
             <h1 className="label-right">Calendar</h1>
-            <Calendar className="calender" />
+            <Calendar className="calender" onChange={(value, event) => console.log('New date is: ', value)} />
 
             <h2 className="label-right">
               <p className="p_i">Today's Event(s):</p>
