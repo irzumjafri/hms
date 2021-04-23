@@ -653,7 +653,8 @@
     display: contents;
   }
   .navbar .navbarContainer_gray .search {
-    display: none;
+    display: contents;
+    color: #000;
   }
   .navbar .navbarContainer_gray .titletext {
     display: none;
@@ -1402,8 +1403,26 @@
   outline: none;
   color: #fff;
   font-size: 18px;
+  width: 100%;
   letter-spacing: 1px;
   background: #529cea;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .button_gray {
+  /* border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #d2d2d2;
   border-radius: 10px;
   height: 50px;
   margin: 10px 0px auto 10px;
@@ -1411,9 +1430,24 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 10px; */
+
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  letter-spacing: 1px;
+  background: #d2d2d2;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 10px;
 }
-
 .editMyProfileSponsor .editMyProfileSponsorContainer .button_redd {
   border: none;
   outline: none;
@@ -1444,6 +1478,15 @@
   color: white;
   font-size: 18px;
   margin-top: 5px;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .editMyProfileSponsor .editMyProfileSponsorContainer .blue {

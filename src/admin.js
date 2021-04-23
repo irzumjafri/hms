@@ -760,7 +760,7 @@ const Admin = () => {
   // This function gets all the meetign requests from sponsors and sets them in states to be diplayed
   const fetchMeetingRequests = () => {
     let tempData = [];
-    setmeetingRecords(tempData);
+    //setmeetingRecords(tempData);
     db.collection("meeting")
       .get()
       .then((querySnapshot) => {

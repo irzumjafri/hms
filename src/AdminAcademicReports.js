@@ -21,6 +21,15 @@ const AdminAcademicReports = (props) => {
         <section></section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
+          <div class="col-md-12">
+                <div
+                  class="Button"
+                  className="button_green"
+                >
+                  {" "}
+                  Add New Children
+                </div>
+              </div>
             <Form>
               <Form.Row>
                 <div class="col-md-6">
@@ -146,23 +155,30 @@ const AdminAcademicReports = (props) => {
             </Form>
             <div>
               <div className="btnContainer">
+              <div class = "row">
+                <div class ="col-md-6">
+                  
               {i ? (<button
                   onClick={() => setI(i-1)}
                   class="Button"
-                  className="button_redd"
+                  className="button_blue"
                 >
                   {" "}
                   Prev Page
                 </button>) : (<button
                   class="Button"
+                  className = "button_gray"
                   //MAKE THIS GREYED OUT
                 >
                   {" "}
                   Prev Page
                 </button>)}
-
+                </div>
+                <div class ="col-md-6">
+                  
                 {i+1==academicRecords.length ? (<button
                   class="Button"
+                  className = "button_gray"
                   //MAKE THIS GREYED OUT
                 >
                   {" "}
@@ -170,11 +186,13 @@ const AdminAcademicReports = (props) => {
                 </button>) : (<button
                   onClick={() => setI(i+1)}
                   class="Button"
-                  className="button_green"
+                  className="button_blue"
                 >
                   {" "}
                   Next Page
                 </button>)}
+                </div>
+                </div>
               </div>
             </div>
           </div>
