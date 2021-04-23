@@ -254,6 +254,7 @@ const ChildrenProfiles = (props) => {
                       type="text"
                       required
                       value={childData[i].familyBackground}
+                      readonly
                     ></Form.Control>
                   </div>
                 </Form.Row>
@@ -357,8 +358,8 @@ const ChildrenProfiles = (props) => {
                 <div class= "col-md-6">
 
                 {i+1==childData.length ? (<button
-                  className = "button_gray"
-                  class="Button"
+                  className ="button_gray"
+                  
                   //MAKE THIS GREYED OUT
                 >
                   {" "}

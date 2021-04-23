@@ -227,7 +227,7 @@ const EditMyProfileSponsor = (props) => {
               type="text"
               required
               value={numberOfSponsoredChildren}
-              onChange={(e) => setNumberOfSponsoredChildren(e.target.value)}
+              // onChange={(e) => setNumberOfSponsoredChildren(e.target.value)}
             >
             </Form.Control>
             </div>

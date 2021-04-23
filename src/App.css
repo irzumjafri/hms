@@ -1406,6 +1406,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  min-height: max-content;
 }
 
 .editMyProfileSponsor .editMyProfileSponsorContainer .button_blue {
@@ -1424,24 +1425,10 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  min-height: max-content;
 }
 
 .editMyProfileSponsor .editMyProfileSponsorContainer .button_gray {
-  /* border: none;
-  outline: none;
-  color: #fff;
-  font-size: 18px;
-  letter-spacing: 1px;
-  background: #d2d2d2;
-  border-radius: 10px;
-  height: 50px;
-  margin: 10px 0px auto 10px;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 10px; */
-
   border: none;
   outline: none;
   color: #fff;
@@ -1457,6 +1444,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  min-height: max-content;
 }
 .editMyProfileSponsor .editMyProfileSponsorContainer .button_redd {
   border: none;
@@ -1473,6 +1461,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  min-height: max-content;
 }
 
 .editMyProfileSponsor .editMyProfileSponsorContainer .titletext {
