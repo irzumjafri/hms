@@ -1,7 +1,11 @@
 import React from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
+<<<<<<< Updated upstream
 import { Button, Form } from 'react-bootstrap';
+=======
+import {Button, Form} from 'react-bootstrap';
+>>>>>>> Stashed changes
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Styled from 'styled-components';
@@ -36,6 +40,7 @@ const Signup = (props) => {
   justify-content: center;
   margin: auto;
   background: white;
+<<<<<<< Updated upstream
   width: 40%;
   padding: 5px;
   border-radius: 10px;
@@ -64,6 +69,19 @@ const Signup = (props) => {
 }
 `,
 
+=======
+  width: 50%;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.popup .button_green
+{
+  background: green;
+}
+`,
+  
+>>>>>>> Stashed changes
   } = props;
 
   return (
@@ -149,6 +167,7 @@ const Signup = (props) => {
         <div className="btnContainer">
           <>
             {firstname &&
+<<<<<<< Updated upstream
               lastname &&
               dateofbirth &&
               confirmpassword &&
@@ -159,6 +178,34 @@ const Signup = (props) => {
               <button className="button_green" onClick={handleSignUp}>  Create My Account! </button>
 
 
+=======
+            lastname &&
+            dateofbirth &&
+            confirmpassword &&
+            confirmpassword === password ? (
+              // <button className="button_green" onClick={handleSignUp}>
+              //   Create My Account!</button>
+              
+                <StyledPopup  trigger={<button className="button_green" onClick={handleSignUp}>
+                Create My Account!</button>} position="center" modal >
+
+              <Form>
+            <div>
+              
+              All the required fields have not been filled. Press okay to go back and fill in the missing information
+              </div>
+              <div>
+
+              <button className="button_green" onClick={handleSignUp}> OKAY! </button>
+
+              </div>
+
+            </Form>
+              
+              
+                </StyledPopup>
+              
+>>>>>>> Stashed changes
             ) : (
 
               <StyledPopup trigger={<button className="button_gray" onClick={handleSignUp}>

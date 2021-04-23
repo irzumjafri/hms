@@ -113,7 +113,11 @@ const AdminEditSponsorProfile = (props) => {
                       type="text"
                       required
                       value={address}
+<<<<<<< Updated upstream
                       onChange={(e) => setAddress(e.target.value)}
+=======
+                      
+>>>>>>> Stashed changes
                     ></Form.Control>
                   </div>
 
