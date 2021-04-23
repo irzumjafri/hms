@@ -5,6 +5,9 @@ import { Button, Form } from "react-bootstrap";
 import { Dropdown, Selection } from "react-dropdown-now";
 import "react-dropdown-now/style.css";
 import { useState, useEffect } from "react";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import Styled from 'styled-components';
 
 const AdminLetterBox = (props) => {
   const {
@@ -13,7 +16,115 @@ const AdminLetterBox = (props) => {
     setRouter,
     letters,
     sendLetter,
-    fetchLetters
+    fetchLetters,
+    StyledPopup = Styled(Popup)`
+    // use your custom style for ".popup-overlay"
+    &-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    // use your custom style for ".popup-content"
+    &-content {
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      background: white;
+      width: 40%;
+      padding: 5px;
+      border-radius: 10px;
+      font-size: 18px;
+      padding: 2%;
+    }
+    
+    &-content .button_green
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #33773d;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: max-content;
+     
+      padding: 10px 10px;
+    }
+  
+    &-content .button_gray
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #d3d3d3;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    &-content .button_blue
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #529cea;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: max-content;
+     
+      padding: 10px 10px;
+    }
+  
+    &-content .button_red
+    {
+  
+      border: none;
+      outline: none;
+      //padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #ff0033;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center
+      min-width: max-content;
+     
+      padding: 10px 10px;
+  
+    }
+    `,
   } = props;
 
   const [reciever, setReciever] = useState("");
@@ -37,24 +148,32 @@ const AdminLetterBox = (props) => {
         <section className="letterBox">
           <div className="letterBoxContainer">
             <nav>
-              <button onClick={(e) => setWriteOrReceive(true)}>
+              {/* <button onClick={(e) => setWriteOrReceive(true)}>
                 Write a Letter
               </button>
               <button onClick={(e) => setWriteOrReceive(false)}>
                 Received Letters
-              </button>
+              </button> */}
             </nav>
             <>
               {writeOrReceive ? (
                 <div>
-                  <h2>SENDING LETTERS</h2>
+               
                   <div>
+                  <div class ="row">
+              <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(true)}>
+                Write a Letter
+              </button>
+              <button className = "button_gray" onClick={(e) => setWriteOrReceive(false)}>
+                Received Letters
+              </button>
+              </div>
                     <Form>
                       <Dropdown
                         className="my-className"
                         options={fetchChildData()}
-                        placeholder="Please select a child"
-                        value="Please select a child"
+                        placeholder="Please select a sponsor"
+                        value="Please select a sponsor"
                         onSelect={(i) => {
                           setReciever(i);
                         }} // always fires once a selection happens even if there is no change
@@ -70,36 +189,55 @@ const AdminLetterBox = (props) => {
                           onChange={(e) => setLetterBody(e.target.value)}
                         ></Form.Control>
                       </div>
-                      <button
-                        onClick={() => {
+                    </Form>
+
+                    <StyledPopup trigger = { <button className= "button_green"> Send Letter</button>} position="center" modal>
+                      <div>
+                      You are about to send the letter you just composed/uploaded. Do you want to continue?
+                      </div>
+                      <div class = "row">
+                        <div class="col-md-6">
+                          <button className = "button_gray"> Cancel</button>
+                        </div>
+                        <div class="col-md-6">
+                          <button className = "button_green" onClick={() => {
                           {setRouter('home');
                           console.log("SENDING LETTER");
-                        };sendLetter({fromName: reciever.value,content: letterBody})}}
-                        className="button_green"
-                      >
-                        Submit Request
-                      </button>
-                    </Form>
+                        };sendLetter({fromName: reciever.value,content: letterBody})}}>Send</button>
+                        </div>
+                      </div>
+                      </StyledPopup> 
                   </div>
                 </div>
               ) : (
                 <div>
-                  <h2>RECIEVING LETTERS</h2>
+                  {/* <h2>RECIEVING LETTERS</h2> */}
                   <div className="letterContainer">
                     {letters.map((con, i) => {
                       return (
                         <Form>
-                          <div class="col-md-6">
-                            <Form.Label className="label-left">From</Form.Label>
-                            <textbox>{letters[i].senderName}</textbox>
-                          </div>
-                          <div class="col-md-6">
-                            <Form.Label className="label-left">
-                              Letter
-                            </Form.Label>
-                            <textbox>{letters[i].content}</textbox>
-                          </div>
-                        </Form>
+                        <div class="col-md-6">
+                          <Form.Label className="label-left">From</Form.Label>
+                          <Form.Control
+                          type = "text"
+                          value={letters[i].senderName}
+                          >
+                            
+                            </Form.Control>
+                        </div>
+                        <div class="col">
+                          <Form.Label className="label-left">
+                            Letter
+                          </Form.Label>
+                          <Form.Control
+                          className = "input-left"
+                          type = "text"
+                          value={letters[i].content}
+                          >
+                            </Form.Control>
+                      
+                        </div>
+                      </Form>
                       );
                     })}
                   </div>
