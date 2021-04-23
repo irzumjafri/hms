@@ -217,6 +217,7 @@ const LetterBox = (props) => {
                               Letter
                             </Form.Label>
                             <Form.Control
+                            className = "input-left"
                             type = "text"
                             value={recievedLetters[i].content}
                             >
