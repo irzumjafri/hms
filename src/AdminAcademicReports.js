@@ -95,6 +95,15 @@ const AdminAcademicReports = (props) => {
         <section></section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
+          <div class="col-md-12">
+                <div
+                  class="Button"
+                  className="button_green"
+                >
+                  {" "}
+                  Add New Children
+                </div>
+              </div>
             <Form>
               <Form.Row>
                 <Dropdown
@@ -239,7 +248,7 @@ const AdminAcademicReports = (props) => {
                     setRouter("home");
                   }}
                   class="Button"
-                  className="button_redd"
+                  className="button_blue"
                 >
                   {" "}
                   Discard Changes
@@ -253,7 +262,7 @@ const AdminAcademicReports = (props) => {
                     setRouter("academicrecords");
                   }}
                   class="Button"
-                  className="button_green"
+                  className="button_blue"
                 >
                   {" "}
                   Save Changes

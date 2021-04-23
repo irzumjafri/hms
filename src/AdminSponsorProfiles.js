@@ -26,9 +26,7 @@ const AdminSponsorProfiles = (props) => {
                 {/* convert to dropdown */}
               </div>
               <div class="col-md-6">
-              <textbox className="label-left">
-              Page Number {i+1} / {sponsorData.length}
-                </textbox>
+             
                 <textbox className="label-left">
                   Total Active Sponsors: {sponsorData.length}
                 </textbox>
@@ -196,23 +194,32 @@ const AdminSponsorProfiles = (props) => {
                       </div>
                     </div>
                   </Form>
+                  <div class ="row">
+                  <div class = "col-md-4">
                   {i ? (<button
                   onClick={() => setI(i-1)}
                   class="Button"
-                  className="button_redd"
+                  className="button_blue"
                 >
                   {" "}
                   Prev Page
                 </button>) : (<button
-                  class="Button"
-                  //MAKE THIS GREYED OUT
+                  
+                  className = "button_gray"
                 >
                   {" "}
                   Prev Page
                 </button>)}
-
+                </div>
+                <div class = "col-md-4"> 
+                <textbox className="label-down">
+              Page Number {i+1} / {sponsorData.length}
+                </textbox> 
+                </div>
+                <div class = "col-md-4"> 
                 {i+1==sponsorData.length ? (<button
-                  class="Button"
+                  
+                  className = "button_gray"
                   //MAKE THIS GREYED OUT
                 >
                   {" "}
@@ -220,11 +227,13 @@ const AdminSponsorProfiles = (props) => {
                 </button>) : (<button
                   onClick={() => setI(i+1)}
                   class="Button"
-                  className="button_green"
+                  className="button_blue"
                 >
                   {" "}
                   Next Page
                 </button>)}
+                </div>
+                </div>
                   
                 
                 </div>

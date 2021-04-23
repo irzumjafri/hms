@@ -51,6 +51,9 @@ const SponsorshipRequests = (props) => {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: max-content;
+   
+    padding: 10px 10px;
   }
 
   &-content .button_gray
@@ -91,6 +94,9 @@ const SponsorshipRequests = (props) => {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: max-content;
+   
+    padding: 10px 10px;
   }
 
   &-content .button_red

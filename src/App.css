@@ -653,7 +653,8 @@
     display: contents;
   }
   .navbar .navbarContainer_gray .search {
-    display: none;
+    display: contents;
+    color: #000;
   }
   .navbar .navbarContainer_gray .titletext {
     display: none;
@@ -1402,8 +1403,26 @@
   outline: none;
   color: #fff;
   font-size: 18px;
+  width: 100%;
   letter-spacing: 1px;
   background: #529cea;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .button_gray {
+  /* border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #d2d2d2;
   border-radius: 10px;
   height: 50px;
   margin: 10px 0px auto 10px;
@@ -1411,9 +1430,24 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 10px; */
+
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  letter-spacing: 1px;
+  background: #d2d2d2;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 10px;
 }
-
 .editMyProfileSponsor .editMyProfileSponsorContainer .button_redd {
   border: none;
   outline: none;
@@ -1444,6 +1478,15 @@
   color: white;
   font-size: 18px;
   margin-top: 5px;
+}
+
+.editMyProfileSponsor .editMyProfileSponsorContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .editMyProfileSponsor .editMyProfileSponsorContainer .blue {
@@ -1541,7 +1584,23 @@
   text-align: center;
   padding: 10px;
 }
-
+.childrenProfiles .childrenProfilesContainer .button_gray {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  letter-spacing: 1px;
+  background: #d2d2d2;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
 .childrenProfiles .childrenProfilesContainer .button_redd {
   border: none;
   outline: none;
@@ -2094,6 +2153,41 @@
   text-align: center;
   padding: 10px;
 }
+.academicReportsSponsor .academicReportsSponsorContainer .button_gray {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  letter-spacing: 1px;
+  background: #d2d2d2;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.academicReportsSponsor .academicReportsSponsorContainer .button_blue {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  letter-spacing: 1px;
+  background: #529cea;
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px 0px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
 
 .academicReportsSponsor .academicReportsSponsorContainer .titletext {
   color: white;
@@ -2191,7 +2285,58 @@
   text-align: center;
   padding: 10px;
 }
+.letterBox .letterBoxContainer .button_darkblue {
+  /* border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #091b38;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px; */
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #262d3d;
+  /* border-radius: 10px; */
+  border-bottom: none;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+}
+.letterBox .letterBoxContainer .button_gray {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #052138;
+  /* border-radius: 10px; */
+  border-bottom: none;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+}
 
+.letterBox .letterBoxContainer .my-className {
+  border-radius: 5px;
+  padding: 0px;
+  margin: 10px;
+}
 .letterBox .letterBoxContainer .titletext {
   color: white;
   margin-bottom: 10px;
@@ -2209,7 +2354,9 @@
 }
 
 .letterBox .letterBoxContainer .input-left {
-  width: 40%;
+  min-width: 100%;
+  min-height: max-content;
+  margin: 10px;
 }
 .letterBox .letterBoxContainer .label-right {
   color: white;
