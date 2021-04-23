@@ -2130,15 +2130,23 @@
   justify-content: center;
 }
 
+.academicReportsSponsor .academicReportsSponsorContainer .my-className {
+  border-radius: 5px;
+  padding: 0px;
+  margin: 10px;
+}
+
 .academicReportsSponsor .academicReportsSponsorContainer .button_green {
   border: none;
   outline: none;
   color: #fff;
   font-size: 18px;
+  width: 100%;
   letter-spacing: 1px;
-  background: #61ce7d;
+  background: #61ce70;
   border-radius: 10px;
-  margin: auto;
+  height: 50px;
+  margin: 10px 0px auto 10px;
   display: flex;
   align-items: center;
   justify-content: center;

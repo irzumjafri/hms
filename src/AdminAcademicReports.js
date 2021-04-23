@@ -210,6 +210,7 @@ const AdminAcademicReports = (props) => {
           <div className="academicReportsSponsorContainer">
             <Form>
               <Form.Row>
+                <div class = "col-md-6">
                 <Dropdown
                   className="my-className"
                   options={fetchChildData()}
@@ -222,11 +223,13 @@ const AdminAcademicReports = (props) => {
                     }
                   }} // always fires once a selection happens even if there is no change
                 />
+                </div>
+                <div class = "col-md-6">
                 <Dropdown
                   className="my-className"
                   options={reportOptions}
-                  placeholder="Please select Report Type"
-                  value="Please select Report Type"
+                  placeholder="Please Select Report Type"
+                  value="Please Select Report Type"
                   onSelect={(i) => {
                     {
                       setReportType(i.value);
@@ -234,10 +237,11 @@ const AdminAcademicReports = (props) => {
                     }
                   }} // always fires once a selection happens even if there is no change
                 />
+                </div>
               </Form.Row>
               <Form.Row>
                 <div class="col-md-6">
-                  <Form.Label className="label-left">Subject 1</Form.Label>
+                  <Form.Label className="label-left">English </Form.Label>
                   {/* <Form.Select options={marks1}/> */}
                   <Form.Control
                     type="text"
@@ -249,7 +253,7 @@ const AdminAcademicReports = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
-                  <Form.Label className="label-right">Subject 2</Form.Label>
+                  <Form.Label className="label-right">Oral </Form.Label>
                   {/* <Form.Select options={marks2}/> */}
                   <Form.Control
                     type="text"
@@ -262,7 +266,7 @@ const AdminAcademicReports = (props) => {
 
               <Form.Row>
                 <div class="col-md-6">
-                  <Form.Label className="label-left">Subject 3</Form.Label>
+                  <Form.Label className="label-left">Urdu </Form.Label>
                   {/* <Form.Select options={marks3}/> */}
                   <Form.Control
                     type="text"
@@ -273,7 +277,7 @@ const AdminAcademicReports = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
-                  <Form.Label className="label-right">Subject 4</Form.Label>
+                  <Form.Label className="label-right">Oral</Form.Label>
                   {/* <Form.Select options={marks4}/> */}
                   <Form.Control
                     type="text"
@@ -286,7 +290,7 @@ const AdminAcademicReports = (props) => {
 
               <Form.Row>
                 <div class="col-md-6">
-                  <Form.Label className="label-left">Subject 5</Form.Label>
+                  <Form.Label className="label-left">Math</Form.Label>
                   {/* <Form.Select options={marks5}/> */}
                   <Form.Control
                     type="text"
@@ -297,7 +301,7 @@ const AdminAcademicReports = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
-                  <Form.Label className="label-right">Subject 6</Form.Label>
+                  <Form.Label className="label-right">General Knowledge</Form.Label>
                   {/* <Form.Select options={marks6}/> */}
                   <Form.Control
                     type="text"
@@ -347,7 +351,7 @@ const AdminAcademicReports = (props) => {
             </Form>
             <div class = "row">
             <div className="col-md-6">
-              <div className = "btnContainer">
+              
                 <button
                   onClick={() => {
                     editing
@@ -386,7 +390,7 @@ const AdminAcademicReports = (props) => {
                   {"                       "}
                   Save Changes
                 </button>
-              </div>
+              
               </div>
               <div className="col-md-6">
 
