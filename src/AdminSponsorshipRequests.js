@@ -119,7 +119,7 @@ const SponsorshipRequests = (props) => {
     justify-content: center
     min-width: max-content;
    
-    padding: 10px 10px;
+    padding: 10px 20px;
 
   }
   `,
@@ -318,18 +318,40 @@ const SponsorshipRequests = (props) => {
                       </StyledPopup>
                     </div>
                     <div class="col-md-6">
-                      <div
-                        onClick={() => {
-                          setRouter("home");
-                          rejectSponsorshipRequest(
-                            sponsorshipApplicationData[i].id
-                          );
-                        }}
-                        class="Button"
-                        className="button_redd"
-                      >
+
+                    <StyledPopup trigger={<div class = "Button" className= "button_redd">
+                     Reject </div>} position="center" modal nested>
+                    <div>
+                    You are about to reject this sponsorship request. Do you want to continue?
+                     </div>
+                     <div class = "row">
+                      <div class = "col-md-6">
+                      
+                     <button
+                    
+                         className="button_gray"
+                       >
+                         Cancel
+                       </button> 
+
+                       </div>
+                       <div class = "col-md-6">
+                       <button
+                       onClick={() => {
+                        setRouter("home");
+                        rejectSponsorshipRequest(
+                          sponsorshipApplicationData[i].id
+                        );
+                      }}
+                         
+                         className="button_red"
+                       >
                         Reject
-                      </div>
+                       </button>
+
+                       </div>
+                       </div>
+                       </StyledPopup>
                     </div>
                   </div>
                 </Form>

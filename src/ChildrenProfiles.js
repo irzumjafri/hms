@@ -286,7 +286,6 @@ const ChildrenProfiles = (props) => {
                     </div>
 
                     <div class="col-md-6">
-<<<<<<< Updated upstream
                       <StyledPopup
                         trigger={
                           <button className="button_red"> Withdraw </button>
@@ -332,28 +331,6 @@ const ChildrenProfiles = (props) => {
                           </div>
                         </div>
                       </StyledPopup>
-=======
-                      <Form.Label className="label-right">
-                        Guardian 2’s Relation
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        required
-                        value={childData[i].guardian2Relation}
-                      ></Form.Control>
-                    </div>
-                  </Form.Row>
-
-                  <Form.Row>
-                    <div class="col">
-                      <Form.Label className="label-right">Family Background</Form.Label>
-                      <Form.Control
-                        type="text"
-                        autoFocus
-                        required
-                        value={childData[i].familyBackground}
-                      ></Form.Control>
->>>>>>> Stashed changes
                     </div>
                   </div>
                 </StyledPopup>

@@ -99,7 +99,6 @@ const AdminAddSponsorProfile = (props) => {
                     <Form.Label className="label-right">
                       Phone Number *
                         </Form.Label>
-<<<<<<< Updated upstream
                     <Form.Control
                       type="text"
                       required
@@ -123,31 +122,6 @@ const AdminAddSponsorProfile = (props) => {
                   <div class="col-md-6">
                     <Form.Label className="label-left">
                       Preferred Medium of Communication *
-=======
-                        <Form.Control
-                          type="text"
-                          required
-                          value={phoneNumber}
-                          onChange={(e) => setPhoneNumber(e.target.value)}
-                        ></Form.Control>
-                      </div>
-                    </Form.Row>
-
-                    <Form.Row>
-                      <div class="col-md-6">
-                        <Form.Label className="label-left">Address</Form.Label>
-                        <Form.Control
-                          type="text"
-                          required
-                          value={address}
-
-                        ></Form.Control>
-                      </div>
-
-                      <div class="col-md-6">
-                        <Form.Label className="label-left">
-                          Preferred Medium of Communication *
->>>>>>> Stashed changes
                         </Form.Label>
                     <Form.Control
                       type="text"
@@ -163,7 +137,6 @@ const AdminAddSponsorProfile = (props) => {
                     <Form.Label className="label-left">
                       Number of Sponsored Children
                         </Form.Label>
-<<<<<<< Updated upstream
                     <Form.Control
                       type="text"
                       required
@@ -175,19 +148,6 @@ const AdminAddSponsorProfile = (props) => {
                   <div class="col-md-6">
                     <Form.Label className="label-left">
                       Payment Method
-=======
-                        <Form.Control
-                          type="text"
-                          required
-                          value={numberOfSponsoredChildren}
-                          
-                        ></Form.Control>
-                      </div>
-
-                      <div class="col-md-6">
-                        <Form.Label className="label-left">
-                          Payment Method
->>>>>>> Stashed changes
                         </Form.Label>
                     <Form.Control
                       type="text"
