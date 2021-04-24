@@ -12,6 +12,7 @@ const ChildrenProfiles = (props) => {
     setRouter,
     applicationStatus,
     withdrawchild,
+    setFirstName,
     StyledPopup = Styled(Popup)`
     // use your custom style for ".popup-overlay"
     &-overlay {
@@ -272,6 +273,8 @@ const ChildrenProfiles = (props) => {
                   modal
                   nested
                 >
+                  {close => (
+                          <div >
                   <div>
                     You are about to withdraw sponsorship for this child. Do you
                     want to continue?
@@ -280,7 +283,10 @@ const ChildrenProfiles = (props) => {
                     <div class="col-md-6">
                       <button
                         className="button_gray"
-                        onClick={() => setRouter("childrenprofiles")}
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
                       >
                         {" "}
                         Cancel{" "}
@@ -294,8 +300,7 @@ const ChildrenProfiles = (props) => {
                         }
                         modal
                       >
-                                      {close => (
-      <div >
+                                      
                         <Form>
                           <Form.Label>
                             Would you like to share why do you want to withdraw
@@ -305,12 +310,13 @@ const ChildrenProfiles = (props) => {
                             type="text"
                             value={reason}
                             onChange={(e) => setReason(e.target.value)}
+                            
                           ></Form.Control>
                         </Form>
                         
        
 
-        <div class = "row">
+                       <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
@@ -340,38 +346,14 @@ const ChildrenProfiles = (props) => {
 
                        </div>
                        </div>
+                       </StyledPopup>
+                    </div>
+                  </div>
 
       </div>
     )}
-                        {/* <div class="row">
-                          <div class="col-md-6">
-                            <button
-                              className="button_gray"
-                              onClick={() => setRouter("childrenprofiles")}
-                            >
-                              {" "}
-                              Cancel{" "}
-                            </button>
-                          </div>
-
-                          <div class="col-md-6">
-                            <button
-                              className="button_red"
-                              onClick={() => {
-                                withdrawchild({id:childData[i].id,reason: reason});
-                                applicationStatus
-                                  ? setRouter("registered")
-                                  : setRouter("unregistered");
-                              }}
-                            >
-                              {" "}
-                              Finish Withdrawing{" "}
-                            </button>
-                          </div>
-                        </div> */}
-                      </StyledPopup>
-                    </div>
-                  </div>
+                      
+                     
                 </StyledPopup>
               </div>
               <div className="btnContainer">

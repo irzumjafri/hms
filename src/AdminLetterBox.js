@@ -211,6 +211,14 @@ const AdminLetterBox = (props) => {
                 </div>
               ) : (
                 <div>
+                  <div class ="row">
+              <button className = "button_gray" onClick={(e) => setWriteOrReceive(true)}>
+                Write a Letter
+              </button>
+              <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(false)}>
+                Received Letters
+              </button>
+              </div>
                   {/* <h2>RECIEVING LETTERS</h2> */}
                   <div className="letterContainer">
                     {letters.map((con, i) => {
