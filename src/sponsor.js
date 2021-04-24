@@ -18,6 +18,8 @@ import ChildrenProfiles from "./ChildrenProfiles";
 import LetterBox from "./LetterBox";
 import RequestAMeeting from "./RequestAMeeting";
 import AcademicReportsSponsor from "./AcademicReportsSponsor";
+import EditPassword from "./EditPassword";
+import DeleteAccount from "./DeleteAccount";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -217,7 +219,11 @@ const Sponsor = () => {
           .then(() => {
             console.log("Document successfully updated!");
             setPassword(newPassword);
-            setRouter("home");
+            {
+              applicationStatus
+                ? setRouter("registered")
+                : setRouter("unregistered");
+            }
           });
       })
       .catch(function (error) {
@@ -407,6 +413,7 @@ const Sponsor = () => {
           setFirstName(doc.data().firstName);
           setLastName(doc.data().lastName);
           setEmail(doc.data().email);
+          setPassword(doc.data().password);
           setDateOfBirth(doc.data().dateOfBirth);
           setApplicationStatus(doc.data().applicationStatus);
           if (applicationStatus) {
@@ -504,8 +511,8 @@ const Sponsor = () => {
   // withdraw child
   const withdrawchild = (i) => {
     // we have updted the child's profile
-    console.log("WITHDRAWING")
-    let profileupdate = db.collection("childrenProfiles").doc(i.id);
+    console.log("WITHDRAWING");
+    let profileupdate = db.collection("childrenProfiles").doc(i);
     return profileupdate
       .update({
         sponsorEmail: "",
@@ -1045,6 +1052,24 @@ const Sponsor = () => {
                   handleLogout={handleLogout}
                   questions={questions}
                   answers={answers}
+                />
+              ),
+              editpassword: (
+                <EditPassword
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                  password={password}
+                  updatePassword={updatePassword}
+                />
+              ),
+              deleteaccount: (
+                <DeleteAccount
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  handleLogout={handleLogout}
+                  password={password}
+                  deleteAccount={deleteAccount}
                 />
               ),
             }[router]

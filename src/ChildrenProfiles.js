@@ -4,7 +4,10 @@ import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
 import Styled from "styled-components";
+import { FocusTrap } from "focus-trap-react";
 const ChildrenProfiles = (props) => {
 
 const{
@@ -100,6 +103,7 @@ const{
 
   const [i, setI] = useState(0);
   const [reason, setReason] = useState("");
+  var myreason = "" 
 
   console.log(childData);
   return (
@@ -297,7 +301,7 @@ const{
                     </div>
 
                     <div class="col-md-6">
-                      <StyledPopup
+                      <StyledPopup id="modal" class="modal hide fade in" data-keyboard="false" data-backdrop="static"
                         trigger={
                           <button className="button_red"> Withdraw </button>
                         }
@@ -312,10 +316,8 @@ const{
                           <Form.Control
                             type="text"
                             value={myreason}
-                            
-                            onChange={(e)=>setReason(e.target.value)
+                            onChange={(e)=> (myreason = e.target.value)
                             }
-                            
                           ></Form.Control>
                         </Form>
                         
@@ -414,9 +416,30 @@ const{
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}>
-            <span>Logout</span>
-          </p>
+          <div className="smalltext">
+            <Dropdown
+              className="my-className"
+              options={[
+                { value: "changepw", label: "Edit Password" },
+                { value: "editprofile", label: "Edit Profile" },
+                { value: "deleteacc", label: "Delete Account" },
+                { value: "logout", label: "Log Out" },
+              ]}
+              placeholder="My Account"
+              value="My Account"
+              onSelect={(i) => {
+                if (i.value == "logout") {
+                  handleLogout();
+                } else if (i.value == "editprofile") {
+                  setRouter("editmyprofile");
+                } else if (i.value == "changepw") {
+                  setRouter("editpassword");
+                } else if (i.value == "deleteacc") {
+                  setRouter("deleteaccount");
+                }
+              }} // always fires once a selection happens even if there is no change
+            />
+          </div>
 
           <nav className="navbarContainer">
             <p

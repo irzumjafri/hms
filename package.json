@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^4.6.0",
     "firebase": "^8.3.2",
+    "focus-trap-react": "^8.5.0",
     "material-ui-search-bar": "^1.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",

@@ -3,7 +3,8 @@ import SearchField from "react-search-field";
 import {Button, Form} from 'react-bootstrap';
 import logo from "./HMSlogo.png";
 import { useState, useEffect } from "react";
-
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
 
 const PaymentHistory = (props) => {
   const {
@@ -105,7 +106,30 @@ const PaymentHistory = (props) => {
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           < h2 className="titletext">Hunehar Management System</h2>
-          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+          <div className="smalltext">
+            <Dropdown
+              className="my-className"
+              options={[
+                { value: "changepw", label: "Edit Password" },
+                { value: "editprofile", label: "Edit Profile" },
+                { value: "deleteacc", label: "Delete Account" },
+                { value: "logout", label: "Log Out" },
+              ]}
+              placeholder="My Account"
+              value="My Account"
+              onSelect={(i) => {
+                if (i.value == "logout") {
+                  handleLogout();
+                } else if (i.value == "editprofile") {
+                  setRouter("editmyprofile");
+                } else if (i.value == "changepw") {
+                  setRouter("editpassword");
+                } else if (i.value == "deleteacc") {
+                  setRouter("deleteaccount");
+                }
+              }} // always fires once a selection happens even if there is no change
+            />
+          </div>
            <nav className="navbarContainer">
           <p className="smalltext" onClick={() => applicationStatus ? (setRouter("registered")) : (setRouter("unregistered"))}><span>HOME PAGE</span></p>
           <h2 className="titletext">PAYMENT HISTORY</h2>

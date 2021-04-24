@@ -11,13 +11,6 @@ import Styled from "styled-components";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-const options = [
-  { value: "changepw", label: "Edit Password" },
-  { value: "editprofile", label: "Edit Profile" },
-  { value: "deleteacc", label: "Delete Account" },
-  { value: "logout", label: "Log Out" },
-];
-
 const RegisteredSponsorHome = (props) => {
   const {
     handleLogout,
@@ -276,7 +269,12 @@ const RegisteredSponsorHome = (props) => {
                 >
                   <Dropdown
                     className="my-className"
-                    options={options}
+                    options={[
+                      { value: "changepw", label: "Edit Password" },
+                      { value: "editprofile", label: "Edit Profile" },
+                      { value: "deleteacc", label: "Delete Account" },
+                      { value: "logout", label: "Log Out" },
+                    ]}
                     placeholder="Select an event to remove"
                     onSelect={(i) => {
                       if (i.value == "logout") {
@@ -307,20 +305,23 @@ const RegisteredSponsorHome = (props) => {
           <div className="smalltext">
             <Dropdown
               className="my-className"
-              options={options}
+              options={[
+                { value: "changepw", label: "Edit Password" },
+                { value: "editprofile", label: "Edit Profile" },
+                { value: "deleteacc", label: "Delete Account" },
+                { value: "logout", label: "Log Out" },
+              ]}
               placeholder="My Account"
               value="My Account"
               onSelect={(i) => {
                 if (i.value == "logout") {
                   handleLogout();
+                } else if (i.value == "editprofile") {
+                  setRouter("editmyprofile");
                 } else if (i.value == "changepw") {
-                  return (
-                    <Popup
-                      position="right center"
-                    >
-                      <div>Popup content here !!</div>
-                    </Popup>
-                  );
+                  setRouter("editpassword");
+                } else if (i.value == "deleteacc") {
+                  setRouter("deleteaccount");
                 }
               }} // always fires once a selection happens even if there is no change
             />
