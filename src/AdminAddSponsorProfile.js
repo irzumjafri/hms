@@ -3,12 +3,124 @@ import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import Styled from 'styled-components';
+ 
 
 const AdminAddSponsorProfile = (props) => {
   const {
     setRouter,
     addSponsorProfile,
     handlelogout,
+    StyledPopup = Styled(Popup)`
+    // use your custom style for ".popup-overlay"
+    &-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    // use your custom style for ".popup-content"
+    &-content {
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      background: white;
+      width: 40%;
+      padding: 5px;
+      border-radius: 10px;
+      font-size: 18px;
+      padding: 2%;
+    }
+    
+    &-content .button_green
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #33773d;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: max-content;
+     
+      padding: 10px 10px;
+    }
+  
+    &-content .button_gray
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #d3d3d3;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    &-content .button_blue
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #529cea;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: max-content;
+     
+      padding: 10px 10px;
+    }
+  
+    &-content .button_red
+    {
+  
+      border: none;
+      outline: none;
+      //padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #ff0033;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center
+      min-width: max-content;
+     
+      padding: 10px 10px;
+  
+    }
+    `,
   } = props;
 
   const [email, setEmail] = useState("");
@@ -202,16 +314,47 @@ const AdminAddSponsorProfile = (props) => {
                         </div>
                   </div>
                   <div class="col-md-6">
-                    <div
-                      onClick={() => {
-                        setRouter("sponsorprofiles");
-                      }}
-                      class="Button"
-                      className="button_redd"
-                    >
-                      {" "}
-                          Discard Changes
-                        </div>
+                  <StyledPopup trigger={<div class = "Button" className= "button_redd">
+                     Discard Changes</div>} position="center" modal nested>
+
+
+                     {close => (
+      <div >
+        <div>
+          You are about to discard the changes made. Do you want to continue?
+        </div>
+
+        <div class = "row">
+                      <div class = "col-md-6">
+                      
+                     <button
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
+                         className="button_gray"
+                       >
+                         Cancel
+                       </button> 
+
+                       </div>
+                       <div class = "col-md-6">
+                       <button
+                         onClick={() => {
+                          setRouter("sponsorprofiles");
+                        }}
+                         
+                         className="button_red"
+                       >
+                        Discard Changes
+                       </button>
+
+                       </div>
+                       </div>
+
+      </div>
+    )}
+                       </StyledPopup>
                   </div>
                 </div>
               </Form>

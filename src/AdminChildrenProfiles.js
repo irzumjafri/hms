@@ -321,13 +321,23 @@ const AdminChildrenProfiles = (props) => {
                         <div class="col-md-6">
                         <StyledPopup trigger={<div class = "Button" className= "button_redd">
                       Delete this Profile</div>} position="center" modal nested>
+
+
+                      {close => (
+                        <div>
                     <div>
+
+
                      You are about to delete this profile. Do you want to continue?
                      </div>
                      <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
+                     onClick={() => {
+                      console.log('modal closed ');
+                      close();
+                    }}
                     
                          className="button_gray"
                        >
@@ -347,6 +357,8 @@ const AdminChildrenProfiles = (props) => {
 
                        </div>
                        </div>
+                       </div>
+                        )}
                        </StyledPopup>
                         </div>
                       </div>

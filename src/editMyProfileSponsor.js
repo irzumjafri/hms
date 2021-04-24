@@ -273,14 +273,21 @@ const EditMyProfileSponsor = (props) => {
               <div class = "col-md-6" >
               <StyledPopup trigger={<div class = "Button" className= "button_redd">
                      Discard Changes</div>} position="center" modal nested>
-                    <div>
-                     You are about to discard the changes made. Do you want to continue?
-                     </div>
-                     <div class = "row">
+                       
+                     {close => (
+      <div >
+        <div>
+          You are about to discard the changes made. Do you want to continue?
+        </div>
+
+        <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
-                    
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
                          className="button_gray"
                        >
                          Cancel
@@ -289,7 +296,7 @@ const EditMyProfileSponsor = (props) => {
                        </div>
                        <div class = "col-md-6">
                        <button
-                        onClick={() => setRouter("registered")}
+                         onClick={() => setRouter("registered")}
                          
                          className="button_red"
                        >
@@ -298,6 +305,9 @@ const EditMyProfileSponsor = (props) => {
 
                        </div>
                        </div>
+
+      </div>
+    )}
                        </StyledPopup>
               </div>
             </div>

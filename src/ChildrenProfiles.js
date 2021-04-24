@@ -261,6 +261,7 @@ const ChildrenProfiles = (props) => {
               </Form>
 
               <div className="btnContainer">
+                
                 <StyledPopup
                   trigger={
                     <button className="button_redd">
@@ -293,6 +294,8 @@ const ChildrenProfiles = (props) => {
                         }
                         modal
                       >
+                                      {close => (
+      <div >
                         <Form>
                           <Form.Label>
                             Would you like to share why do you want to withdraw
@@ -304,7 +307,43 @@ const ChildrenProfiles = (props) => {
                             onChange={(e) => setReason(e.target.value)}
                           ></Form.Control>
                         </Form>
-                        <div class="row">
+                        
+       
+
+        <div class = "row">
+                      <div class = "col-md-6">
+                      
+                     <button
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
+                         className="button_gray"
+                       >
+                         Cancel
+                       </button> 
+
+                       </div>
+                       <div class = "col-md-6">
+                       <button
+                              className="button_red"
+                              onClick={() => {
+                                withdrawchild(childData[i].id);
+                                applicationStatus
+                                  ? setRouter("registered")
+                                  : setRouter("unregistered");
+                              }}
+                            >
+                              {" "}
+                              Withdraw{" "}
+                            </button>
+
+                       </div>
+                       </div>
+
+      </div>
+    )}
+                        {/* <div class="row">
                           <div class="col-md-6">
                             <button
                               className="button_gray"
@@ -329,7 +368,7 @@ const ChildrenProfiles = (props) => {
                               Finish Withdrawing{" "}
                             </button>
                           </div>
-                        </div>
+                        </div> */}
                       </StyledPopup>
                     </div>
                   </div>

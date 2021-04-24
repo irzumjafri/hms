@@ -265,7 +265,7 @@ const AdminAddChildrenProfiles = (props) => {
 
                    <Form.Row>
                      <div class="col">
-                       <Form.Label>Family Background</Form.Label>
+                       <Form.Label  className="label-left">Family Background</Form.Label>
                        <Form.Control
                          type="text"
                          required
@@ -308,14 +308,23 @@ const AdminAddChildrenProfiles = (props) => {
 
                      <StyledPopup trigger={<button className= "button_redd">
                      Discard Changes</button>} position="center" modal nested>
-                    <div>
-                     You are about to discard the changes made. Do you want to continue?
-                     </div>
-                     <div class = "row">
+
+
+                   
+                     {close => (
+      <div >
+        <div>
+          You are about to discard the changes made. Do you want to continue?
+        </div>
+
+        <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
-                    
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
                          className="button_gray"
                        >
                          Cancel
@@ -333,6 +342,9 @@ const AdminAddChildrenProfiles = (props) => {
 
                        </div>
                        </div>
+
+      </div>
+    )}
                        </StyledPopup>
                      </div>
                    </div>
