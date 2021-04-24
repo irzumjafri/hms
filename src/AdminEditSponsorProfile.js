@@ -315,33 +315,40 @@ const AdminEditSponsorProfile = (props) => {
 
                   <StyledPopup trigger={<div class = "Button" className= "button_redd">
                      Discard Changes</div>} position="center" modal nested>
-                    <div>
-                     You are about to discard the changes made. Do you want to continue?
-                     </div>
-                     <div class = "row">
-                      <div class = "col-md-6">
-                      
-                     <button
-                    
-                         className="button_gray"
-                       >
-                         Cancel
-                       </button> 
+                     {close => (
+                                <div >
+                                  <div>
+                                    You are about to discard the changes made. Do you want to continue?
+                                  </div>
 
-                       </div>
-                       <div class = "col-md-6">
-                       <button
-                       onClick={() => {
-                        setRouter("sponsorprofiles");
-                      }}
-                         
-                         className="button_red"
-                       >
-                        Discard Changes
-                       </button>
+                                  <div class = "row">
+                                                <div class = "col-md-6">
+                                                
+                                              <button
+                                                  onClick={() => {
+                                                    console.log('modal closed ');
+                                                    close();
+                                                  }}
+                                                  className="button_gray"
+                                                >
+                                                  Cancel
+                                                </button> 
 
-                       </div>
-                       </div>
+                                                </div>
+                                                <div class = "col-md-6">
+                                                <button
+                                                  onClick={() => setRouter("home")}
+                                                  
+                                                  className="button_red"
+                                                >
+                                                  Discard Changes
+                                                </button>
+
+                                                </div>
+                                                </div>
+
+                                </div>
+                              )}
                        </StyledPopup>
                   </div>
                 </div>

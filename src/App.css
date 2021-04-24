@@ -2340,13 +2340,18 @@
   text-align: center;
   padding: 10px;
   width: 50%;
+  border-radius: 5px;
   border-bottom: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
 }
 .letterBox .letterBoxContainer .button_gray1 {
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
-  background: #4d535e;
+  /* background: #4d535e; */
+  background: #4c8dc3;
   /* border-radius: 10px; */
   border-bottom: none;
   margin: 0px;
@@ -2355,7 +2360,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
-
+  border-radius: 5px;
   width: 50%;
 }
 .letterBox .letterBoxContainer .button_gray {
