@@ -138,6 +138,7 @@ const SponsorshipRequests = (props) => {
                   Total Active Sponsors: {sponsorshipApplicationData.length}
                 </textbox>
               </div>
+              </div>
               <div class="col-md-12">
                 <div
                   onClick={() => setRouter("adminaddsponsorprofile")}
@@ -148,7 +149,7 @@ const SponsorshipRequests = (props) => {
                   Add New Sponsors
                 </div>
               </div>
-            </div>
+            
             return (
             <Form>
               <Form.Row>

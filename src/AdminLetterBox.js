@@ -149,12 +149,6 @@ const AdminLetterBox = (props) => {
         <section className="letterBox">
           <div className="letterBoxContainer">
             <nav>
-              {/* <button onClick={(e) => setWriteOrReceive(true)}>
-                Write a Letter
-              </button>
-              <button onClick={(e) => setWriteOrReceive(false)}>
-                Received Letters
-              </button> */}
             </nav>
             <>
               {writeOrReceive ? (

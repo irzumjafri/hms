@@ -132,7 +132,15 @@ const AdminPaymentHistory = (props) => {
       <section className="navbar">
         <section className="paymentHistory">
           <div className="paymentHistoryContainer">
-            <div class="row">
+          <div class="row">
+                <div class="col-md-12">
+                  <textbox className="label-left">
+                    Total Records: {paymentRecords.length}
+                  </textbox>
+                </div>
+                </div>
+              
+          
               <div class="col-md-12">
                 <div
                   onClick={() => setRouter("addpaymenthistory")}
@@ -143,26 +151,11 @@ const AdminPaymentHistory = (props) => {
                   Add New Payment History
                 </div>
               </div>
-            </div>
+              
+            
             return (
             <div>
-              <div class="row">
-                <div class="col-md-12">
-                  <textbox className="label-left">
-                    Total Records: {paymentRecords.length}
-                  </textbox>
-                </div>
-                <div class="col-md-12">
-                  <div
-                    onClick={() => setRouter("adminaddsponsorprofile")}
-                    class="Button"
-                    className="button_green"
-                  >
-                    {" "}
-                    Add New Sponsors
-                  </div>
-                </div>
-              </div>
+              
               <Form>
                 <Form.Row>
                   <div class="col-md-6">
@@ -185,15 +178,15 @@ const AdminPaymentHistory = (props) => {
                   </div>
                 </Form.Row>
 
-                <Form.Row>
-                  <div class="col-md-6">
+               
+                  <div>
                     <Form.Label className="label-left">Amount</Form.Label>
                     <Form.Control
                       type="text"
                       value={paymentRecords[i].amount}
                     ></Form.Control>
                   </div>
-                  <div class="col-md-6">
+                  <div >
                     <Form.Label className="label-right">
                       Payment Date (DD-MM-YYYY)
                     </Form.Label>
@@ -202,7 +195,7 @@ const AdminPaymentHistory = (props) => {
                       value={paymentRecords[i].paymentDate}
                     ></Form.Control>
                   </div>
-                </Form.Row>
+            
 
                 <div class="row">
                   <div class="col-md-12">
@@ -252,7 +245,7 @@ const AdminPaymentHistory = (props) => {
                 </div>
               </Form>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   {i ? (
                     <button
                       onClick={() => setI(i - 1)}
@@ -266,12 +259,12 @@ const AdminPaymentHistory = (props) => {
                     <button className="button_gray"> Prev Page</button>
                   )}
                 </div>
-                <div class="col-md-4">
+                {/* <div class="col-md-4">
                   <textbox className="label-down">
                     Page Number {i + 1} / {paymentRecords.length}
                   </textbox>
-                </div>
-                <div class="col-md-4">
+                </div> */}
+                <div class="col-md-6">
                   {i + 1 == paymentRecords.length ? (
                     <button
                       className="button_gray"

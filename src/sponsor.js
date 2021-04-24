@@ -880,7 +880,7 @@ const Sponsor = () => {
 
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
-      if (user && user.emailVerified) {
+      if (user /*&& user.emailVerified*/) {
         clearInputs();
         setUser(user);
         fetchLogin(user.uid);

@@ -133,15 +133,11 @@ const AdminChildrenProfiles = (props) => {
         <section className="childrenProfiles">
           <div className="childrenProfilesContainer">
             <div class="row">
-              <div class="col-md-6">
-                <textbox className="label-left"> Add Filter</textbox>
-                {/* convert to dropdown */}
-              </div>
-              <div class="col-md-6">
+              
                 <textbox className="label-left">
                   Total Children: {childData.length}
                 </textbox>
-              </div>
+                </div>
               <div class="col-md-12">
                 <div
                   onClick={() => setRouter("addchildrenprofile")}
@@ -152,7 +148,7 @@ const AdminChildrenProfiles = (props) => {
                   Add New Children
                 </div>
               </div>
-            </div>
+            
               return (
                 <div>
                   <div>
@@ -320,6 +316,7 @@ const AdminChildrenProfiles = (props) => {
                               </div>
                             }
                             position="center"
+
                             modal
                             nested
                           >

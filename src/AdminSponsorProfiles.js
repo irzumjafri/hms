@@ -133,14 +133,11 @@ const AdminSponsorProfiles = (props) => {
         <section className="editMyProfileSponsor">
           <div className="editMyProfileSponsorContainer">
             <div class="row">
-              <div class="col-md-6">
-                <textbox className="label-left"> Add Filter</textbox>
-                {/* convert to dropdown */}
-              </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <textbox className="label-left">
                   Total Active Sponsors: {sponsorData.length}
                 </textbox>
+              </div>
               </div>
               <div class="col-md-12">
                 <div
@@ -152,7 +149,7 @@ const AdminSponsorProfiles = (props) => {
                   Add New Sponsors
                 </div>
               </div>
-            </div>
+            
             return (
             <div>
               <Form>
