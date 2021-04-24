@@ -701,7 +701,7 @@ const Admin = () => {
               senderName: doc.data().senderName,
               amount: doc.data().amount,
               paymentDate: doc.data().paymentDate,
-              senderId: doc.data().senderId,
+              senderEmail: doc.data().senderEmail,
               id: doc.data().id,
             });
           });
@@ -743,7 +743,7 @@ const Admin = () => {
         senderName: newPayment.senderName,
         amount: newPayment.amount,
         paymentDate: newPayment.paymentDate,
-        senderId: newPayment.senderId,
+        senderEmail: newPayment.senderEmail,
       })
       .then((value) => {
         // set this id as its own attribte

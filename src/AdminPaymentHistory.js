@@ -1,10 +1,9 @@
-import React from "react";
-import SearchField from "react-search-field";
+import React, { useState, useEffect } from "react";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import Styled from 'styled-components';
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Styled from "styled-components";
 
 const AdminPaymentHistory = (props) => {
   const {
@@ -124,13 +123,17 @@ const AdminPaymentHistory = (props) => {
     `,
   } = props;
 
+  const [i, setI] = useState(0);
+
+  console.log(paymentRecords);
+
   return (
     <body>
       <section className="navbar">
         <section className="paymentHistory">
           <div className="paymentHistoryContainer">
             <div class="row">
-            <div class="col-md-12">
+              <div class="col-md-12">
                 <div
                   onClick={() => setRouter("addpaymenthistory")}
                   class="Button"
@@ -141,99 +144,164 @@ const AdminPaymentHistory = (props) => {
                 </div>
               </div>
             </div>
-
-            {paymentRecords.map((con, i) => {
-              return (
-                <div>
-                  <Form>
-                    <Form.Row>
-                      <div class="col-md-12">
-                        <Form.Label className="label-right">
-                          Sender Name
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          required
-                          value={paymentRecords[i].senderName}
-                        ></Form.Control>
-                      </div>
-                    </Form.Row>
-
-                    <Form.Row>
-                      <div class="col-md-6">
-                        <Form.Label className="label-left">Amount</Form.Label>
-                        <Form.Control
-                          type="text"
-                          value={paymentRecords[i].amount}
-                        ></Form.Control>
-                      </div>
-                      <div class="col-md-6">
-                        <Form.Label className="label-right">
-                          Payment Date (DD-MM-YYYY)
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          value={paymentRecords[i].paymentDate}
-                        ></Form.Control>
-                      </div>
-                    </Form.Row>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                        <StyledPopup trigger={<div class = "Button" className= "button_purple">
-                      Delete Payment</div>} position="center" modal nested>
-
-                      {close => (
-      <div >
-        <div>
-                     You are about to delete this payment history. Do you want to continue?
-                     </div>
-                     <div class = "row">
-                      <div class = "col-md-6">
-                      
-                     <button
-                      onClick={() => {
-                        console.log('modal closed ');
-                        close();
-                      }}
-                    
-                         className="button_gray"
-                       >
-                         Cancel
-                       </button> 
-
-                       </div>
-                       <div class = "col-md-6">
-                       <button
-                     onClick={() => deletePaymentHistory(paymentRecords[i].id)}
-                         
-                         className="button_red"
-                       >
-                       Delete Payment
-                       </button>
-
-                       </div>
-                       </div>
-
-      </div>
-    )}
-                    
-                       </StyledPopup>
-                        </div>
-                      </div>
-
-                  </Form>
+            return (
+            <div>
+              <div class="row">
+                <div class="col-md-12">
+                  <textbox className="label-left">
+                    Total Records: {paymentRecords.length}
+                  </textbox>
                 </div>
-              );
-            })}
+                <div class="col-md-12">
+                  <div
+                    onClick={() => setRouter("adminaddsponsorprofile")}
+                    class="Button"
+                    className="button_green"
+                  >
+                    {" "}
+                    Add New Sponsors
+                  </div>
+                </div>
+              </div>
+              <Form>
+                <Form.Row>
+                  <div class="col-md-6">
+                    <Form.Label className="label-right">Sender Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      required
+                      value={paymentRecords[i].senderName}
+                    ></Form.Control>
+                  </div>
+                  <div class="col-md-6">
+                    <Form.Label className="label-right">
+                      Sender Email
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      required
+                      value={paymentRecords[i].senderEmail}
+                    ></Form.Control>
+                  </div>
+                </Form.Row>
+
+                <Form.Row>
+                  <div class="col-md-6">
+                    <Form.Label className="label-left">Amount</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={paymentRecords[i].amount}
+                    ></Form.Control>
+                  </div>
+                  <div class="col-md-6">
+                    <Form.Label className="label-right">
+                      Payment Date (DD-MM-YYYY)
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={paymentRecords[i].paymentDate}
+                    ></Form.Control>
+                  </div>
+                </Form.Row>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <StyledPopup
+                      trigger={
+                        <div class="Button" className="button_purple">
+                          Delete Payment
+                        </div>
+                      }
+                      position="center"
+                      modal
+                      nested
+                    >
+                      {(close) => (
+                        <div>
+                          <div>
+                            You are about to delete this payment history. Do you
+                            want to continue?
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <button
+                                onClick={() => {
+                                  console.log("modal closed ");
+                                  close();
+                                }}
+                                className="button_gray"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                            <div class="col-md-6">
+                              <button
+                                onClick={() =>
+                                  deletePaymentHistory(paymentRecords[i].id)
+                                }
+                                className="button_red"
+                              >
+                                Delete Payment
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </StyledPopup>
+                  </div>
+                </div>
+              </Form>
+              <div class="row">
+                <div class="col-md-4">
+                  {i ? (
+                    <button
+                      onClick={() => setI(i - 1)}
+                      class="Button"
+                      className="button_blue"
+                    >
+                      {" "}
+                      Prev Page
+                    </button>
+                  ) : (
+                    <button className="button_gray"> Prev Page</button>
+                  )}
+                </div>
+                <div class="col-md-4">
+                  <textbox className="label-down">
+                    Page Number {i + 1} / {paymentRecords.length}
+                  </textbox>
+                </div>
+                <div class="col-md-4">
+                  {i + 1 == paymentRecords.length ? (
+                    <button
+                      className="button_gray"
+                      //MAKE THIS GREYED OUT
+                    >
+                      {" "}
+                      Next Page
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setI(i + 1)}
+                      class="Button"
+                      className="button_blue"
+                    >
+                      {" "}
+                      Next Page
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+            );
           </div>
         </section>
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
-          {/* <p className="smalltext" onClick={handlelogout}>
+          <p className="smalltext" onClick={handlelogout}>
             <span>Logout</span>
-          </p> */}
+          </p>
 
           <nav className="navbarContainer">
             <p className="smalltext" onClick={() => setRouter("home")}>

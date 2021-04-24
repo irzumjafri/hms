@@ -291,7 +291,7 @@ const AdminEditMyProfile = (props) => {
             </p>
             <h2 className="titletext">EDIT MY PROFILE</h2>
             <p className="smalltext" onClick={() => fetchAdminProfile()}>
-              <span>Sync</span>y
+              <span>Sync</span>
             </p>
           </nav>
         </nav>

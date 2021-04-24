@@ -1,16 +1,14 @@
-import React from "react";
-import SearchField from "react-search-field";
+import React, { useState, useEffect } from "react";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import Styled from 'styled-components';
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Styled from "styled-components";
 const AdminChildrenProfiles = (props) => {
   const {
     handlelogout,
     childData,
     setRouter,
-    totalChildren,
     deleteChildrenProfile,
     callchildeditprofile,
     fetchChildrenProfiles,
@@ -124,7 +122,8 @@ const AdminChildrenProfiles = (props) => {
     `,
   } = props;
 
-  console.log(childData)
+  console.log(childData);
+  const [i, setI] = useState(0);
 
   return (
     <body>
@@ -140,7 +139,7 @@ const AdminChildrenProfiles = (props) => {
               </div>
               <div class="col-md-6">
                 <textbox className="label-left">
-                  Total Children: {totalChildren}
+                  Total Children: {childData.length}
                 </textbox>
               </div>
               <div class="col-md-12">
@@ -154,7 +153,6 @@ const AdminChildrenProfiles = (props) => {
                 </div>
               </div>
             </div>
-            {childData.map((con, i) => {
               return (
                 <div>
                   <div>
@@ -164,7 +162,6 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Label className="label-left">Name</Form.Label>
                           <Form.Control
                             type="text"
-                            
                             required
                             value={childData[i].name}
                           ></Form.Control>
@@ -186,7 +183,6 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Label className="label-left">Gender</Form.Label>
                           <Form.Control
                             type="text"
-                            
                             required
                             value={childData[i].gender}
                           ></Form.Control>
@@ -207,7 +203,6 @@ const AdminChildrenProfiles = (props) => {
                           <Form.Label className="label-left">Grade</Form.Label>
                           <Form.Control
                             type="text"
-                            
                             required
                             value={childData[i].grade}
                           ></Form.Control>
@@ -231,7 +226,6 @@ const AdminChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            
                             required
                             value={childData[i].guardian1Name}
                           ></Form.Control>
@@ -255,7 +249,6 @@ const AdminChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            
                             required
                             value={childData[i].guardian1Occupation}
                           ></Form.Control>
@@ -279,7 +272,6 @@ const AdminChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            
                             required
                             value={childData[i].guardian2Name}
                           ></Form.Control>
@@ -298,7 +290,9 @@ const AdminChildrenProfiles = (props) => {
 
                       <Form.Row>
                         <div class="col">
-                          <Form.Label className="label-right">Family Background</Form.Label>
+                          <Form.Label className="label-right">
+                            Family Background
+                          </Form.Label>
                           <Form.Control
                             type="text"
                             required
@@ -319,54 +313,95 @@ const AdminChildrenProfiles = (props) => {
                           </div>
                         </div>
                         <div class="col-md-6">
-                        <StyledPopup trigger={<div class = "Button" className= "button_redd">
-                      Delete this Profile</div>} position="center" modal nested>
-
-
-                      {close => (
-                        <div>
-                    <div>
-
-
-                     You are about to delete this profile. Do you want to continue?
-                     </div>
-                     <div class = "row">
-                      <div class = "col-md-6">
-                      
-                     <button
-                     onClick={() => {
-                      console.log('modal closed ');
-                      close();
-                    }}
-                    
-                         className="button_gray"
-                       >
-                         Cancel
-                       </button> 
-
-                       </div>
-                       <div class = "col-md-6">
-                       <button
-                       onClick={() => deleteChildrenProfile(childData[i].id)
-                       }
-                         
-                         className="button_red"
-                       >
-                       Delete this Profile
-                       </button>
-
-                       </div>
-                       </div>
-                       </div>
-                        )}
-                       </StyledPopup>
+                          <StyledPopup
+                            trigger={
+                              <div class="Button" className="button_redd">
+                                Delete this Profile
+                              </div>
+                            }
+                            position="center"
+                            modal
+                            nested
+                          >
+                            {(close) => (
+                              <div>
+                                <div>
+                                  You are about to delete this profile. Do you
+                                  want to continue?
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <button
+                                      onClick={() => {
+                                        console.log("modal closed ");
+                                        close();
+                                      }}
+                                      className="button_gray"
+                                    >
+                                      Cancel
+                                    </button>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <button
+                                      onClick={() =>
+                                        deleteChildrenProfile(childData[i].id)
+                                      }
+                                      className="button_red"
+                                    >
+                                      Delete this Profile
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </StyledPopup>
                         </div>
                       </div>
                     </Form>
+                    <div class="row">
+                      <div class="col-md-4">
+                        {i ? (
+                          <button
+                            onClick={() => setI(i - 1)}
+                            class="Button"
+                            className="button_blue"
+                          >
+                            {" "}
+                            Prev Page
+                          </button>
+                        ) : (
+                          <button className="button_gray"> Prev Page</button>
+                        )}
+                      </div>
+                      <div class="col-md-4">
+                        <textbox className="label-down">
+                          Page Number {i + 1} / {childData.length}
+                        </textbox>
+                      </div>
+                      <div class="col-md-4">
+                        {i + 1 == childData.length ? (
+                          <button
+                            className="button_gray"
+                            //MAKE THIS GREYED OUT
+                          >
+                            {" "}
+                            Next Page
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => setI(i + 1)}
+                            class="Button"
+                            className="button_blue"
+                          >
+                            {" "}
+                            Next Page
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               );
-            })}
           </div>
         </section>
         <nav className="navbarContainer_gray">
@@ -375,7 +410,7 @@ const AdminChildrenProfiles = (props) => {
           <p className="smalltext" onClick={handlelogout}>
             <span>Logout</span>
           </p>
-         
+
           <nav className="navbarContainer">
             <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>

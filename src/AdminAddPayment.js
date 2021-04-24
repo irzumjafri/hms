@@ -11,7 +11,7 @@ const AdminAddPayment = (props) => {
     handlelogout,
   } = props;
 
-  const [senderId, setSenderId] = useState("");
+  const [senderEmail, setSenderEmail] = useState("");
   const [senderName, setSenderName] = useState("");
   const [amount, setAmount] = useState("");
   const [paymentDate, setPaymentDate] = useState("");
@@ -39,13 +39,13 @@ const AdminAddPayment = (props) => {
                       </div>
                       <div class="col-md-6">
                         <Form.Label className="label-right">
-                          Sender ID *
+                          Sender Email *
                         </Form.Label>
                         <Form.Control
                           type="text"
                           required
-                          value={senderId}
-                          onChange={(e) => setSenderId(e.target.value)}
+                          value={senderEmail}
+                          onChange={(e) => setSenderEmail(e.target.value)}
                         ></Form.Control>
                       </div>
                     </Form.Row>
@@ -81,7 +81,7 @@ const AdminAddPayment = (props) => {
                            setRouter("paymenthistory");
                            addPaymentHistory({
                              senderName: senderName,
-                             senderId: senderId,
+                             senderEmail: senderEmail,
                              amount: amount,
                              paymentDate: paymentDate
                            });
@@ -125,7 +125,7 @@ const AdminAddPayment = (props) => {
             <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
             </p>
-            <h2 className="titletext"> ADD NEW SPONSOR PROFILE</h2>
+            <h2 className="titletext"> ADD PAYMENT ENTRY</h2>
           </nav>
         </nav>
         <section className="bottombar">

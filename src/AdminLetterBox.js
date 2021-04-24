@@ -5,9 +5,9 @@ import { Button, Form } from "react-bootstrap";
 import { Dropdown, Selection } from "react-dropdown-now";
 import "react-dropdown-now/style.css";
 import { useState, useEffect } from "react";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import Styled from 'styled-components';
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Styled from "styled-components";
 
 const AdminLetterBox = (props) => {
   const {
@@ -130,6 +130,7 @@ const AdminLetterBox = (props) => {
   const [reciever, setReciever] = useState("");
   const [letterBody, setLetterBody] = useState("");
   const [writeOrReceive, setWriteOrReceive] = useState(true);
+  const [i, setI] = useState(0);
 
   const fetchChildData = () => {
     var child = [];
@@ -158,16 +159,21 @@ const AdminLetterBox = (props) => {
             <>
               {writeOrReceive ? (
                 <div>
-               
                   <div>
-                  <div class ="row">
-              <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(true)}>
-                Write a Letter
-              </button>
-              <button className = "button_gray1" onClick={(e) => setWriteOrReceive(false)}>
-                Received Letters
-              </button>
-              </div>
+                    <div class="row">
+                      <button
+                        className="button_darkblue"
+                        onClick={(e) => setWriteOrReceive(true)}
+                      >
+                        Write a Letter
+                      </button>
+                      <button
+                        className="button_gray1"
+                        onClick={(e) => setWriteOrReceive(false)}
+                      >
+                        Received Letters
+                      </button>
+                    </div>
                     <Form>
                       <Dropdown
                         className="my-className"
@@ -191,72 +197,133 @@ const AdminLetterBox = (props) => {
                       </div>
                     </Form>
 
-                    <StyledPopup trigger = { <button className= "button_green"> Send Letter</button>} position="center" modal>
-                    {close => (
-      <div >
-         <div>
-                      You are about to send the letter you just composed/uploaded. Do you want to continue?
-                      </div>
-                      <div class = "row">
-                        <div class="col-md-6">
-                          <button className = "button_gray"  onClick={() => {
-                          console.log('modal closed ');
-                          close();
-                        }}> Cancel</button>
+                    <StyledPopup
+                      trigger={
+                        <button className="button_green"> Send Letter</button>
+                      }
+                      position="center"
+                      modal
+                    >
+                      {(close) => (
+                        <div>
+                          <div>
+                            You are about to send the letter you just
+                            composed/uploaded. Do you want to continue?
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <button
+                                className="button_gray"
+                                onClick={() => {
+                                  console.log("modal closed ");
+                                  close();
+                                }}
+                              >
+                                {" "}
+                                Cancel
+                              </button>
+                            </div>
+                            <div class="col-md-6">
+                              <button
+                                className="button_green"
+                                onClick={() => {
+                                  {
+                                    setRouter("home");
+                                    console.log("SENDING LETTER");
+                                  }
+                                  sendLetter({
+                                    fromName: reciever.value,
+                                    content: letterBody,
+                                  });
+                                }}
+                              >
+                                Send
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <div class="col-md-6">
-                          <button className = "button_green" onClick={() => {
-                          {setRouter('home');
-                          console.log("SENDING LETTER");
-                        };sendLetter({fromName: reciever.value,content: letterBody})}}>Send</button>
-                        </div>
-                      </div>
-
-      </div>
-    )}
-                     
-                      </StyledPopup> 
+                      )}
+                    </StyledPopup>
                   </div>
                 </div>
               ) : (
                 <div>
-                  <div class ="row">
-              <button className = "button_gray1" onClick={(e) => setWriteOrReceive(true)}>
-                Write a Letter
-              </button>
-              <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(false)}>
-                Received Letters
-              </button>
-              </div>
+                  <div class="row">
+                    <button
+                      className="button_gray1"
+                      onClick={(e) => setWriteOrReceive(true)}
+                    >
+                      Write a Letter
+                    </button>
+                    <button
+                      className="button_darkblue"
+                      onClick={(e) => setWriteOrReceive(false)}
+                    >
+                      Received Letters
+                    </button>
+                  </div>
                   {/* <h2>RECIEVING LETTERS</h2> */}
                   <div className="letterContainer">
-                    {letters.map((con, i) => {
-                      return (
-                        <Form>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">From</Form.Label>
-                          <Form.Control
-                          type = "text"
+                    return (
+                    <Form>
+                      <div class="col-md-6">
+                        <Form.Label className="label-left">From</Form.Label>
+                        <Form.Control
+                          type="text"
                           value={letters[i].senderName}
-                          >
-                            
-                            </Form.Control>
-                        </div>
-                        <div class="col">
-                          <Form.Label className="label-left">
-                            Letter
-                          </Form.Label>
-                          <Form.Control
-                          className = "input-left"
-                          type = "text"
+                        ></Form.Control>
+                      </div>
+                      <div class="col">
+                        <Form.Label className="label-left">Letter</Form.Label>
+                        <Form.Control
+                          className="input-left"
+                          type="text"
                           value={letters[i].content}
+                        ></Form.Control>
+                      </div>
+                    </Form>
+                    <div class="row">
+                      <div class="col-md-4">
+                        {i ? (
+                          <button
+                            onClick={() => setI(i - 1)}
+                            class="Button"
+                            className="button_blue"
                           >
-                            </Form.Control>
-                      
-                        </div>
-                      </Form>
-                      );
-                    })}
+                            {" "}
+                            Prev Page
+                          </button>
+                        ) : (
+                          <button className="button_gray"> Prev Page</button>
+                        )}
+                      </div>
+                      <div class="col-md-4">
+                        <textbox className="label-down">
+                          Page Number {i + 1} / {letters.length}
+                        </textbox>
+                      </div>
+                      <div class="col-md-4">
+                        {i + 1 == letters.length ? (
+                          <button
+                            className="button_gray"
+                            //MAKE THIS GREYED OUT
+                          >
+                            {" "}
+                            Next Page
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => setI(i + 1)}
+                            class="Button"
+                            className="button_blue"
+                          >
+                            {" "}
+                            Next Page
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                    );
                   </div>
                   );
                 </div>
@@ -270,31 +337,23 @@ const AdminLetterBox = (props) => {
           <p className="smalltext" onClick={handleLogout}>
             <span>Logout</span>
           </p>
-        
 
           <nav className="navbarContainer">
-            <p
-              className="smalltext"
-              onClick={() =>
-                setRouter('home')
-              }
-            >
+            <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">LETTER BOX</h2>
-            <p
-              className="smalltext"
-              onClick={() =>
-                fetchLetters()
-              }
-            >
+            <p className="smalltext" onClick={() => fetchLetters()}>
               <span>Sync</span>
             </p>
           </nav>
         </nav>
         <section className="bottombar">
           <navbar className="bottombarContainer">
-            <p className="smalltext" onClick={() => setRouter("admincontactus")}>
+            <p
+              className="smalltext"
+              onClick={() => setRouter("admincontactus")}
+            >
               <span>Contact Us</span>
             </p>
             <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
