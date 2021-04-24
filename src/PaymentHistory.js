@@ -2,6 +2,8 @@ import React from "react";
 import SearchField from "react-search-field";
 import {Button, Form} from 'react-bootstrap';
 import logo from "./HMSlogo.png";
+import { useState, useEffect } from "react";
+
 
 const PaymentHistory = (props) => {
   const {
@@ -10,6 +12,9 @@ const PaymentHistory = (props) => {
     setRouter,
     applicationStatus
   } = props;
+
+  const [i, setI] = useState(0);
+
 
   return (
     <body>
@@ -22,9 +27,9 @@ const PaymentHistory = (props) => {
 
         <section className="paymentHistory">
         <div className="paymentHistoryContainer">
-        {paymentData.map((con, i) => {
+
           return (
-                <Form>
+            <div><Form>
                 <Form.Row>
                 <div class = "col">
                 <Form.Label className= "label-left">Amount</Form.Label>
@@ -43,12 +48,57 @@ const PaymentHistory = (props) => {
                 ></Form.Control>
                 </div>
                 </Form.Row>
-
-
                 </Form>
+                </div>
+              <div className="btnContainer">
+                <div class="row">
+                  <div class="col-md-6">
+                    {i ? (
+                      <button
+                        onClick={() => setI(i - 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    ) : (
+                      <button
+                        class="Button"
+                        className="button_gray"
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    )}
+                  </div>
+                  <div class="col-md-6">
+                    {i + 1 == paymentData.length ? (
+                      <button
+                        className="button_gray"
+
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setI(i + 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+                
             
           );
-        })}
         </div>
         </section>
 

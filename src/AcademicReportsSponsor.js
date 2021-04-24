@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import SearchField from "react-search-field";
 import Select from "react-select";
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
 
@@ -10,7 +12,83 @@ const AcademicReportsSponsor = (props) => {
     academicRecords,
     setRouter,
     applicationStatus,
+    childData
   } = props;
+
+  const [childName, setChildName] = useState("");
+  const [reportType, setReportType] = useState("");
+  const [id, setId] = useState("");
+  const [n, setN] = useState("");
+  const [rT, setRT] = useState("");
+  const [s1, setS1] = useState("");
+  const [s2, setS2] = useState("");
+  const [s3, setS3] = useState("");
+  const [s4, setS4] = useState("");
+  const [s5, setS5] = useState("");
+  const [s6, setS6] = useState("");
+  const [tM, setTM] = useState("");
+  const [perc, setPerc] = useState("");
+  const [grd, setGrd] = useState("");
+  const [editing, setEditing] = useState(false);
+
+  const fetchChildData = () => {
+    var child = [];
+    {
+      childData.map((con, i) => {
+        child.push({ label: childData[i].name, value: childData[i].name });
+      });
+    }
+
+    return child;
+  };
+
+  const fetchChildReport = (n, t) => {
+    var x = -1;
+    academicRecords.map((con, i) => {
+      if (n == academicRecords[i].name && t == academicRecords[i].reportType) {
+        x = i;
+      }
+    });
+    return x;
+  };
+
+
+  const reportOptions = [
+    { label: "fall", value: "fall" },
+    { label: "spring", value: "spring" },
+  ];
+
+  const setValues = (i) => {
+    if (i == -1) {
+      setId("");
+      setN("");
+      setRT("");
+      setS1("");
+      setS2("");
+      setS3("");
+      setS4("");
+      setS5("");
+      setS6("");
+      setTM("");
+      setPerc("");
+      setGrd("");
+      setEditing(false);
+    } else {
+      setId(academicRecords[i].id);
+      setN(academicRecords[i].name);
+      setRT(academicRecords[i].reportType);
+      setS1(academicRecords[i].subject1);
+      setS2(academicRecords[i].subject2);
+      setS3(academicRecords[i].subject3);
+      setS4(academicRecords[i].subject4);
+      setS5(academicRecords[i].subject5);
+      setS6(academicRecords[i].subject6);
+      setTM(academicRecords[i].totalMarks);
+      setPerc(academicRecords[i].percentage);
+      setGrd(academicRecords[i].grade);
+      setEditing(true);
+    }
+  };
 
   const [i, setI] = useState(0);
 
@@ -22,24 +100,33 @@ const AcademicReportsSponsor = (props) => {
           <div className="academicReportsSponsorContainer">
             <Form>
               <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">Child</Form.Label>
-                  {/* <Form.Select options={child}/> */}
-                  <Form.Control
-                    type="text"
-                    autoFocus
-                    required
-                    value={academicRecords[i].name}
-                  ></Form.Control>
+              <div class = "col-md-6">
+                <Dropdown
+                  className="my-className"
+                  options={fetchChildData()}
+                  placeholder="Please select a child"
+                  value="Please select a child"
+                  onSelect={(i) => {
+                    {
+                      setChildName(i.value);
+                      setValues(fetchChildReport(i.value, reportType));
+                    }
+                  }} // always fires once a selection happens even if there is no change
+                />
                 </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">Report Type</Form.Label>
-                  {/* <Form.Select options={reportType}/> */}
-                  <Form.Control
-                    type="text"
-                    required
-                    value={academicRecords[i].reportType}
-                  ></Form.Control>
+                <div class = "col-md-6">
+                <Dropdown
+                  className="my-className"
+                  options={reportOptions}
+                  placeholder="Please Select Report Type"
+                  value="Please Select Report Type"
+                  onSelect={(i) => {
+                    {
+                      setReportType(i.value);
+                      setValues(fetchChildReport(childName, i.value));
+                    }
+                  }} // always fires once a selection happens even if there is no change
+                />
                 </div>
               </Form.Row>
 
@@ -51,7 +138,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords[i].subject1}
+                    value={s1}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -60,7 +147,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].subject2}
+                    value={s2}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -73,7 +160,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords[i].subject3}
+                    value={s3}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -82,7 +169,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].subject4}
+                    value={s4}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -95,7 +182,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords[i].subject5}
+                    value={s5}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -104,7 +191,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].subject6}
+                    value={s6}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -117,7 +204,7 @@ const AcademicReportsSponsor = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={academicRecords[i].totalMarks}
+                    value={tM}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -126,7 +213,7 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].percentage}
+                    value={perc}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -138,51 +225,12 @@ const AcademicReportsSponsor = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={academicRecords[i].grade}
+                    value={grd}
                   ></Form.Control>
                 </div>
               </Form.Row>
             </Form>
-            <div>
-              <div className="btnContainer">
-                <div class= "row">
-                <div class= "col-md-6">
-                  
-              {i ? (<button
-                  onClick={() => setI(i-1)}
-                  
-                  className="button_blue"
-                >
-                  {" "}
-                  Prev Page
-                </button>) : (<button
-                  
-                  className = "button_gray"
-                  //MAKE THIS GREYED OUT
-                >
-                  {" "}
-                  Prev Page
-                </button>)}
-                </div>
-                <div class= "col-md-6">
-
-                {i+1==academicRecords.length ? (<button
-                  
-                  className = "button_gray"
-                  //MAKE THIS GREYED OUT
-                >
-                  Next Page
-                </button>) : (<button
-                  onClick={() => setI(i+1)}
-                  
-                  className="button_blue"
-                >
-                  Next Page
-                </button>)}
-                 </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </section>
         <nav className="navbarContainer_gray">
@@ -211,11 +259,11 @@ const AcademicReportsSponsor = (props) => {
           <navbar className="bottombarContainer">
             <p
               className="smalltext"
-              onClick={() => setRouter("admincontactus")}
+              onClick={() => setRouter("contactus")}
             >
               <span>Contact Us</span>
             </p>
-            <p className="smalltext" onClick={() => setRouter("adminfaqs")}>
+            <p className="smalltext" onClick={() => setRouter("faqs")}>
               <span>FAQs</span>
             </p>
           </navbar>

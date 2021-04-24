@@ -96,7 +96,6 @@ const ChildrenProfiles = (props) => {
 
   const [i, setI] = useState(0);
 
-
   console.log(childData);
   return (
     <body>
@@ -337,44 +336,51 @@ const ChildrenProfiles = (props) => {
                 </StyledPopup>
               </div>
               <div className="btnContainer">
-              <div class = "row">
-                <div class ="col-md-6">
-              {i ? (<button
-                  onClick={() => setI(i-1)}
-                  class="Button"
-                  className="button_blue"
-                >
-                  {" "}
-                  Prev Page
-                </button>) : (<button
-                  class="Button"
-                  className = "button_gray"
-                  //MAKE THIS GREYED OUT
-                >
-                  {" "}
-                  Prev Page
-                </button>)}
-                </div>
-                <div class= "col-md-6">
+                <div class="row">
+                  <div class="col-md-6">
+                    {i ? (
+                      <button
+                        onClick={() => setI(i - 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    ) : (
+                      <button
+                        class="Button"
+                        className="button_gray"
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    )}
+                  </div>
+                  <div class="col-md-6">
+                    {i + 1 == childData.length ? (
+                      <button
+                        className="button_gray"
 
-                {i+1==childData.length ? (<button
-                  className ="button_gray"
-                  
-                  //MAKE THIS GREYED OUT
-                >
-                  {" "}
-                  Next Page
-                </button>) : (<button
-                  onClick={() => setI(i+1)}
-                  class="Button"
-                  className="button_blue"
-                >
-                  {" "}
-                  Next Page
-                </button>)}
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setI(i + 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    )}
+                  </div>
                 </div>
-                </div>
-                </div>
+              </div>
             </div>
             );
           </div>
@@ -385,7 +391,7 @@ const ChildrenProfiles = (props) => {
           <p className="smalltext" onClick={handleLogout}>
             <span>Logout</span>
           </p>
-          
+
           <nav className="navbarContainer">
             <p
               className="smalltext"

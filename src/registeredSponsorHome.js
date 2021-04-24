@@ -13,8 +13,10 @@ import 'reactjs-popup/dist/index.css';
 
 
 const options = [
-  { value: 'one', label: 'One' },
-  { value: 'editmyprofile', label: 'Edit' },
+  { value: 'changepw', label: 'Edit Password' },
+  { value: 'changeemail', label: 'Edit Email' },
+  { value: 'editprofile', label: 'Edit Profile' },
+  { value: 'deleteacc', label: 'Delete Account' },
   { value: 'logout', label: 'Log Out' }
 ];
 
@@ -286,12 +288,7 @@ const RegisteredSponsorHome = (props) => {
                 >
                   Remove Event
                 </Button>
-
                   </StyledPopup>
-
-
-
-               
               </div>
             </div>
           </div>
@@ -314,7 +311,6 @@ const RegisteredSponsorHome = (props) => {
             };console.log(i)}} // always fires once a selection happens even if there is no change
           />
           </div>
-          <SearchField placeholder="search..." classNames="search" />
           <nav className="navbarhomeContainer">
             <h2 className="titletext">Homepage</h2>
           </nav>

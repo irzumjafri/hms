@@ -161,7 +161,7 @@ const EditMyProfileSponsor = (props) => {
             </Form.Control>
             </div>
             <div  class = "col-md-6">
-            <Form.Label className= "label-right">Date of Birth (DD-MM-YYYY) *</Form.Label>
+            <Form.Label className= "label-right">DoB (DD-MM-YYYY) *</Form.Label>
             <Form.Control
               type="text"
               required
@@ -207,7 +207,7 @@ const EditMyProfileSponsor = (props) => {
             </Form.Control>
             </div>
             <div class = "col-md-6">
-            <Form.Label className= "label-right">Preferred Medium of Communication *</Form.Label>
+            <Form.Label className= "label-right">Mode of Communication *</Form.Label>
             <Form.Control
               type="text"
               required
@@ -222,7 +222,7 @@ const EditMyProfileSponsor = (props) => {
 
             <Form.Row>
               <div class = "col-md-6">
-            <Form.Label className= "label-left">Number of Sponsored Children *</Form.Label>
+            <Form.Label className= "label-left">Total Sponsored Children *</Form.Label>
             <Form.Control
               type="text"
               required

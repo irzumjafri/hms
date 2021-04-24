@@ -405,7 +405,7 @@ const Sponsor = () => {
   const checkingPaymentHistory = (i) => {
     let tempData = [];
     db.collection("paymentHistory")
-      .where("senderId", "==", i)
+      .where("senderEmail", "==", email)
       .get()
       .then((querySnapshot) => {
         // No meeting request is in db and it is empty

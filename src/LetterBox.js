@@ -104,6 +104,8 @@ const LetterBox = (props) => {
   const [reciever, setReciever] = useState("");
   const [letterBody, setLetterBody] = useState("");
   const [writeOrReceive, setWriteOrReceive] = useState(true);
+  const [i, setI] = useState(0);
+
 
   const fetchChildData = () => {
     var child = [];
@@ -200,8 +202,8 @@ const LetterBox = (props) => {
                 Received Letters
               </button>
               </div>
-                    {recievedLetters.map((con, i) => {
                       return (
+                        <div>
                         <Form>
                           <div class="col-md-6">
                             <Form.Label className="label-left">From</Form.Label>
@@ -225,8 +227,53 @@ const LetterBox = (props) => {
                         
                           </div>
                         </Form>
+                        <div class="row">
+                  <div class="col-md-6">
+                    {i ? (
+                      <button
+                        onClick={() => setI(i - 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    ) : (
+                      <button
+                        class="Button"
+                        className="button_gray"
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    )}
+                  </div>
+                  <div class="col-md-6">
+                    {i + 1 == childData.length ? (
+                      <button
+                        className="button_gray"
+
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setI(i + 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    )}
+                  </div>
+                </div>
+                        </div>
+                        
                       );
-                    })}
                   </div>
                   );
                 </div>
