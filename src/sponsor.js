@@ -350,26 +350,43 @@ const Sponsor = () => {
       .update({
         sponsorEmail: "",
         status: "unassigned",
-        reasonForWithdrawal: i.reason
+        // reasonForWithdrawal: i.reason
       })
       .then(() => {
         console.log("Document successfully updated!");
         fetchChildProfiles();
 
         // once the child profile is updated, we then need to reflect this in sponsor's profile as well
-
         let newChildrenNumber = parseInt(numberOfSponsoredChildren) - 1;
 
+        // delete this sponsor's profile
+        if (newChildrenNumber === 0) {
+          db.collection("registeredSponsors")
+            .doc(user.uid)
+            .delete()
+            .then(() => {
+              console.log("Document successfully deleted!");
+              // call fucntion to update states of payemnt histories acc to the updated db
+              fetchSponsorData(user.uid); ///////////////////////////////////////////////////////////////////////
+            })
+            .catch((error) => {
+              console.error("Error removing document: ", error);
+            });
+        }
         // Simply assign this new children number
-        let profileupdate2 = db.collection("registeredSponsors").doc(user.uid); //////////////////////////////
-        return profileupdate2
-          .update({
-            numberOfSponsoredChildren: newChildrenNumber,
-          })
-          .then(() => {
-            console.log("Document successfully updated!");
-            fetchSponsorData(user.uid); ///////////////////////////////
-          });
+        if (newChildrenNumber >= 1) {
+          let profileupdate2 = db
+            .collection("registeredSponsors")
+            .doc(user.uid); //////////////////////////////
+          return profileupdate2
+            .update({
+              numberOfSponsoredChildren: newChildrenNumber,
+            })
+            .then(() => {
+              console.log("Document successfully updated!");
+              fetchSponsorData(user.uid); ///////////////////////////////
+            });
+        }
       });
   };
 
