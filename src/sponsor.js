@@ -437,24 +437,6 @@ const Sponsor = () => {
       });
   };
 
-  const clearInputs = () => {
-    setEmail("");
-    setPassword("");
-  };
-
-  const clearErrors = () => {
-    setErrorMessage("");
-  };
-
-  const handleLogin = () => {
-    clearErrors();
-    fire
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch((err) => {
-        setErrorMessage(err.message);
-      });
-  };
 
   const signupErrorCheck = () => {
     if (!firstName) {
@@ -497,7 +479,6 @@ const Sponsor = () => {
           })
           .then(() => {
             console.log("Document successfully updated!");
-
             setPreferredMeetingDate("");
             setHour("");
             setMinutes("");
@@ -856,7 +837,8 @@ const Sponsor = () => {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-          setUser(userCredential.user);
+          emailVerification();
+          setHasAccount(!hasAccount);
           createUserAccount(userCredential.user.uid);
         })
         .catch((error) => {
@@ -864,6 +846,31 @@ const Sponsor = () => {
         });
     }
   };
+
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+  };
+
+  const clearErrors = () => {
+    setErrorMessage("");
+  };
+
+  const handleLogin = () => {
+    clearErrors();
+    fire
+      .auth()
+      .signInWithEmailAndPassword(email, password).
+      then((userCredential) => {
+        if (!userCredential.emailVerified){
+          setErrorMessage("Please Verify Account.")
+        }
+      })
+      .catch((err) => {
+        setErrorMessage(err.message);
+      });
+  };
+
 
   const handleLogout = () => {
     setRouter("");
@@ -873,7 +880,7 @@ const Sponsor = () => {
 
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
-      if (user) {
+      if (user && user.emailVerified) {
         clearInputs();
         setUser(user);
         fetchLogin(user.uid);
@@ -1108,6 +1115,8 @@ const Sponsor = () => {
               hasAccount={hasAccount}
               setHasAccount={setHasAccount}
               errorMessage={errorMessage}
+              setErrorMessage={setErrorMessage}
+
             />
           )}
         </>

@@ -17,6 +17,7 @@ const Login = (props) => {
     hasAccount,
     setHasAccount,
     errorMessage,
+    setErrorMessage,
     StyledPopup = Styled(Popup)`
     // use your custom style for ".popup-overlay"
     &-overlay {
@@ -147,7 +148,7 @@ const Login = (props) => {
                     </StyledPopup>
               </p>
               <div className = "line">___________________________________</div>
-              <button className = "button_green" onClick={() => setHasAccount(!hasAccount)}> Create New Account</button>
+              <button className = "button_green" onClick={() => {setHasAccount(!hasAccount);setErrorMessage("")}}> Create New Account</button>
             </>
         </div>
       </div>

@@ -25,6 +25,7 @@ const Signup = (props) => {
     setLastName,
     setConfirmPassword,
     setDateOfBirth,
+    setErrorMessage,
     StyledPopup = Styled(Popup)`
 // use your custom style for ".popup-overlay"
 &-overlay {
@@ -182,7 +183,7 @@ const Signup = (props) => {
             {/*CSS: CHANGE BUTTON COLOR WHEN FIELDS AREN'T COMPLETE */}
             <p>
               Have an account?{" "}
-              <span onClick={() => setHasAccount(!hasAccount)}>Sign In</span>
+              <span onClick={() => {setHasAccount(!hasAccount);setErrorMessage("")}}>Sign In</span>
             </p>
           </>
         </div>
