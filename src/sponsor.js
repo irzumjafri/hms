@@ -74,6 +74,158 @@ const Sponsor = () => {
 
   //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
 
+  // this function deletes the user account
+  const deleteAccount = () => {
+    // check if number of assigned children == 0 only then allow for delete
+    if (applicationStatus === "") {
+      delAccount();
+    }
+    if (applicationStatus === "Accepted") {
+      // delete all data of sponsor related to children
+      deleteSponsorProfile(user.uid);
+      // now delete user account and authenctication
+      delAccount();
+    }
+  };
+
+  // delete account helper functions
+  const delAccount = () => {
+    db.collection("userAccounts")
+      .doc(user.uid)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        // now delete the user from authetication as well
+        var user = firebase.auth().currentUser;
+        user
+          .delete()
+          .then(function () {
+            // User deleted.
+            console.log("User deleted from authetication as well");
+            setUser("");
+          })
+          .catch(function (error) {
+            // An error happened.
+            console.log("Error deleting from authentication", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
+
+  // delete account helper functions
+  const deleteSponsorProfile = (i) => {
+    let mail = "";
+
+    db.collection("registeredSponsors")
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.log("No sposnor profile against this ID");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            if (doc.data().id === i.toString().replace(/\s/g, "")) {
+              mail = doc.data().email;
+            }
+          });
+
+          db.collection("registeredSponsors")
+            .doc(i.toString().replace(/\s/g, ""))
+            .delete()
+            .then(() => {
+              console.log("Document successfully deleted!");
+              unassignChildren(mail);
+            })
+            .catch((error) => {
+              console.error("Error removing document: ", error);
+            });
+        }
+      });
+  };
+
+  // delete account helper functions
+  const unassignChildren = (mail) => {
+    db.collection("childrenProfiles")
+      .where("sponsorEmail", "==", mail)
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.log("No children were assigned to this sponsor");
+          return;
+        } else {
+          let idToDelete = [];
+          querySnapshot.forEach((doc) => {
+            // fetch IDs of the profile associated with the email address
+            idToDelete.push(doc.data().id);
+          });
+
+          // get child profile assocated to the id
+          idToDelete.map((idOfChild) => {
+            let profileToEdit = db
+              .collection("childrenProfiles")
+              .doc(idOfChild);
+
+            return profileToEdit
+              .update({
+                sponsorEmail: "",
+                status: "unassigned",
+              })
+              .then(() => {
+                console.log("Document successfully updated!");
+              })
+              .catch((error) => {
+                console.error("Error updating document: ", error);
+              });
+          });
+        }
+      });
+  };
+
+  // this function handles email verification
+  const emailVerification = () => {
+    var user = firebase.auth().currentUser;
+
+    user
+      .sendEmailVerification()
+      .then(function () {
+        // Email sent.
+        console.log("verfication email has been sent!");
+      })
+      .catch(function (error) {
+        // An error happened.
+        console.log("Error occured while sending verification email", error);
+      });
+  };
+
+  // this function lets user update their associated email address
+  const updatePassword = (newPassword) => {
+    var user = firebase.auth().currentUser;
+    // var newPassword = getASecureRandomPassword();
+
+    user
+      .updatePassword(newPassword)
+      .then(function () {
+        // Update successful. Now need to update password in userAccounts as well
+
+        let profileupdate = db.collection("userAccounts").doc(user.uid); ////////////////////////////////
+        return profileupdate
+          .update({
+            password: newPassword,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+            setPassword(newPassword);
+            setRouter("home");
+          });
+      })
+      .catch(function (error) {
+        // An error happened.
+        console.log("Error occured while updating password", error);
+      });
+  };
+
   // This function fetches all FAQs to be displayed
   const fetchFAQs = () => {
     let tempDataQ = [];
@@ -204,7 +356,7 @@ const Sponsor = () => {
   };
 
   const fetchSponsorData = (id) => {
-    console.log("FETCHINGSPONSORDATA")
+    console.log("FETCHINGSPONSORDATA");
     let refdoc = "";
     refdoc = db.collection("registeredSponsors").doc(id);
     refdoc
@@ -232,18 +384,21 @@ const Sponsor = () => {
           }
           setHowToAssignChildren(doc.data().howToAssignChildren);
         } else {
-          setApplicationStatus()
-        setRouter('unregistered')
+          setApplicationStatus();
+          setRouter("unregistered");
           console.log("No such document!");
         }
       })
       .catch((error) => {
-        
         console.log("Error getting document:", error);
       });
   };
 
+  /////////////////// SEE COMMENTS IN HERE //////////////////////////////////
   const fetchLogin = (id) => {
+    // let isVerified = user.emailVerified // returns a bool which is true when vertified else it is false
+    // we can all the neechay wala kaam when isVerified is true else not let them login
+
     var docRef = db.collection("userAccounts").doc(id);
     docRef
       .get()
@@ -363,12 +518,12 @@ const Sponsor = () => {
 
         // once the child profile is updated, we then need to reflect this in sponsor's profile as well
         let newChildrenNumber = parseInt(numberOfSponsoredChildren) - 1;
-        console.log('i am hereeeeee')
-        console.log(newChildrenNumber)
+        console.log("i am hereeeeee");
+        console.log(newChildrenNumber);
 
         // delete this sponsor's profile
         if (newChildrenNumber === 0) {
-          console.log('okay bye')
+          console.log("okay bye");
           db.collection("registeredSponsors")
             .doc(user.uid)
             .delete()
@@ -400,7 +555,7 @@ const Sponsor = () => {
 
   //fetch child profiles for sponsor
   const fetchChildProfiles = (e) => {
-    console.log('FETCHINGCHILDREN')
+    console.log("FETCHINGCHILDREN");
     let tempData = [];
     try {
       db.collection("childrenProfiles")
