@@ -1132,23 +1132,9 @@ const Admin = () => {
         subject4: i.subject4,
         subject5: i.subject5,
         subject6: i.subject6,
-        totalMarks:
-          i.subject1 +
-          i.subject2 +
-          i.subject3 +
-          i.subject4 +
-          i.subject5 +
-          i.subject6,
+        totalMarks: i.totalMarks,
         grade: i.grade,
-        percentage:
-          ((i.subject1 +
-            i.subject2 +
-            i.subject3 +
-            i.subject4 +
-            i.subject5 +
-            i.subject6) /
-            100) *
-          100,
+        percentage: i.percentage,
       })
       .then(() => {
         console.log("Document successfully updated!");
@@ -1171,23 +1157,9 @@ const Admin = () => {
         subject4: i.subject4,
         subject5: i.subject5,
         subject6: i.subject6,
-        totalMarks:
-          i.subject1 +
-          i.subject2 +
-          i.subject3 +
-          i.subject4 +
-          i.subject5 +
-          i.subject6,
+        totalMarks: i.totalMarks,
         grade: i.grade,
-        percentage:
-          ((i.subject1 +
-            i.subject2 +
-            i.subject3 +
-            i.subject4 +
-            i.subject5 +
-            i.subject6) /
-            100) *
-          100,
+        percentage: i.percentage,
       })
       .then((value) => {
         // set this id as its own attribte
@@ -1198,6 +1170,7 @@ const Admin = () => {
           })
           .then(() => {
             console.log("Document successfully updated!");
+            console.log("ACADEMIC RECORD ADDED!");
             fetchAcademicRecords("", "");
           });
       });

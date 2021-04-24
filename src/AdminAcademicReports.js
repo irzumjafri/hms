@@ -134,14 +134,12 @@ const AdminAcademicReports = (props) => {
   const [id, setId] = useState("");
   const [n, setN] = useState("");
   const [rT, setRT] = useState("");
-  const [s1, setS1] = useState("");
-  const [s2, setS2] = useState("");
-  const [s3, setS3] = useState("");
-  const [s4, setS4] = useState("");
-  const [s5, setS5] = useState("");
-  const [s6, setS6] = useState("");
-  const [tM, setTM] = useState("");
-  const [perc, setPerc] = useState("");
+  const [s1, setS1] = useState(0);
+  const [s2, setS2] = useState(0);
+  const [s3, setS3] = useState(0);
+  const [s4, setS4] = useState(0);
+  const [s5, setS5] = useState(0);
+  const [s6, setS6] = useState(0);
   const [grd, setGrd] = useState("");
   const [editing, setEditing] = useState(false);
 
@@ -171,28 +169,24 @@ const AdminAcademicReports = (props) => {
       setId("");
       setN("");
       setRT("");
-      setS1("");
-      setS2("");
-      setS3("");
-      setS4("");
-      setS5("");
-      setS6("");
-      setTM("");
-      setPerc("");
+      setS1(0);
+      setS2(0);
+      setS3(0);
+      setS4(0);
+      setS5(0);
+      setS6(0);
       setGrd("");
       setEditing(false);
     } else {
       setId(academicRecords[i].id);
       setN(academicRecords[i].name);
       setRT(academicRecords[i].reportType);
-      setS1(academicRecords[i].subject1);
-      setS2(academicRecords[i].subject2);
-      setS3(academicRecords[i].subject3);
-      setS4(academicRecords[i].subject4);
-      setS5(academicRecords[i].subject5);
-      setS6(academicRecords[i].subject6);
-      setTM(academicRecords[i].totalMarks);
-      setPerc(academicRecords[i].percentage);
+      setS1(parseInt(academicRecords[i].subject1));
+      setS2(parseInt(academicRecords[i].subject2));
+      setS3(parseInt(academicRecords[i].subject3));
+      setS4(parseInt(academicRecords[i].subject4));
+      setS5(parseInt(academicRecords[i].subject5));
+      setS6(parseInt(academicRecords[i].subject6));
       setGrd(academicRecords[i].grade);
       setEditing(true);
     }
@@ -202,6 +196,8 @@ const AdminAcademicReports = (props) => {
     { label: "fall", value: "fall" },
     { label: "spring", value: "spring" },
   ];
+
+  console.log(editing)
 
   return (
     <body>
@@ -260,7 +256,7 @@ const AdminAcademicReports = (props) => {
                     autoFocus
                     required
                     value={s1}
-                    onChange={(e) => setS1(e.target.value)}
+                    onChange={(e) => setS1(parseInt(e.target.value))}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -270,7 +266,7 @@ const AdminAcademicReports = (props) => {
                     type="text"
                     required
                     value={s2}
-                    onChange={(e) => setS2(e.target.value)}
+                    onChange={(e) => setS2(parseInt(e.target.value))}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -284,7 +280,7 @@ const AdminAcademicReports = (props) => {
                     autoFocus
                     required
                     value={s3}
-                    onChange={(e) => setS3(e.target.value)}
+                    onChange={(e) => setS3(parseInt(e.target.value))}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -294,7 +290,7 @@ const AdminAcademicReports = (props) => {
                     type="text"
                     required
                     value={s4}
-                    onChange={(e) => setS4(e.target.value)}
+                    onChange={(e) => setS4(parseInt(e.target.value))}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -308,7 +304,7 @@ const AdminAcademicReports = (props) => {
                     autoFocus
                     required
                     value={s5}
-                    onChange={(e) => setS5(e.target.value)}
+                    onChange={(e) => setS5(parseInt(e.target.value))}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -318,7 +314,7 @@ const AdminAcademicReports = (props) => {
                     type="text"
                     required
                     value={s6}
-                    onChange={(e) => setS6(e.target.value)}
+                    onChange={(e) => setS6(parseInt(e.target.value))}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -331,8 +327,7 @@ const AdminAcademicReports = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={tM}
-                    onChange={(e) => setTM(e.target.value)}
+                    value={s1+s2+s3+s4+s5+s6}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -341,8 +336,7 @@ const AdminAcademicReports = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={perc}
-                    onChange={(e) => setPerc(e.target.value)}
+                    value={((s1+s2+s3+s4+s5+s6)/600)*100}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -423,37 +417,36 @@ const AdminAcademicReports = (props) => {
             <div className="col-md-6">
               
                 <button
-                  onClick={() => {
+                  onClick={() => {{
                     editing
-                      ? addAcademicRecord({
-                          name: n,
+                      ? (editAcademicRecords({
+                          name: childName,
                           id: id,
-                          reportType: rT,
+                          reportType: reportType,
                           subject1: s1,
                           subject2: s2,
                           subject3: s3,
                           subject4: s4,
                           subject5: s5,
                           subject6: s6,
-                          totalMarks: tM,
+                          totalMarks: s1+s2+s3+s4+s5+s6,
                           grade: grd,
-                          percentage: perc,
-                        })
-                      : editAcademicRecords({
-                          name: n,
-                          id: id,
-                          reportType: rT,
+                          percentage: ((s1+s2+s3+s4+s5+s6)/600)*100,
+                        }))
+                      : (addAcademicRecord({
+                          name: childName,
+                          reportType: reportType,
                           subject1: s1,
                           subject2: s2,
                           subject3: s3,
                           subject4: s4,
                           subject5: s5,
                           subject6: s6,
-                          totalMarks: tM,
+                          totalMarks: s1+s2+s3+s4+s5+s6,
                           grade: grd,
-                          percentage: perc,
-                        });
-                  }}
+                          percentage: ((s1+s2+s3+s4+s5+s6)/600)*100,
+                        }))
+                  };setRouter('home')}}
                   class="Button"
                   className="button_green"
                 >
