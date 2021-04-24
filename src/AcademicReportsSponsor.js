@@ -133,7 +133,7 @@ const AcademicReportsSponsor = (props) => {
 
               <Form.Row>
                 <div class="col-md-6">
-                  <Form.Label className="label-left">Subject 1</Form.Label>
+                  <Form.Label className="label-left">English</Form.Label>
                   {/* <Form.Select options={marks1}/> */}
                   <Form.Control
                     type="text"
@@ -143,7 +143,7 @@ const AcademicReportsSponsor = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
-                  <Form.Label className="label-right">Subject 2</Form.Label>
+                  <Form.Label className="label-right">Oral</Form.Label>
                   {/* <Form.Select options={marks2}/> */}
                   <Form.Control
                     type="text"
@@ -155,7 +155,7 @@ const AcademicReportsSponsor = (props) => {
 
               <Form.Row>
                 <div class="col-md-6">
-                  <Form.Label className="label-left">Subject 3</Form.Label>
+                  <Form.Label className="label-left">Urdu</Form.Label>
                   {/* <Form.Select options={marks3}/> */}
                   <Form.Control
                     type="text"
@@ -165,7 +165,7 @@ const AcademicReportsSponsor = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
-                  <Form.Label className="label-right">Subject 4</Form.Label>
+                  <Form.Label className="label-right">Oral</Form.Label>
                   {/* <Form.Select options={marks4}/> */}
                   <Form.Control
                     type="text"
@@ -177,7 +177,7 @@ const AcademicReportsSponsor = (props) => {
 
               <Form.Row>
                 <div class="col-md-6">
-                  <Form.Label className="label-left">Subject 5</Form.Label>
+                  <Form.Label className="label-left">Math</Form.Label>
                   {/* <Form.Select options={marks5}/> */}
                   <Form.Control
                     type="text"
@@ -187,7 +187,7 @@ const AcademicReportsSponsor = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
-                  <Form.Label className="label-right">Subject 6</Form.Label>
+                  <Form.Label className="label-right">General Knowledge</Form.Label>
                   {/* <Form.Select options={marks6}/> */}
                   <Form.Control
                     type="text"

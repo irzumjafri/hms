@@ -245,7 +245,7 @@ const AdminPaymentHistory = (props) => {
                 </div>
               </Form>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   {i ? (
                     <button
                       onClick={() => setI(i - 1)}
@@ -259,12 +259,12 @@ const AdminPaymentHistory = (props) => {
                     <button className="button_gray"> Prev Page</button>
                   )}
                 </div>
-                {/* <div class="col-md-4">
+                <div class="col-md-4">
                   <textbox className="label-down">
                     Page Number {i + 1} / {paymentRecords.length}
                   </textbox>
-                </div> */}
-                <div class="col-md-6">
+                </div>
+                <div class="col-md-4">
                   {i + 1 == paymentRecords.length ? (
                     <button
                       className="button_gray"

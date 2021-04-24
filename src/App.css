@@ -1646,6 +1646,14 @@
   font-size: 18px;
   margin-top: 5px;
 }
+.childrenProfiles .childrenProfilesContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .childrenProfiles .childrenProfilesContainer .blue {
   color: #192539;
@@ -1762,7 +1770,14 @@
   font-size: 18px;
   margin-top: 5px;
 }
-
+.faqs .faqsContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .faqs .faqsContainer .blue {
   color: #192539;
   background-color: #192539;
@@ -1849,7 +1864,14 @@
   margin-top: 5px;
   margin: 5px;
 }
-
+.requestAMeeting .requestAMeetingContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .requestAMeeting .requestAMeetingContainer .input-left {
   width: 40%;
 }
@@ -2005,6 +2027,14 @@
   margin-top: 5px;
   align-content: center;
 }
+.paymentHistory .paymentHistoryContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .paymentHistory .paymentHistoryContainer .blue {
   color: #192539;
@@ -2110,6 +2140,14 @@
   color: white;
   font-size: 18px;
   margin-top: 5px;
+}
+.contactUs .contactUsContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contactUs .contactUsContainer .blue {
@@ -2257,6 +2295,15 @@
   color: white;
   font-size: 18px;
   margin-top: 5px;
+}
+
+.academicReportsSponsor .academicReportsSponsorContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .academicReportsSponsor .academicReportsSponsorContainer .blue {
@@ -2408,6 +2455,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  width: 100%;
 }
 
 .letterBox .letterBoxContainer .button_blue {
@@ -2424,6 +2472,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  width: 100%;
 }
 
 .letterBox .letterBoxContainer .my-className {
@@ -2445,6 +2494,14 @@
   font-size: 18px;
   margin-top: 5px;
   margin: 5px;
+}
+.letterBox .letterBoxContainer .label-down {
+  color: white;
+  font-size: 10px;
+  margin-top: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .letterBox .letterBoxContainer .input-left {
