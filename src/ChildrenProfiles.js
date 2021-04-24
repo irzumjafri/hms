@@ -6,7 +6,10 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Styled from "styled-components";
 const ChildrenProfiles = (props) => {
-  const {
+
+const{
+ // myreason,
+    
     handleLogout,
     childData,
     setRouter,
@@ -308,8 +311,10 @@ const ChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            value={reason}
-                            onChange={(e) => setReason(e.target.value)}
+                            value={myreason}
+                            
+                            onChange={(e)=>setReason(e.target.value)
+                            }
                             
                           ></Form.Control>
                         </Form>
@@ -336,8 +341,9 @@ const ChildrenProfiles = (props) => {
                               onClick={() => {
                                 withdrawchild({id:childData[i].id,reason:""});
                                 applicationStatus
-                                  ? setRouter("registered")
+                                  ? setRouter("registered") 
                                   : setRouter("unregistered");
+                                  
                               }}
                             >
                               {" "}

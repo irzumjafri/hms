@@ -1941,6 +1941,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  width: 100%;
 }
 .paymentHistory .paymentHistoryContainer .button_gray {
   border: none;
@@ -1956,6 +1957,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  width: 100%;
 }
 
 .paymentHistory .paymentHistoryContainer .titletext {
