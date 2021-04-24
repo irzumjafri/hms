@@ -209,6 +209,16 @@ const AdminAcademicReports = (props) => {
         <section></section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
+          <div class="col-md-12">
+                <div
+                  onClick={() => setRouter("addpaymenthistory")}
+                  class="Button"
+                  className="button_green"
+                >
+                  {" "}
+                  Add New Academic Record
+                </div>
+              </div>
             <Form>
               <Form.Row>
                 <div class = "col-md-6">
@@ -350,7 +360,66 @@ const AdminAcademicReports = (props) => {
                 </div>
               </Form.Row>
             </Form>
-            <div class = "row">
+            
+            <div class="row">
+                        <div class="col-md-6">
+                          <div className= "button_blue"
+                            
+                          >
+                            {" "}
+                            Edit this Profile
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <StyledPopup
+                            trigger={
+                              <div class="Button" className="button_redd">
+                                Delete this Profile
+                              </div>
+                            }
+                            position="center"
+
+                            modal
+                            nested
+                          >
+                            {(close) => (
+                              <div>
+                                <div>
+                                  You are about to delete this record. Do you
+                                  want to continue?
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <button
+                                      onClick={() => {
+                                        console.log("modal closed ");
+                                        close();
+                                      }}
+                                      className="button_gray"
+                                    >
+                                      Cancel
+                                    </button>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <button
+                                      
+                                      className="button_red"
+                                    >
+                                      Delete this Profile
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </StyledPopup>
+
+            </div>
+
+
+
+            {/*  */}
+            {/* <div class = "row">
             <div className="col-md-6">
               
                 <button
@@ -438,11 +507,12 @@ const AdminAcademicReports = (props) => {
                     
                        </StyledPopup>
               
-              </div>
+              </div>*/}
 
             
-            </div>
+            </div> 
           </div>
+
         </section>
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />

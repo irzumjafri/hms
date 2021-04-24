@@ -2,9 +2,100 @@ import React from "react";
 import SearchField from "react-search-field";
 import Calendar from "react-calendar";
 import logo from "./HMSlogo.png";
-import Button from "react-bootstrap/Button";
+import { Button, Form } from "react-bootstrap";
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
+import Styled from "styled-components";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
 const AdminHome = (props) => {
-  const { handlelogout, setRouter, updatesArray } = props;
+  const { handlelogout, setRouter, updatesArray,
+    StyledPopup = Styled(Popup)`
+    // use your custom style for ".popup-overlay"
+    &-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    // use your custom style for ".popup-content"
+    &-content {
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      background: white;
+      width: 40%;
+      padding: 5px;
+      border-radius: 10px;
+      font-size: 18px;
+      padding: 2%;
+    }
+    
+    &-content .button_green
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #33773d;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: max-content;
+      padding: 10px 10px;
+     
+    }
+  
+    &-content .button_gray
+    {
+      border: none;
+      outline: none;
+      width: 50%;
+      padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #d3d3d3;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    &-content .button_red
+    {
+  
+      border: none;
+      outline: none;
+      //padding: 10px 0px;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: 1px;
+      background: #ff0033;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center
+      min-width: max-content;
+     
+      padding: 10px 10px;
+  
+    }
+    `,} = props;
   return (
     <body>
       <section className="navbarhome">
@@ -170,31 +261,121 @@ const AdminHome = (props) => {
             <p className="label-right">
               <p className="p_ii">No Events</p>
             </p>
-
             <div class="row">
               <div class="col-md-6">
-                <Button
-                  button
-                  className="button_blue"
-                  variant="primary"
-                  size="sm"
-                  block
+                <StyledPopup
+                  trigger={
+                    <Button
+                      button
+                      className="button_blue"
+                      variant="primary"
+                      size="sm"
+                      block
+                    >
+                      Add Event
+                    </Button>
+                  }
+                  position="center"
+                  modal
                 >
-                  Add Event
-                </Button>
+                  <Form>
+                    <Form.Label className="label-left">
+                      Event Title *
+                    </Form.Label>
+                    <Form.Control
+                      className="input-left"
+                      type="text"
+                      required
+                    ></Form.Control>
+                    <Form.Label className="label-left">
+                      Notifications From (DD-MM-YYYY) *
+                    </Form.Label>
+                    <Form.Control
+                      className="input-left"
+                      type="text"
+                      required
+                    ></Form.Control>
+
+                    <Form.Label className="label-left">Description</Form.Label>
+                    <Form.Control
+                      className="input-left"
+                      type="text"
+                    ></Form.Control>
+                    
+                    <Form.Label className="label-left">Show Event To *</Form.Label>
+                     <Dropdown
+                    className="my-className"
+                    required
+                    options={[
+                      { value: "changepw", label: "Edit Password" },
+                      { value: "editprofile", label: "Edit Profile" },
+                      { value: "deleteacc", label: "Delete Account" },
+                      { value: "logout", label: "Log Out" },
+                    ]}
+                    placeholder="Select who to show this event to"
+                    onSelect={(i) => {
+                      if (i.value == "logout") {
+                        handlelogout();
+                      }
+                      console.log(i);
+                    }} // always fires once a selection happens even if there is no change
+                  />
+                  </Form>
+
+                  <div class="row">
+                    <div class="col">
+                      <button className="button_red">Discard Event</button>
+                    </div>
+                    <div class="col">
+                      <button className="button_green">Create Event</button>
+                    </div>
+                  </div>
+                </StyledPopup>
               </div>
               <div class="col-md-6">
-                <Button
-                  button
-                  className="button_redd"
-                  variant="primary"
-                  size="sm"
-                  block
+                <StyledPopup
+                  trigger={
+                    <Button
+                      button
+                      className="button_redd"
+                      variant="primary"
+                      size="sm"
+                      block
+                    >
+                      Remove Event
+                    </Button>
+                  }
+                  position="center"
+                  modal
                 >
-                  Remove Event
-                </Button>
+                  <Dropdown
+                    className="my-className"
+                    options={[
+                      { value: "changepw", label: "Edit Password" },
+                      { value: "editprofile", label: "Edit Profile" },
+                      { value: "deleteacc", label: "Delete Account" },
+                      { value: "logout", label: "Log Out" },
+                    ]}
+                    placeholder="Select an event to remove"
+                    onSelect={(i) => {
+                      if (i.value == "logout") {
+                        handlelogout();
+                      }
+                      console.log(i);
+                    }} // always fires once a selection happens even if there is no change
+                  />
+                  <Button
+                    button
+                    className="button_red"
+                    size="sm"
+                    content="centre"
+                  >
+                    Remove Event
+                  </Button>
+                </StyledPopup>
               </div>
             </div>
+
           </div>
         </section>
         <nav className="navbarhomeContainer_gray">
