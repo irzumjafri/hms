@@ -182,13 +182,20 @@ const AdminPaymentHistory = (props) => {
                         <div class="col-md-12">
                         <StyledPopup trigger={<div class = "Button" className= "button_purple">
                       Delete Payment</div>} position="center" modal nested>
-                    <div>
+
+                      {close => (
+      <div >
+        <div>
                      You are about to delete this payment history. Do you want to continue?
                      </div>
                      <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
+                      onClick={() => {
+                        console.log('modal closed ');
+                        close();
+                      }}
                     
                          className="button_gray"
                        >
@@ -207,6 +214,10 @@ const AdminPaymentHistory = (props) => {
 
                        </div>
                        </div>
+
+      </div>
+    )}
+                    
                        </StyledPopup>
                         </div>
                       </div>

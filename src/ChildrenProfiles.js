@@ -315,8 +315,9 @@ const{
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            value={myreason}
-                            onChange={(e)=> (myreason = e.target.value)
+                            value={reason}
+                            
+                            onChange={(e)=>setReason(e.target.value)
                             }
                           ></Form.Control>
                         </Form>

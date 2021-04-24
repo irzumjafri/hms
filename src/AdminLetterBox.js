@@ -164,7 +164,7 @@ const AdminLetterBox = (props) => {
               <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(true)}>
                 Write a Letter
               </button>
-              <button className = "button_gray" onClick={(e) => setWriteOrReceive(false)}>
+              <button className = "button_gray1" onClick={(e) => setWriteOrReceive(false)}>
                 Received Letters
               </button>
               </div>
@@ -192,12 +192,17 @@ const AdminLetterBox = (props) => {
                     </Form>
 
                     <StyledPopup trigger = { <button className= "button_green"> Send Letter</button>} position="center" modal>
-                      <div>
+                    {close => (
+      <div >
+         <div>
                       You are about to send the letter you just composed/uploaded. Do you want to continue?
                       </div>
                       <div class = "row">
                         <div class="col-md-6">
-                          <button className = "button_gray"> Cancel</button>
+                          <button className = "button_gray"  onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}> Cancel</button>
                         </div>
                         <div class="col-md-6">
                           <button className = "button_green" onClick={() => {
@@ -206,13 +211,17 @@ const AdminLetterBox = (props) => {
                         };sendLetter({fromName: reciever.value,content: letterBody})}}>Send</button>
                         </div>
                       </div>
+
+      </div>
+    )}
+                     
                       </StyledPopup> 
                   </div>
                 </div>
               ) : (
                 <div>
                   <div class ="row">
-              <button className = "button_gray" onClick={(e) => setWriteOrReceive(true)}>
+              <button className = "button_gray1" onClick={(e) => setWriteOrReceive(true)}>
                 Write a Letter
               </button>
               <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(false)}>

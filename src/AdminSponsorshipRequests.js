@@ -272,28 +272,38 @@ const SponsorshipRequests = (props) => {
                         <div class= "col-md-6">
 
                           <StyledPopup trigger = {<button className="button_blue">  Manually Assign</button>} modal nested>
-                          <Form>
-                        <Form.Label>Number of Children to Assign *</Form.Label>
-                        <Form.Control
-                        type="text"
-                      ></Form.Control>
 
-                        <Form.Label>Select Children</Form.Label>
-                        <Form.Control
-                        type="test"
-                      ></Form.Control>
-                        </Form>
-                        <div class ="row">
-                          <div class = "col-md-6">
-
-                            <button className = "button_gray"> Cancel </button>
-                          </div>
-
-                          <div class = "col-md-6">
-
-                            <button className = "button_green"> Assign Children </button>
-                          </div>
-                        </div>
+                                                        {close => (
+                                                          <div>
+                                    <Form>
+                                    <Form.Label>Number of Children to Assign *</Form.Label>
+                                    <Form.Control
+                                    type="text"
+                                  ></Form.Control>
+            
+                                    <Form.Label>Select Children</Form.Label>
+                                    <Form.Control
+                                    type="test"
+                                  ></Form.Control>
+                                    </Form>
+                                    <div class ="row">
+                                      <div class = "col-md-6">
+            
+                                        <button className = "button_gray"  
+                                        onClick={() => {
+                                        console.log('modal closed ');
+                                        close();
+                                           }} > Cancel </button>
+                                      </div>
+            
+                                      <div class = "col-md-6">
+            
+                                        <button className = "button_green"> Assign Children </button>
+                                      </div>
+                                    </div>
+                                    </div>
+                                  )}
+                         
 
                           </StyledPopup>
                         </div>
@@ -322,16 +332,23 @@ const SponsorshipRequests = (props) => {
 
                     <StyledPopup trigger={<div class = "Button" className= "button_redd">
                      Reject </div>} position="center" modal nested>
-                    <div>
+                     {close => (
+      <div >
+         <div>
                     You are about to reject this sponsorship request. Do you want to continue?
                      </div>
                      <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
+                     onClick={() => {
+                      console.log('modal closed ');
+                      close();
+                    }}
                     
                          className="button_gray"
                        >
+                          
                          Cancel
                        </button> 
 
@@ -352,6 +369,10 @@ const SponsorshipRequests = (props) => {
 
                        </div>
                        </div>
+
+      </div>
+    )}
+                   
                        </StyledPopup>
                     </div>
                   </div>

@@ -160,7 +160,7 @@ const AdminEditFAQs = (props) => {
                     })
                   }
                 ></Form.Control>
-                <div class="row">
+                 <div class="row">
                 <div class="col-md-6">
                   <div
                     onClick={() =>
@@ -177,13 +177,43 @@ const AdminEditFAQs = (props) => {
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div
-                    onClick={() => setRouter("home")}
-                    class="Button"
-                    className="button_redd"
-                  >
-                    Discard Changes
-                  </div>
+                <StyledPopup trigger={<div class = "Button" className= "button_redd">
+                     Discard Changes</div>} position="center" modal nested>
+                     {close => (
+      <div >
+        <div>
+          You are about to discard the changes made. Do you want to continue?
+        </div>
+
+        <div class = "row">
+                      <div class = "col-md-6">
+                      
+                     <button
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
+                         className="button_gray"
+                       >
+                         Cancel
+                       </button> 
+
+                       </div>
+                       <div class = "col-md-6">
+                       <button
+                        onClick={() => setRouter("home")}
+                         
+                         className="button_red"
+                       >
+                        Discard Changes
+                       </button>
+
+                       </div>
+                       </div>
+
+      </div>
+    )}
+                       </StyledPopup>
                 </div>
               </div>
                 <Form.Label className="label-left">Question 2</Form.Label>
@@ -226,14 +256,20 @@ const AdminEditFAQs = (props) => {
                 <div class="col-md-6">
                 <StyledPopup trigger={<div class = "Button" className= "button_redd">
                      Discard Changes</div>} position="center" modal nested>
-                    <div>
-                     You are about to discard the changes made. Do you want to continue?
-                     </div>
-                     <div class = "row">
+                     {close => (
+      <div >
+        <div>
+          You are about to discard the changes made. Do you want to continue?
+        </div>
+
+        <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
-                    
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
                          className="button_gray"
                        >
                          Cancel
@@ -251,6 +287,9 @@ const AdminEditFAQs = (props) => {
 
                        </div>
                        </div>
+
+      </div>
+    )}
                        </StyledPopup>
                 </div>
               </div>
@@ -294,14 +333,20 @@ const AdminEditFAQs = (props) => {
                 <div class="col-md-6">
                 <StyledPopup trigger={<div class = "Button" className= "button_redd">
                      Discard Changes</div>} position="center" modal nested>
-                    <div>
-                     You are about to discard the changes made. Do you want to continue?
-                     </div>
-                     <div class = "row">
+                     {close => (
+      <div >
+        <div>
+          You are about to discard the changes made. Do you want to continue?
+        </div>
+
+        <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
-                    
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
                          className="button_gray"
                        >
                          Cancel
@@ -319,6 +364,9 @@ const AdminEditFAQs = (props) => {
 
                        </div>
                        </div>
+
+      </div>
+    )}
                        </StyledPopup>
                 </div>
               </div>
@@ -362,14 +410,20 @@ const AdminEditFAQs = (props) => {
                 <div class="col-md-6">
                 <StyledPopup trigger={<div class = "Button" className= "button_redd">
                      Discard Changes</div>} position="center" modal nested>
-                    <div>
-                     You are about to discard the changes made. Do you want to continue?
-                     </div>
-                     <div class = "row">
+                     {close => (
+      <div >
+        <div>
+          You are about to discard the changes made. Do you want to continue?
+        </div>
+
+        <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
-                    
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
                          className="button_gray"
                        >
                          Cancel
@@ -387,6 +441,9 @@ const AdminEditFAQs = (props) => {
 
                        </div>
                        </div>
+
+      </div>
+    )}
                        </StyledPopup>
                 </div>
               </div>
@@ -430,14 +487,21 @@ const AdminEditFAQs = (props) => {
                 <div class="col-md-6">
                 <StyledPopup trigger={<div class = "Button" className= "button_redd">
                      Discard Changes</div>} position="center" modal nested>
-                    <div>
-                     You are about to discard the changes made. Do you want to continue?
-                     </div>
-                     <div class = "row">
+                       
+                     {close => (
+      <div >
+        <div>
+          You are about to discard the changes made. Do you want to continue?
+        </div>
+
+        <div class = "row">
                       <div class = "col-md-6">
                       
                      <button
-                    
+                        onClick={() => {
+                          console.log('modal closed ');
+                          close();
+                        }}
                          className="button_gray"
                        >
                          Cancel
@@ -455,6 +519,9 @@ const AdminEditFAQs = (props) => {
 
                        </div>
                        </div>
+
+      </div>
+    )}
                        </StyledPopup>
                 </div>
               </div>
