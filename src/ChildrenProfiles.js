@@ -328,16 +328,15 @@ const ChildrenProfiles = (props) => {
                        <button
                               className="button_red"
                               onClick={() => {
-                                withdrawchild(childData[i].id);
+                                withdrawchild({id:childData[i].id,reason:""});
                                 applicationStatus
                                   ? setRouter("registered")
                                   : setRouter("unregistered");
                               }}
                             >
                               {" "}
-                              Withdraw{" "}
+                              Send{" "}
                             </button>
-
                        </div>
                        </div>
 

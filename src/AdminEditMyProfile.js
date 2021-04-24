@@ -153,7 +153,7 @@ const AdminEditMyProfile = (props) => {
                 </div>
                 <div class="col-md-6">
                   <Form.Label className="label-right">
-                    Date of Birth (DD-MM-YYYY) *
+                    DoB (DD-MM-YYYY) *
                   </Form.Label>
                   <Form.Control
                     type="text"

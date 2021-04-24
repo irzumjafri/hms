@@ -7,21 +7,21 @@ import { Button, Form } from "react-bootstrap";
 // import "react-dropdown/style.css";
 import { Dropdown, Selection } from "react-dropdown-now";
 import "react-dropdown-now/style.css";
-import Styled from 'styled-components';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-
+import Styled from "styled-components";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 const options = [
-  { value: 'changepw', label: 'Edit Password' },
-  { value: 'changeemail', label: 'Edit Email' },
-  { value: 'editprofile', label: 'Edit Profile' },
-  { value: 'deleteacc', label: 'Delete Account' },
-  { value: 'logout', label: 'Log Out' }
+  { value: "changepw", label: "Edit Password" },
+  { value: "editprofile", label: "Edit Profile" },
+  { value: "deleteacc", label: "Delete Account" },
+  { value: "logout", label: "Log Out" },
 ];
 
 const RegisteredSponsorHome = (props) => {
-  const { handleLogout, setRouter , 
+  const {
+    handleLogout,
+    setRouter,
     StyledPopup = Styled(Popup)`
     // use your custom style for ".popup-overlay"
     &-overlay {
@@ -106,8 +106,8 @@ const RegisteredSponsorHome = (props) => {
       padding: 10px 10px;
   
     }
-    `
-} = props;
+    `,
+  } = props;
   return (
     <body>
       <section className="navbarhome">
@@ -208,87 +208,92 @@ const RegisteredSponsorHome = (props) => {
 
             <div class="row">
               <div class="col-md-6">
-              <StyledPopup trigger = {  <Button
-                  button
-                  className="button_blue"
-                  variant="primary"
-                  size="sm"
-                  block
+                <StyledPopup
+                  trigger={
+                    <Button
+                      button
+                      className="button_blue"
+                      variant="primary"
+                      size="sm"
+                      block
+                    >
+                      Add Event
+                    </Button>
+                  }
+                  position="center"
+                  modal
                 >
-                  Add Event
-                </Button>} position="center" modal>
-
                   <Form>
+                    <Form.Label className="label-left">
+                      Event Title *
+                    </Form.Label>
+                    <Form.Control
+                      className="input-left"
+                      type="text"
+                      required
+                    ></Form.Control>
+                    <Form.Label className="label-left">
+                      Notifications From (DD-MM-YYYY) *
+                    </Form.Label>
+                    <Form.Control
+                      className="input-left"
+                      type="text"
+                      required
+                    ></Form.Control>
 
-
-                  <Form.Label className="label-left">Event Title *</Form.Label>
-                        <Form.Control
-                        className = "input-left"
-                          type="text"
-                          required
-                        ></Form.Control> 
-                     <Form.Label className="label-left">Notifications From (DD-MM-YYYY) *</Form.Label>
-                        <Form.Control
-                        className = "input-left"
-                          type="text"
-                          required
-                        ></Form.Control> 
-
-                      <Form.Label className="label-left">Description</Form.Label>
-                        <Form.Control
-                        className = "input-left"
-                          type="text"
-                        ></Form.Control> 
-
-
+                    <Form.Label className="label-left">Description</Form.Label>
+                    <Form.Control
+                      className="input-left"
+                      type="text"
+                    ></Form.Control>
                   </Form>
 
-                  <div class ="row">
-                    <div class = "col">
-
-                      <button className= "button_red">Discard Event</button>
+                  <div class="row">
+                    <div class="col">
+                      <button className="button_red">Discard Event</button>
                     </div>
-                    <div class = "col">
-
-                    <button className= "button_green">Create Event</button>
+                    <div class="col">
+                      <button className="button_green">Create Event</button>
                     </div>
                   </div>
-
-
-              </StyledPopup>
-               
+                </StyledPopup>
               </div>
               <div class="col-md-6">
-              <StyledPopup trigger = {   <Button
-                  button
-                  className="button_redd"
-                  variant="primary"
-                  size="sm"
-                  block
+                <StyledPopup
+                  trigger={
+                    <Button
+                      button
+                      className="button_redd"
+                      variant="primary"
+                      size="sm"
+                      block
+                    >
+                      Remove Event
+                    </Button>
+                  }
+                  position="center"
+                  modal
                 >
-                  Remove Event
-                </Button>} position="center" modal>
-                    
-                <Dropdown
-            className="my-className"
-            options={options}
-            placeholder = "Select an event to remove"
-            
-       
-            onSelect={(i) => {if (i.value == 'logout'){
-              handleLogout();
-            };console.log(i)}} // always fires once a selection happens even if there is no change
-          />
-                   <Button
-                  button
-                  className="button_red"
-                 
-                  size="sm"
-                  content = "centre"
-                >
-                  Remove Event
-                </Button>
-                  </StyledPopup>
+                  <Dropdown
+                    className="my-className"
+                    options={options}
+                    placeholder="Select an event to remove"
+                    onSelect={(i) => {
+                      if (i.value == "logout") {
+                        handleLogout();
+                      }
+                      console.log(i);
+                    }} // always fires once a selection happens even if there is no change
+                  />
+                  <Button
+                    button
+                    className="button_red"
+                    size="sm"
+                    content="centre"
+                  >
+                    Remove Event
+                  </Button>
+                </StyledPopup>
               </div>
             </div>
           </div>
@@ -299,20 +304,30 @@ const RegisteredSponsorHome = (props) => {
           {/* <p className="smalltext" onClick={handleLogout}>
             <span>Logout</span>
           </p> */}
-           <div className="smalltext" >
+          <div className="smalltext">
             <Dropdown
-            className="my-className"
-            options={options}
-            placeholder = "My Account"
-            onSelect={(i) => {if (i.value == 'logout'){
-              handleLogout();
-            };console.log(i)}} // always fires once a selection happens even if there is no change
-          />
+              className="my-className"
+              options={options}
+              placeholder="My Account"
+              value="My Account"
+              onSelect={(i) => {
+                if (i.value == "logout") {
+                  handleLogout();
+                } else if (i.value == "changepw") {
+                  return (
+                    <Popup
+                      position="right center"
+                    >
+                      <div>Popup content here !!</div>
+                    </Popup>
+                  );
+                }
+              }} // always fires once a selection happens even if there is no change
+            />
           </div>
           <nav className="navbarhomeContainer">
             <h2 className="titletext">Homepage</h2>
           </nav>
-        
         </nav>
 
         <section className="bottombarhome">
