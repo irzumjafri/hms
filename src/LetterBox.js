@@ -142,7 +142,7 @@ const LetterBox = (props) => {
               <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(true)}>
                 Write a Letter
               </button>
-              <button className = "button_gray" onClick={(e) => setWriteOrReceive(false)}>
+              <button className = "button_gray1" onClick={(e) => setWriteOrReceive(false)}>
                 Received Letters
               </button>
               </div>
@@ -195,7 +195,7 @@ const LetterBox = (props) => {
                   {/* <h2>RECIEVING LETTERS</h2> */}
                   <div className="letterContainer">
                   <div class ="row">
-              <button className = "button_gray" onClick={(e) => setWriteOrReceive(true)}>
+              <button className = "button_gray1" onClick={(e) => setWriteOrReceive(true)}>
                 Write a Letter
               </button>
               <button className = "button_darkblue" onClick={(e) => setWriteOrReceive(false)}>

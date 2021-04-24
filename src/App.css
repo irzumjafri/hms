@@ -1942,6 +1942,21 @@
   text-align: center;
   padding: 10px;
 }
+.paymentHistory .paymentHistoryContainer .button_gray {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #d2d2d2;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
 
 .paymentHistory .paymentHistoryContainer .titletext {
   color: white;
@@ -2275,6 +2290,7 @@
   border-radius: 10px;
   align-items: center;
   justify-content: center;
+  padding-top: 38px;
 }
 
 .letterBox .letterBoxContainer .button_green {
@@ -2307,36 +2323,69 @@
   text-align: center;
   padding: 10px;
   margin-bottom: 10px; */
+  /* border: none;
+  outline: none; */
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #192539;
+  /* border-radius: 10px; */
+  border-bottom: none;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+  border-bottom: none;
+}
+.letterBox .letterBoxContainer .button_gray1 {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #4d535e;
+  /* border-radius: 10px; */
+  border-bottom: none;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+
+  width: 50%;
+}
+.letterBox .letterBoxContainer .button_gray {
   border: none;
   outline: none;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
-  background: #262d3d;
-  /* border-radius: 10px; */
-  border-bottom: none;
-  margin: 0px;
+  background: #d2d2d2;
+  border-radius: 10px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 10px;
-  width: 50%;
 }
-.letterBox .letterBoxContainer .button_gray {
+
+.letterBox .letterBoxContainer .button_blue {
+  border: none;
+  outline: none;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
-  background: #052138;
-  /* border-radius: 10px; */
-  border-bottom: none;
-  margin: 0px;
+  background: #529cea;
+  border-radius: 10px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 10px;
-  width: 50%;
 }
 
 .letterBox .letterBoxContainer .my-className {
