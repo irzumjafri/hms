@@ -209,7 +209,7 @@ const AdminAcademicReports = (props) => {
         <section></section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
-          <div class="col-md-12">
+          {/* <div class="col-md-12">
                 <div
                   onClick={() => setRouter("addpaymenthistory")}
                   class="Button"
@@ -218,7 +218,7 @@ const AdminAcademicReports = (props) => {
                   {" "}
                   Add New Academic Record
                 </div>
-              </div>
+              </div> */}
             <Form>
               <Form.Row>
                 <div class = "col-md-6">
@@ -361,7 +361,7 @@ const AdminAcademicReports = (props) => {
               </Form.Row>
             </Form>
             
-            <div class="row">
+            {/* <div class="row">
                         <div class="col-md-6">
                           <div className= "button_blue"
                             
@@ -414,12 +414,12 @@ const AdminAcademicReports = (props) => {
                             )}
                           </StyledPopup>
 
-            </div>
+            </div> */}
 
 
 
-            {/*  */}
-            {/* <div class = "row">
+    
+            <div class = "row">
             <div className="col-md-6">
               
                 <button
@@ -507,7 +507,7 @@ const AdminAcademicReports = (props) => {
                     
                        </StyledPopup>
               
-              </div>*/}
+              </div>
 
             
             </div> 
