@@ -304,8 +304,6 @@ const RegisteredSponsorHome = (props) => {
             className="my-className"
             options={options}
             placeholder = "My Account"
-            
-       
             onSelect={(i) => {if (i.value == 'logout'){
               handleLogout();
             };console.log(i)}} // always fires once a selection happens even if there is no change

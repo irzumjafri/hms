@@ -101,6 +101,7 @@ const Admin = () => {
               fetchMeetingRequests();
               fetchAcademicRecords("", "");
               fetchLetters();
+              fetchEvents();
             } else {
               clearInputs();
               setLoggedIn(false);

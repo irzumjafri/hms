@@ -204,6 +204,7 @@ const Sponsor = () => {
   };
 
   const fetchSponsorData = (id) => {
+    console.log("FETCHINGSPONSORDATA")
     let refdoc = "";
     refdoc = db.collection("registeredSponsors").doc(id);
     refdoc
@@ -231,10 +232,13 @@ const Sponsor = () => {
           }
           setHowToAssignChildren(doc.data().howToAssignChildren);
         } else {
+          setApplicationStatus()
+        setRouter('unregistered')
           console.log("No such document!");
         }
       })
       .catch((error) => {
+        
         console.log("Error getting document:", error);
       });
   };
@@ -354,13 +358,16 @@ const Sponsor = () => {
       })
       .then(() => {
         console.log("Document successfully updated!");
-        fetchChildProfiles();
+        fetchChildProfiles(email);
 
         // once the child profile is updated, we then need to reflect this in sponsor's profile as well
         let newChildrenNumber = parseInt(numberOfSponsoredChildren) - 1;
+        console.log('i am hereeeeee')
+        console.log(newChildrenNumber)
 
         // delete this sponsor's profile
         if (newChildrenNumber === 0) {
+          console.log('okay bye')
           db.collection("registeredSponsors")
             .doc(user.uid)
             .delete()
@@ -392,6 +399,7 @@ const Sponsor = () => {
 
   //fetch child profiles for sponsor
   const fetchChildProfiles = (e) => {
+    console.log('FETCHINGCHILDREN')
     let tempData = [];
     try {
       db.collection("childrenProfiles")
