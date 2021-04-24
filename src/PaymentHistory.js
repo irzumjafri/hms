@@ -30,24 +30,24 @@ const PaymentHistory = (props) => {
 
           return (
             <div><Form>
-                <Form.Row>
-                <div class = "col">
+               
+               
                 <Form.Label className= "label-left">Amount</Form.Label>
                 <Form.Control
                 type="text"
                 required
                 value={paymentData[i].amount}
                 ></Form.Control>
-                </div>
-                <div class = "col">
+              
+                
                 <Form.Label className= "label-left">Payment Date (DD-MM-YYYY)</Form.Label>
                 <Form.Control
                 type="text"
                 required
                 value={paymentData[i].paymentDate}
                 ></Form.Control>
-                </div>
-                </Form.Row>
+                
+                
                 </Form>
                 </div>
               <div className="btnContainer">

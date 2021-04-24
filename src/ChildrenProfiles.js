@@ -311,7 +311,7 @@ const{
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            value={myreason}
+                            value={reason}
                             
                             onChange={(e)=>setReason(e.target.value)
                             }
