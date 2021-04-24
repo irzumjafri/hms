@@ -68,6 +68,7 @@ const Sponsor = () => {
   const [purpose, setPurpose] = useState("");
   const [contactUs, setContactUs] = useState();
   const [academicRecords, setacademicRecords] = useState([]);
+  const [calendars, setcalendars] = useState([]);
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
@@ -343,9 +344,8 @@ const Sponsor = () => {
 
   // withdraw child
   const withdrawchild = (i) => {
-    console.log("Inside withdraw", i);
+    // we have updted the child's profile
     let profileupdate = db.collection("childrenProfiles").doc(i);
-    console.log("FUNCTION CALLED");
     return profileupdate
       .update({
         sponsorEmail: "",
@@ -354,6 +354,21 @@ const Sponsor = () => {
       .then(() => {
         console.log("Document successfully updated!");
         fetchChildProfiles();
+
+        // once the child profile is updated, we then need to reflect this in sponsor's profile as well
+
+        let newChildrenNumber = parseInt(numberOfSponsoredChildren) - 1;
+
+        // Simply assign this new children number
+        let profileupdate2 = db.collection("registeredSponsors").doc(user.uid); //////////////////////////////
+        return profileupdate2
+          .update({
+            numberOfSponsoredChildren: newChildrenNumber,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+            fetchSponsorData(user.uid); ///////////////////////////////
+          });
       });
   };
 
@@ -539,7 +554,6 @@ const Sponsor = () => {
   };
 
   // storing additional data in userAccounts, doc name will be uid of that document which is being generated first first
-
   const createUserAccount = (id) => {
     db.collection("userAccounts")
       .doc(id.toString())
@@ -551,6 +565,98 @@ const Sponsor = () => {
         password: confirmPassword,
         applicationStatus: "",
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
+      });
+  };
+
+  // this function fetches all the events stored in the database meant to be displayed for this sponsor and are created by them
+  const fetchEvents = () => {
+    let tempData = [];
+    db.collection("calendar")
+      .get()
+      .then((querySnapshot) => {
+        // no events in the db
+        if (querySnapshot.empty) {
+          console.log("No events exist in the database yet");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            if (
+              doc.data().createdBy === email ||
+              doc.data().createdFor === "sponsor"
+            ) {
+              // update state to store data of all events present in current snapshot of the db
+              tempData.push({
+                date: doc.data().date,
+                id: doc.data().id,
+                description: doc.data().description,
+                notificationFrom: doc.data().notificationFrom,
+                createdFor: doc.data().createdFor, // either "admin" or "sponsor"
+                createdBy: doc.data().createdBy,
+              });
+            }
+          });
+        }
+        setcalendars(tempData);
+      });
+  };
+
+  // this function allows users to create events to be displayed for themselves only
+  const addEvent = (i) => {
+    db.collection("calendar")
+      .add({
+        date: i.date,
+        description: i.description,
+        notificationFrom: i.notificationFrom,
+        createdFor: "sponsor", // hardcoding this because sponsor users can only create events from themselves
+        createdBy: email, // sets createdBy to this sponsors email address for fetching purposes
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("calendar").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+            fetchEvents();
+          });
+      });
+  };
+
+  // this function lets admin users delete events
+  const deleteEvent = (i) => {
+    // we have to check if they i.id belongs to document that is created by this sponsor or not. Only
+    let iId = i.id;
+    db.collection("calendar")
+      .doc(iId.toString().replace(/\s/g, ""))
+      .get()
+      .then((querySnapshot) => {
+        // we extract the createdBy to see if it is this sposnor or not
+        let canDelete = "";
+        querySnapshot.forEach((doc) => {
+          if (doc.data().id === iId) {
+            canDelete = doc.data().createdBy;
+          }
+        });
+
+        // then we check if canDelete is atually this sponsor or not, if yes then proceed with deletin of document
+        if (canDelete === email) {
+          db.collection("calendar")
+            .doc(iId.toString().replace(/\s/g, ""))
+            .delete()
+            .then(() => {
+              console.log("Document successfully deleted!");
+              /// call fucntion to update states of children profiles acc to the updated db
+              fetchEvents();
+            })
+            .catch((error) => {
+              console.error("Error removing document: ", error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error("Error accessing document with this ID: ", error);
       });
   };
 

@@ -22,7 +22,7 @@ import AdminAddChildrenProfiles from "./AdminAddChildrenProfiles";
 import AdminEditChildrenProfiles from "./AdminEditChildrenProfiles";
 import AdminAddPayment from "./AdminAddPayment";
 import AdminEditPaymentHistory from "./AdminEditPaymentHistory";
-import AdminLetterBox from "./AdminLetterBox"
+import AdminLetterBox from "./AdminLetterBox";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -62,6 +62,7 @@ const Admin = () => {
   const [meetingRecords, setmeetingRecords] = useState([]);
   const [academicRecords, setacademicRecords] = useState([]);
   const [letters, setLetters] = useState([]);
+  const [calendars, setcalendars] = useState([]);
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
@@ -98,7 +99,7 @@ const Admin = () => {
               fetchContactUs();
               fetchFAQs();
               fetchMeetingRequests();
-              fetchAcademicRecords("","");
+              fetchAcademicRecords("", "");
               fetchLetters();
             } else {
               clearInputs();
@@ -221,7 +222,7 @@ const Admin = () => {
 
   // this function allows admin users to accept the application with id = i and sets HowToAssign children according to
   // the popup. It will either be "Auto-assign" or "Assign Manually"
-  const acceptSponsorshipRequest = (i, howTo) => {
+  const acceptSponsorshipRequest = (i, howTo, object) => {
     let first = "";
     let last = "";
     let email = "";
@@ -291,7 +292,7 @@ const Admin = () => {
             fetchSponsorshipApplications();
             fetchSponsorData();
             // assign children to sponsors as well acc to how to
-            assignChildrenToSponsor(email, noc); // store email in children profile which are to be assigned
+            assignChildrenToSponsor(email, noc, howTo, object); // store email in children profile which are to be assigned
           });
       })
 
@@ -302,55 +303,75 @@ const Admin = () => {
 
   // this function takes CNIC of number and assigns noc which are unsassigned to assigned and adds cnic of sponsor there
   // for identification
-  const assignChildrenToSponsor = (mail, noc) => {
-    db.collection("childrenProfiles")
-      .where("status", "==", "unassigned")
-      .get()
-      .then((querySnapshot) => {
-        console.log(querySnapshot);
-        if (querySnapshot.empty) {
-          console.log("No unassigned child in the database");
-          return;
-        } else {
-          // set all the fields
-          let childIDs = [];
-          let count = 0;
-          querySnapshot.forEach((doc) => {
-            count = count + 1;
-            childIDs.push(doc.data().id);
-          });
-
-          if (count < noc) {
-            console.log(
-              `Not enough unassigned children in the database. Number of unassigned children is: ${count}`
-            );
+  const assignChildrenToSponsor = (mail, noc, howTo, object) => {
+    // automatically assign children
+    if (howTo === "auto") {
+      db.collection("childrenProfiles")
+        .where("status", "==", "unassigned")
+        .get()
+        .then((querySnapshot) => {
+          console.log(querySnapshot);
+          if (querySnapshot.empty) {
+            console.log("No unassigned child in the database");
             return;
           } else {
-            // get IDs of profiles of children that will be assigned to this sponsor
-            // update each ID of that child with sponsors CNIC and update its status as well
-            childIDs.map((idOfChild, i) => {
-              if (i < noc) {
-                let profileToEdit = db
-                  .collection("childrenProfiles")
-                  .doc(idOfChild);
-
-                return profileToEdit
-                  .update({
-                    sponsorEmail: mail,
-                    status: "assigned",
-                  })
-                  .then(() => {
-                    console.log("Document successfully updated!");
-                    fetchChildrenProfiles(); // update the changes in states as well
-                  })
-                  .catch((error) => {
-                    console.error("Error updating document: ", error);
-                  });
-              }
+            // set all the fields
+            let childIDs = [];
+            let count = 0;
+            querySnapshot.forEach((doc) => {
+              count = count + 1;
+              childIDs.push(doc.data().id);
             });
+
+            if (count < noc) {
+              console.log(
+                `Not enough unassigned children in the database. Number of unassigned children is: ${count}`
+              );
+              return;
+            } else {
+              // get IDs of profiles of children that will be assigned to this sponsor
+              // update each ID of that child with sponsors CNIC and update its status as well
+              childIDs.map((idOfChild, i) => {
+                if (i < noc) {
+                  let profileToEdit = db
+                    .collection("childrenProfiles")
+                    .doc(idOfChild);
+
+                  return profileToEdit
+                    .update({
+                      sponsorEmail: mail,
+                      status: "assigned",
+                    })
+                    .then(() => {
+                      console.log("Document successfully updated!");
+                      fetchChildrenProfiles(); // update the changes in states as well
+                    })
+                    .catch((error) => {
+                      console.error("Error updating document: ", error);
+                    });
+                }
+              });
+            }
           }
-        }
+        });
+    }
+
+    // manually assigns children
+    if (howTo === "manual") {
+      object.forEach((childID) => {
+        // use this child ID to assign this sponsor to that child
+        let profileupdate = db.collection("childrenProfiles").doc(childID);
+        return profileupdate
+          .update({
+            sponsorEmail: mail,
+            status: "assigned",
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+            fetchChildrenProfiles(); // update the changes in states as well
+          });
       });
+    }
   };
 
   // This function allows admin to simply reject a sponsorship request with id = i
@@ -984,7 +1005,7 @@ const Admin = () => {
               });
             });
           }
-          console.log(tempData)
+          console.log(tempData);
           setacademicRecords(tempData);
         });
     }
@@ -1202,7 +1223,7 @@ const Admin = () => {
               senderName: doc.data().senderName,
               content: doc.data().content,
               id: doc.data().id,
-            })
+            });
           });
         }
         // console.log(tempData);
@@ -1215,7 +1236,7 @@ const Admin = () => {
     // fromName will always be from children names
 
     // first search for the sponsorEmail against the person's toName
-    console.log(i)
+    console.log(i);
     db.collection("childrenProfiles")
       .where("name", "==", i.fromName)
       .get()
@@ -1252,6 +1273,76 @@ const Admin = () => {
       });
   };
 
+  // this function fetches all the events stored in the database
+  const fetchEvents = () => {
+    // fetch and display all the events that admin users have created
+    let tempData = [];
+    db.collection("calendar")
+      .where("createdBy", "==", "admin")
+      .get()
+      .then((querySnapshot) => {
+        // no events in the db
+        if (querySnapshot.empty) {
+          console.log("No events exist in the database yet");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // update state to store data of all events present in current snapshot of the db
+            tempData.push({
+              date: doc.data().date,
+              id: doc.data().id,
+              description: doc.data().description,
+              notificationFrom: doc.data().notificationFrom,
+              createdFor: doc.data().createdFor, // either "admin" or "sponsor"
+              createdBy: doc.data().createdBy, // email address of creater
+            });
+          });
+        }
+        setcalendars(tempData);
+      });
+  };
+
+  // this function allows admin users to create events
+  const addEvent = (i) => {
+    db.collection("calendar")
+      .add({
+        date: i.date,
+        description: i.description,
+        notificationFrom: i.notificationFrom,
+        createdFor: i.createdFor,
+        createdBy: i.createdBy,
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("calendar").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+            fetchEvents();
+          });
+      });
+  };
+
+  // this function lets admin users delete events
+  const deleteEvent = (i) => {
+    // i.id will always be from admin users
+    let iId = i.id;
+    db.collection("calendar")
+      .doc(iId.toString().replace(/\s/g, ""))
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        // call fucntion to update states of children profiles acc to the updated db
+        fetchEvents();
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
+
   //-----------------------------------------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------------------
 
   //-------------------------------------------------------------------------------------RENDER-----------------------------------------------------------------------------------------
@@ -1278,7 +1369,7 @@ const Admin = () => {
 
               editmyprofile: (
                 <AdminEditMyProfile
-                fetchAdminProfile={fetchAdminProfile}
+                  fetchAdminProfile={fetchAdminProfile}
                   setRouter={setRouter}
                   firstName={firstName}
                   lastName={lastName}
@@ -1304,7 +1395,7 @@ const Admin = () => {
               ),
               sponsorshiprequests: (
                 <AdminSponsorshipRequests
-                fetchSponsorshipApplications={fetchSponsorshipApplications}
+                  fetchSponsorshipApplications={fetchSponsorshipApplications}
                   setRouter={setRouter}
                   sponsorshipApplicationData={sponsorshipApplicationData}
                   handlelogout={handleAdminLogout}
@@ -1314,7 +1405,7 @@ const Admin = () => {
               ),
               sponsorprofiles: (
                 <AdminSponsorProfiles
-                fetchSponsorData={fetchSponsorData}
+                  fetchSponsorData={fetchSponsorData}
                   handlelogout={handleAdminLogout}
                   sponsorData={sponsorData}
                   setRouter={setRouter}
@@ -1333,7 +1424,7 @@ const Admin = () => {
               ),
               paymenthistory: (
                 <AdminPaymentHistory
-                fetchPaymentHistory={fetchPaymentHistory}
+                  fetchPaymentHistory={fetchPaymentHistory}
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   calleditpaymenthistory={calleditpaymenthistory}
@@ -1358,7 +1449,7 @@ const Admin = () => {
               ),
               meetingrequests: (
                 <AdminMeetingRequests
-                fetchMeetingRequests={fetchMeetingRequests}
+                  fetchMeetingRequests={fetchMeetingRequests}
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   meetingRecords={meetingRecords}
@@ -1367,7 +1458,7 @@ const Admin = () => {
               ),
               letterbox: (
                 <AdminLetterBox
-                fetchLetters={fetchLetters}
+                  fetchLetters={fetchLetters}
                   childData={childData}
                   setRouter={setRouter}
                   handlelogout={handleAdminLogout}
@@ -1403,7 +1494,7 @@ const Admin = () => {
               ),
               academicrecords: (
                 <AdminAcademicReports
-                fetchAcademicRecords={fetchAcademicRecords}
+                  fetchAcademicRecords={fetchAcademicRecords}
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   academicRecords={academicRecords}
