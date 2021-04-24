@@ -95,6 +95,7 @@ const ChildrenProfiles = (props) => {
   } = props;
 
   const [i, setI] = useState(0);
+  const [reason, setReason] = useState("");
 
   console.log(childData);
   return (
@@ -299,9 +300,8 @@ const ChildrenProfiles = (props) => {
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            // required
-                            // value={childData[i].familyBackground}
-                            // onChange={(e) => setInstitution(e.target.value)}
+                            value={reason}
+                            onChange={(e) => setReason(e.target.value)}
                           ></Form.Control>
                         </Form>
                         <div class="row">
@@ -319,14 +319,14 @@ const ChildrenProfiles = (props) => {
                             <button
                               className="button_red"
                               onClick={() => {
-                                withdrawchild(childData[i].id);
+                                withdrawchild({id:childData[i].id,reason: reason});
                                 applicationStatus
                                   ? setRouter("registered")
                                   : setRouter("unregistered");
                               }}
                             >
                               {" "}
-                              Withdraw{" "}
+                              Finish Withdrawing{" "}
                             </button>
                           </div>
                         </div>

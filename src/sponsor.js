@@ -345,11 +345,12 @@ const Sponsor = () => {
   // withdraw child
   const withdrawchild = (i) => {
     // we have updted the child's profile
-    let profileupdate = db.collection("childrenProfiles").doc(i);
+    let profileupdate = db.collection("childrenProfiles").doc(i.id);
     return profileupdate
       .update({
         sponsorEmail: "",
         status: "unassigned",
+        reasonForWithdrawal: i.reason
       })
       .then(() => {
         console.log("Document successfully updated!");
