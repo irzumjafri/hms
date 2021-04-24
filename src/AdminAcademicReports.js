@@ -16,7 +16,7 @@ const AdminAcademicReports = (props) => {
     academicRecords,
     setRouter,
     addAcademicRecord,
-    editAcademicRecord,
+    editAcademicRecords,
     fetchAcademicRecords,
     StyledPopup = Styled(Popup)`
   // use your custom style for ".popup-overlay"
@@ -370,7 +370,7 @@ const AdminAcademicReports = (props) => {
                           grade: grd,
                           percentage: perc,
                         })
-                      : editAcademicRecord({
+                      : editAcademicRecords({
                           name: n,
                           id: id,
                           reportType: rT,

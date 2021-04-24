@@ -1500,6 +1500,8 @@ const Admin = () => {
                   setRouter={setRouter}
                   academicRecords={academicRecords}
                   childData={childData}
+                  editAcademicRecords={editAcademicRecords}
+                  addAcademicRecord={addAcademicRecord}
                 />
               ),
               editfaqs: (
