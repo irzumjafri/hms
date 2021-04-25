@@ -169,6 +169,7 @@ const LetterBox = (props) => {
                         
                       </div>
                       </Form>
+                      
                       <StyledPopup trigger = { <button className= "button_green"> Send Letter</button>} position="center" modal>
                       <div>
                       You are about to send the letter you just composed/uploaded. Do you want to continue?

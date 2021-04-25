@@ -30,7 +30,7 @@ const EditPassword = (props) => {
             return (
             <div>
               <Form>
-                <div class="col">
+                <div class="col-md-12">
                   <Form.Label className="label-left">
                     Enter Current Password
                   </Form.Label>
@@ -41,7 +41,7 @@ const EditPassword = (props) => {
                     onChange={(e) => setOldPassword(e.target.value)}
                   ></Form.Control>
                 </div>
-                <div class="col">
+                <div class="col-md-12">
                   <Form.Label className="label-left">
                     Enter New Password
                   </Form.Label>
@@ -52,7 +52,7 @@ const EditPassword = (props) => {
                     onChange={(e) => setNewPassword(e.target.value)}
                   ></Form.Control>
                 </div>
-                <div class="col">
+                <div class="col-md-12">
                   <Form.Label className="label-left">
                     Confirm New Password
                   </Form.Label>
@@ -67,13 +67,16 @@ const EditPassword = (props) => {
             </div>
             <div className="btnContainer">
               <div class="row">
-                <div class="col-md-12">
+                
                   {oldPassword == password && newPassword == cPassword ? (
+                    <div class="col-md-12">
                     <button class="Button" className="button_blue" onClick={() => updatePassword(newPassword)}>
                       {" "}
                       Change Password
                     </button>
+                    </div>
                   ) : (
+                    <div class="col-md-12">
                     <button
                       class="Button"
                       className="button_gray"
@@ -82,8 +85,9 @@ const EditPassword = (props) => {
                       {" "}
                       Change Password
                     </button>
+                    </div>
                   )}
-                </div>
+                
               </div>
             </div>
             );
@@ -128,7 +132,7 @@ const EditPassword = (props) => {
             >
               <span>HOME PAGE</span>
             </p>
-            <h2 className="titletext">PAYMENT HISTORY</h2>
+            <h2 className="titletext">EDIT PASSWORD</h2>
           </nav>
         </nav>
 

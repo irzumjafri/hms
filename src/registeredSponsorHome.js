@@ -113,8 +113,7 @@ const RegisteredSponsorHome = (props) => {
                   button
                   className="button_green"
                   onClick={() => setRouter("editmyprofile")}
-                  variant="primary"
-                  size="lg"
+                  
                   block
                 >
                   Edit My Profile{"  "}
@@ -126,8 +125,7 @@ const RegisteredSponsorHome = (props) => {
                   button
                   className="button_green"
                   onClick={() => setRouter("paymenthistory")}
-                  variant="primary"
-                  size="lg"
+                  
                   block
                 >
                   Payment History{"  "}
@@ -140,8 +138,7 @@ const RegisteredSponsorHome = (props) => {
                   button
                   className="button_green"
                   onClick={() => setRouter("childrenprofiles")}
-                  variant="primary"
-                  size="lg"
+                  
                   block
                 >
                   Children Profiles
@@ -152,8 +149,7 @@ const RegisteredSponsorHome = (props) => {
                   button
                   className="button_green"
                   onClick={() => setRouter("academicreports")}
-                  variant="primary"
-                  size="lg"
+                  
                   block
                 >
                   Academic Reports{" "}
@@ -167,8 +163,7 @@ const RegisteredSponsorHome = (props) => {
                   button
                   className="button_green"
                   onClick={() => setRouter("requestmeeting")}
-                  variant="primary"
-                  size="lg"
+                  
                   block
                 >
                   Request Meeting{"  "}
@@ -179,8 +174,7 @@ const RegisteredSponsorHome = (props) => {
                   button
                   className="button_green"
                   onClick={() => setRouter("letterbox")}
-                  variant="primary"
-                  size="lg"
+                  
                   block
                 >
                   Letter Box{"       "}
