@@ -1136,7 +1136,36 @@
   margin: 10px auto;
   font-size: 20px;
 }
+@media only screen and (max-width: 400px) {
+  .unregistered {
+    display: block;
+  }
+  .unregistered .unregisteredContainer_left {
+    float: none;
 
+    text-align: left;
+    margin: auto;
+    margin-top: 100px;
+  }
+
+  .unregistered .unregisteredContainer_right {
+    float: none;
+
+    margin: auto;
+  }
+
+  .unregistered .unregisteredContainer_left .button_green {
+    /* width: 50%; */
+    padding: auto;
+
+    margin: auto;
+    margin-top: 10%;
+    /* transform: translateX(-10px); */
+  }
+  .unregistered .unregisteredContainer_left .label-left {
+    margin-top: 15%;
+  }
+}
 /* @media only screen and (max-width: 1564px) {
   .unregistered .unregisteredContainer_left .button_green {
     border: none;
@@ -1298,6 +1327,37 @@
   }
 }
 
+@media only screen and (max-width: 400px) {
+  .sponsorHomepage {
+    display: block;
+  }
+  .sponsorHomepage .sponsorHomepageContainer_left {
+    float: none;
+    text-align: left;
+    margin: auto;
+    margin-top: 100px;
+    display: block;
+    padding: 10px;
+    width: 83%;
+  }
+
+  .sponsorHomepage .sponsorHomepageContainer_right {
+    float: none;
+    margin: auto;
+    display: block;
+  }
+
+  .sponsorHomepage .sponsorHomepageContainer_left .button_green {
+    /* width: 50%; */
+    padding: auto;
+    margin: 10% auto;
+
+    /* transform: translateX(-10px); */
+  }
+  .sponsorHomepage .sponsorHomepageContainer_left .label-left {
+    margin-top: 15%;
+  }
+}
 /* @media only screen and (max-width: 411px) {
   .sponsorHomepage .sponsorHomepageContainer_left {
     width: 900%;
@@ -1847,6 +1907,7 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  width: 100%;
 }
 
 .requestAMeeting .requestAMeetingContainer .titletext {
@@ -2002,7 +2063,24 @@
   letter-spacing: 1px;
   background: #d2d2d2;
   border-radius: 10px;
-  height: 50px;
+  /* //height: 50px; */
+  margin: 10px 0px auto 10px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+}
+.paymentHistory .paymentHistoryContainer .button_redd {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #ff0033;
+  border-radius: 10px;
+  /* //height: 50px; */
   margin: 10px 0px auto 10px;
   display: block;
   align-items: center;
@@ -2387,6 +2465,8 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  width: 100%;
+  margin: 5% auto;
 }
 .letterBox .letterBoxContainer .button_darkblue {
   /* border: none;
@@ -2456,6 +2536,7 @@
   text-align: center;
   padding: 10px;
   width: 100%;
+  margin: 5% auto;
 }
 
 .letterBox .letterBoxContainer .button_blue {
@@ -2473,6 +2554,7 @@
   text-align: center;
   padding: 10px;
   width: 100%;
+  margin: 5% auto;
 }
 
 .letterBox .letterBoxContainer .my-className {

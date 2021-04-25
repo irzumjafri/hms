@@ -189,7 +189,7 @@ const RequestAMeeting = (props) => {
             </Form>
 
             <div className="btnContainer">
-
+            <div className = "col-md-12">
             <StyledPopup trigger = {   <button
                 
                 className="button_green"
@@ -212,6 +212,7 @@ const RequestAMeeting = (props) => {
                         </div>
                       </div>
                       </StyledPopup>
+                      </div>
             
             </div>
           </div>
