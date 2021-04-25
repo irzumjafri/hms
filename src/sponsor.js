@@ -82,27 +82,6 @@ const Sponsor = () => {
   const dateSetter = (i) => {
     if (!i) {
       i = new Date();
-<<<<<<< Updated upstream
-    } 
-    i = i.toString()
-    i = i.split(" ")
-
-
-    if (i[1] == "Jan"){i[1] = "01"}
-    else if (i[1] == "Feb"){i[1] = "02"}
-    else if (i[1] == "Mar"){i[1] = "03"}
-    else if (i[1] == "Apr"){i[1] = "04"}
-    else if (i[1] == "May"){i[1] = "05"}
-    else if (i[1] == "Jun"){i[1] = "06"}
-    else if (i[1] == "Jul"){i[1] = "07"}
-    else if (i[1] == "Aug"){i[1] = "08"}
-    else if (i[1] == "Sep"){i[1] = "09"}
-    else if (i[1] == "Oct"){i[1] = "10"}
-    else if (i[1] == "Nov"){i[1] = "11"}
-    else if (i[1] == "Dec"){i[1] = "12"}
-    setDate(i[2]+"-"+i[1]+"-"+i[3])
-  }
-=======
     }
     i = i.toString();
     i = i.split(" ");
@@ -132,11 +111,6 @@ const Sponsor = () => {
     } else if (i[1] == "Dec") {
       i[1] = "12";
     }
-
-    console.log(i[1]);
-    console.log(i[2]);
-    console.log(i[3]);
->>>>>>> Stashed changes
 
     setDate(i[2] + "-" + i[1] + "-" + i[3]);
   };

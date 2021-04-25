@@ -13,10 +13,11 @@ const AdminHome = (props) => {
   const {
     handlelogout,
     setRouter,
-    updatesArray,
+    notifications,
     date,
     dateSetter,
     calendars,
+    fetchNotifications,
     StyledPopup = Styled(Popup)`
     // use your custom style for ".popup-overlay"
     &-overlay {
@@ -138,11 +139,13 @@ const AdminHome = (props) => {
               <h1 className="label-left" /*Make the updates array work*/>
                 Updates
               </h1>
-              {/* {updatesArray.map((con, i) => {
+              <button className="button_green"
+                    onClick={() => fetchNotifications()}>Refresh</button>
+              {notifications.map((con, i) => {
                     return (
-                      <p>{updatesArray[i].title}</p>
+                      <p>{notifications[i].notificationContent}</p>
                     );
-                  })} */}
+                  })}
             </div>
 
             <div>

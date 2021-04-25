@@ -144,11 +144,8 @@ const Admin = () => {
               fetchMeetingRequests();
               fetchAcademicRecords("", "");
               fetchLetters();
-<<<<<<< Updated upstream
-=======
               fetchEvents();
               fetchNotifications();
->>>>>>> Stashed changes
             } else {
               clearInputs();
               setLoggedIn(false);
@@ -1464,6 +1461,8 @@ const Admin = () => {
                   date={date}
                   dateSetter={dateSetter}
                   calendars={calendars}
+                  notifications={notifications}
+                  fetchNotifications={fetchNotifications}
                 />
               ),
               adminaddsponsorprofile: (
@@ -1557,7 +1556,7 @@ const Admin = () => {
               meetingrequests: (
                 <AdminMeetingRequests
                   fetchMeetingRequests={fetchMeetingRequests}
-                  handlelogout={handleAdminLogout}
+                  handleLogout={handleAdminLogout}
                   setRouter={setRouter}
                   meetingRecords={meetingRecords}
                   acknoweldgeMeetingRequest={acknoweldgeMeetingRequest}
