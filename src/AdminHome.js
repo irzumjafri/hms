@@ -129,7 +129,6 @@ const AdminHome = (props) => {
     }
   };
 
-
   return (
     <body>
       <section className="navbarhome">
@@ -139,7 +138,11 @@ const AdminHome = (props) => {
               <h1 className="label-left" /*Make the updates array work*/>
                 Updates
               </h1>
-              <h2>{updatesArray}</h2>
+              {/* {updatesArray.map((con, i) => {
+                    return (
+                      <p>{updatesArray[i].title}</p>
+                    );
+                  })} */}
             </div>
 
             <div>
