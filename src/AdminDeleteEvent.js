@@ -197,7 +197,7 @@ const AdminDeleteEvent = (props) => {
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
           <div className="smalltext">
-          <p className="smalltext" onClick={handlelogout}><span>Logout</span></p>
+          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
           </div>
           <nav className="navbarContainer">
             <p
