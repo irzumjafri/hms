@@ -241,6 +241,23 @@ const Sponsor = () => {
       });
   };
 
+  // this function let's sponsors update their password
+  const forgotPassword = (e) => {
+    var auth = firebase.auth();
+    // var emailAddress = "user@example.com";
+
+    auth
+      .sendPasswordResetEmail(e)
+      .then(function () {
+        // Email sent.
+        console.log("Reset email has been sent");
+      })
+      .catch(function (error) {
+        // An error happened.
+        console.log("Reset email faced some error", error);
+      });
+  };
+
   // this function lets user update their associated email address
   const updatePassword = (newPassword) => {
     var user = firebase.auth().currentUser;
@@ -820,7 +837,8 @@ const Sponsor = () => {
           querySnapshot.forEach((doc) => {
             if (
               doc.data().createdFor === e ||
-              (doc.data().createdFor === "sponsor" && doc.data().createdBy === "admin")
+              (doc.data().createdFor === "sponsor" &&
+                doc.data().createdBy === "admin")
             ) {
               // update state to store data of all events present in current snapshot of the db
               tempData.push({
@@ -946,6 +964,8 @@ const Sponsor = () => {
       .then((userCredential) => {
         if (!userCredential.emailVerified) {
           setErrorMessage("Please Verify Account.");
+        } else {
+          updatePassword(password);
         }
       })
       .catch((err) => {
