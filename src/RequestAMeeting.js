@@ -155,12 +155,16 @@ const RequestAMeeting = (props) => {
                       ></Form.Control>
                     </div>
                     <div class="col-md-3">
-                      <Form.Control
-                        type="text"
-                        required
-                        value={amPm}
-                        onChange={(e) => setAmPm(e.target.value)}
-                      ></Form.Control>
+                    <Dropdown
+                          className="my-className"
+                          options={[
+                            { value: "AM", label: "AM" },
+                            { value: "PM", label: "PM" },
+                          ]}
+                          required
+                          value={amPm}
+                          onSelect={(i) => setAmPm(i.value)}
+                         />
                     </div>
                   </div>
                 </div>

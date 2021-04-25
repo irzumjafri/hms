@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Styled from 'styled-components';
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
 
 const AdminEditChildrenProfiles = (props) => {
   const { handlelogout, setRouter, editChildProfile, childData,
@@ -173,12 +175,24 @@ const AdminEditChildrenProfiles = (props) => {
                       <Form.Row>
                         <div class="col-md-6">
                           <Form.Label className="label-left">Gender</Form.Label>
-                          <Form.Control
+                          <Dropdown
+                          className="my-className"
+                          options={[
+                            { value: "Female", label: "Female" },
+                            { value: "Male", label: "Male" },
+                            { value: "Other", label: "Other"}
+                          ]}
+                          required
+                          placeholder={childGender}
+                          value={childGender}
+                          onSelect={(i) => setChildGender(i.value)}
+                         />
+                          {/* <Form.Control
                             type="text"
                             required
                             value={childGender}
                             onChange={(e) => setChildGender(e.target.value)}
-                          ></Form.Control>
+                          ></Form.Control> */}
                         </div>
                         <div class="col-md-6">
                           <Form.Label className="label-right">

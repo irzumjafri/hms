@@ -162,6 +162,7 @@ const ChildrenProfiles = (props) => {
                   <Form.Row>
                     <div class="col-md-6">
                       <Form.Label className="label-left">Gender</Form.Label>
+                      
                       <Form.Control
                         type="text"
                         autoFocus
