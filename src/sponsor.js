@@ -73,15 +73,16 @@ const Sponsor = () => {
   const [contactUs, setContactUs] = useState();
   const [academicRecords, setacademicRecords] = useState([]);
   const [calendars, setcalendars] = useState([]);
-  const [date, setDate] = useState()
+  const [date, setDate] = useState();
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS---------------------------------------------------------------------------------------
 
   const dateSetter = (i) => {
-    if (!i){
+    if (!i) {
       i = new Date();
+<<<<<<< Updated upstream
     } 
     i = i.toString()
     i = i.split(" ")
@@ -101,7 +102,44 @@ const Sponsor = () => {
     else if (i[1] == "Dec"){i[1] = "12"}
     setDate(i[2]+"-"+i[1]+"-"+i[3])
   }
+=======
+    }
+    i = i.toString();
+    i = i.split(" ");
 
+    if (i[1] == "Jan") {
+      i[1] = "01";
+    } else if (i[1] == "Feb") {
+      i[1] = "02";
+    } else if (i[1] == "Mar") {
+      i[1] = "03";
+    } else if (i[1] == "Apr") {
+      i[1] = "04";
+    } else if (i[1] == "May") {
+      i[1] = "05";
+    } else if (i[1] == "Jun") {
+      i[1] = "06";
+    } else if (i[1] == "Jul") {
+      i[1] = "07";
+    } else if (i[1] == "Aug") {
+      i[1] = "08";
+    } else if (i[1] == "Sep") {
+      i[1] = "09";
+    } else if (i[1] == "Oct") {
+      i[1] = "10";
+    } else if (i[1] == "Nov") {
+      i[1] = "11";
+    } else if (i[1] == "Dec") {
+      i[1] = "12";
+    }
+
+    console.log(i[1]);
+    console.log(i[2]);
+    console.log(i[3]);
+>>>>>>> Stashed changes
+
+    setDate(i[2] + "-" + i[1] + "-" + i[3]);
+  };
 
   // this function deletes the user account
   const deleteAccount = () => {
@@ -337,6 +375,11 @@ const Sponsor = () => {
         applicationStatus: "",
         howToAssignChildren: "",
       });
+
+    //////
+    let reason = `Sponsor ${firstName} ${lastName} generated a request for sponsorship`;
+    generateNotification("admin", reason);
+    //////
   };
 
   const editSponsorProfile = () => {
@@ -513,6 +556,11 @@ const Sponsor = () => {
             setAmPm("");
             setBackUpDatesAndTimes("");
             setPurpose("");
+
+            //////
+            let reason = `Sponsor ${firstName} ${lastName} generated a meeting request`;
+            generateNotification("admin", reason);
+            //////
           });
       });
   };
@@ -521,8 +569,8 @@ const Sponsor = () => {
   const withdrawchild = (i) => {
     // we have updted the child's profile
     console.log("WITHDRAWING");
-    console.log(i.reason);
-    let profileupdate = db.collection("childrenProfiles").doc(i);
+    // console.log(i.reason);
+    let profileupdate = db.collection("childrenProfiles").doc(i.id);
     return profileupdate
       .update({
         sponsorEmail: "",
@@ -546,6 +594,12 @@ const Sponsor = () => {
             .delete()
             .then(() => {
               console.log("Document successfully deleted!");
+
+              //////
+              let reason = `Sponsor ${firstName} ${lastName} withdrew sponsorship for all children. Profile has been deleted`;
+              generateNotification("admin", reason);
+              //////
+
               // call fucntion to update states of payemnt histories acc to the updated db
               fetchSponsorData(user.uid); ///////////////////////////////////////////////////////////////////////
             })
@@ -555,6 +609,11 @@ const Sponsor = () => {
         }
         // Simply assign this new children number
         if (newChildrenNumber >= 1) {
+          //////
+          let reason = `Sponsor ${firstName} ${lastName} withdrew sponsorship for one of their child`;
+          generateNotification("admin", reason);
+          //////
+
           let profileupdate2 = db
             .collection("registeredSponsors")
             .doc(user.uid); //////////////////////////////
@@ -664,6 +723,11 @@ const Sponsor = () => {
           })
           .then(() => {
             console.log("Document successfully updated!");
+
+            //////
+            let reason = `Sponsor ${firstName} ${lastName} sent a letter for one of their assigned children`;
+            generateNotification("admin", reason);
+            //////
           });
       });
   };
@@ -797,7 +861,7 @@ const Sponsor = () => {
           });
         }
         console.log("FETCHING CALENDAR DATA");
-        console.log(tempData)
+        console.log(tempData);
         setcalendars(tempData);
       });
   };
@@ -928,6 +992,28 @@ const Sponsor = () => {
         fetchLogin(user.uid);
       }
     });
+  };
+
+  // this function is a helper function to create a notification document.
+  const generateNotification = (createdForToSet, notificationeason) => {
+    // the Reason will be set according to where the function is called from
+    db.collection("notifications")
+      .add({
+        createdFor: createdForToSet,
+        notificationContent: notificationeason,
+        seen: false,
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("notifications").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+          });
+      });
   };
 
   useEffect(() => {
@@ -1135,13 +1221,15 @@ const Sponsor = () => {
                 />
               ),
               deleteevent: (
-                <DeleteEvent applicationStatus={applicationStatus}
-                setRouter={setRouter}
-                date={date}
-                handleLogout={handleLogout}
-                calendars={calendars}
-                deleteEvent={deleteEvent}/>
-              )
+                <DeleteEvent
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  date={date}
+                  handleLogout={handleLogout}
+                  calendars={calendars}
+                  deleteEvent={deleteEvent}
+                />
+              ),
             }[router]
           }
         </>

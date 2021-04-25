@@ -66,6 +66,7 @@ const Admin = () => {
   const [letters, setLetters] = useState([]);
   const [calendars, setcalendars] = useState([]);
   const [date, setDate] = useState();
+  const [notifications, setNotifications] = useState([]);
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
@@ -143,6 +144,11 @@ const Admin = () => {
               fetchMeetingRequests();
               fetchAcademicRecords("", "");
               fetchLetters();
+<<<<<<< Updated upstream
+=======
+              fetchEvents();
+              fetchNotifications();
+>>>>>>> Stashed changes
             } else {
               clearInputs();
               setLoggedIn(false);
@@ -369,6 +375,12 @@ const Admin = () => {
               console.log(
                 `Not enough unassigned children in the database. Number of unassigned children is: ${count}`
               );
+
+              //////
+              let reason = `Sponsor with email address ${mail} not assigned any child due to unavailability of unassigned children`;
+              generateNotification("admin", reason);
+              //////
+
               return;
             } else {
               // get IDs of profiles of children that will be assigned to this sponsor
@@ -386,6 +398,12 @@ const Admin = () => {
                     })
                     .then(() => {
                       console.log("Document successfully updated!");
+
+                      //////
+                      let reason = `Sponsor with email address ${mail} has been assigned a child`;
+                      generateNotification("admin", reason);
+                      //////
+
                       fetchChildrenProfiles(); // update the changes in states as well
                     })
                     .catch((error) => {
@@ -1356,6 +1374,76 @@ const Admin = () => {
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
+      });
+  };
+
+  // this function fetches all the concnered notifications for admin users
+  const fetchNotifications = () => {
+    // fetch all the notifications whose seen is false (not seen yet) and created for is admin
+    let tempData = [];
+    db.collection("notifications")
+      .where("createdFor", "==", "admin")
+      .get()
+      .then((querySnapshot) => {
+        // no events in the db
+        if (querySnapshot.empty) {
+          console.log("No notifications to display");
+          return;
+        } else {
+          querySnapshot.forEach((doc) => {
+            // check if admin has already seen them or not, show only those that have not been seen
+            if (doc.data().seen === false) {
+              // update state to store data of all notificatons present in current snapshot of the db
+              tempData.push({
+                createdFor: doc.data().createdFor,
+                notificationContent: doc.data().notificationContent,
+                seen: doc.data().seen,
+                id: doc.data().id,
+              });
+            }
+          });
+        }
+        setNotifications(tempData);
+        markNotificationRead();
+      });
+  };
+
+  // this function updates the seen of any given notification to true so that it doesnot show again ever
+  const markNotificationRead = () => {
+    notifications.map((notif) => {
+      let profileToEdit = db.collection("notifications").doc(notif.id); ///////////////////////////////////////
+      return profileToEdit
+        .update({
+          seen: true,
+        })
+        .then(() => {
+          console.log("Document successfully updated!");
+        })
+        .catch((error) => {
+          console.error("Error updating document: ", error);
+        });
+    });
+  };
+
+  // this function is a helper function to create a notification document.
+  const generateNotification = (createdForToSet, notificationeason) => {
+    // the Reason will be set according to where the function is called from
+    db.collection("notifications")
+      .add({
+        createdFor: createdForToSet,
+        notificationContent: notificationeason,
+        seen: false,
+      })
+      .then((value) => {
+        // set this id as its own attribte
+        let profileToEdit = db.collection("notifications").doc(value.id);
+        return profileToEdit
+          .update({
+            id: value.id,
+          })
+          .then(() => {
+            console.log("Document successfully updated!");
+          });
       });
   };
 
