@@ -10,7 +10,7 @@ import Styled from "styled-components";
 
 const ForgotPassword = (props) => {
   const {
-    ForgotPassword,
+    forgotPassword,
     setRouter,
     StyledPopup = Styled(Popup)`
     // use your custom style for ".popup-overlay"
@@ -170,7 +170,7 @@ const ForgotPassword = (props) => {
                             <div class="col-md-12">
                               <button
                                 onClick={() => {
-                                  console.log("ENTER FUNCTION HERE")
+                                  forgotPassword(resetEmail);
                                   setRouter("")
                                   close();
                                 }}

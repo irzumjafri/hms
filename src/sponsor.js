@@ -275,6 +275,7 @@ const Sponsor = () => {
           })
           .then(() => {
             console.log("Document successfully updated!");
+            console.log("UPDATED PASSWORD");
             setPassword(newPassword);
             {
               applicationStatus
@@ -962,10 +963,9 @@ const Sponsor = () => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
+        updatePassword(password);
         if (!userCredential.emailVerified) {
           setErrorMessage("Please Verify Account.");
-        } else {
-          updatePassword(password);
         }
       })
       .catch((err) => {
@@ -982,8 +982,8 @@ const Sponsor = () => {
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
       if (user /*&& user.emailVerified*/) {
-        clearInputs();
         setUser(user);
+        clearInputs();
         fetchLogin(user.uid);
       }
     });
@@ -1232,7 +1232,7 @@ const Sponsor = () => {
         <>
           {hasAccount ? (
             <>
-            {router ? (<ForgotPassword setRouter={setRouter}/>) : (<Login
+            {router ? (<ForgotPassword forgotPassword={forgotPassword} setRouter={setRouter}/>) : (<Login
               email={email}
               setRouter={setRouter}
               setEmail={setEmail}
