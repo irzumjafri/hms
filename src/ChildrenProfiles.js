@@ -400,7 +400,7 @@ const ChildrenProfiles = (props) => {
                 </div>
                 <div className="btnContainer">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       {i ? (
                         <button
                           onClick={() => setI(i - 1)}
@@ -421,7 +421,12 @@ const ChildrenProfiles = (props) => {
                         </button>
                       )}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                  <textbox className="label-down">
+                    Page Number {i + 1} / {childData.length}
+                  </textbox>
+                </div>
+                    <div class="col-md-4">
                       {i + 1 == childData.length ? (
                         <button
                           className="button_gray"

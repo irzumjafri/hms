@@ -654,6 +654,20 @@
   line-height: 1;
   text-decoration: italic;
 }
+.navbar .navbarContainer_gray .smalltext .my-className {
+  color: black;
+  margin: 0% 1%;
+  display: block;
+  float: right;
+  /* border: none; */
+  /* border-color: #000;
+  border-width: 2px; */
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: italic;
+  background-color: #f2f2f2;
+  min-width: max-content;
+}
 .navbar .navbarContainer_gray p span:hover {
   text-decoration: underline;
 }
