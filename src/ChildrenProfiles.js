@@ -369,23 +369,8 @@ const{
                               onClick={() => {
                                 withdrawchild({id:childData[i].id,reason:""});
                                 {setReason(myreason.current)};
-                                applicationStatus
-                                  ? setRouter("registered") 
-                                  : setRouter("unregistered");
-                                  
-                              }}
-                            >
-                              {" "}
                               Send{" "}
-                            </button>
-                       </div>
-                       </div>
-                       </StyledPopup>
                     </div>
-                  </div>
-
-      </div>
-    )}
                       
                      
                 </StyledPopup>

@@ -161,7 +161,7 @@ const RegisteredSponsorHome = (props) => {
                   
                   block
                 >
-                  Payment History{"  "}
+                  Payment History
                 </Button>
               </div>
             </div>

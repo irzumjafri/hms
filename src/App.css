@@ -1236,17 +1236,17 @@
   border: none;
   /* height: 35px;
   width: 45%; */
-  padding: 10px;
+  padding: auto;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
   background: #529cea;
   border-radius: 10px;
-  margin: 10px;
+  margin: auto;
   display: block;
   align-items: center;
   justify-content: center;
-
+  width: 100%;
   /* float: left; */
 }
 
@@ -1255,16 +1255,17 @@
   border: none;
   /* height: 35px;
   width: 45%; */
-  padding: 10px;
+  padding: auto;
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
   background: #ff0033;
   border-radius: 10px;
-  margin: 10px;
+  margin: auto;
   display: block;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 .sponsorHomepage .sponsorHomepageContainer_left .button_green {
   padding: 30px;
@@ -1277,6 +1278,8 @@
   margin: 15px 20px;
   border: 1px solid black;
   outline: 2px;
+  width: 100%;
+  min-height: max-content;
 }
 .sponsorHomepage .sponsorHomepageContainer_right .calendar {
   align-items: center;
