@@ -4,6 +4,8 @@ import { Button, Form } from "react-bootstrap";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import Styled from "styled-components";
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
 
 const SponsorshipRequests = (props) => {
   const {
@@ -226,6 +228,31 @@ const SponsorshipRequests = (props) => {
                   <Form.Label className="label-left">
                     Preferred Medium of Communication
                   </Form.Label>
+                  <Dropdown
+              className="my-className"
+              options={[
+                { value: "whatsapp", label: "Whatsapp" },
+                { value: "email", label: "Email" },
+                { value: "instagram", label: "Instagram" },
+                { value: "facebook", label: "Facebook" }
+              ]}
+              placeholder="Select an Option"
+              value={
+                sponsorshipApplicationData[i]
+                  .preferredMediumOfCommunication
+              }
+              // onSelect={(i) => {
+              //   if (i.value == "logout") {
+              //     handleLogout();
+              //   } else if (i.value == "editprofile") {
+              //     setRouter("editmyprofile");
+              //   } else if (i.value == "changepw") {
+              //     setRouter("editpassword");
+              //   } else if (i.value == "deleteacc") {
+              //     setRouter("deleteaccount");
+              //   }
+              // }} // always fires once a selection happens even if there is no change
+            />
                   <Form.Control
                     type="text"
                     required

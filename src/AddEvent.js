@@ -163,7 +163,7 @@ const AddEvent = (props) => {
                 <div class="col-md-6">
                   <StyledPopup
                     trigger={
-                      <div class="Button" className="button_green">
+                      <div class="Button" className="button_redd">
                         Discard Changes
                       </div>
                     }

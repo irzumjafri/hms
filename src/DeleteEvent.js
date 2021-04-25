@@ -148,7 +148,7 @@ const DeleteEvent = (props) => {
                 <div class="col-md-12">
                   <StyledPopup
                     trigger={
-                      <div class="Button" className="button_green">
+                      <div class="Button" className="button_redd">
                         Delete Event
                       </div>
                     }
