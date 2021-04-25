@@ -14,6 +14,7 @@ const AdminAddEvent = (props) => {
     date,
     setRouter,
     addEvent,
+    sponsorData,
     StyledPopup = Styled(Popup)`
   // use your custom style for ".popup-overlay"
   &-overlay {
@@ -100,6 +101,21 @@ const AdminAddEvent = (props) => {
   const [title, setTitle] = useState("");
   const [notifsFrom, setNotifsFrom] = useState("");
   const [desc, setDesc] = useState("");
+  const [createdFor, setCreatedFor] = useState("");
+
+  const fetchSponsorData = () => {
+    var sponsor = [];
+    {
+      sponsorData.map((con, i) => {
+        sponsor.push({ label: (sponsorData[i].firstName + " " + sponsorData[i].lastName + " ( " + sponsorData[i].email + " )"), value: sponsorData[i].email});
+      });
+    }
+    sponsor.push({label: "All Sponsors", value: "sponsor"})
+    return sponsor
+  }
+
+
+  console.log(sponsorData)
 
   return (
     <body>
@@ -111,6 +127,15 @@ const AdminAddEvent = (props) => {
             return (
             <div>
               <Form>
+              <Dropdown
+                        className="my-className"
+                        options={fetchSponsorData()}
+                        placeholder="Please select a sponsor"
+                        value="Please select a sponsor"
+                        onSelect={(i) => {
+                          setCreatedFor(i.value);
+                        }} // always fires once a selection happens even if there is no change
+                      />
                 <div class="col">
                   <textbox className="label-left">Creating an event for {date}</textbox>
                 </div>
@@ -151,7 +176,7 @@ const AdminAddEvent = (props) => {
                   <div
                     onClick={() => {
                       setRouter("home");
-                      addEvent({date: date, description: desc, title: title, notificationFrom: notifsFrom});
+                      addEvent({date: date, description: desc, title: title, notificationFrom: notifsFrom, createdFor: createdFor});
                     }}
                     class="Button"
                     className="button_green"

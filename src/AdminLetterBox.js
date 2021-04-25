@@ -12,6 +12,7 @@ import Styled from "styled-components";
 const AdminLetterBox = (props) => {
   const {
     handleLogout,
+    sponsorData,
     childData,
     setRouter,
     letters,
@@ -131,17 +132,20 @@ const AdminLetterBox = (props) => {
   const [letterBody, setLetterBody] = useState("");
   const [writeOrReceive, setWriteOrReceive] = useState(true);
   const [i, setI] = useState(0);
-
+  
   const fetchChildData = () => {
     var child = [];
     {
       childData.map((con, i) => {
-        child.push({ label: childData[i].name, value: childData[i].name });
+        if (childData[i].status){
+          child.push({ label: (childData[i].name), value: childData[i].name});
+        }
+        
       });
     }
+    return child
+  }
 
-    return child;
-  };
 
   return (
     <body>
@@ -169,11 +173,12 @@ const AdminLetterBox = (props) => {
                       </button>
                     </div>
                     <Form>
+                    <Form.Label className="label-left">From *</Form.Label>
                       <Dropdown
                         className="my-className"
                         options={fetchChildData()}
-                        placeholder="Please select a sponsor"
-                        value="Please select a sponsor"
+                        placeholder="Please select a Child"
+                        value="Please select a Child"
                         onSelect={(i) => {
                           setReciever(i);
                         }} // always fires once a selection happens even if there is no change

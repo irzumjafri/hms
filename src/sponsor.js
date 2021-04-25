@@ -99,11 +99,6 @@ const Sponsor = () => {
     else if (i[1] == "Oct"){i[1] = "10"}
     else if (i[1] == "Nov"){i[1] = "11"}
     else if (i[1] == "Dec"){i[1] = "12"}
-
-    console.log(i[1])
-    console.log(i[2])
-    console.log(i[3])
-
     setDate(i[2]+"-"+i[1]+"-"+i[3])
   }
 
@@ -459,8 +454,8 @@ const Sponsor = () => {
           fetchFAQs();
           fetchContactUs();
           fetchLetters(doc.data().email);
-          fetchEvents();
           dateSetter();
+          fetchEvents(doc.data().email);
           fetchAcademicRecords(doc.data().email);
         } else {
           console.log("No such document!");
@@ -773,7 +768,7 @@ const Sponsor = () => {
   };
 
   // this function fetches all the events stored in the database meant to be displayed for this sponsor and are created by them
-  const fetchEvents = () => {
+  const fetchEvents = (e) => {
     let tempData = [];
     db.collection("calendar")
       .get()
@@ -785,8 +780,8 @@ const Sponsor = () => {
         } else {
           querySnapshot.forEach((doc) => {
             if (
-              doc.data().createdBy === email ||
-              doc.data().createdFor === "sponsor"
+              doc.data().createdFor === e ||
+              (doc.data().createdFor === "sponsor" && doc.data().createdBy === "admin")
             ) {
               // update state to store data of all events present in current snapshot of the db
               tempData.push({
@@ -815,7 +810,7 @@ const Sponsor = () => {
         date: i.date,
         description: i.description,
         notificationFrom: i.notificationFrom,
-        createdFor: "sponsor", // hardcoding this because sponsor users can only create events from themselves
+        createdFor: email, // hardcoding this because sponsor users can only create events from themselves
         createdBy: email, // sets createdBy to this sponsors email address for fetching purposes
       })
       .then((value) => {
@@ -827,7 +822,7 @@ const Sponsor = () => {
           })
           .then(() => {
             console.log("Document successfully updated!");
-            fetchEvents();
+            fetchEvents(email);
           });
       });
   };
@@ -836,11 +831,11 @@ const Sponsor = () => {
   const deleteEvent = (i) => {
     // we have to check if they i.id belongs to document that is created by this sponsor or not. Only
     db.collection("calendar")
-      .doc(i)
+      .doc(i.toString().replace(/\s/g, ""))
       .delete()
       .then(() => {
         console.log("Document successfully deleted!");
-        fetchEvents();
+        fetchEvents(email);
         // now delete the user from authetication as well
       })
       .catch((error) => {

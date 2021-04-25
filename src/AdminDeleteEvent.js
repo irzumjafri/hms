@@ -104,7 +104,7 @@ const AdminDeleteEvent = (props) => {
     var calendar = [];
     {
       calendars.map((con, i) => {
-        if (date == calendars[i].date && calendars[i].createdBy != "admin") {
+        if (date == calendars[i].date) {
           calendar.push({ label: calendars[i].title, value: calendars[i].id });
         }
       });

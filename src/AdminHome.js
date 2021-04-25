@@ -104,23 +104,17 @@ const AdminHome = (props) => {
     `,
   } = props;
 
-  console.log(date)
-
   const displayNotif = (i, j) => {
     i = i.split("-");
     j = j.split("-");
 
     let d = date.split("-");
-    console.log(i);
-    console.log(j);
-    console.log(d);
 
     if (
       parseInt(d[0]) < parseInt(j[0]) &&
       parseInt(d[1]) <= parseInt(j[1]) &&
       parseInt(d[2]) <= parseInt(j[2])
     ) {
-      console.log("EVENT SAY TOH PEHLAY KI DATE HAI");
       if (
         parseInt(d[0]) >= parseInt(i[0]) &&
         parseInt(d[1]) == parseInt(i[1]) &&

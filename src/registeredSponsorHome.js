@@ -111,9 +111,6 @@ const RegisteredSponsorHome = (props) => {
     j = j.split("-");
 
     let d = date.split("-");
-    console.log(i);
-    console.log(j);
-    console.log(d);
 
     if (
       parseInt(d[0]) < parseInt(j[0]) &&

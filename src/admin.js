@@ -104,9 +104,6 @@ const Admin = () => {
       i[1] = "12";
     }
 
-    console.log(i[1]);
-    console.log(i[2]);
-    console.log(i[3]);
 
     setDate(i[2] + "-" + i[1] + "-" + i[3]);
   };
@@ -135,6 +132,7 @@ const Admin = () => {
             if (password === doc.data().password) {
               setLoggedIn(true);
               dateSetter();
+              fetchEvents();
               fetchSponsorshipApplications();
               fetchPaymentHistory();
               fetchSponsorData();
@@ -145,8 +143,6 @@ const Admin = () => {
               fetchMeetingRequests();
               fetchAcademicRecords("", "");
               fetchLetters();
-              
-              fetchEvents();
             } else {
               clearInputs();
               setLoggedIn(false);
@@ -1313,8 +1309,8 @@ const Admin = () => {
               id: doc.data().id,
               description: doc.data().description,
               notificationFrom: doc.data().notificationFrom,
-              createdFor: doc.data().createdFor, // either "admin" or "sponsor"
-              createdBy: doc.data().createdBy, // email address of creater
+              createdFor: doc.data().createdFor, // either emailOfSponsor or "sponsor"
+              createdBy: doc.data().createdBy, // email address of creater or admin
             });
           });
         }
@@ -1326,11 +1322,12 @@ const Admin = () => {
   const addEvent = (i) => {
     db.collection("calendar")
       .add({
+        title: i.title,
         date: i.date,
         description: i.description,
         notificationFrom: i.notificationFrom,
         createdFor: i.createdFor,
-        createdBy: i.createdBy,
+        createdBy: "admin",
       })
       .then((value) => {
         // set this id as its own attribte
@@ -1349,9 +1346,8 @@ const Admin = () => {
   // this function lets admin users delete events
   const deleteEvent = (i) => {
     // i.id will always be from admin users
-    let iId = i.id;
     db.collection("calendar")
-      .doc(iId.toString().replace(/\s/g, ""))
+      .doc(i.toString().replace(/\s/g, ""))
       .delete()
       .then(() => {
         console.log("Document successfully deleted!");
@@ -1560,15 +1556,16 @@ const Admin = () => {
                   answers={answers}
                 />
               ),
-              addevent: (
+              adminaddevent: (
                 <AdminAddEvent
                   setRouter={setRouter}
                   date={date}
                   handleLogout={handleAdminLogout}
                   addEvent={addEvent}
+                  sponsorData={sponsorData}
                 />
               ),
-              deleteevent: (
+              admindeleteevent: (
                 <AdminDeleteEvent
                   setRouter={setRouter}
                   date={date}
