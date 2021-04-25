@@ -349,7 +349,7 @@ const Admin = () => {
     // automatically assign children
     if (howTo === "auto") {
       db.collection("childrenProfiles")
-        .where("status", "==", "unassigned")
+        .where("status", "==", "")
         .get()
         .then((querySnapshot) => {
           console.log(querySnapshot);
@@ -634,7 +634,7 @@ const Admin = () => {
             return profileToEdit
               .update({
                 sponsorEmail: "",
-                status: "unassigned",
+                status: "",
               })
               .then(() => {
                 console.log("Document successfully updated!");

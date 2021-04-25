@@ -199,7 +199,7 @@ const Sponsor = () => {
             return profileToEdit
               .update({
                 sponsorEmail: "",
-                status: "unassigned",
+                status: "",
               })
               .then(() => {
                 console.log("Document successfully updated!");
@@ -526,7 +526,7 @@ const Sponsor = () => {
     return profileupdate
       .update({
         sponsorEmail: "",
-        status: "unassigned",
+        status: "",
         // reasonForWithdrawal: i.reason
       })
       .then(() => {
