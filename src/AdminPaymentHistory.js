@@ -301,7 +301,7 @@ const AdminPaymentHistory = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext"> PAYMENT HISTORY </h2>
-            <p className="smalltext" onClick={() => fetchPaymentHistory()}>
+            <p className="smalltext1" onClick={() => fetchPaymentHistory()}>
               <span>Sync</span>
             </p>
           </nav>

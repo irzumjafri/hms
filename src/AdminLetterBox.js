@@ -342,7 +342,7 @@ const AdminLetterBox = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">LETTER BOX</h2>
-            <p className="smalltext" onClick={() => fetchLetters()}>
+            <p className="smalltext1" onClick={() => fetchLetters()}>
               <span>Sync</span>
             </p>
           </nav>

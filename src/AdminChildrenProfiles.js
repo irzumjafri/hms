@@ -413,7 +413,7 @@ const AdminChildrenProfiles = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">CHILDREN PROFILES</h2>
-            <p className="smalltext" onClick={() => fetchChildrenProfiles()}>
+            <p className="smalltext1" onClick={() => fetchChildrenProfiles()}>
               <span>Sync</span>
             </p>
           </nav>

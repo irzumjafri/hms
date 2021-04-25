@@ -157,7 +157,7 @@ const LetterBox = (props) => {
                         }} // always fires once a selection happens even if there is no change
                       />
 
-                      <div class="col">
+                      <div class="col-md-12">
                         <Form.Label className="label-left">Letter *</Form.Label>
                         <Form.Control
                         className = "input-left"
@@ -215,7 +215,7 @@ const LetterBox = (props) => {
                               
                               </Form.Control>
                           </div>
-                          <div class="col">
+                          <div class="col-md-12">
                             <Form.Label className="label-left">
                               Letter
                             </Form.Label>
@@ -229,7 +229,7 @@ const LetterBox = (props) => {
                           </div>
                         </Form>
                         <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     {i ? (
                       <button
                         onClick={() => setI(i - 1)}
@@ -250,7 +250,12 @@ const LetterBox = (props) => {
                       </button>
                     )}
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
+                  <textbox className="label-down">
+                    Page Number {i + 1} / {childData.length}
+                  </textbox>
+                </div>
+                  <div class="col-md-4">
                     {i + 1 == childData.length ? (
                       <button
                         className="button_gray"

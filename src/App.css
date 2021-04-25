@@ -588,6 +588,18 @@
   text-decoration: italic;
   margin: 10px 10px;
 }
+
+.navbar .navbarContainer_gray .navbarContainer .smalltext1 {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  font-size: 14px;
+  line-height: 2;
+  text-decoration: italic;
+  margin: 10px 10px;
+}
 .navbar .navbarContainer_gray .navbarContainer p span:hover {
   text-decoration: underline;
 }
@@ -654,6 +666,15 @@
   line-height: 1;
   text-decoration: italic;
 }
+.navbar .navbarContainer_gray .smalltext1 {
+  color: black;
+  margin: 10px 10px;
+  display: block;
+  float: right;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: italic;
+}
 .navbar .navbarContainer_gray .smalltext .my-className {
   color: black;
   margin: 0% 1%;
@@ -706,14 +727,20 @@
   }
   .navbar .navbarContainer_gray .smalltext {
     color: black;
+    margin: auto 10px;
   }
+  .navbar .navbarContainer_gray .smalltext1 {
+    color: black;
+    margin: auto 10px;
+  }
+
   .navbar .navbarContainer_gray p span:hover {
     text-decoration: underline;
   }
 
   .navbar .navbarContainer_gray .navbarContainer .smalltext span {
     color: black;
-    display: block;
+    display: flex;
     align-items: center;
     justify-content: center;
     margin: 10px 10px;
@@ -722,6 +749,19 @@
     line-height: 1;
     text-decoration: italic;
     transform: translateX(-60%);
+  }
+
+  .navbar .navbarContainer_gray .navbarContainer .smalltext1 span {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: italic;
+    transform: translateX(-460%);
   }
 }
 
@@ -1133,12 +1173,14 @@
   color: black;
   margin: auto;
   font-size: 30px;
+  font-weight: 700;
 }
 
 .unregistered .unregisteredContainer_right .label-right {
   color: black;
   margin: 10px auto;
   font-size: 30px;
+  font-weight: 700;
 }
 
 .unregistered .unregisteredContainer_right .label-right .p_i {
@@ -1149,6 +1191,7 @@
 .unregistered .unregisteredContainer_right .label-right .p_ii {
   margin: 10px auto;
   font-size: 20px;
+  font-weight: 200;
 }
 @media only screen and (max-width: 400px) {
   .unregistered {
@@ -1314,12 +1357,14 @@
   color: black;
   margin: auto;
   font-size: 30px;
+  font-weight: 700;
 }
 
 .sponsorHomepage .sponsorHomepageContainer_right .label-right {
   color: black;
   margin: 10px auto;
   font-size: 30px;
+  font-weight: 700;
 }
 
 .sponsorHomepage .sponsorHomepageContainer_right .label-right .p_i {
@@ -1330,6 +1375,7 @@
 .sponsorHomepage .sponsorHomepageContainer_right .label-right .p_ii {
   margin: 10px auto;
   font-size: 20px;
+  font-weight: 300;
 }
 @media only screen and (max-width: 768px) {
   /* .sponsorHomepage .sponsorHomepageContainer_left {
@@ -1707,7 +1753,7 @@
   font-size: 18px;
   width: 100%;
   letter-spacing: 1px;
-  background: #ff5a5a;
+  background: #ff0033;
   border-radius: 10px;
   height: 50px;
   margin: 10px auto;
@@ -2642,6 +2688,7 @@
 
 .letterBox .letterBoxContainer .input-left {
   margin: 10px 0px;
+  width: 100%;
 }
 .letterBox .letterBoxContainer .label-right {
   color: white;

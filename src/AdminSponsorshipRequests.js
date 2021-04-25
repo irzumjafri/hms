@@ -490,7 +490,7 @@ const SponsorshipRequests = (props) => {
             </p>
             <h2 className="titletext">SPONSORSHIP REQUESTS</h2>
             <p
-              className="smalltext"
+              className="smalltext1"
               onClick={() => fetchSponsorshipApplications()}
             >
               <span>Sync</span>

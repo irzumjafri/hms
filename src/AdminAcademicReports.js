@@ -528,7 +528,7 @@ const AdminAcademicReports = (props) => {
             </p>
             <h2 className="titletext">ACADEMIC REPORTS</h2>
             <p
-              className="smalltext"
+              className="smalltext1"
               onClick={() =>
                 fetchAcademicRecords()}
             >

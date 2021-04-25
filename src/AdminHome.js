@@ -301,7 +301,7 @@ const AdminHome = (props) => {
             <h2 className="label-right">
               <p className="p_i">Today's Event(s):</p>
             </h2>
-            <p className="label-right">
+            <p className="label-right-low">
               {calendars.map((con, i) => {
                 return (
                   <div>

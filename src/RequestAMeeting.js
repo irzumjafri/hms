@@ -196,28 +196,38 @@ const RequestAMeeting = (props) => {
             <div className = "col-md-12">
             <StyledPopup trigger = {   <button
                 
-                className="button_green"
-              >
-                Submit Request
+                className="button_green" 
+              >  Submit Request
               </button>} position="center" modal>
-                      <div>
-                      You are about to submit a request to schedule a meeting. Do you want to continue?
-                      </div>
-                      <div class = "row">
-                        <div class="col-md-6">
-                          <button className = "button_gray"> Cancel</button>
-                        </div>
-                        <div class="col-md-6">
-                          <button className = "button_green"  onClick={() =>
-                  {applicationStatus
-                    ? setRouter("registered")
-                    : setRouter("unregistered");addMeetingRequest()}
-                }>Submit</button>
-                        </div>
-                      </div>
+                 {(close) => (
+                              <div>
+                                <div>
+                                You are about to submit a request to schedule a meeting. Do you want to continue?
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <button
+                                      onClick={() => {
+                                        console.log("modal closed ");
+                                        close();
+                                      }}
+                                      className="button_gray"
+                                    >
+                                      Cancel
+                                    </button>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <button className = "button_green"  onClick={() =>
+                                      {applicationStatus
+                                        ? setRouter("registered")
+                                        : setRouter("unregistered");addMeetingRequest()}
+                                    }>Submit</button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                       </StyledPopup>
                       </div>
-            
             </div>
           </div>
         </section>

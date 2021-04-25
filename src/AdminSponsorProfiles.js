@@ -375,7 +375,7 @@ const AdminSponsorProfiles = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">SPONSORSHIP PROFILE</h2>
-            <p className="smalltext" onClick={() => fetchSponsorData()}>
+            <p className="smalltext1" onClick={() => fetchSponsorData()}>
               <span>Sync</span>
             </p>
           </nav>
