@@ -493,6 +493,7 @@ const Sponsor = () => {
   const withdrawchild = (i) => {
     // we have updted the child's profile
     console.log("WITHDRAWING");
+    console.log(i.reason);
     let profileupdate = db.collection("childrenProfiles").doc(i);
     return profileupdate
       .update({

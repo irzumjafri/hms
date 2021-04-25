@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
@@ -100,10 +100,31 @@ const{
     }
     `,
   } = props;
+  const focusTrap = require('focus-trap'); // CJS
+// UMD: `focusTrap` is defined as a global on `window`
+
 
   const [i, setI] = useState(0);
   const [reason, setReason] = useState("");
-  var myreason = "" 
+  const myreason = useRef("");
+  let globalreason = "";
+  const onChange = (event) => {
+    //event.preventDefault();
+    myreason.current.concat(event.target.value);
+
+  }
+
+  const myreasonHandler = (e)=>
+  {
+    myreason.current.concat(e.target.value)
+  }
+
+// const focu = () =>
+// {
+
+//   myreason.current.focu()
+// }
+
 
   console.log(childData);
   return (
@@ -303,9 +324,12 @@ const{
                     <div class="col-md-6">
                       <StyledPopup id="modal" class="modal hide fade in" data-keyboard="false" data-backdrop="static"
                         trigger={
-                          <button className="button_red"> Withdraw </button>
+                          <button
+                           
+                          className="button_red"> Withdraw </button>
                         }
                         modal
+                        
                       >
                                       
                         <Form>
@@ -315,10 +339,11 @@ const{
                           </Form.Label>
                           <Form.Control
                             type="text"
-                            value={reason}
+                            value={myreason.current}
+                            // onChange={(e) => setS1(e.target.value)}
+                            ref = {myreason}
+                            onChange= {(e) => myreasonHandler }
                             
-                            onChange={(e)=>setReason(e.target.value)
-                            }
                           ></Form.Control>
                         </Form>
                         
@@ -343,6 +368,7 @@ const{
                               className="button_red"
                               onClick={() => {
                                 withdrawchild({id:childData[i].id,reason:""});
+                                {setReason(myreason.current)};
                                 applicationStatus
                                   ? setRouter("registered") 
                                   : setRouter("unregistered");
