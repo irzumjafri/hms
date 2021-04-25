@@ -122,7 +122,6 @@ const ForgotPassword = (props) => {
     `,
   } = props;
 
-  console.log(password);
 
   const [resetEmail, setResetEmail] = useState("");
 
@@ -141,9 +140,9 @@ const ForgotPassword = (props) => {
                     Enter email of your account
                   </Form.Label>
                   <Form.Control
-                    type="password"
+                    type="text"
                     required
-                    value={cPassword}
+                    value={resetEmail}
                     onChange={(e) => setResetEmail(e.target.value)}
                   ></Form.Control>
                 </div>
