@@ -20,6 +20,8 @@ import RequestAMeeting from "./RequestAMeeting";
 import AcademicReportsSponsor from "./AcademicReportsSponsor";
 import EditPassword from "./EditPassword";
 import DeleteAccount from "./DeleteAccount";
+import AddEvent from "./AddEvent";
+import DeleteEvent from "./DeleteEvent";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -71,10 +73,40 @@ const Sponsor = () => {
   const [contactUs, setContactUs] = useState();
   const [academicRecords, setacademicRecords] = useState([]);
   const [calendars, setcalendars] = useState([]);
+  const [date, setDate] = useState()
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
-  //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------FUNCTIONS---------------------------------------------------------------------------------------
+
+  const dateSetter = (i) => {
+    if (!i){
+      i = new Date();
+    } 
+    i = i.toString()
+    i = i.split(" ")
+
+
+    if (i[1] == "Jan"){i[1] = "01"}
+    else if (i[1] == "Feb"){i[1] = "02"}
+    else if (i[1] == "Mar"){i[1] = "03"}
+    else if (i[1] == "Apr"){i[1] = "04"}
+    else if (i[1] == "May"){i[1] = "05"}
+    else if (i[1] == "Jun"){i[1] = "06"}
+    else if (i[1] == "Jul"){i[1] = "07"}
+    else if (i[1] == "Aug"){i[1] = "08"}
+    else if (i[1] == "Sep"){i[1] = "09"}
+    else if (i[1] == "Oct"){i[1] = "10"}
+    else if (i[1] == "Nov"){i[1] = "11"}
+    else if (i[1] == "Dec"){i[1] = "12"}
+
+    console.log(i[1])
+    console.log(i[2])
+    console.log(i[3])
+
+    setDate(i[2]+"-"+i[1]+"-"+i[3])
+  }
+
 
   // this function deletes the user account
   const deleteAccount = () => {
@@ -427,6 +459,8 @@ const Sponsor = () => {
           fetchFAQs();
           fetchContactUs();
           fetchLetters(doc.data().email);
+          fetchEvents();
+          dateSetter();
           fetchAcademicRecords(doc.data().email);
         } else {
           console.log("No such document!");
@@ -436,7 +470,6 @@ const Sponsor = () => {
         console.log("Error getting document:", error);
       });
   };
-
 
   const signupErrorCheck = () => {
     if (!firstName) {
@@ -757,6 +790,7 @@ const Sponsor = () => {
             ) {
               // update state to store data of all events present in current snapshot of the db
               tempData.push({
+                title: doc.data().title,
                 date: doc.data().date,
                 id: doc.data().id,
                 description: doc.data().description,
@@ -767,6 +801,8 @@ const Sponsor = () => {
             }
           });
         }
+        console.log("FETCHING CALENDAR DATA");
+        console.log(tempData)
         setcalendars(tempData);
       });
   };
@@ -775,6 +811,7 @@ const Sponsor = () => {
   const addEvent = (i) => {
     db.collection("calendar")
       .add({
+        title: i.title,
         date: i.date,
         description: i.description,
         notificationFrom: i.notificationFrom,
@@ -798,37 +835,47 @@ const Sponsor = () => {
   // this function lets admin users delete events
   const deleteEvent = (i) => {
     // we have to check if they i.id belongs to document that is created by this sponsor or not. Only
-    let iId = i.id;
     db.collection("calendar")
-      .doc(iId.toString().replace(/\s/g, ""))
-      .get()
-      .then((querySnapshot) => {
-        // we extract the createdBy to see if it is this sposnor or not
-        let canDelete = "";
-        querySnapshot.forEach((doc) => {
-          if (doc.data().id === iId) {
-            canDelete = doc.data().createdBy;
-          }
-        });
-
-        // then we check if canDelete is atually this sponsor or not, if yes then proceed with deletin of document
-        if (canDelete === email) {
-          db.collection("calendar")
-            .doc(iId.toString().replace(/\s/g, ""))
-            .delete()
-            .then(() => {
-              console.log("Document successfully deleted!");
-              /// call fucntion to update states of children profiles acc to the updated db
-              fetchEvents();
-            })
-            .catch((error) => {
-              console.error("Error removing document: ", error);
-            });
-        }
+      .doc(i)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        fetchEvents();
+        // now delete the user from authetication as well
       })
       .catch((error) => {
-        console.error("Error accessing document with this ID: ", error);
+        console.error("Error removing document: ", error);
       });
+    // db.collection("calendar")
+    //   .doc(i.toString().replace(/\s/g, ""))
+    //   .get()
+    //   .then((querySnapshot) => {
+    //     // we extract the createdBy to see if it is this sposnor or not
+    //     let canDelete = "";
+    //     querySnapshot.forEach((doc) => {
+    //       if (doc.data().id === i) {
+    //         canDelete = doc.data().createdBy;
+    //       }
+    //     });
+
+    //     // then we check if canDelete is atually this sponsor or not, if yes then proceed with deletin of document
+    //     if (canDelete === email) {
+    //       db.collection("calendar")
+    //         .doc(i.toString().replace(/\s/g, ""))
+    //         .delete()
+    //         .then(() => {
+    //           console.log("Document successfully deleted!");
+    //           /// call fucntion to update states of children profiles acc to the updated db
+    //           fetchEvents();
+    //         })
+    //         .catch((error) => {
+    //           console.error("Error removing document: ", error);
+    //         });
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error accessing document with this ID: ", error);
+    //   });
   };
 
   const handleSignUp = () => {
@@ -861,17 +908,16 @@ const Sponsor = () => {
     clearErrors();
     fire
       .auth()
-      .signInWithEmailAndPassword(email, password).
-      then((userCredential) => {
-        if (!userCredential.emailVerified){
-          setErrorMessage("Please Verify Account.")
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        if (!userCredential.emailVerified) {
+          setErrorMessage("Please Verify Account.");
         }
       })
       .catch((err) => {
         setErrorMessage(err.message);
       });
   };
-
 
   const handleLogout = () => {
     setRouter("");
@@ -912,6 +958,10 @@ const Sponsor = () => {
                 <RegisteredSponsorHome
                   setRouter={setRouter}
                   handleLogout={handleLogout}
+                  setDate={setDate}
+                  date={date}
+                  dateSetter={dateSetter}
+                  calendars={calendars}
                 />
               ),
               unregistered: (
@@ -1080,6 +1130,23 @@ const Sponsor = () => {
                   deleteAccount={deleteAccount}
                 />
               ),
+              addevent: (
+                <AddEvent
+                  applicationStatus={applicationStatus}
+                  setRouter={setRouter}
+                  date={date}
+                  handleLogout={handleLogout}
+                  addEvent={addEvent}
+                />
+              ),
+              deleteevent: (
+                <DeleteEvent applicationStatus={applicationStatus}
+                setRouter={setRouter}
+                date={date}
+                handleLogout={handleLogout}
+                calendars={calendars}
+                deleteEvent={deleteEvent}/>
+              )
             }[router]
           }
         </>
@@ -1117,7 +1184,6 @@ const Sponsor = () => {
               setHasAccount={setHasAccount}
               errorMessage={errorMessage}
               setErrorMessage={setErrorMessage}
-
             />
           )}
         </>

@@ -1,5 +1,5 @@
 import React from "react";
-import SearchField from "react-search-field";
+import { useState, useEffect } from "react";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
 import Popup from "reactjs-popup";
@@ -8,34 +8,13 @@ import Styled from "styled-components";
 import { Dropdown, Selection } from "react-dropdown-now";
 import "react-dropdown-now/style.css";
 
-const EditMyProfileSponsor = (props) => {
+const AddEvent = (props) => {
   const {
-    firstName,
-    lastName,
-    email,
-    dateOfBirth,
-    setEmail,
     handleLogout,
-    setFirstName,
-    setLastName,
-    setDateOfBirth,
-    cnic,
-    setCnic,
-    phoneNumber,
-    setPhoneNumber,
-    address,
-    setAddress,
-    preferredMediumOfCommunication,
-    setPreferredMediumOfCommunication,
-    numberOfSponsoredChildren,
-    setNumberOfSponsoredChildren,
-    paymentMethod,
-    setPaymentMethod,
-    paymentSchedule,
-    setPaymentSchedule,
+    date,
     setRouter,
-    editSponsorProfile,
     applicationStatus,
+    addEvent,
     StyledPopup = Styled(Popup)`
   // use your custom style for ".popup-overlay"
   &-overlay {
@@ -119,161 +98,61 @@ const EditMyProfileSponsor = (props) => {
   `,
   } = props;
 
+  const [title, setTitle] = useState("");
+  const [notifsFrom, setNotifsFrom] = useState("");
+  const [desc, setDesc] = useState("");
+
   return (
     <body>
       <section className="navbar">
         <section></section>
-        <section className="editMyProfileSponsor">
-          <div className="editMyProfileSponsorContainer">
-            <Form>
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">First Name *</Form.Label>
-                  <Form.Control
-                    type="text"
-                    autoFocus
-                    required
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  ></Form.Control>
-                </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">Last Name *</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  ></Form.Control>
-                </div>
-              </Form.Row>
 
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">Email *</Form.Label>
+        <section className="paymentHistory">
+          <div className="paymentHistoryContainer">
+            return (
+            <div>
+              <Form>
+                <div class="col">
+                  <textbox className="label-left">Creating an event for {date}</textbox>
+                </div>
+                <div class="col">
+                  <Form.Label className="label-left">Event Title *</Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                   ></Form.Control>
                 </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">
-                    DoB (DD-MM-YYYY) *
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={dateOfBirth}
-                    onChange={(e) => setDateOfBirth(e.target.value)}
-                  ></Form.Control>
-                </div>
-              </Form.Row>
-
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">CNIC</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={cnic}
-                    onChange={(e) => setCnic(e.target.value)}
-                  ></Form.Control>
-                </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">
-                    Phone Number *
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                  ></Form.Control>
-                </div>
-              </Form.Row>
-
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">Address *</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  ></Form.Control>
-                </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">
-                    Mode of Communication *
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={preferredMediumOfCommunication}
-                    onChange={(e) =>
-                      setPreferredMediumOfCommunication(e.target.value)
-                    } // make it into drop down menu
-                  ></Form.Control>
-                </div>
-              </Form.Row>
-
-              <Form.Row>
-                <div class="col-md-6">
+                <div class="col">
                   <Form.Label className="label-left">
-                    Total Sponsored Children *
+                    Notifications From (DD-MM-YYYY) *
                   </Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    value={numberOfSponsoredChildren}
-                    // onChange={(e) => setNumberOfSponsoredChildren(e.target.value)}
+                    value={notifsFrom}
+                    onChange={(e) => setNotifsFrom(e.target.value)}
                   ></Form.Control>
                 </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">
-                    Payment Method *
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={paymentMethod}
-                    onChange={(e) => setPaymentMethod(e.target.value)} // make it into drop down menu
-                  ></Form.Control>
-                </div>
-              </Form.Row>
-
-              <Form.Row>
-                <div class="col-md-6">
+                <div class="col">
                   <Form.Label className="label-left">
-                    Payment Schedule *
+                    Description
                   </Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    value={paymentSchedule}
-                    onChange={(e) => setPaymentSchedule(e.target.value)} // make it into drop down menu
+                    value={desc}
+                    onChange={(e) => setDesc(e.target.value)}
                   ></Form.Control>
                 </div>
-
-                <div class="col-md-6">
-                  <Form.Label className="label-right"></Form.Label>
-                  <Form.Control
-                    className="blue"
-                    type="text"
-                    required
-                    value={paymentSchedule}
-                    onChange={(e) => setPaymentSchedule(e.target.value)} // make it into drop down menu
-                  ></Form.Control>
-                </div>
-              </Form.Row>
+              </Form>
               <div class="row">
                 <div class="col-md-6">
                   <div
                     onClick={() => {
                       setRouter("registered");
-                      editSponsorProfile();
+                      addEvent({date: date, description: desc, title: title, notificationFrom: notifsFrom});
                     }}
                     class="Button"
                     className="button_green"
@@ -284,7 +163,7 @@ const EditMyProfileSponsor = (props) => {
                 <div class="col-md-6">
                   <StyledPopup
                     trigger={
-                      <div class="Button" className="button_redd">
+                      <div class="Button" className="button_green">
                         Discard Changes
                       </div>
                     }
@@ -325,9 +204,11 @@ const EditMyProfileSponsor = (props) => {
                   </StyledPopup>
                 </div>
               </div>
-            </Form>
+            </div>
+            );
           </div>
         </section>
+
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
@@ -355,7 +236,6 @@ const EditMyProfileSponsor = (props) => {
               }} // always fires once a selection happens even if there is no change
             />
           </div>
-
           <nav className="navbarContainer">
             <p
               className="smalltext"
@@ -367,9 +247,10 @@ const EditMyProfileSponsor = (props) => {
             >
               <span>HOME PAGE</span>
             </p>
-            <h2 className="titletext">EDIT MY PROFILE</h2>
+            <h2 className="titletext">ADD EVENT</h2>
           </nav>
         </nav>
+
         <section className="bottombar">
           <navbar className="bottombarContainer">
             <p className="smalltext" onClick={() => setRouter("contactus")}>
@@ -385,4 +266,4 @@ const EditMyProfileSponsor = (props) => {
   );
 };
 
-export default EditMyProfileSponsor;
+export default AddEvent;

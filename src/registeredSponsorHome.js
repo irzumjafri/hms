@@ -15,6 +15,10 @@ const RegisteredSponsorHome = (props) => {
   const {
     handleLogout,
     setRouter,
+    setDate,
+    date,
+    dateSetter,
+    calendars,
     StyledPopup = Styled(Popup)`
     // use your custom style for ".popup-overlay"
     &-overlay {
@@ -101,6 +105,35 @@ const RegisteredSponsorHome = (props) => {
     }
     `,
   } = props;
+
+  const displayNotif = (i, j) => {
+    i = i.split("-");
+    j = j.split("-");
+
+    let d = date.split("-");
+    console.log(i);
+    console.log(j);
+    console.log(d);
+
+    if (
+      parseInt(d[0]) < parseInt(j[0]) &&
+      parseInt(d[1]) <= parseInt(j[1]) &&
+      parseInt(d[2]) <= parseInt(j[2])
+    ) {
+      if (
+        parseInt(d[0]) >= parseInt(i[0]) &&
+        parseInt(d[1]) == parseInt(i[1]) &&
+        parseInt(d[2]) == parseInt(i[2])
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
   return (
     <body>
       <section className="navbarhome">
@@ -190,108 +223,77 @@ const RegisteredSponsorHome = (props) => {
           </div>
           <div className="sponsorHomepageContainer_right">
             <h1 className="label-right">Calendar</h1>
-            <Calendar className="calender" />
+            <Calendar
+              className="calender"
+              onClickDay={(value, event) => dateSetter(value)}
+            />
 
             <h2 className="label-right">
               <p className="p_i">Today's Event(s):</p>
             </h2>
             <p className="label-right">
-              <p className="p_ii">No Events</p>
+              {calendars.map((con, i) => {
+                return (
+                  <div>
+                    {date == calendars[i].date ? (
+                      <p className="p_ii">
+                        {calendars[i].title}:{calendars[i].description}
+                      </p>
+                    ) : (
+                      <p className="p_ii"></p>
+                    )}
+                  </div>
+                );
+              })}
+            </p>
+            <h2 className="label-right">
+              <p className="p_i">Coming Soon Event(s):</p>
+            </h2>
+            <p className="label-right">
+              {calendars.map((con, i) => {
+                return (
+                  <div>
+                    {displayNotif(
+                      calendars[i].notificationFrom,
+                      calendars[i].date
+                    ) ? (
+                      <p className="p_ii">
+                        {calendars[i].title}:{calendars[i].description}
+                      </p>
+                    ) : (
+                      <p className="p_ii"></p>
+                    )}
+                  </div>
+                );
+              })}
             </p>
 
             <div class="row">
               <div class="col-md-6">
-                <StyledPopup
-                  trigger={
-                    <Button
-                      button
-                      className="button_blue"
-                      variant="primary"
-                      size="sm"
-                      block
-                    >
-                      Add Event
-                    </Button>
-                  }
-                  position="center"
-                  modal
+                <Button
+                  button
+                  className="button_blue"
+                  variant="primary"
+                  size="sm"
+                  onClick={() => {
+                    setRouter("addevent");
+                  }}
                 >
-                  <Form>
-                    <Form.Label className="label-left">
-                      Event Title *
-                    </Form.Label>
-                    <Form.Control
-                      className="input-left"
-                      type="text"
-                      required
-                    ></Form.Control>
-                    <Form.Label className="label-left">
-                      Notifications From (DD-MM-YYYY) *
-                    </Form.Label>
-                    <Form.Control
-                      className="input-left"
-                      type="text"
-                      required
-                    ></Form.Control>
-
-                    <Form.Label className="label-left">Description</Form.Label>
-                    <Form.Control
-                      className="input-left"
-                      type="text"
-                    ></Form.Control>
-                  </Form>
-
-                  <div class="row">
-                    <div class="col">
-                      <button className="button_red">Discard Event</button>
-                    </div>
-                    <div class="col">
-                      <button className="button_green">Create Event</button>
-                    </div>
-                  </div>
-                </StyledPopup>
+                  Add Event
+                </Button>
               </div>
               <div class="col-md-6">
-                <StyledPopup
-                  trigger={
-                    <Button
-                      button
-                      className="button_redd"
-                      variant="primary"
-                      size="sm"
-                      block
-                    >
-                      Remove Event
-                    </Button>
-                  }
-                  position="center"
-                  modal
+                <Button
+                  button
+                  className="button_redd"
+                  variant="primary"
+                  size="sm"
+                  onClick={() => {
+                    setRouter("deleteevent");
+                  }}
                 >
-                  <Dropdown
-                    className="my-className"
-                    options={[
-                      { value: "changepw", label: "Edit Password" },
-                      { value: "editprofile", label: "Edit Profile" },
-                      { value: "deleteacc", label: "Delete Account" },
-                      { value: "logout", label: "Log Out" },
-                    ]}
-                    placeholder="Select an event to remove"
-                    onSelect={(i) => {
-                      if (i.value == "logout") {
-                        handleLogout();
-                      }
-                      console.log(i);
-                    }} // always fires once a selection happens even if there is no change
-                  />
-                  <Button
-                    button
-                    className="button_red"
-                    size="sm"
-                    content="centre"
-                  >
-                    Remove Event
-                  </Button>
-                </StyledPopup>
+                  Remove Event
+                </Button>
               </div>
             </div>
           </div>
