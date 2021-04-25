@@ -14,7 +14,6 @@ const AdminHome = (props) => {
     handlelogout,
     setRouter,
     updatesArray,
-    setDate,
     date,
     dateSetter,
     calendars,
@@ -104,6 +103,8 @@ const AdminHome = (props) => {
     }
     `,
   } = props;
+
+  console.log(date)
 
   const displayNotif = (i, j) => {
     i = i.split("-");

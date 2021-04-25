@@ -69,7 +69,7 @@ const Admin = () => {
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
-  //------------------------------------------------------------------------------------FUNCTIONS----------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------FUNCTIONS--------------------------------------------------------------------------------------
 
   const dateSetter = (i) => {
     if (!i) {
@@ -134,6 +134,7 @@ const Admin = () => {
           querySnapshot.forEach((doc) => {
             if (password === doc.data().password) {
               setLoggedIn(true);
+              dateSetter();
               fetchSponsorshipApplications();
               fetchPaymentHistory();
               fetchSponsorData();
@@ -144,7 +145,7 @@ const Admin = () => {
               fetchMeetingRequests();
               fetchAcademicRecords("", "");
               fetchLetters();
-              setDate(dateSetter());
+              
               fetchEvents();
             } else {
               clearInputs();
@@ -1376,7 +1377,6 @@ const Admin = () => {
                 <AdminHome
                   setRouter={setRouter}
                   handlelogout={handleAdminLogout}
-                  setDate={setDate}
                   date={date}
                   dateSetter={dateSetter}
                   calendars={calendars}
