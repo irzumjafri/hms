@@ -1,11 +1,10 @@
 import React from "react";
-import logo from "./HMSlogo.png"
+import logo from "./HMSlogo.png";
 
 import { Button, Form } from "react-bootstrap";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import Styled from 'styled-components';
-
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Styled from "styled-components";
 
 const Login = (props) => {
   const {
@@ -18,6 +17,7 @@ const Login = (props) => {
     setHasAccount,
     errorMessage,
     setErrorMessage,
+    setRouter,
     StyledPopup = Styled(Popup)`
     // use your custom style for ".popup-overlay"
     &-overlay {
@@ -55,101 +55,59 @@ const Login = (props) => {
       align-items: center;
       justify-content: center;
     }
-    `
+    `,
   } = props;
 
   return (
-    
     <section className="login">
       <img src={logo} className="Applogo" alt="logo" />
-      <label className ="WelcomeTextBlack">Welcome to </label>
-      <label className ="WelcomeTextBlue">HUNEHAR MANAGEMENT SYSTEM</label>
+      <label className="WelcomeTextBlack">Welcome to </label>
+      <label className="WelcomeTextBlue">HUNEHAR MANAGEMENT SYSTEM</label>
       <div className="loginContainer">
-        
-      
         <div className="btnContainer">
-            <>
-              <label className = "titletext">SIGN IN</label>
-              <label>Username</label>
-        <input
-          className ="input-left"
-          type="text"
-          autoFocus
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
-        <label>Password</label>
-        <input
-          className ="input-left"
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <p className="errorMsg">{errorMessage}</p>
-              <button className = "button_blue" onClick={handleLogin} >LOG IN</button>
-              <p className = "smalltext">
-                Forgot Password?    
-                <StyledPopup trigger={<span>
-                  Click Here</span>} position="center" modal nested>
-                  <Form>
-                      <Form.Label>Enter Your Email</Form.Label>
-                      <Form.Control
-                        type="text"
-                        // required
-                        // value={childData[i].familyBackground}
-                        // onChange={(e) => setInstitution(e.target.value)}
-                      ></Form.Control>
-                      </Form>
-                      <StyledPopup trigger={<button  className="button_green">
-                      Get Verification Code</button>} modal nested> 
-                      
-                      <Form>
-                      <Form.Label>Enter Verification Code Received on Email</Form.Label>
-                      <Form.Control
-                        type="text"
-                        // required
-                        // value={childData[i].familyBackground}
-                        // onChange={(e) => setInstitution(e.target.value)}
-                      ></Form.Control>
-                      </Form>
-                      <StyledPopup trigger={<button  className="button_green">
-                      Submit</button>} modal> 
-
-
-                      <Form>
-                      <Form.Label>New Password*</Form.Label>
-                      <Form.Control
-                        type="password"
-                        // required
-                        // value={childData[i].familyBackground}
-                        // onChange={(e) => setInstitution(e.target.value)}
-                      ></Form.Control>
-
-                      <Form.Label>Confirm New Password*</Form.Label>
-                      <Form.Control
-                        type="password"
-                        // required
-                        // value={childData[i].familyBackground}
-                        // onChange={(e) => setInstitution(e.target.value)}
-                      ></Form.Control>
-
-
-                      </Form>
-                      <button  className="button_green">
-                     Change Password</button>
-                      
-                      
-                      </StyledPopup>
-
-                      
-                      </StyledPopup>
-                    </StyledPopup>
-              </p>
-              <div className = "line">___________________________________</div>
-              <button className = "button_green" onClick={() => {setHasAccount(!hasAccount);setErrorMessage("")}}> Create New Account</button>
-            </>
+          <>
+            <label className="titletext">SIGN IN</label>
+            <label>Username</label>
+            <input
+              className="input-left"
+              type="text"
+              autoFocus
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+            <label>Password</label>
+            <input
+              className="input-left"
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            ></input>
+            <p className="errorMsg">{errorMessage}</p>
+            <button className="button_blue" onClick={handleLogin}>
+              LOG IN
+            </button>
+            <p
+              className="smalltext"
+              onClick={() => {
+                setRouter("forgotPW");
+              }}
+            >
+              Forgot Password?
+            </p>
+            <div className="line">___________________________________</div>
+            <button
+              className="button_green"
+              onClick={() => {
+                setHasAccount(!hasAccount);
+                setErrorMessage("");
+              }}
+            >
+              {" "}
+              Create New Account
+            </button>
+          </>
         </div>
       </div>
     </section>

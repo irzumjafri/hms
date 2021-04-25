@@ -22,6 +22,7 @@ import EditPassword from "./EditPassword";
 import DeleteAccount from "./DeleteAccount";
 import AddEvent from "./AddEvent";
 import DeleteEvent from "./DeleteEvent";
+import ForgotPassword from "./ForgotPassword";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -1210,8 +1211,10 @@ const Sponsor = () => {
       ) : (
         <>
           {hasAccount ? (
-            <Login
+            <>
+            {router ? (<ForgotPassword setRouter={setRouter}/>) : (<Login
               email={email}
+              setRouter={setRouter}
               setEmail={setEmail}
               password={password}
               setPassword={setPassword}
@@ -1220,7 +1223,9 @@ const Sponsor = () => {
               setHasAccount={setHasAccount}
               errorMessage={errorMessage}
               setErrorMessage={setErrorMessage}
-            />
+            />)}
+            
+            </>
           ) : (
             <Signup
               email={email}
