@@ -296,7 +296,7 @@ const AdminLetterBox = (props) => {
                           Page Number {i + 1} / {letters.length}
                         </textbox>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-4"> 
                         {i + 1 == letters.length ? (
                           <button
                             className="button_gray"
