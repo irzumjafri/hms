@@ -208,14 +208,28 @@ const EditMyProfileSponsor = (props) => {
                   <Form.Label className="label-right">
                     Mode of Communication *
                   </Form.Label>
-                  <Form.Control
+                  <Dropdown
+              className="my-className"
+              options={[
+                { value: "Phone/Whatsapp", label: "Phone / Whatsapp" },
+                { value: "Email", label: "Email" }
+    
+              ]}
+              required
+              placeholder = {preferredMediumOfCommunication}
+              value={preferredMediumOfCommunication}
+                onChange={(i) =>
+            setPreferredMediumOfCommunication(i.value)
+          }
+            />
+                  {/* <Form.Control
                     type="text"
                     required
                     value={preferredMediumOfCommunication}
                     onChange={(e) =>
                       setPreferredMediumOfCommunication(e.target.value)
                     } // make it into drop down menu
-                  ></Form.Control>
+                  ></Form.Control> */}
                 </div>
               </Form.Row>
 
@@ -235,12 +249,23 @@ const EditMyProfileSponsor = (props) => {
                   <Form.Label className="label-right">
                     Payment Method *
                   </Form.Label>
-                  <Form.Control
+                  <Dropdown className="my-className"
+              options={[
+                { value: "Quarterly", label: "Quarterly" },
+                { value: "Monthly", label: "Monthly" },
+                { value: "Annually", label: "Annualy"}
+              ]}
+              required
+              placeholder={paymentSchedule}
+              value={paymentSchedule}
+              onSelect={(i) => setPaymentSchedule(i.value)}
+              />
+                  {/* <Form.Control
                     type="text"
                     required
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)} // make it into drop down menu
-                  ></Form.Control>
+                  ></Form.Control> */}
                 </div>
               </Form.Row>
 
@@ -249,12 +274,24 @@ const EditMyProfileSponsor = (props) => {
                   <Form.Label className="label-left">
                     Payment Schedule *
                   </Form.Label>
-                  <Form.Control
+                  {/* <Form.Control
                     type="text"
                     required
                     value={paymentSchedule}
                     onChange={(e) => setPaymentSchedule(e.target.value)} // make it into drop down menu
-                  ></Form.Control>
+                  ></Form.Control> */}
+                  <Dropdown
+              className="my-className"
+              options={[
+                { value: "Quarterly", label: "Quarterly" },
+                { value: "Monthly", label: "Monthly" },
+                { value: "Annually", label: "Annualy"}
+              ]}
+              required
+              placeholder={paymentSchedule}
+              value={paymentSchedule}
+              onSelect={(i) => setPaymentSchedule(i.value)}
+              />
                 </div>
 
                 <div class="col-md-6">

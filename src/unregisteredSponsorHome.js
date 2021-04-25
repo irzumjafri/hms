@@ -32,37 +32,6 @@ const UnregisteredSponsorHome = (props) => {
 
             <Calendar className="calender" />
 
-            {/* <h2 className="label-right">
-              <p className="p_i">Today's Event(s):</p>
-            </h2>
-            <p className="label-right">
-              <p className="p_ii">No Events</p>
-            </p>
-
-            <div class="row">
-              <div class="col-md-6">
-                <Button
-                  button
-                  className="button_blue"
-                  variant="primary"
-                  size="sm"
-                  block
-                >
-                  Add Event
-                </Button>
-              </div>
-              <div class="col-md-6">
-                <Button
-                  button
-                  className="button_red"
-                  variant="primary"
-                  size="sm"
-                  block
-                >
-                  Remove Event
-                </Button>
-              </div>
-            </div> */}
           </div>
         </section>
 

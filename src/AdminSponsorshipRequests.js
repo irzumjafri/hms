@@ -228,7 +228,7 @@ const SponsorshipRequests = (props) => {
                   <Form.Label className="label-left">
                     Preferred Medium of Communication
                   </Form.Label>
-                  <Dropdown
+                  {/* <Dropdown
               className="my-className"
               options={[
                 { value: "phone/whatsapp", label: "Phone / Whatsapp" },
@@ -240,26 +240,15 @@ const SponsorshipRequests = (props) => {
                 sponsorshipApplicationData[i]
                   .preferredMediumOfCommunication
               }
-              // onSelect={(i) => {
-              //   if (i.value == "logout") {
-              //     handleLogout();
-              //   } else if (i.value == "editprofile") {
-              //     setRouter("editmyprofile");
-              //   } else if (i.value == "changepw") {
-              //     setRouter("editpassword");
-              //   } else if (i.value == "deleteacc") {
-              //     setRouter("deleteaccount");
-              //   }
-              // }} // always fires once a selection happens even if there is no change
-            />
-                  {/* <Form.Control
+            /> */}
+                  <Form.Control
                     type="text"
                     required
                     value={
                       sponsorshipApplicationData[i]
                         .preferredMediumOfCommunication
                     }
-                  ></Form.Control> */}
+                  ></Form.Control>
                 </div>
               </Form.Row>
 
@@ -279,24 +268,53 @@ const SponsorshipRequests = (props) => {
 
                 <div class="col-md-6">
                   <Form.Label className="label-left">Payment Method</Form.Label>
-                  <Dropdown
+                  {/* <Dropdown
               className="my-className"
               options={[
                 { value: "cash", label: "Cash" },
                 { value: "onlinetransfer", label: "Online Transfer" },
                 { value: "cheque", label: "Cheque" }
               ]}
-              placeholder="Select an Option"
+              placeholder={sponsorshipApplicationData[i].paymentMethod}
               required
               value={sponsorshipApplicationData[i].paymentMethod}
-              />
-                  {/* <Form.Control
+              /> */}
+                  <Form.Control
                     type="text"
                     required
                     value={sponsorshipApplicationData[i].paymentMethod}
-                  ></Form.Control> */}
+                  ></Form.Control>
                 </div>
               </Form.Row>
+
+              <Form.Row>
+          <div class = "col-md-6" >
+        <Form.Label className= "label-left">Payment Schedule *</Form.Label>
+
+        {/* <Dropdown
+              className="my-className"
+              options={[
+                { value: "quarterly", label: "Quarterly" },
+                { value: "monthly", label: "Monthly" },
+                { value: "annually", label: "Annualy"}
+              ]}
+              placeholder={sponsorshipApplicationData[i].paymentSchedule}
+              required
+              value={sponsorshipApplicationData[i].paymentSchedule}
+              /> */}
+
+        
+
+        <Form.Control
+          type="text"
+          required
+          value={sponsorshipApplicationData[i].paymentSchedule}
+         
+        >
+        </Form.Control>
+        </div>
+        
+        </Form.Row>  
 
               <div class="row">
                 <div class="col-md-6">

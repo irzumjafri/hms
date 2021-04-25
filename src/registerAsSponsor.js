@@ -124,7 +124,20 @@ const RegisterAsSponsor = (props) => {
         </div>
         <div class = "col-md-6">
         <Form.Label className= "label-right">Preferred Medium of Communication *</Form.Label>
-        <Form.Control
+        <Dropdown
+              className="my-className"
+              options={[
+                { value: "Phone/Whatsapp", label: "Phone / Whatsapp" },
+                { value: "Email", label: "Email" }
+    
+              ]}
+              required
+              value={preferredMediumOfCommunication}
+                onChange={(i) =>
+            setPreferredMediumOfCommunication(i.value)
+          }
+            />
+        {/* <Form.Control
           type="text"
           required
           value={preferredMediumOfCommunication}
@@ -132,7 +145,7 @@ const RegisterAsSponsor = (props) => {
             setPreferredMediumOfCommunication(e.target.value)
           } // make it into drop down menu
         >
-          </Form.Control>
+          </Form.Control> */}
         </div>
         </Form.Row>
 
@@ -149,26 +162,52 @@ const RegisterAsSponsor = (props) => {
         </div>
         <div class = "col-md-6" >
         <Form.Label className= "label-right">Payment Method *</Form.Label>
-        <Form.Control
+
+        <Dropdown
+              className="my-className"
+              options={[
+                { value: "Cash", label: "Cash" },
+                { value: "Online Transfer", label: "Online Transfer" },
+                { value: "Cheque", label: "Cheque" }
+              ]}
+              
+              required
+              value={paymentMethod}
+              onChange={(i) => setPaymentMethod(i.value)}
+
+              /> 
+        {/* <Form.Control
           type="text"
           required
           value={paymentMethod}
           onChange={(e) => setPaymentMethod(e.target.value)} // make it into drop down menu
         >
-          </Form.Control>
+          </Form.Control> */}
         </div>
         </Form.Row>
         
         <Form.Row>
           <div class = "col-md-6" >
         <Form.Label className= "label-left">Payment Schedule *</Form.Label>
-        <Form.Control
+        {/* <Form.Control
           type="text"
           required
           value={paymentSchedule}
           onChange={(e) => setPaymentSchedule(e.target.value)} // make it into drop down menu
         >
-        </Form.Control>
+        </Form.Control> */}
+        <Dropdown
+              className="my-className"
+              options={[
+                { value: "Quarterly", label: "Quarterly" },
+                { value: "Monthly", label: "Monthly" },
+                { value: "Annually", label: "Annualy"}
+              ]}
+              required
+              placeholder="Select"
+              value={paymentSchedule}
+              onSelect={(i) => setPaymentSchedule(i.value)}
+              />
         </div>
 
         <div class = "col-md-6" >
