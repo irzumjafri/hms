@@ -231,10 +231,9 @@ const SponsorshipRequests = (props) => {
                   <Dropdown
               className="my-className"
               options={[
-                { value: "whatsapp", label: "Whatsapp" },
-                { value: "email", label: "Email" },
-                { value: "instagram", label: "Instagram" },
-                { value: "facebook", label: "Facebook" }
+                { value: "phone/whatsapp", label: "Phone / Whatsapp" },
+                { value: "email", label: "Email" }
+    
               ]}
               placeholder="Select an Option"
               value={
@@ -253,14 +252,14 @@ const SponsorshipRequests = (props) => {
               //   }
               // }} // always fires once a selection happens even if there is no change
             />
-                  <Form.Control
+                  {/* <Form.Control
                     type="text"
                     required
                     value={
                       sponsorshipApplicationData[i]
                         .preferredMediumOfCommunication
                     }
-                  ></Form.Control>
+                  ></Form.Control> */}
                 </div>
               </Form.Row>
 
@@ -280,11 +279,22 @@ const SponsorshipRequests = (props) => {
 
                 <div class="col-md-6">
                   <Form.Label className="label-left">Payment Method</Form.Label>
-                  <Form.Control
+                  <Dropdown
+              className="my-className"
+              options={[
+                { value: "cash", label: "Cash" },
+                { value: "onlinetransfer", label: "Online Transfer" },
+                { value: "cheque", label: "Cheque" }
+              ]}
+              placeholder="Select an Option"
+              required
+              value={sponsorshipApplicationData[i].paymentMethod}
+              />
+                  {/* <Form.Control
                     type="text"
                     required
                     value={sponsorshipApplicationData[i].paymentMethod}
-                  ></Form.Control>
+                  ></Form.Control> */}
                 </div>
               </Form.Row>
 
