@@ -212,28 +212,7 @@ const AdminAddEvent = (props) => {
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
           <div className="smalltext">
-            <Dropdown
-              className="my-className"
-              options={[
-                { value: "changepw", label: "Edit Password" },
-                { value: "editprofile", label: "Edit Profile" },
-                { value: "deleteacc", label: "Delete Account" },
-                { value: "logout", label: "Log Out" },
-              ]}
-              placeholder="My Account"
-              value="My Account"
-              onSelect={(i) => {
-                if (i.value == "logout") {
-                  handleLogout();
-                } else if (i.value == "editprofile") {
-                  setRouter("editmyprofile");
-                } else if (i.value == "changepw") {
-                  setRouter("editpassword");
-                } else if (i.value == "deleteacc") {
-                  setRouter("deleteaccount");
-                }
-              }} // always fires once a selection happens even if there is no change
-            />
+          <p className="smalltext" onClick={handlelogout}><span>Logout</span></p>
           </div>
           <nav className="navbarContainer">
             <p
