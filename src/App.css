@@ -1452,7 +1452,16 @@
   justify-content: center;
   margin-top: 10%;
 }
-
+.editMyProfileSponsor .editMyProfileSponsorContainer .titletext2 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
 .editMyProfileSponsor .editMyProfileSponsorContainer .button_green {
   border: none;
   outline: none;
@@ -1462,7 +1471,7 @@
   background: #61ce7d;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -1481,7 +1490,7 @@
   background: #529cea;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1500,7 +1509,7 @@
   background: #d2d2d2;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1517,7 +1526,7 @@
   background: #ff0033;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -1635,7 +1644,7 @@
   background: #61ce7d;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -1653,7 +1662,7 @@
   background: #529cea;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1670,7 +1679,7 @@
   background: #d2d2d2;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1687,7 +1696,7 @@
   background: #ff5a5a;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1704,6 +1713,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.childrenProfiles .childrenProfilesContainer .titletext2 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
 .childrenProfiles .childrenProfilesContainer .label-left {
   color: white;
   font-size: 18px;
@@ -1793,7 +1814,7 @@
   background: #61ce7d;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -1808,10 +1829,10 @@
   font-size: 18px;
   width: 100%;
   letter-spacing: 1px;
-  background: #ff5a5a;
+  background: #ff0033;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2007,6 +2028,12 @@
   margin-top: 10%;
 }
 
+.paymentHistory .paymentHistoryContainer .my-className {
+  align-self: center;
+  border-radius: 5px;
+  margin: 10px auto;
+}
+
 .paymentHistory .paymentHistoryContainer .button_green {
   border: none;
   outline: none;
@@ -2016,7 +2043,7 @@
   background: #61ce7d;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -2030,10 +2057,10 @@
   color: #fff;
   font-size: 18px;
   letter-spacing: 1px;
-  background: #ff5a5a;
+  background: #ff0033;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -2050,7 +2077,7 @@
   background: #529cea;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -2067,7 +2094,7 @@
   background: #d2d2d2;
   border-radius: 10px;
   /* //height: 50px; */
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -2084,7 +2111,7 @@
   background: #ff0033;
   border-radius: 10px;
   /* //height: 50px; */
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -2099,8 +2126,20 @@
   font-size: 25px;
   font-weight: 900px;
   display: flex;
+
   align-items: center;
   justify-content: center;
+  align-self: center;
+}
+.paymentHistory .paymentHistoryContainer .titletext2 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 }
 .paymentHistory .paymentHistoryContainer .label-left {
   color: white;
@@ -2182,7 +2221,7 @@
   background: #61ce7d;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: block;
   align-items: center;
   justify-content: center;
@@ -2197,10 +2236,10 @@
   font-size: 18px;
   width: 100%;
   letter-spacing: 1px;
-  background: #ff5a5a;
+  background: #ff0033;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2288,8 +2327,7 @@
 
 .academicReportsSponsor .academicReportsSponsorContainer .my-className {
   border-radius: 5px;
-  padding: 0px;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 .academicReportsSponsor .academicReportsSponsorContainer .button_green {
@@ -2302,7 +2340,7 @@
   background: #61ce70;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2317,10 +2355,10 @@
   font-size: 18px;
   width: 100%;
   letter-spacing: 1px;
-  background: #ff5a5a;
+  background: #ff0033;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2337,7 +2375,7 @@
   background: #d2d2d2;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2355,7 +2393,7 @@
   background: #529cea;
   border-radius: 10px;
   height: 50px;
-  margin: 10px 0px auto 10px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2562,8 +2600,7 @@
 
 .letterBox .letterBoxContainer .my-className {
   border-radius: 5px;
-  padding: 0px;
-  margin: 10px;
+  margin: 10px auto;
 }
 .letterBox .letterBoxContainer .titletext {
   color: white;
@@ -2578,7 +2615,7 @@
   color: white;
   font-size: 18px;
   margin-top: 5px;
-  margin: 5px;
+  margin: 5px auto;
 }
 .letterBox .letterBoxContainer .label-down {
   color: white;
@@ -2590,9 +2627,7 @@
 }
 
 .letterBox .letterBoxContainer .input-left {
-  min-width: 100%;
-  min-height: max-content;
-  margin: 10px;
+  margin: 10px 0px;
 }
 .letterBox .letterBoxContainer .label-right {
   color: white;

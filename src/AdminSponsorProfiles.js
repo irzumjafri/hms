@@ -134,7 +134,7 @@ const AdminSponsorProfiles = (props) => {
           <div className="editMyProfileSponsorContainer">
             <div class="row">
               <div class="col-md-12">
-                <textbox className="label-left">
+                <textbox className="titletext2">
                   Total Active Sponsors: {sponsorData.length}
                 </textbox>
               </div>
@@ -335,7 +335,7 @@ const AdminSponsorProfiles = (props) => {
                 </div>
                 <div class="col-md-4">
                   <textbox className="label-down">
-                    Page Number {i + 1} / {sponsorData.length}
+                    Page Number {i + 1}/{sponsorData.length}
                   </textbox>
                 </div>
                 <div class="col-md-4">

@@ -136,7 +136,7 @@ const SponsorshipRequests = (props) => {
           <div className="editMyProfileSponsorContainer">
             <div class="row">
               <div class="col-md-12">
-                <textbox className="label-left">
+                <textbox className="titletext2">
                   Total Active Sponsors: {sponsorshipApplicationData.length}
                 </textbox>
               </div>
@@ -228,19 +228,7 @@ const SponsorshipRequests = (props) => {
                   <Form.Label className="label-left">
                     Preferred Medium of Communication
                   </Form.Label>
-                  {/* <Dropdown
-              className="my-className"
-              options={[
-                { value: "phone/whatsapp", label: "Phone / Whatsapp" },
-                { value: "email", label: "Email" }
-    
-              ]}
-              placeholder="Select an Option"
-              value={
-                sponsorshipApplicationData[i]
-                  .preferredMediumOfCommunication
-              }
-            /> */}
+                  {/*  */}
                   <Form.Control
                     type="text"
                     required

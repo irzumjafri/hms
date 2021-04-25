@@ -134,7 +134,7 @@ const AdminPaymentHistory = (props) => {
           <div className="paymentHistoryContainer">
           <div class="row">
                 <div class="col-md-12">
-                  <textbox className="label-left">
+                  <textbox className="titletext2">
                     Total Records: {paymentRecords.length}
                   </textbox>
                 </div>

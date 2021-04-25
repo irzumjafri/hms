@@ -184,7 +184,7 @@ const AdminLetterBox = (props) => {
                         }} // always fires once a selection happens even if there is no change
                       />
 
-                      <div class="col-md-12">
+                      
                         <Form.Label className="label-left">Letter *</Form.Label>
                         <Form.Control
                           className="input-left"
@@ -193,7 +193,7 @@ const AdminLetterBox = (props) => {
                           value={letterBody}
                           onChange={(e) => setLetterBody(e.target.value)}
                         ></Form.Control>
-                      </div>
+                    
                     </Form>
 
                     <StyledPopup

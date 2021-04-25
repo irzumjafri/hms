@@ -132,12 +132,12 @@ const AdminChildrenProfiles = (props) => {
 
         <section className="childrenProfiles">
           <div className="childrenProfilesContainer">
-            <div class="row">
+            
               
-                <textbox className="label-left">
+                <textbox className="titletext2">
                   Total Children: {childData.length}
                 </textbox>
-                </div>
+              
               <div class="col-md-12">
                 <div
                   onClick={() => setRouter("addchildrenprofile")}

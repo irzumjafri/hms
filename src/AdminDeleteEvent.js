@@ -128,7 +128,7 @@ const AdminDeleteEvent = (props) => {
                     Deleting Events for {date}
                   </textbox>
                 </div>
-                <div class="col">
+                <div class="col-md-12">
                   <Dropdown
                     className="my-className"
                     options={fetchCalendarData()}
@@ -147,7 +147,7 @@ const AdminDeleteEvent = (props) => {
                 <div class="col-md-12">
                   <StyledPopup
                     trigger={
-                      <div class="Button" className="button_green">
+                      <div class="Button" className="button_redd">
                         Delete Event
                       </div>
                     }
