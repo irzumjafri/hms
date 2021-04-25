@@ -153,7 +153,7 @@ const ForgotPassword = (props) => {
                 <div class="col-md-12">
                 <StyledPopup
                       trigger={
-                        <div class="Button" className="button_green" onClick = {() => {{console.log("ENTER FUNCTION HERE")};setRouter("")}}>
+                        <div class="Button" className="button_green">
                           Reset Password
                         </div>
                       }
@@ -170,7 +170,8 @@ const ForgotPassword = (props) => {
                             <div class="col-md-12">
                               <button
                                 onClick={() => {
-                                  console.log("modal closed ");
+                                  console.log("ENTER FUNCTION HERE")
+                                  setRouter("")
                                   close();
                                 }}
                                 className="button_green"
