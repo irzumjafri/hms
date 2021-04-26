@@ -19,7 +19,6 @@ const AdminMeetingRequests = (props) => {
         <section></section>
         <section className="requestAMeeting">
           <div className="requestAMeetingContainer">
-            return (
             {meetingRecords.length ? (
               <div>
                 <Form>
@@ -137,7 +136,6 @@ const AdminMeetingRequests = (props) => {
                 <h2 className="titletext">No Meeting Requests to Display</h2>
               </div>
             )}
-            );
           </div>
         </section>
         <nav className="navbarContainer_gray">

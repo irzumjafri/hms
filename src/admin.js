@@ -908,13 +908,14 @@ const Admin = () => {
   // This function gets all the meetign requests from sponsors and sets them in states to be diplayed
   const fetchMeetingRequests = () => {
     let tempData = [];
-    setmeetingRecords(tempData);
+    // setmeetingRecords(tempData);
     db.collection("meeting")
       .get()
       .then((querySnapshot) => {
         // No meeting request is in db and it is empty
         if (querySnapshot.empty) {
           console.log("No meeting request exists in the database");
+          setmeetingRecords(tempData)
           return;
         } else {
           querySnapshot.forEach((doc) => {
@@ -934,6 +935,7 @@ const Admin = () => {
             });
           });
         }
+        console.log(tempData)
         setmeetingRecords(tempData);
       });
   };
