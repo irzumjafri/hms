@@ -233,6 +233,7 @@ const LetterBox = (props) => {
                     return (
                     <div>
                       {recievedLetters.length ? (
+                        <>
                         <Form>
                           <div class="col-md-6">
                             <Form.Label className="label-left">From</Form.Label>
@@ -252,11 +253,7 @@ const LetterBox = (props) => {
                             ></Form.Control>
                           </div>
                         </Form>
-                      ) : (
-                        <h2>No Letters to Display</h2>
-                      )}
-
-                      <div class="row">
+                        <div class="row">
                         <div class="col-md-4">
                           {i ? (
                             <button
@@ -304,7 +301,12 @@ const LetterBox = (props) => {
                             </button>
                           )}
                         </div>
-                      </div>
+                      </div></>
+                      ) : (
+                        <div class="col-md-12">
+                          <h2 className="titletext">No Letters to Display</h2>
+                        </div>
+                      )}
                     </div>
                     );
                   </div>
