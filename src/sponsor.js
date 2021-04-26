@@ -126,6 +126,7 @@ const Sponsor = () => {
       // delete all data of sponsor related to children
       deleteSponsorProfile(user.uid);
       // now delete user account and authenctication
+      setRouter("")
       delAccount();
     }
   };
