@@ -40,7 +40,7 @@ const AdminMeetingRequests = (props) => {
                   <Form.Row>
                     <div class="col-md-12">
                       <Form.Label className="label-left">
-                        Sponsor Name *
+                        Sponsor Email *
                       </Form.Label>
                       <Form.Control
                         type="text"
