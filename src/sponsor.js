@@ -976,6 +976,8 @@ const Sponsor = () => {
   const handleLogout = () => {
     setRouter("");
     fire.auth().signOut();
+    clearInputs();
+    clearErrors();
     setUser("");
   };
 

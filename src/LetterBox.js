@@ -252,11 +252,11 @@ const LetterBox = (props) => {
                   </div>
                   <div class="col-md-4">
                   <textbox className="label-down">
-                    Page Number {i + 1} / {childData.length}
+                    Page Number {i + 1} / {recievedLetters.length}
                   </textbox>
                 </div>
                   <div class="col-md-4">
-                    {i + 1 == childData.length ? (
+                    {i + 1 == recievedLetters.length ? (
                       <button
                         className="button_gray"
 
