@@ -325,40 +325,71 @@ const Admin = () => {
           });
         }
 
-        // delete profile from applications
-        console.log("DELETING SPONSORSHIP APPLICATION");
-        db.collection("sponsorshipApplicants")
-          .doc(identity.toString().replace(/\s/g, ""))
-          .delete()
-          .then(() => {
-            console.log("Document successfully deleted!");
+        // noc is available here, use this to check pehlay before doing any of the things below
+        let count = 0;
+        db.collection("childrenProfiles")
+          .get()
+          .then((querySnapshot) => {
+            if (querySnapshot.empty) {
+              console.log("No unassigned child in the database");
+              return;
+            } else {
+              querySnapshot.forEach((doc) => {
+                if (
+                  doc.data().status === "" ||
+                  doc.data().status === "unassigned"
+                ) {
+                  count = count + 1;
+                }
+              });
 
-            // and add the profile to registered sponsors with updated status and assigned howTO
-            db.collection("registeredSponsors").doc(identity).set({
-              firstName: first,
-              lastName: last,
-              email: email,
-              dateOfBirth: dob,
-              cnic: nic,
-              phoneNumber: phone,
-              address: addr,
-              preferredMediumOfCommunication: pmc,
-              numberOfSponsoredChildren: noc,
-              paymentMethod: pm,
-              paymentSchedule: ps,
-              timeStamp: ts,
-              id: identity,
-              applicationStatus: apS,
-              howToAssignChildren: howTo,
-            });
+              if (count < noc) {
+                console.log(
+                  `Not enough unassigned children in the database. Number of unassigned children is: ${count}`
+                );
+                //////
+                let reason = `Sponsor with email address ${email} not assigned any child due to unavailability of required number of unassigned children. Number of unassigned children in the database are ${count}`;
+                generateNotification("admin", reason);
+                //////
+                return;
+              } else {
+                // delete profile from applications
+                console.log("DELETING SPONSORSHIP APPLICATION");
+                db.collection("sponsorshipApplicants")
+                  .doc(identity.toString().replace(/\s/g, ""))
+                  .delete()
+                  .then(() => {
+                    console.log("Document successfully deleted!");
 
-            db.collection("userAccounts").doc(identity).update({
-              applicationStatus: "Accepted",
-            });
-            fetchSponsorshipApplications();
-            fetchSponsorData();
-            // assign children to sponsors as well acc to how to
-            assignChildrenToSponsor(email, noc, howTo, object); // store email in children profile which are to be assigned
+                    // and add the profile to registered sponsors with updated status and assigned howTO
+                    db.collection("registeredSponsors").doc(identity).set({
+                      firstName: first,
+                      lastName: last,
+                      email: email,
+                      dateOfBirth: dob,
+                      cnic: nic,
+                      phoneNumber: phone,
+                      address: addr,
+                      preferredMediumOfCommunication: pmc,
+                      numberOfSponsoredChildren: noc,
+                      paymentMethod: pm,
+                      paymentSchedule: ps,
+                      timeStamp: ts,
+                      id: identity,
+                      applicationStatus: apS,
+                      howToAssignChildren: howTo,
+                    });
+
+                    db.collection("userAccounts").doc(identity).update({
+                      applicationStatus: "Accepted",
+                    });
+                    fetchSponsorshipApplications();
+                    fetchSponsorData();
+                    // assign children to sponsors as well acc to how to
+                    assignChildrenToSponsor(email, noc, howTo, object); // store email in children profile which are to be assigned
+                  });
+              }
+            }
           });
       })
 
@@ -384,53 +415,54 @@ const Admin = () => {
           } else {
             // set all the fields
             let childIDs = [];
-            let count = 0;
+            // let count = 0;
             querySnapshot.forEach((doc) => {
-              count = count + 1;
+              // count = count + 1;
               childIDs.push(doc.data().id);
             });
 
-            if (count < noc) {
-              console.log(
-                `Not enough unassigned children in the database. Number of unassigned children is: ${count}`
-              );
+            // if (count < noc) {
+            //   console.log(
+            //     `Not enough unassigned children in the database. Number of unassigned children is: ${count}`
+            //   );
 
-              //////
-              let reason = `Sponsor with email address ${mail} not assigned any child due to unavailability of unassigned children`;
-              generateNotification("admin", reason);
-              //////
+            //   //////
+            //   let reason = `Sponsor with email address ${mail} not assigned any child due to unavailability of unassigned children`;
+            //   generateNotification("admin", reason);
+            //   //////
 
-              return;
-            } else {
-              // get IDs of profiles of children that will be assigned to this sponsor
-              // update each ID of that child with sponsors CNIC and update its status as well
-              childIDs.map((idOfChild, i) => {
-                if (i < noc) {
-                  let profileToEdit = db
-                    .collection("childrenProfiles")
-                    .doc(idOfChild);
+            //   return;
+            // } else {
 
-                  return profileToEdit
-                    .update({
-                      sponsorEmail: mail,
-                      status: "assigned",
-                    })
-                    .then(() => {
-                      console.log("Document successfully updated!");
+            // get IDs of profiles of children that will be assigned to this sponsor
+            // update each ID of that child with sponsors CNIC and update its status as well
+            childIDs.map((idOfChild, i) => {
+              if (i < noc) {
+                let profileToEdit = db
+                  .collection("childrenProfiles")
+                  .doc(idOfChild);
 
-                      //////
-                      let reason = `Sponsor with email address ${mail} has been assigned a child`;
-                      generateNotification("admin", reason);
-                      //////
+                return profileToEdit
+                  .update({
+                    sponsorEmail: mail,
+                    status: "assigned",
+                  })
+                  .then(() => {
+                    console.log("Document successfully updated!");
 
-                      fetchChildrenProfiles(); // update the changes in states as well
-                    })
-                    .catch((error) => {
-                      console.error("Error updating document: ", error);
-                    });
-                }
-              });
-            }
+                    //////
+                    let reason = `Sponsor with email address ${mail} has been assigned a child`;
+                    generateNotification("admin", reason);
+                    //////
+
+                    fetchChildrenProfiles(); // update the changes in states as well
+                  })
+                  .catch((error) => {
+                    console.error("Error updating document: ", error);
+                  });
+              }
+            });
+            // }
           }
         });
     }
@@ -446,6 +478,11 @@ const Admin = () => {
             status: "assigned",
           })
           .then(() => {
+            //////
+            let reason = `Sponsor with email address ${mail} has been assigned a child`;
+            generateNotification("admin", reason);
+            //////
+
             console.log("Document successfully updated!");
             fetchChildrenProfiles(); // update the changes in states as well
           });
