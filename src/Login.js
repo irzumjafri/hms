@@ -67,7 +67,7 @@ const Login = (props) => {
         <div className="btnContainer">
           <>
             <label className="titletext">SIGN IN</label>
-            <label>Username</label>
+            <label>Email</label>
             <input
               className="input-left"
               type="text"
@@ -85,17 +85,19 @@ const Login = (props) => {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <p className="errorMsg">{errorMessage}</p>
+            <div></div>
             <button className="button_blue" onClick={handleLogin}>
               LOG IN
             </button>
-            <p
+            <div><p
               className="smalltext"
               onClick={() => {
                 setRouter("forgotPW");
               }}
             >
               Forgot Password?
-            </p>
+            </p></div>
+            
             <div className="line">___________________________________</div>
             <button
               className="button_green"

@@ -969,7 +969,12 @@ const Sponsor = () => {
         }
       })
       .catch((err) => {
-        setErrorMessage(err.message);
+        if (err.message == "The email address is badly formatted."){
+          setErrorMessage("Invalid/No Email Entered.")
+        }
+        else{
+          setErrorMessage(err.message);
+        }
       });
   };
 
@@ -989,8 +994,9 @@ const Sponsor = () => {
         fetchLogin(user.uid);
       }
       else if (user && !user.emailVerified){
-        setErrorMessage("Please verify your account.")
+        fire.auth().signOut();
         setUser("")
+        setErrorMessage("Please verify your account.")
       }
     });
   };

@@ -1,11 +1,10 @@
 import React from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
-import { Button, Form } from 'react-bootstrap';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import Styled from 'styled-components';
-
+import { Button, Form } from "react-bootstrap";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Styled from "styled-components";
 
 const Signup = (props) => {
   const {
@@ -64,20 +63,15 @@ const Signup = (props) => {
   justify-content: center;
 }
 `,
-
   } = props;
 
   return (
     <section className="signup">
       <div className="signupContainer">
-
-
-
         <label className="titletext">SIGN UP</label>
 
-
         <Form>
-          <Form.Row >
+          <Form.Row>
             <div class="col-md-6">
               <Form.Label className="label-left">First Name *</Form.Label>
               <Form.Control
@@ -87,7 +81,7 @@ const Signup = (props) => {
                 value={firstname}
                 onChange={(e) => setFirstName(e.target.value)}
               ></Form.Control>
-            </div >
+            </div>
             <div class="col-md-6">
               <Form.Label className="label-right">Last Name *</Form.Label>
               <Form.Control
@@ -107,19 +101,19 @@ const Signup = (props) => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              >
-              </Form.Control>
+              ></Form.Control>
             </div>
             <div class="col-md-6">
-              <Form.Label className="label-right">Date of Birth (DD-MM-YYYY) *</Form.Label>
+              <Form.Label className="label-right">
+                Date of Birth (DD-MM-YYYY) *
+              </Form.Label>
               <Form.Control
                 type="text"
                 required
                 value={dateofbirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
-              >
-              </Form.Control>
-            </div >
+              ></Form.Control>
+            </div>
           </Form.Row>
 
           <Form.Row>
@@ -130,60 +124,69 @@ const Signup = (props) => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              >
-              </Form.Control>
+              ></Form.Control>
             </div>
             <div class="col-md-6">
-              <Form.Label className="label-right">Confirm Password *</Form.Label>
+              <Form.Label className="label-right">
+                Confirm Password *
+              </Form.Label>
               <Form.Control
                 type="password"
                 required
                 value={confirmpassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-              >
-              </Form.Control>
-            </div >
-          </Form.Row >
-
+              ></Form.Control>
+            </div>
+          </Form.Row>
         </Form>
         <p className="errorMsg">{errorMessage}</p>
         <div className="btnContainer">
           <>
             {firstname &&
-              lastname &&
-              dateofbirth &&
-              confirmpassword &&
-              confirmpassword === password ? (
+            lastname &&
+            dateofbirth &&
+            confirmpassword &&
+            confirmpassword === password ? (
               // <button className="button_green" onClick={handleSignUp}>
               //   Create My Account!</button>
 
-              <button className="button_green" onClick={handleSignUp}>  Create My Account! </button>
-
-
+              <button className="button_green" onClick={handleSignUp}>
+                {" "}
+                Create My Account!{" "}
+              </button>
             ) : (
-
-              <StyledPopup trigger={<button className="button_gray" onClick={handleSignUp}>
-                Create My Account!</button>} position="center" modal >
-                
+              <StyledPopup
+                trigger={
+                  <button className="button_gray" onClick={handleSignUp}>
+                    Create My Account!
+                  </button>
+                }
+                position="center"
+                modal
+              >
                 <div>
-
-                  All the required fields have not been filled. Press okay to go back and fill in the missing information
+                  All the required fields have not been filled. Press okay to go
+                  back and fill in the missing information
                 </div>
                 <div>
-
-                  <button className="button_green" onClick={handleSignUp}> OKAY! </button>
-
+                  <button className="button_green" onClick={handleSignUp}>
+                    {" "}
+                    OKAY!{" "}
+                  </button>
                 </div>
-
-
-
-
               </StyledPopup>
             )}
             {/*CSS: CHANGE BUTTON COLOR WHEN FIELDS AREN'T COMPLETE */}
             <p>
               Have an account?{" "}
-              <span onClick={() => {setHasAccount(!hasAccount);setErrorMessage("")}}>Sign In</span>
+              <span
+                onClick={() => {
+                  setHasAccount(!hasAccount);
+                  setErrorMessage("");
+                }}
+              >
+                Sign In
+              </span>
             </p>
           </>
         </div>

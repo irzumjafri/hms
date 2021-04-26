@@ -194,6 +194,7 @@ const ForgotPassword = (props) => {
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
           <nav className="navbarContainer">
+          <p className="smalltext" onClick={() => setRouter("")}><span>BACK</span></p>
             <h2 className="titletext"> FORGOT PASSWORD </h2>
           </nav>
         </nav>
