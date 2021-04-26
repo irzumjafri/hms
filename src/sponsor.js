@@ -929,9 +929,9 @@ const Sponsor = () => {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
+          createUserAccount(userCredential.user.uid);
           emailVerification();
           setHasAccount(!hasAccount);
-          createUserAccount(userCredential.user.uid);
         })
         .catch((error) => {
           setErrorMessage(error.message);
