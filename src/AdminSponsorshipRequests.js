@@ -134,129 +134,136 @@ const SponsorshipRequests = (props) => {
       <section className="navbar">
         <section className="editMyProfileSponsor">
           <div className="editMyProfileSponsorContainer">
-            <div class="row">
+            
+            {/* <div class="col-md-12">
+              <div
+                onClick={() => setRouter("adminaddsponsorprofile")}
+                class="Button"
+                className="button_green"
+              >
+                {" "}
+                Add New Sponsors
+              </div>
+            </div> */}
+            return (
+            {sponsorshipApplicationData.length ? (
+              <>
+              <div class="row">
               <div class="col-md-12">
                 <textbox className="titletext2">
-                  Total Active Sponsors: {sponsorshipApplicationData.length}
+                  Total Sponsorship Requests: {sponsorshipApplicationData.length}
                 </textbox>
               </div>
-              </div>
-              <div class="col-md-12">
-                <div
-                  onClick={() => setRouter("adminaddsponsorprofile")}
-                  class="Button"
-                  className="button_green"
-                >
-                  {" "}
-                  Add New Sponsors
-                </div>
-              </div>
-            
-            return (
-            <Form>
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">First Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    autoFocus
-                    required
-                    value={sponsorshipApplicationData[i].firstName}
-                  ></Form.Control>
-                </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">Last Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={sponsorshipApplicationData[i].lastName}
-                  ></Form.Control>
-                </div>
-              </Form.Row>
+            </div>
+                <Form>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">First Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        autoFocus
+                        required
+                        value={sponsorshipApplicationData[i].firstName}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">Last Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorshipApplicationData[i].lastName}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">Email</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={sponsorshipApplicationData[i].email}
-                  ></Form.Control>
-                </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">
-                    Date of Birth (DD-MM-YYYY)
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={sponsorshipApplicationData[i].dateOfBirth}
-                  ></Form.Control>
-                </div>
-              </Form.Row>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">Email</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorshipApplicationData[i].email}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Date of Birth (DD-MM-YYYY)
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorshipApplicationData[i].dateOfBirth}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">CNIC</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={sponsorshipApplicationData[i].cnic}
-                  ></Form.Control>
-                </div>
-                <div class="col-md-6">
-                  <Form.Label className="label-right">Phone Number</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={sponsorshipApplicationData[i].phoneNumber}
-                  ></Form.Control>
-                </div>
-              </Form.Row>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">CNIC</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorshipApplicationData[i].cnic}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Phone Number
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorshipApplicationData[i].phoneNumber}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">Address</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={sponsorshipApplicationData[i].address}
-                  ></Form.Control>
-                </div>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">Address</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorshipApplicationData[i].address}
+                      ></Form.Control>
+                    </div>
 
-                <div class="col-md-6">
-                  <Form.Label className="label-left">
-                    Preferred Medium of Communication
-                  </Form.Label>
-                  {/*  */}
-                  <Form.Control
-                    type="text"
-                    required
-                    value={
-                      sponsorshipApplicationData[i]
-                        .preferredMediumOfCommunication
-                    }
-                  ></Form.Control>
-                </div>
-              </Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Preferred Medium of Communication
+                      </Form.Label>
+                      {/*  */}
+                      <Form.Control
+                        type="text"
+                        required
+                        value={
+                          sponsorshipApplicationData[i]
+                            .preferredMediumOfCommunication
+                        }
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-              <Form.Row>
-                <div class="col-md-6">
-                  <Form.Label className="label-left">
-                    Number of Sponsored Children
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={
-                      sponsorshipApplicationData[i].numberOfSponsoredChildren
-                    }
-                  ></Form.Control>
-                </div>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Number of Sponsored Children
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={
+                          sponsorshipApplicationData[i]
+                            .numberOfSponsoredChildren
+                        }
+                      ></Form.Control>
+                    </div>
 
-                <div class="col-md-6">
-                  <Form.Label className="label-left">Payment Method</Form.Label>
-                  {/* <Dropdown
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Payment Method
+                      </Form.Label>
+                      {/* <Dropdown
               className="my-className"
               options={[
                 { value: "cash", label: "Cash" },
@@ -267,19 +274,21 @@ const SponsorshipRequests = (props) => {
               required
               value={sponsorshipApplicationData[i].paymentMethod}
               /> */}
-                  <Form.Control
-                    type="text"
-                    required
-                    value={sponsorshipApplicationData[i].paymentMethod}
-                  ></Form.Control>
-                </div>
-              </Form.Row>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorshipApplicationData[i].paymentMethod}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-              <Form.Row>
-          <div class = "col-md-6" >
-        <Form.Label className= "label-left">Payment Schedule *</Form.Label>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Payment Schedule *
+                      </Form.Label>
 
-        {/* <Dropdown
+                      {/* <Dropdown
               className="my-className"
               options={[
                 { value: "quarterly", label: "Quarterly" },
@@ -291,189 +300,191 @@ const SponsorshipRequests = (props) => {
               value={sponsorshipApplicationData[i].paymentSchedule}
               /> */}
 
-        
-
-        <Form.Control
-          type="text"
-          required
-          value={sponsorshipApplicationData[i].paymentSchedule}
-         
-        >
-        </Form.Control>
-        </div>
-        
-        </Form.Row>  
-
-              <div class="row">
-                <div class="col-md-6">
-                  <StyledPopup
-                    trigger={
-                      <div class="Button" className="button_green">
-                        Approve
-                      </div>
-                    }
-                    modal
-                    nested
-                  >
-                    <div>
-                      Do you want to want to manually assign children to this
-                      sponsor or do you want HMS to auto-assign the children?
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorshipApplicationData[i].paymentSchedule}
+                      ></Form.Control>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <StyledPopup
-                          trigger={
-                            <button className="button_blue">
-                              {" "}
-                              Manually Assign
-                            </button>
-                          }
-                          modal
-                          nested
-                        >
-                          {(close) => (
-                            <div>
-                              <Form>
-                                <Form.Label>
-                                  Number of Children to Assign *
-                                </Form.Label>
-                                <Form.Control type="text"></Form.Control>
+                  </Form.Row>
 
-                                <Form.Label>Select Children</Form.Label>
-                                <Form.Control type="test"></Form.Control>
-                              </Form>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <button
-                                    className="button_gray"
-                                    onClick={() => {
-                                      console.log("modal closed ");
-                                      close();
-                                    }}
-                                  >
-                                    {" "}
-                                    Cancel{" "}
-                                  </button>
-                                </div>
-
-                                <div class="col-md-6">
-                                  <button className="button_green">
-                                    {" "}
-                                    Assign Children{" "}
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </StyledPopup>
-                      </div>
-                      <div class="col-md-6">
-                        <button
-                          className="button_blue"
-                          onClick={() => {
-                            setRouter("home");
-                            acceptSponsorshipRequest(
-                              sponsorshipApplicationData[i].id,
-                              "auto"
-                            );
-                          }}
-                        >
-                          Auto-Assign
-                        </button>
-                      </div>
-                    </div>
-                  </StyledPopup>
-                </div>
-                <div class="col-md-6">
-                  <StyledPopup
-                    trigger={
-                      <div class="Button" className="button_redd">
-                        Reject{" "}
-                      </div>
-                    }
-                    position="center"
-                    modal
-                    nested
-                  >
-                    {(close) => (
-                      <div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <StyledPopup
+                        trigger={
+                          <div class="Button" className="button_green">
+                            Approve
+                          </div>
+                        }
+                        modal
+                        nested
+                      >
                         <div>
-                          You are about to reject this sponsorship request. Do
-                          you want to continue?
+                          Do you want to want to manually assign children to
+                          this sponsor or do you want HMS to auto-assign the
+                          children?
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                            <button
-                              onClick={() => {
-                                console.log("modal closed ");
-                                close();
-                              }}
-                              className="button_gray"
+                            <StyledPopup
+                              trigger={
+                                <button className="button_blue">
+                                  {" "}
+                                  Manually Assign
+                                </button>
+                              }
+                              modal
+                              nested
                             >
-                              Cancel
-                            </button>
+                              {(close) => (
+                                <div>
+                                  <Form>
+                                    <Form.Label>
+                                      Number of Children to Assign *
+                                    </Form.Label>
+                                    <Form.Control type="text"></Form.Control>
+
+                                    <Form.Label>Select Children</Form.Label>
+                                    <Form.Control type="test"></Form.Control>
+                                  </Form>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <button
+                                        className="button_gray"
+                                        onClick={() => {
+                                          console.log("modal closed ");
+                                          close();
+                                        }}
+                                      >
+                                        {" "}
+                                        Cancel{" "}
+                                      </button>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                      <button className="button_green">
+                                        {" "}
+                                        Assign Children{" "}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </StyledPopup>
                           </div>
                           <div class="col-md-6">
                             <button
+                              className="button_blue"
                               onClick={() => {
                                 setRouter("home");
-                                rejectSponsorshipRequest(
-                                  sponsorshipApplicationData[i].id
+                                acceptSponsorshipRequest(
+                                  sponsorshipApplicationData[i].id,
+                                  "auto"
                                 );
                               }}
-                              className="button_red"
                             >
-                              Reject
+                              Auto-Assign
                             </button>
                           </div>
                         </div>
-                      </div>
+                      </StyledPopup>
+                    </div>
+                    <div class="col-md-6">
+                      <StyledPopup
+                        trigger={
+                          <div class="Button" className="button_redd">
+                            Reject{" "}
+                          </div>
+                        }
+                        position="center"
+                        modal
+                        nested
+                      >
+                        {(close) => (
+                          <div>
+                            <div>
+                              You are about to reject this sponsorship request.
+                              Do you want to continue?
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <button
+                                  onClick={() => {
+                                    console.log("modal closed ");
+                                    close();
+                                  }}
+                                  className="button_gray"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                              <div class="col-md-6">
+                                <button
+                                  onClick={() => {
+                                    setRouter("home");
+                                    rejectSponsorshipRequest(
+                                      sponsorshipApplicationData[i].id
+                                    );
+                                  }}
+                                  className="button_red"
+                                >
+                                  Reject
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </StyledPopup>
+                    </div>
+                  </div>
+                </Form>
+                <div class="row">
+                  <div class="col-md-4">
+                    {i ? (
+                      <button
+                        onClick={() => setI(i - 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    ) : (
+                      <button className="button_gray"> Prev Page</button>
                     )}
-                  </StyledPopup>
+                  </div>
+                  <div class="col-md-4">
+                    <textbox className="label-down">
+                      Page Number {i + 1} / {sponsorshipApplicationData.length}
+                    </textbox>
+                  </div>
+                  <div class="col-md-4">
+                    {i + 1 == sponsorshipApplicationData.length ? (
+                      <button
+                        className="button_gray"
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setI(i + 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    )}
+                  </div>
                 </div>
+              </>
+            ) : (
+              <div class="col-md-12">
+                <h2 className="titletext">No Applications to Display</h2>
               </div>
-            </Form>
-            <div class="row">
-              <div class="col-md-4">
-                {i ? (
-                  <button
-                    onClick={() => setI(i - 1)}
-                    class="Button"
-                    className="button_blue"
-                  >
-                    {" "}
-                    Prev Page
-                  </button>
-                ) : (
-                  <button className="button_gray"> Prev Page</button>
-                )}
-              </div>
-              <div class="col-md-4">
-                <textbox className="label-down">
-                  Page Number {i + 1} / {sponsorshipApplicationData.length}
-                </textbox>
-              </div>
-              <div class="col-md-4">
-                {i + 1 == sponsorshipApplicationData.length ? (
-                  <button
-                    className="button_gray"
-                    //MAKE THIS GREYED OUT
-                  >
-                    {" "}
-                    Next Page
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => setI(i + 1)}
-                    class="Button"
-                    className="button_blue"
-                  >
-                    {" "}
-                    Next Page
-                  </button>
-                )}
-              </div>
-            </div>
+            )}
             );
           </div>
         </section>
