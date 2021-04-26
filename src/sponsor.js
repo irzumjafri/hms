@@ -1094,6 +1094,7 @@ const Sponsor = () => {
               ),
               editmyprofile: (
                 <EditMyProfileSponsor
+                fetchSponsorData={fetchSponsorData}
                   applicationStatus={applicationStatus}
                   firstName={firstName}
                   lastName={lastName}

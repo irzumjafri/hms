@@ -10,6 +10,7 @@ import "react-dropdown-now/style.css";
 
 const EditMyProfileSponsor = (props) => {
   const {
+    fetchSponsorData,
     firstName,
     lastName,
     email,
@@ -209,19 +210,16 @@ const EditMyProfileSponsor = (props) => {
                     Mode of Communication *
                   </Form.Label>
                   <Dropdown
-              className="my-className"
-              options={[
-                { value: "Phone/Whatsapp", label: "Phone / Whatsapp" },
-                { value: "Email", label: "Email" }
-    
-              ]}
-              required
-              placeholder = {preferredMediumOfCommunication}
-              value={preferredMediumOfCommunication}
-                onChange={(i) =>
-            setPreferredMediumOfCommunication(i.value)
-          }
-            />
+                    className="my-className"
+                    options={[
+                      { value: "Phone/Whatsapp", label: "Phone / Whatsapp" },
+                      { value: "Email", label: "Email" },
+                    ]}
+                    required
+                    placeholder={preferredMediumOfCommunication}
+                    value={preferredMediumOfCommunication}
+                    onChange={(i) => setPreferredMediumOfCommunication(i.value)}
+                  />
                   {/* <Form.Control
                     type="text"
                     required
@@ -249,17 +247,17 @@ const EditMyProfileSponsor = (props) => {
                   <Form.Label className="label-right">
                     Payment Method *
                   </Form.Label>
-                  <Dropdown className="my-className"
-              options={[
-                { value: "Quarterly", label: "Quarterly" },
-                { value: "Monthly", label: "Monthly" },
-                { value: "Annually", label: "Annualy"}
-              ]}
-              required
-              placeholder={paymentSchedule}
-              value={paymentSchedule}
-              onSelect={(i) => setPaymentSchedule(i.value)}
-              />
+                  <Dropdown
+                    className="my-className"
+                    options={[
+                      { value: "Cash", label: "Cash" },
+                      { value: "Online Transfer", label: "Online Transfer" },
+                      { value: "Cheque", label: "Cheque" },
+                    ]}
+                    required
+                    value={paymentMethod}
+                    onChange={(i) => setPaymentMethod(i.value)}
+                  />
                   {/* <Form.Control
                     type="text"
                     required
@@ -281,17 +279,17 @@ const EditMyProfileSponsor = (props) => {
                     onChange={(e) => setPaymentSchedule(e.target.value)} // make it into drop down menu
                   ></Form.Control> */}
                   <Dropdown
-              className="my-className"
-              options={[
-                { value: "Quarterly", label: "Quarterly" },
-                { value: "Monthly", label: "Monthly" },
-                { value: "Annually", label: "Annualy"}
-              ]}
-              required
-              placeholder={paymentSchedule}
-              value={paymentSchedule}
-              onSelect={(i) => setPaymentSchedule(i.value)}
-              />
+                    className="my-className"
+                    options={[
+                      { value: "Quarterly", label: "Quarterly" },
+                      { value: "Monthly", label: "Monthly" },
+                      { value: "Annually", label: "Annualy" },
+                    ]}
+                    required
+                    placeholder={paymentSchedule}
+                    value={paymentSchedule}
+                    onSelect={(i) => setPaymentSchedule(i.value)}
+                  />
                 </div>
 
                 <div class="col-md-6">
@@ -350,7 +348,7 @@ const EditMyProfileSponsor = (props) => {
                           </div>
                           <div class="col-md-6">
                             <button
-                              onClick={() => setRouter("registered")}
+                              onClick={() => {fetchSponsorData();setRouter("registered")}}
                               className="button_red"
                             >
                               Discard Changes
