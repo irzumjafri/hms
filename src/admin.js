@@ -756,7 +756,7 @@ const Admin = () => {
         dateOfBirth: child.dateOfBirth,
         gender: child.gender,
         currentAddress: child.currentAddress,
-        grade: child.gender,
+        grade: child.grade,
         contactInformation: child.contactInformation,
         guardian1Name: child.guardian1Name,
         guardian1Relation: child.guardian1Relation,
@@ -1307,15 +1307,13 @@ const Admin = () => {
   // this function allows for admin to view all the letters in the database
   const fetchLetters = () => {
     let tempData = [];
-
-    setLetters(tempData);
-
     db.collection("letters")
       .get()
       .then((querySnapshot) => {
         // contact us is not defined
         if (querySnapshot.empty) {
           console.log("No letters present in the database");
+          setLetters(tempData);
           return;
         } else {
           querySnapshot.forEach((doc) => {
