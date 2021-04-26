@@ -141,7 +141,6 @@ const AdminAcademicReports = (props) => {
   const [s6, setS6] = useState(0);
   const [grd, setGrd] = useState("");
   const [editing, setEditing] = useState(false);
-  const [error, setError] = useState("");
 
   const fetchChildData = () => {
     var child = [];
@@ -411,7 +410,6 @@ const AdminAcademicReports = (props) => {
                           </StyledPopup>
 
             </div> */}
-            <div class="row"><p classname='label-left'>{error}</p></div>
             <div class="row">
               <div className="col-md-6">
                 {childName && reportType ? (
@@ -449,7 +447,6 @@ const AdminAcademicReports = (props) => {
                                 ((s1 + s2 + s3 + s4 + s5 + s6) / 600) * 100,
                             });
                       }
-                      setError("")
                       setRouter("home");
                     }}
                     class="Button"
@@ -459,7 +456,7 @@ const AdminAcademicReports = (props) => {
                     Save Changes
                   </button>
                 ) : (
-                  <button class="Button" className="button_gray" onClick = {() => {setError("Child Name or Report Type missing from entry.")}} >
+                  <button class="Button" className="button_gray">
                     {"                       "}
                     Save Changes
                   </button>
