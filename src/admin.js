@@ -236,6 +236,7 @@ const Admin = () => {
   // This function gets all the current data of sposorship applications on db and sets them here to be displayed
   const fetchSponsorshipApplications = () => {
     let tempApplications = [];
+    setSponsorshipApplicationData([])
     db.collection("sponsorshipApplicants")
       .get()
       .then((querySnapshot) => {
@@ -326,6 +327,7 @@ const Admin = () => {
         }
 
         // delete profile from applications
+        console.log("DELETING SPONSORSHIP APPLICATION")
         db.collection("sponsorshipApplicants")
           .doc(identity.toString().replace(/\s/g, ""))
           .delete()
