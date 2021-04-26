@@ -150,7 +150,7 @@ const AdminMeetingRequests = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">MEETING REQUESTS</h2>
-            <p className="smalltext1" onClick={() => fetchMeetingRequests()}>
+            <p className="smalltext1" onClick={() => {fetchMeetingRequests(); setI(0)}}>
               <span>Sync</span>
             </p>
           </nav>
