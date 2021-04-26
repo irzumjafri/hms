@@ -2045,6 +2045,23 @@
   width: 100%;
 }
 
+.requestAMeeting .requestAMeetingContainer .button_blue {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background: #d2d2d2;
+  border-radius: 10px;
+  margin: 5% auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+}
+
 .requestAMeeting .requestAMeetingContainer .titletext {
   color: white;
   margin-bottom: 10px;
