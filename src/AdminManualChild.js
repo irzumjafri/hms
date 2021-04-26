@@ -101,6 +101,9 @@ const AdminManualChild = (props) => {
   `,
   } = props;
 
+  const [ok, setOk] = useState(false);
+
+
   const fetchChildData = () => {
     var child = [];
     {
@@ -113,6 +116,17 @@ const AdminManualChild = (props) => {
     return child;
   };
 
+  
+  function uniqueChild() {
+    console.log('functioncalled')
+    let myArray = childrenAssigned
+    for (var i = 0; i < myArray.length; i++){
+      if (myArray[i] == "NULL"){
+        return false;
+      }
+    }
+    return myArray.length === new Set(myArray).size;
+  }
 
   return (
     <body>
@@ -141,6 +155,7 @@ const AdminManualChild = (props) => {
                                 temp = childrenAssigned;
                                 temp[i] = x.value;
                                 setChildrenAssigned(temp);
+                                setOk(uniqueChild())
                               }
                             }} // always fires once a selection happens even if there is no change
                           />
@@ -150,7 +165,7 @@ const AdminManualChild = (props) => {
                   </div>
                 </Form>
                 <div class="row">
-                  <div class="col-md-6">
+                  {ok ? (<div class="col-md-6">
                     <div
                       onClick={() => {
                         setRouter("home");
@@ -166,7 +181,14 @@ const AdminManualChild = (props) => {
                     >
                       Assign Children
                     </div>
-                  </div>
+                  </div>) : (<div class="col-md-6">
+                    <div
+                      class="Button"
+                      className="button_gray"
+                    >
+                      Assign Children
+                    </div>
+                  </div>)}
                   <div class="col-md-6">
                     <StyledPopup
                       trigger={
