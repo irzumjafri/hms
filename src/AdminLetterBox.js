@@ -201,8 +201,8 @@ const AdminLetterBox = (props) => {
                       {(close) => (
                         <div>
                           <div>
-                            You are about to send the letter you just
-                            composed/uploaded. Do you want to continue?
+                            You are about to send the letter you just composed.
+                            Do you want to continue?
                           </div>
                           <div class="row">
                             <div class="col-md-6">

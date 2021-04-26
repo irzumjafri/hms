@@ -174,42 +174,46 @@ const LetterBox = (props) => {
                       </div>
                     </Form>
 
-                    <StyledPopup
-                      trigger={
-                        <button className="button_green"> Send Letter</button>
-                      }
-                      position="center"
-                      modal
-                    >
-                      <div>
-                        You are about to send the letter you just
-                        composed/uploaded. Do you want to continue?
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <button className="button_gray"> Cancel</button>
+                    {reciever && letterBody ? (
+                      <StyledPopup
+                        trigger={
+                          <button className="button_green"> Send Letter</button>
+                        }
+                        position="center"
+                        modal
+                      >
+                        <div>
+                          You are about to send the letter you just composed. Do
+                          you want to continue?
                         </div>
-                        <div class="col-md-6">
-                          <button
-                            className="button_green"
-                            onClick={() => {
-                              {
-                                applicationStatus
-                                  ? setRouter("registered")
-                                  : setRouter("unregistered");
-                                console.log("SENDING LETTER");
-                              }
-                              sendLetters({
-                                name: reciever,
-                                content: letterBody,
-                              });
-                            }}
-                          >
-                            Send
-                          </button>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button className="button_gray"> Cancel</button>
+                          </div>
+                          <div class="col-md-6">
+                            <button
+                              className="button_green"
+                              onClick={() => {
+                                {
+                                  applicationStatus
+                                    ? setRouter("registered")
+                                    : setRouter("unregistered");
+                                  console.log("SENDING LETTER");
+                                }
+                                sendLetters({
+                                  name: reciever,
+                                  content: letterBody,
+                                });
+                              }}
+                            >
+                              Send
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    </StyledPopup>
+                      </StyledPopup>
+                    ) : (
+                      <button className="button_gray"> Send Letter</button>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -234,74 +238,77 @@ const LetterBox = (props) => {
                     <div>
                       {recievedLetters.length ? (
                         <>
-                        <Form>
-                          <div class="col-md-6">
-                            <Form.Label className="label-left">From</Form.Label>
-                            <Form.Control
-                              type="text"
-                              value={recievedLetters[i].senderName}
-                            ></Form.Control>
-                          </div>
-                          <div class="col-md-12">
-                            <Form.Label className="label-left">
-                              Letter
-                            </Form.Label>
-                            <Form.Control
-                              className="input-left"
-                              type="text"
-                              value={recievedLetters[i].content}
-                            ></Form.Control>
-                          </div>
-                        </Form>
-                        <div class="row">
-                        <div class="col-md-4">
-                          {i ? (
-                            <button
-                              onClick={() => setI(i - 1)}
-                              class="Button"
-                              className="button_blue"
-                            >
-                              {" "}
-                              Prev Page
-                            </button>
-                          ) : (
-                            <button
-                              class="Button"
-                              className="button_gray"
-                              //MAKE THIS GREYED OUT
-                            >
-                              {" "}
-                              Prev Page
-                            </button>
-                          )}
-                        </div>
-                        <div class="col-md-4">
-                          <textbox className="label-down">
-                            Page Number {i + 1} / {recievedLetters.length}
-                          </textbox>
-                        </div>
-                        <div class="col-md-4">
-                          {i + 1 == recievedLetters.length ? (
-                            <button
-                              className="button_gray"
+                          <Form>
+                            <div class="col-md-6">
+                              <Form.Label className="label-left">
+                                From
+                              </Form.Label>
+                              <Form.Control
+                                type="text"
+                                value={recievedLetters[i].senderName}
+                              ></Form.Control>
+                            </div>
+                            <div class="col-md-12">
+                              <Form.Label className="label-left">
+                                Letter
+                              </Form.Label>
+                              <Form.Control
+                                className="input-left"
+                                type="text"
+                                value={recievedLetters[i].content}
+                              ></Form.Control>
+                            </div>
+                          </Form>
+                          <div class="row">
+                            <div class="col-md-4">
+                              {i ? (
+                                <button
+                                  onClick={() => setI(i - 1)}
+                                  class="Button"
+                                  className="button_blue"
+                                >
+                                  {" "}
+                                  Prev Page
+                                </button>
+                              ) : (
+                                <button
+                                  class="Button"
+                                  className="button_gray"
+                                  //MAKE THIS GREYED OUT
+                                >
+                                  {" "}
+                                  Prev Page
+                                </button>
+                              )}
+                            </div>
+                            <div class="col-md-4">
+                              <textbox className="label-down">
+                                Page Number {i + 1} / {recievedLetters.length}
+                              </textbox>
+                            </div>
+                            <div class="col-md-4">
+                              {i + 1 == recievedLetters.length ? (
+                                <button
+                                  className="button_gray"
 
-                              //MAKE THIS GREYED OUT
-                            >
-                              {" "}
-                              Next Page
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => setI(i + 1)}
-                              class="Button"
-                              className="button_blue"
-                            >
-                              {" "}
-                              Next Page
-                            </button>
-                          )}
-                        </div>
-                      </div></>
+                                  //MAKE THIS GREYED OUT
+                                >
+                                  {" "}
+                                  Next Page
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={() => setI(i + 1)}
+                                  class="Button"
+                                  className="button_blue"
+                                >
+                                  {" "}
+                                  Next Page
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </>
                       ) : (
                         <div class="col-md-12">
                           <h2 className="titletext">No Letters to Display</h2>
