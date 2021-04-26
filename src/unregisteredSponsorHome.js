@@ -43,7 +43,6 @@ const UnregisteredSponsorHome = (props) => {
               className="my-className"
               options={[
                 { value: "changepw", label: "Edit Password" },
-                { value: "editprofile", label: "Edit Profile" },
                 { value: "deleteacc", label: "Delete Account" },
                 { value: "logout", label: "Log Out" },
               ]}
@@ -52,8 +51,6 @@ const UnregisteredSponsorHome = (props) => {
               onSelect={(i) => {
                 if (i.value == "logout") {
                   handleLogout();
-                } else if (i.value == "editprofile") {
-                  setRouter("editmyprofile");
                 } else if (i.value == "changepw") {
                   setRouter("editpassword");
                 } else if (i.value == "deleteacc") {
