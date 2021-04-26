@@ -983,10 +983,14 @@ const Sponsor = () => {
 
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
-      if (user /*&& user.emailVerified*/) {
+      if (user && user.emailVerified) {
         setUser(user);
         clearInputs();
         fetchLogin(user.uid);
+      }
+      else if (user && !user.emailVerified){
+        setErrorMessage("Please verify your account.")
+        setUser("")
       }
     });
   };
