@@ -1,5 +1,4 @@
 import React from "react";
-import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
 import Popup from "reactjs-popup";
@@ -10,6 +9,7 @@ import "react-dropdown-now/style.css";
 
 const EditMyProfileSponsor = (props) => {
   const {
+    id,
     fetchSponsorData,
     firstName,
     lastName,
@@ -304,18 +304,36 @@ const EditMyProfileSponsor = (props) => {
                 </div>
               </Form.Row>
               <div class="row">
-                <div class="col-md-6">
-                  <div
-                    onClick={() => {
-                      setRouter("registered");
-                      editSponsorProfile();
-                    }}
-                    class="Button"
-                    className="button_green"
-                  >
-                    Save Changes
+                {firstName &&
+                lastName &&
+                email &&
+                dateOfBirth &&
+                cnic &&
+                phoneNumber &&
+                address &&
+                preferredMediumOfCommunication &&
+                numberOfSponsoredChildren &&
+                paymentMethod &&
+                paymentSchedule ? (
+                  <div class="col-md-6">
+                    <div
+                      onClick={() => {
+                        setRouter("registered");
+                        editSponsorProfile();
+                      }}
+                      class="Button"
+                      className="button_green"
+                    >
+                      Save Changes
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div class="col-md-6">
+                    <div class="Button" className="button_gray">
+                      Save Changes
+                    </div>
+                  </div>
+                )}
                 <div class="col-md-6">
                   <StyledPopup
                     trigger={
@@ -348,7 +366,10 @@ const EditMyProfileSponsor = (props) => {
                           </div>
                           <div class="col-md-6">
                             <button
-                              onClick={() => {fetchSponsorData();setRouter("registered")}}
+                              onClick={() => {
+                                fetchSponsorData(id);
+                                setRouter("registered");
+                              }}
                               className="button_red"
                             >
                               Discard Changes
