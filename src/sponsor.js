@@ -277,11 +277,6 @@ const Sponsor = () => {
             console.log("Document successfully updated!");
             console.log("UPDATED PASSWORD");
             setPassword(newPassword);
-            {
-              applicationStatus
-                ? setRouter("registered")
-                : setRouter("unregistered");
-            }
           });
       })
       .catch(function (error) {
