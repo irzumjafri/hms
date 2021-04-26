@@ -445,7 +445,6 @@ const Sponsor = () => {
           setNumberOfSponsoredChildren(doc.data().numberOfSponsoredChildren);
           setPaymentMethod(doc.data().paymentMethod);
           setPaymentSchedule(doc.data().paymentSchedule);
-          setApplicationStatus(doc.data().applicationStatus);
           setHowToAssignChildren(doc.data().howToAssignChildren);
         } else {
           setApplicationStatus();
