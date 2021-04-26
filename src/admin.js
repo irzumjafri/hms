@@ -470,7 +470,7 @@ const Admin = () => {
 
   // This fucntion fetches all the sponsor profiles to be displayed
   const fetchSponsorData = () => {
-    setSponsorData([])
+    setSponsorData([]);
     let tempData = [];
     db.collection("registeredSponsors")
       .get()
@@ -638,9 +638,11 @@ const Admin = () => {
               // update children profiles with nic and unassigned status for assigend children of this sponsor
               setSponsorshipApplicationData([]);
               unassignChildren(mail);
-              db.collection("userAccounts").doc(i.toString().replace(/\s/g, "")).update({
-                applicationStatus: ""
-              });
+              db.collection("userAccounts")
+                .doc(i.toString().replace(/\s/g, ""))
+                .update({
+                  applicationStatus: "",
+                });
               fetchSponsorData();
             })
             .catch((error) => {
@@ -864,7 +866,7 @@ const Admin = () => {
   // This function gets all the meetign requests from sponsors and sets them in states to be diplayed
   const fetchMeetingRequests = () => {
     let tempData = [];
-    //setmeetingRecords(tempData);
+    setmeetingRecords(tempData);
     db.collection("meeting")
       .get()
       .then((querySnapshot) => {
@@ -1448,7 +1450,6 @@ const Admin = () => {
     });
   };
 
-  
   // this function is a helper function to create a notification document.
   const generateNotification = (createdForToSet, notificationeason) => {
     // the Reason will be set according to where the function is called from
