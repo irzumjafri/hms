@@ -191,7 +191,7 @@ const AdminLetterBox = (props) => {
                       ></Form.Control>
                     </Form>
 
-                    <StyledPopup
+                    {reciever && letterBody ? (<StyledPopup
                       trigger={
                         <button className="button_green"> Send Letter</button>
                       }
@@ -237,7 +237,7 @@ const AdminLetterBox = (props) => {
                           </div>
                         </div>
                       )}
-                    </StyledPopup>
+                    </StyledPopup>) : (<button className="button_gray"> Send Letter</button>)}
                   </div>
                 </div>
               ) : (

@@ -459,7 +459,7 @@ const AdminAcademicReports = (props) => {
                     Save Changes
                   </button>
                 ) : (
-                  <button class="Button" className="button_grey" onClick = {() => {setError("Child Name or Report Type missing from entry.")}} >
+                  <button class="Button" className="button_gray" onClick = {() => {setError("Child Name or Report Type missing from entry.")}} >
                     {"                       "}
                     Save Changes
                   </button>
