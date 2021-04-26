@@ -524,7 +524,6 @@ const Admin = () => {
         paymentSchedule: spon.paymentSchedule,
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
         applicationStatus: "",
-        howToAssignChildren: "auto", // hardcoding right now to "auto" // spon.howToAssignChildren  ////////////////////////
       })
       .then((value) => {
         // set this id as its own attribte

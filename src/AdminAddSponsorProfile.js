@@ -301,7 +301,7 @@ const AdminAddSponsorProfile = (props) => {
                 </Form.Row>
 
                 <div class="row">
-                  <div class="col-md-6">
+                  {(firstName && lastName && email && dateOfBirth && cnic && phoneNumber && address && preferredMediumOfCommunication && numberOfSponsoredChildren && paymentMethod && paymentSchedule) ? (<div class="col-md-6">
                     <div
                       onClick=
                       {() => {
@@ -328,7 +328,16 @@ const AdminAddSponsorProfile = (props) => {
                       {" "}
                           Create Profile
                         </div>
-                  </div>
+                  </div>) : (<div class="col-md-6">
+                    <div
+                      class="Button"
+                      className="button_gray"
+                    >
+                      {" "}
+                          Create Profile
+                        </div>
+                  </div>)}
+                  
                   <div class="col-md-6">
                   <StyledPopup trigger={<div class = "Button" className= "button_redd">
                      Discard Changes</div>} position="center" modal nested>
