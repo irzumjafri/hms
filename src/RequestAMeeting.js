@@ -2,9 +2,9 @@ import React from "react";
 import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import Styled from 'styled-components';
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Styled from "styled-components";
 import { Dropdown, Selection } from "react-dropdown-now";
 import "react-dropdown-now/style.css";
 
@@ -108,8 +108,6 @@ const RequestAMeeting = (props) => {
 
   }
   `,
-
-    
   } = props;
 
   return (
@@ -155,16 +153,16 @@ const RequestAMeeting = (props) => {
                       ></Form.Control>
                     </div>
                     <div class="col-md-3">
-                    <Dropdown
-                          className="my-className"
-                          options={[
-                            { value: "AM", label: "AM" },
-                            { value: "PM", label: "PM" },
-                          ]}
-                          required
-                          value={amPm}
-                          onSelect={(i) => setAmPm(i.value)}
-                         />
+                      <Dropdown
+                        className="my-className"
+                        options={[
+                          { value: "AM", label: "AM" },
+                          { value: "PM", label: "PM" },
+                        ]}
+                        required
+                        value={amPm}
+                        onSelect={(i) => setAmPm(i.value)}
+                      />
                     </div>
                   </div>
                 </div>
@@ -193,41 +191,50 @@ const RequestAMeeting = (props) => {
             </Form>
 
             <div className="btnContainer">
-            <div className = "col-md-12">
-            <StyledPopup trigger = {   <button
-                
-                className="button_green" 
-              >  Submit Request
-              </button>} position="center" modal>
-                 {(close) => (
-                              <div>
-                                <div>
-                                You are about to submit a request to schedule a meeting. Do you want to continue?
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <button
-                                      onClick={() => {
-                                        console.log("modal closed ");
-                                        close();
-                                      }}
-                                      className="button_gray"
-                                    >
-                                      Cancel
-                                    </button>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <button className = "button_green"  onClick={() =>
-                                      {applicationStatus
-                                        ? setRouter("registered")
-                                        : setRouter("unregistered");addMeetingRequest()}
-                                    }>Submit</button>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                      </StyledPopup>
+              <div className="col-md-12">
+                {(amPm && hour && minutes && purpose) ? (<StyledPopup
+                  trigger={
+                    <button className="button_green"> Submit Request</button>
+                  }
+                  position="center"
+                  modal
+                >
+                  {(close) => (
+                    <div>
+                      <div>
+                        You are about to submit a request to schedule a meeting.
+                        Do you want to continue?
                       </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <button
+                            onClick={() => {
+                              console.log("modal closed ");
+                              close();
+                            }}
+                            className="button_gray"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                        <div class="col-md-6">
+                          <button
+                            className="button_green"
+                            onClick={() => {
+                              applicationStatus
+                                ? setRouter("registered")
+                                : setRouter("unregistered");
+                              addMeetingRequest();
+                            }}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </StyledPopup>) : (<button className="button_gray"> Submit Request</button>)}
+              </div>
             </div>
           </div>
         </section>
