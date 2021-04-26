@@ -169,12 +169,12 @@ const AdminAcademicReports = (props) => {
       setId("");
       setN("");
       setRT("");
-      setS1();
-      setS2();
-      setS3();
-      setS4();
-      setS5();
-      setS6();
+      setS1(0);
+      setS2(0);
+      setS3(0);
+      setS4(0);
+      setS5(0);
+      setS6(0);
       setGrd("");
       setEditing(false);
     } else {
