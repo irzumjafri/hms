@@ -23,6 +23,34 @@ const AdminMeetingRequests = (props) => {
               <div>
                 <Form>
                   <Form.Row>
+                    <div class="col-md-12">
+                      <Form.Label className="label-left">
+                        Sponsor Name *
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={
+                          meetingRecords[i].firstName +
+                          " " +
+                          meetingRecords[i].lastName
+                        }
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
+                  <Form.Row>
+                    <div class="col-md-12">
+                      <Form.Label className="label-left">
+                        Sponsor Name *
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={
+                          meetingRecords[i].email
+                        }
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
+                  <Form.Row>
                     <div class="col-md-6">
                       <Form.Label className="label-left">
                         Meeting Date (DD-MM-YYYY) *
@@ -150,7 +178,13 @@ const AdminMeetingRequests = (props) => {
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">MEETING REQUESTS</h2>
-            <p className="smalltext1" onClick={() => {fetchMeetingRequests(); setI(0)}}>
+            <p
+              className="smalltext1"
+              onClick={() => {
+                fetchMeetingRequests();
+                setI(0);
+              }}
+            >
               <span>Sync</span>
             </p>
           </nav>
