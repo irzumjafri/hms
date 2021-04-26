@@ -132,28 +132,25 @@ const AdminLetterBox = (props) => {
   const [letterBody, setLetterBody] = useState("");
   const [writeOrReceive, setWriteOrReceive] = useState(true);
   const [i, setI] = useState(0);
-  
+
   const fetchChildData = () => {
     var child = [];
     {
       childData.map((con, i) => {
-        if (childData[i].status){
-          child.push({ label: (childData[i].name), value: childData[i].name});
+        if (childData[i].status) {
+          child.push({ label: childData[i].name, value: childData[i].name });
         }
-        
       });
     }
-    return child
-  }
-
+    return child;
+  };
 
   return (
     <body>
       <section className="navbar">
         <section className="letterBox">
           <div className="letterBoxContainer">
-            <nav>
-            </nav>
+            <nav></nav>
             <>
               {writeOrReceive ? (
                 <div>
@@ -173,7 +170,7 @@ const AdminLetterBox = (props) => {
                       </button>
                     </div>
                     <Form>
-                    <Form.Label className="label-left">From *</Form.Label>
+                      <Form.Label className="label-left">From *</Form.Label>
                       <Dropdown
                         className="my-className"
                         options={fetchChildData()}
@@ -184,16 +181,14 @@ const AdminLetterBox = (props) => {
                         }} // always fires once a selection happens even if there is no change
                       />
 
-                      
-                        <Form.Label className="label-left">Letter *</Form.Label>
-                        <Form.Control
-                          className="input-left"
-                          type="text"
-                          required
-                          value={letterBody}
-                          onChange={(e) => setLetterBody(e.target.value)}
-                        ></Form.Control>
-                    
+                      <Form.Label className="label-left">Letter *</Form.Label>
+                      <Form.Control
+                        className="input-left"
+                        type="text"
+                        required
+                        value={letterBody}
+                        onChange={(e) => setLetterBody(e.target.value)}
+                      ></Form.Control>
                     </Form>
 
                     <StyledPopup
@@ -264,64 +259,77 @@ const AdminLetterBox = (props) => {
                   {/* <h2>RECIEVING LETTERS</h2> */}
                   <div className="letterContainer">
                     return (
-                    <Form>
-                      <div class="col-md-6">
-                        <Form.Label className="label-left">From</Form.Label>
-                        <Form.Control
-                          type="text"
-                          value={letters[i].senderName}
-                        ></Form.Control>
+                    {letters.length ? (
+                      <>
+                        <Form>
+                          <div class="col-md-6">
+                            <Form.Label className="label-left">From</Form.Label>
+                            <Form.Control
+                              type="text"
+                              value={letters[i].senderName}
+                            ></Form.Control>
+                          </div>
+                          <div class="col">
+                            <Form.Label className="label-left">
+                              Letter
+                            </Form.Label>
+                            <Form.Control
+                              className="input-left"
+                              type="text"
+                              value={letters[i].content}
+                            ></Form.Control>
+                          </div>
+                        </Form>
+                        <div class="row">
+                          <div class="col-md-4">
+                            {i ? (
+                              <button
+                                onClick={() => setI(i - 1)}
+                                class="Button"
+                                className="button_blue"
+                              >
+                                {" "}
+                                Prev Page
+                              </button>
+                            ) : (
+                              <button className="button_gray">
+                                {" "}
+                                Prev Page
+                              </button>
+                            )}
+                          </div>
+                          <div class="col-md-4">
+                            <textbox className="label-down">
+                              Page Number {i + 1} / {letters.length}
+                            </textbox>
+                          </div>
+                          <div class="col-md-4">
+                            {i + 1 == letters.length ? (
+                              <button
+                                className="button_gray"
+                                //MAKE THIS GREYED OUT
+                              >
+                                {" "}
+                                Next Page
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => setI(i + 1)}
+                                class="Button"
+                                className="button_blue"
+                              >
+                                {" "}
+                                Next Page
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div class="col-md-12">
+                        <h2 className="titletext">No Letters to Display</h2>
                       </div>
-                      <div class="col">
-                        <Form.Label className="label-left">Letter</Form.Label>
-                        <Form.Control
-                          className="input-left"
-                          type="text"
-                          value={letters[i].content}
-                        ></Form.Control>
-                      </div>
-                    </Form>
-                    <div class="row">
-                      <div class="col-md-4">
-                        {i ? (
-                          <button
-                            onClick={() => setI(i - 1)}
-                            class="Button"
-                            className="button_blue"
-                          >
-                            {" "}
-                            Prev Page
-                          </button>
-                        ) : (
-                          <button className="button_gray"> Prev Page</button>
-                        )}
-                      </div>
-                      <div class="col-md-4">
-                        <textbox className="label-down">
-                          Page Number {i + 1} / {letters.length}
-                        </textbox>
-                      </div>
-                      <div class="col-md-4"> 
-                        {i + 1 == letters.length ? (
-                          <button
-                            className="button_gray"
-                            //MAKE THIS GREYED OUT
-                          >
-                            {" "}
-                            Next Page
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => setI(i + 1)}
-                            class="Button"
-                            className="button_blue"
-                          >
-                            {" "}
-                            Next Page
-                          </button>
-                        )}
-                      </div>
-                    </div>
+                    )}
                     );
                   </div>
                   );

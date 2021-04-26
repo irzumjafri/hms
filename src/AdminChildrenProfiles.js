@@ -132,273 +132,270 @@ const AdminChildrenProfiles = (props) => {
 
         <section className="childrenProfiles">
           <div className="childrenProfilesContainer">
-            
-              
-                <textbox className="titletext2">
-                  Total Children: {childData.length}
-                </textbox>
-              
-              <div class="col-md-12">
-                <div
-                  onClick={() => setRouter("addchildrenprofile")}
-                  class="Button"
-                  className="button_green"
-                >
-                  {" "}
-                  Add New Children
-                </div>
+            <textbox className="titletext2">
+              Total Children: {childData.length}
+            </textbox>
+            <div class="col-md-12">
+              <div
+                onClick={() => setRouter("addchildrenprofile")}
+                class="Button"
+                className="button_green"
+              >
+                {" "}
+                Add New Children
               </div>
-            
-              return (
-                <div>
-                  <div>
-                    <Form>
-                      <Form.Row>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">Name</Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].name}
-                          ></Form.Control>
-                        </div>
-                        <div class="col-md-6">
-                          <Form.Label className="label-right">
-                            Date of Birth (DD-MM-YYYY)
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].dateOfBirth}
-                          ></Form.Control>
-                        </div>
-                      </Form.Row>
+            </div>
+            return (
+            {childData.length ? (<div>
+              <div>
+                <Form>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].name}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Date of Birth (DD-MM-YYYY)
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].dateOfBirth}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-                      <Form.Row>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">Gender</Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].gender}
-                          ></Form.Control>
-                        </div>
-                        <div class="col-md-6">
-                          <Form.Label className="label-right">
-                            Current Address
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            value={childData[i].currentAddress}
-                          ></Form.Control>
-                        </div>
-                      </Form.Row>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">Gender</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].gender}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Current Address
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={childData[i].currentAddress}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-                      <Form.Row>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">Grade</Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].grade}
-                          ></Form.Control>
-                        </div>
-                        <div class="col-md-6">
-                          <Form.Label className="label-right">
-                            Contact Information
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].contactInformation}
-                          ></Form.Control>
-                        </div>
-                      </Form.Row>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">Grade</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].grade}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Contact Information
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].contactInformation}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-                      <Form.Row>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">
-                            Guardian 1’s Name
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].guardian1Name}
-                          ></Form.Control>
-                        </div>
-                        <div class="col-md-6">
-                          <Form.Label className="label-right">
-                            Guardian 1’s Relation
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].guardian1Relation}
-                          ></Form.Control>
-                        </div>
-                      </Form.Row>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Guardian 1’s Name
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].guardian1Name}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Guardian 1’s Relation
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].guardian1Relation}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-                      <Form.Row>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">
-                            Guardian 1’s Occupation
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].guardian1Occupation}
-                          ></Form.Control>
-                        </div>
-                        <div class="col-md-6">
-                          <Form.Label className="label-right">
-                            Guardian 1’s CNIC
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].guardian1Cnic}
-                          ></Form.Control>
-                        </div>
-                      </Form.Row>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Guardian 1’s Occupation
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].guardian1Occupation}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Guardian 1’s CNIC
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].guardian1Cnic}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-                      <Form.Row>
-                        <div class="col-md-6">
-                          <Form.Label className="label-left">
-                            Guardian 2’s Name
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].guardian2Name}
-                          ></Form.Control>
-                        </div>
-                        <div class="col-md-6">
-                          <Form.Label className="label-right">
-                            Guardian 2’s Relation
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].guardian2Relation}
-                          ></Form.Control>
-                        </div>
-                      </Form.Row>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Guardian 2’s Name
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].guardian2Name}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Guardian 2’s Relation
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].guardian2Relation}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-                      <Form.Row>
-                        <div class="col">
-                          <Form.Label className="label-right">
-                            Family Background
-                          </Form.Label>
-                          <Form.Control
-                            type="text"
-                            required
-                            value={childData[i].familyBackground}
-                          ></Form.Control>
-                        </div>
-                      </Form.Row>
+                  <Form.Row>
+                    <div class="col">
+                      <Form.Label className="label-right">
+                        Family Background
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={childData[i].familyBackground}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
 
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div
-                            onClick={() => callchildeditprofile(childData[i])}
-                            class="Button"
-                            className="button_blue"
-                          >
-                            {" "}
-                            Edit this Profile
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <StyledPopup
-                            trigger={
-                              <div class="Button" className="button_redd">
-                                Delete this Profile
-                              </div>
-                            }
-                            position="center"
-
-                            modal
-                            nested
-                          >
-                            {(close) => (
-                              <div>
-                                <div>
-                                  You are about to delete this profile. Do you
-                                  want to continue?
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <button
-                                      onClick={() => {
-                                        console.log("modal closed ");
-                                        close();
-                                      }}
-                                      className="button_gray"
-                                    >
-                                      Cancel
-                                    </button>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <button
-                                      onClick={() =>
-                                        deleteChildrenProfile(childData[i].id)
-                                      }
-                                      className="button_red"
-                                    >
-                                      Delete this Profile
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                          </StyledPopup>
-                        </div>
-                      </div>
-                    </Form>
-                    <div class="row">
-                      <div class="col-md-4">
-                        {i ? (
-                          <button
-                            onClick={() => setI(i - 1)}
-                            class="Button"
-                            className="button_blue"
-                          >
-                            {" "}
-                            Prev Page
-                          </button>
-                        ) : (
-                          <button className="button_gray"> Prev Page</button>
-                        )}
-                      </div>
-                      <div class="col-md-4">
-                        <textbox className="label-down">
-                          Page Number {i + 1} / {childData.length}
-                        </textbox>
-                      </div>
-                      <div class="col-md-4">
-                        {i + 1 == childData.length ? (
-                          <button
-                            className="button_gray"
-                            //MAKE THIS GREYED OUT
-                          >
-                            {" "}
-                            Next Page
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => setI(i + 1)}
-                            class="Button"
-                            className="button_blue"
-                          >
-                            {" "}
-                            Next Page
-                          </button>
-                        )}
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div
+                        onClick={() => callchildeditprofile(childData[i])}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Edit this Profile
                       </div>
                     </div>
+                    <div class="col-md-6">
+                      <StyledPopup
+                        trigger={
+                          <div class="Button" className="button_redd">
+                            Delete this Profile
+                          </div>
+                        }
+                        position="center"
+                        modal
+                        nested
+                      >
+                        {(close) => (
+                          <div>
+                            <div>
+                              You are about to delete this profile. Do you want
+                              to continue?
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <button
+                                  onClick={() => {
+                                    console.log("modal closed ");
+                                    close();
+                                  }}
+                                  className="button_gray"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                              <div class="col-md-6">
+                                <button
+                                  onClick={() =>
+                                    deleteChildrenProfile(childData[i].id)
+                                  }
+                                  className="button_red"
+                                >
+                                  Delete this Profile
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </StyledPopup>
+                    </div>
+                  </div>
+                </Form>
+                <div class="row">
+                  <div class="col-md-4">
+                    {i ? (
+                      <button
+                        onClick={() => setI(i - 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    ) : (
+                      <button className="button_gray"> Prev Page</button>
+                    )}
+                  </div>
+                  <div class="col-md-4">
+                    <textbox className="label-down">
+                      Page Number {i + 1} / {childData.length}
+                    </textbox>
+                  </div>
+                  <div class="col-md-4">
+                    {i + 1 == childData.length ? (
+                      <button
+                        className="button_gray"
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setI(i + 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    )}
                   </div>
                 </div>
-              );
+              </div>
+            </div>) : (<div class="col-md-12">
+                          <h2 className="titletext">No Children Profiles to Display</h2>
+                        </div>)}
+            );
           </div>
         </section>
         <nav className="navbarContainer_gray">

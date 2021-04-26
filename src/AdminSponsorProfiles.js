@@ -138,228 +138,233 @@ const AdminSponsorProfiles = (props) => {
                   Total Active Sponsors: {sponsorData.length}
                 </textbox>
               </div>
-              </div>
-              <div class="col-md-12">
-                <div
-                  onClick={() => setRouter("adminaddsponsorprofile")}
-                  class="Button"
-                  className="button_green"
-                >
-                  {" "}
-                  Add New Sponsors
-                </div>
-              </div>
-            
-            return (
-            <div>
-              <Form>
-                <Form.Row>
-                  <div class="col-md-6">
-                    <Form.Label className="label-left">First Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].firstName}
-                    ></Form.Control>
-                  </div>
-                  <div class="col-md-6">
-                    <Form.Label className="label-right">Last Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].lastName}
-                    ></Form.Control>
-                  </div>
-                </Form.Row>
-
-                <Form.Row>
-                  <div class="col-md-6">
-                    <Form.Label className="label-left">Email</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].email}
-                    ></Form.Control>
-                  </div>
-                  <div class="col-md-6">
-                    <Form.Label className="label-right">
-                      Date of Birth (DD-MM-YYYY)
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].dateOfBirth}
-                    ></Form.Control>
-                  </div>
-                </Form.Row>
-
-                <Form.Row>
-                  <div class="col-md-6">
-                    <Form.Label className="label-left">CNIC</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].cnic}
-                    ></Form.Control>
-                  </div>
-                  <div class="col-md-6">
-                    <Form.Label className="label-right">
-                      Phone Number
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].phoneNumber}
-                    ></Form.Control>
-                  </div>
-                </Form.Row>
-
-                <Form.Row>
-                  <div class="col-md-6">
-                    <Form.Label className="label-left">Address</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].address}
-                    ></Form.Control>
-                  </div>
-
-                  <div class="col-md-6">
-                    <Form.Label className="label-left">
-                      Preferred Medium of Communication
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].preferredMediumOfCommunication}
-                    ></Form.Control>
-                  </div>
-                </Form.Row>
-
-                <Form.Row>
-                  <div class="col-md-6">
-                    <Form.Label className="label-left">
-                      Number of Sponsored Children
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].numberOfSponsoredChildren}
-                    ></Form.Control>
-                  </div>
-
-                  <div class="col-md-6">
-                    <Form.Label className="label-left">
-                      Payment Method
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].paymentMethod}
-                    ></Form.Control>
-                  </div>
-                </Form.Row>
-
-                <Form.Row>
-                  <div class="col-md-6">
-                    <Form.Label className="label-left">
-                      Payment Schedule
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={sponsorData[i].paymentSchedule}
-                    ></Form.Control>
-                  </div>
-                </Form.Row>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <div
-                      onClick={() => calladmineditprofile(sponsorData[i])}
-                      class="Button"
-                      className="button_blue"
-                    >
-                      {" "}
-                      Edit this Profile
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <StyledPopup
-                      trigger={
-                        <div class="Button" className="button_redd">
-                          Delete this Profile
-                        </div>
-                      }
-                      position="center"
-                      modal
-                      nested
-                    >
-                      <div>
-                        You are about to delete this profile. Do you want to
-                        continue?
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <button className="button_gray">Cancel</button>
-                        </div>
-                        <div class="col-md-6">
-                          <button
-                            onClick={() =>
-                              deleteSponsorProfile(sponsorData[i].id)
-                            }
-                            className="button_red"
-                          >
-                            Delete this Profile
-                          </button>
-                        </div>
-                      </div>
-                    </StyledPopup>
-                  </div>
-                </div>
-              </Form>
-              <div class="row">
-                <div class="col-md-4">
-                  {i ? (
-                    <button
-                      onClick={() => setI(i - 1)}
-                      class="Button"
-                      className="button_blue"
-                    >
-                      {" "}
-                      Prev Page
-                    </button>
-                  ) : (
-                    <button className="button_gray"> Prev Page</button>
-                  )}
-                </div>
-                <div class="col-md-4">
-                  <textbox className="label-down">
-                    Page Number {i + 1}/{sponsorData.length}
-                  </textbox>
-                </div>
-                <div class="col-md-4">
-                  {i + 1 == sponsorData.length ? (
-                    <button
-                      className="button_gray"
-                      //MAKE THIS GREYED OUT
-                    >
-                      {" "}
-                      Next Page
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => setI(i + 1)}
-                      class="Button"
-                      className="button_blue"
-                    >
-                      {" "}
-                      Next Page
-                    </button>
-                  )}
-                </div>
+            </div>
+            <div class="col-md-12">
+              <div
+                onClick={() => setRouter("adminaddsponsorprofile")}
+                class="Button"
+                className="button_green"
+              >
+                {" "}
+                Add New Sponsors
               </div>
             </div>
+            return (
+            {sponsorData.length ? (
+              <div>
+                <Form>
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">First Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].firstName}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">Last Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].lastName}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
+
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">Email</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].email}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Date of Birth (DD-MM-YYYY)
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].dateOfBirth}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
+
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">CNIC</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].cnic}
+                      ></Form.Control>
+                    </div>
+                    <div class="col-md-6">
+                      <Form.Label className="label-right">
+                        Phone Number
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].phoneNumber}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
+
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">Address</Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].address}
+                      ></Form.Control>
+                    </div>
+
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Preferred Medium of Communication
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].preferredMediumOfCommunication}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
+
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Number of Sponsored Children
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].numberOfSponsoredChildren}
+                      ></Form.Control>
+                    </div>
+
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Payment Method
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].paymentMethod}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
+
+                  <Form.Row>
+                    <div class="col-md-6">
+                      <Form.Label className="label-left">
+                        Payment Schedule
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        required
+                        value={sponsorData[i].paymentSchedule}
+                      ></Form.Control>
+                    </div>
+                  </Form.Row>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div
+                        onClick={() => calladmineditprofile(sponsorData[i])}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Edit this Profile
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <StyledPopup
+                        trigger={
+                          <div class="Button" className="button_redd">
+                            Delete this Profile
+                          </div>
+                        }
+                        position="center"
+                        modal
+                        nested
+                      >
+                        <div>
+                          You are about to delete this profile. Do you want to
+                          continue?
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button className="button_gray">Cancel</button>
+                          </div>
+                          <div class="col-md-6">
+                            <button
+                              onClick={() =>
+                                deleteSponsorProfile(sponsorData[i].id)
+                              }
+                              className="button_red"
+                            >
+                              Delete this Profile
+                            </button>
+                          </div>
+                        </div>
+                      </StyledPopup>
+                    </div>
+                  </div>
+                </Form>
+                <div class="row">
+                  <div class="col-md-4">
+                    {i ? (
+                      <button
+                        onClick={() => setI(i - 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Prev Page
+                      </button>
+                    ) : (
+                      <button className="button_gray"> Prev Page</button>
+                    )}
+                  </div>
+                  <div class="col-md-4">
+                    <textbox className="label-down">
+                      Page Number {i + 1}/{sponsorData.length}
+                    </textbox>
+                  </div>
+                  <div class="col-md-4">
+                    {i + 1 == sponsorData.length ? (
+                      <button
+                        className="button_gray"
+                        //MAKE THIS GREYED OUT
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setI(i + 1)}
+                        class="Button"
+                        className="button_blue"
+                      >
+                        {" "}
+                        Next Page
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div class="col-md-12">
+                <h2 className="titletext">No Sponsors to Display</h2>
+              </div>
+            )}
             );
           </div>
         </section>
