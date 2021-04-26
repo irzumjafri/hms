@@ -72,7 +72,6 @@ const Admin = () => {
   const [date, setDate] = useState();
   const [notifications, setNotifications] = useState([]);
 
-
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
   //------------------------------------------------------------------------------------FUNCTIONS--------------------------------------------------------------------------------------
@@ -236,7 +235,7 @@ const Admin = () => {
   // This function gets all the current data of sposorship applications on db and sets them here to be displayed
   const fetchSponsorshipApplications = () => {
     let tempApplications = [];
-    setSponsorshipApplicationData([])
+    setSponsorshipApplicationData([]);
     db.collection("sponsorshipApplicants")
       .get()
       .then((querySnapshot) => {
@@ -272,13 +271,13 @@ const Admin = () => {
 
   const manuallyAssignChildren = (i, xy) => {
     setNumberOfChildrenToAssign(i);
-    setSponsorIdToAssign(xy)
-    let child = []
-    for (var j = 0; j < i; j++){
-      child.push("NULL")
+    setSponsorIdToAssign(xy);
+    let child = [];
+    for (var j = 0; j < i; j++) {
+      child.push("NULL");
     }
-    console.log(child)
-    setChildrenAssigned(child)
+    console.log(child);
+    setChildrenAssigned(child);
     setRouter("manualassignchildren");
   };
 
@@ -327,7 +326,7 @@ const Admin = () => {
         }
 
         // delete profile from applications
-        console.log("DELETING SPONSORSHIP APPLICATION")
+        console.log("DELETING SPONSORSHIP APPLICATION");
         db.collection("sponsorshipApplicants")
           .doc(identity.toString().replace(/\s/g, ""))
           .delete()
@@ -351,6 +350,10 @@ const Admin = () => {
               id: identity,
               applicationStatus: apS,
               howToAssignChildren: howTo,
+            });
+
+            db.collection("userAccounts").doc(identity).update({
+              applicationStatus: "Accepted",
             });
             fetchSponsorshipApplications();
             fetchSponsorData();
@@ -634,6 +637,9 @@ const Admin = () => {
               // update children profiles with nic and unassigned status for assigend children of this sponsor
               setSponsorshipApplicationData([]);
               unassignChildren(mail);
+              db.collection("userAccounts").doc(i.toString().replace(/\s/g, "")).update({
+                applicationStatus: ""
+              });
               fetchSponsorData();
             })
             .catch((error) => {
@@ -1397,6 +1403,7 @@ const Admin = () => {
   const fetchNotifications = () => {
     // fetch all the notifications whose seen is false (not seen yet) and created for is admin
     let tempData = [];
+    markNotificationRead();
     db.collection("notifications")
       .where("createdFor", "==", "admin")
       .get()
@@ -1419,7 +1426,6 @@ const Admin = () => {
             }
           });
         }
-        markNotificationRead();
         setNotifications(tempData);
       });
   };
@@ -1520,8 +1526,8 @@ const Admin = () => {
               ),
               manualassignchildren: (
                 <AdminManualChild
-                sponsorIdToAssign={sponsorIdToAssign}
-                acceptSponsorshipRequest={acceptSponsorshipRequest}
+                  sponsorIdToAssign={sponsorIdToAssign}
+                  acceptSponsorshipRequest={acceptSponsorshipRequest}
                   childData={childData}
                   setRouter={setRouter}
                   handlelogout={handleAdminLogout}

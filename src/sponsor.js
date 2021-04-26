@@ -446,11 +446,6 @@ const Sponsor = () => {
           setPaymentMethod(doc.data().paymentMethod);
           setPaymentSchedule(doc.data().paymentSchedule);
           setApplicationStatus(doc.data().applicationStatus);
-          if (doc.data().applicationStatus) {
-            setRouter("registered");
-          } else {
-            setRouter("unregistered");
-          }
           setHowToAssignChildren(doc.data().howToAssignChildren);
         } else {
           setApplicationStatus();
@@ -479,7 +474,8 @@ const Sponsor = () => {
           setPassword(doc.data().password);
           setDateOfBirth(doc.data().dateOfBirth);
           setApplicationStatus(doc.data().applicationStatus);
-          if (applicationStatus) {
+          console.log(doc.data().applicationStatus)
+          if (doc.data().applicationStatus) {
             setRouter("registered");
           } else {
             setRouter("unregistered");
