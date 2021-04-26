@@ -191,53 +191,57 @@ const AdminLetterBox = (props) => {
                       ></Form.Control>
                     </Form>
 
-                    {reciever && letterBody ? (<StyledPopup
-                      trigger={
-                        <button className="button_green"> Send Letter</button>
-                      }
-                      position="center"
-                      modal
-                    >
-                      {(close) => (
-                        <div>
+                    {reciever && letterBody ? (
+                      <StyledPopup
+                        trigger={
+                          <button className="button_green"> Send Letter</button>
+                        }
+                        position="center"
+                        modal
+                      >
+                        {(close) => (
                           <div>
-                            You are about to send the letter you just composed.
-                            Do you want to continue?
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <button
-                                className="button_gray"
-                                onClick={() => {
-                                  console.log("modal closed ");
-                                  close();
-                                }}
-                              >
-                                {" "}
-                                Cancel
-                              </button>
+                            <div>
+                              You are about to send the letter you just
+                              composed. Do you want to continue?
                             </div>
-                            <div class="col-md-6">
-                              <button
-                                className="button_green"
-                                onClick={() => {
-                                  {
-                                    setRouter("home");
-                                    console.log("SENDING LETTER");
-                                  }
-                                  sendLetter({
-                                    fromName: reciever.value,
-                                    content: letterBody,
-                                  });
-                                }}
-                              >
-                                Send
-                              </button>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <button
+                                  className="button_gray"
+                                  onClick={() => {
+                                    console.log("modal closed ");
+                                    close();
+                                  }}
+                                >
+                                  {" "}
+                                  Cancel
+                                </button>
+                              </div>
+                              <div class="col-md-6">
+                                <button
+                                  className="button_green"
+                                  onClick={() => {
+                                    {
+                                      setRouter("home");
+                                      console.log("SENDING LETTER");
+                                    }
+                                    sendLetter({
+                                      fromName: reciever.value,
+                                      content: letterBody,
+                                    });
+                                  }}
+                                >
+                                  Send
+                                </button>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      )}
-                    </StyledPopup>) : (<button className="button_gray"> Send Letter</button>)}
+                        )}
+                      </StyledPopup>
+                    ) : (
+                      <button className="button_gray"> Send Letter</button>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -267,6 +271,14 @@ const AdminLetterBox = (props) => {
                             <Form.Control
                               type="text"
                               value={letters[i].senderName}
+                            ></Form.Control>
+                          </div>
+                          <div class="col-md-6">
+                            <Form.Label className="label-left">To</Form.Label>
+                            <Form.Control
+                              type="text"
+                              value={letters[i].receiverEmail
+                              }
                             ></Form.Control>
                           </div>
                           <div class="col">
