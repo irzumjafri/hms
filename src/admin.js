@@ -25,7 +25,7 @@ import AdminEditPaymentHistory from "./AdminEditPaymentHistory";
 import AdminLetterBox from "./AdminLetterBox";
 import AdminAddEvent from "./AdminAddEvent";
 import AdminDeleteEvent from "./AdminDeleteEvent";
-import AdminManualChild from "./AdminManualChild"
+import AdminManualChild from "./AdminManualChild";
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -63,12 +63,15 @@ const Admin = () => {
   const [paymentRecords, setpaymentRecords] = useState([]);
   const [editingPaymentHistory, setEditingPaymentHistory] = useState();
   const [numberOfChildrenToAssign, setNumberOfChildrenToAssign] = useState(0);
+  const [childrenAssigned, setChildrenAssigned] = useState([]);
+  const [sponsorIdToAssign, setSponsorIdToAssign] = useState([]);
   const [meetingRecords, setmeetingRecords] = useState([]);
   const [academicRecords, setacademicRecords] = useState([]);
   const [letters, setLetters] = useState([]);
   const [calendars, setcalendars] = useState([]);
   const [date, setDate] = useState();
   const [notifications, setNotifications] = useState([]);
+
 
   //------------------------------------------------------------------------------------STATES-----------------------------------------------------------------------------------------
 
@@ -266,8 +269,15 @@ const Admin = () => {
       });
   };
 
-  const manuallyAssignChildren = (i) => {
+  const manuallyAssignChildren = (i, xy) => {
     setNumberOfChildrenToAssign(i);
+    setSponsorIdToAssign(xy)
+    let child = []
+    for (var j = 0; j < i; j++){
+      child.push("NULL")
+    }
+    console.log(child)
+    setChildrenAssigned(child)
     setRouter("manualassignchildren");
   };
 
@@ -1507,7 +1517,16 @@ const Admin = () => {
                 />
               ),
               manualassignchildren: (
-                <AdminManualChild />
+                <AdminManualChild
+                sponsorIdToAssign={sponsorIdToAssign}
+                acceptSponsorshipRequest={acceptSponsorshipRequest}
+                  childData={childData}
+                  setRouter={setRouter}
+                  handlelogout={handleAdminLogout}
+                  numberOfChildrenToAssign={numberOfChildrenToAssign}
+                  childrenAssigned={childrenAssigned}
+                  setChildrenAssigned={setChildrenAssigned}
+                />
               ),
               sponsorshiprequests: (
                 <AdminSponsorshipRequests

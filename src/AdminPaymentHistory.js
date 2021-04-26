@@ -223,7 +223,8 @@ const AdminPaymentHistory = (props) => {
                               <div class="col-md-6">
                                 <button
                                   onClick={() =>
-                                    deletePaymentHistory(paymentRecords[i].id)
+                                    {deletePaymentHistory(paymentRecords[i].id);setI(0)}
+                                    
                                   }
                                   className="button_red"
                                 >

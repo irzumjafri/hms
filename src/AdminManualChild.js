@@ -10,11 +10,14 @@ import "react-dropdown-now/style.css";
 
 const AdminManualChild = (props) => {
   const {
+    acceptSponsorshipRequest,
     handleLogout,
-    date,
     setRouter,
-    addEvent,
-    sponsorData,
+    childData,
+    numberOfChildrenToAssign,
+    childrenAssigned,
+    sponsorIdToAssign,
+    setChildrenAssigned,
     StyledPopup = Styled(Popup)`
   // use your custom style for ".popup-overlay"
   &-overlay {
@@ -98,24 +101,18 @@ const AdminManualChild = (props) => {
   `,
   } = props;
 
-  const [title, setTitle] = useState("");
-  const [notifsFrom, setNotifsFrom] = useState("");
-  const [desc, setDesc] = useState("");
-  const [createdFor, setCreatedFor] = useState("");
-
-  const fetchSponsorData = () => {
-    var sponsor = [];
+  const fetchChildData = () => {
+    var child = [];
     {
-      sponsorData.map((con, i) => {
-        sponsor.push({ label: (sponsorData[i].firstName + " " + sponsorData[i].lastName + " ( " + sponsorData[i].email + " )"), value: sponsorData[i].email});
+      childData.map((con, i) => {
+        if (childData[i].status == "") {
+          child.push({ label: childData[i].name, value: childData[i].id });
+        }
       });
     }
-    sponsor.push({label: "All Sponsors", value: "sponsor"})
-    return sponsor
-  }
+    return child;
+  };
 
-
-  console.log(sponsorData)
 
   return (
     <body>
@@ -125,110 +122,101 @@ const AdminManualChild = (props) => {
         <section className="paymentHistory">
           <div className="paymentHistoryContainer">
             return (
-            <div>
-              <Form>
-              <Dropdown
-                        className="my-className"
-                        options={fetchSponsorData()}
-                        placeholder="Please select a sponsor"
-                        value="Please select a sponsor"
-                        onSelect={(i) => {
-                          setCreatedFor(i.value);
-                        }} // always fires once a selection happens even if there is no change
-                      />
-                <div class="col">
-                  <textbox className="label-left">Creating an event for {date}</textbox>
-                </div>
-                <div class="col">
-                  <Form.Label className="label-left">Event Title *</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  ></Form.Control>
-                </div>
-                <div class="col">
-                  <Form.Label className="label-left">
-                    Notifications From (DD-MM-YYYY) *
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={notifsFrom}
-                    onChange={(e) => setNotifsFrom(e.target.value)}
-                  ></Form.Control>
-                </div>
-                <div class="col">
-                  <Form.Label className="label-left">
-                    Description
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={desc}
-                    onChange={(e) => setDesc(e.target.value)}
-                  ></Form.Control>
-                </div>
-              </Form>
-              <div class="row">
-                <div class="col-md-6">
-                  <div
-                    onClick={() => {
-                      setRouter("home");
-                      addEvent({date: date, description: desc, title: title, notificationFrom: notifsFrom, createdFor: createdFor});
-                    }}
-                    class="Button"
-                    className="button_green"
-                  >
-                    Save Changes
+            {numberOfChildrenToAssign < fetchChildData().length ? (
+              <div>
+                <Form>
+                  <div class="col"></div>
+                  <div class="col">
+                    {childrenAssigned.map((con, i) => {
+                      return (
+                        <div class="col">
+                          <Dropdown
+                            className="my-className"
+                            options={fetchChildData()}
+                            placeholder="Please select child to assign"
+                            value="Please select a child to assign"
+                            onSelect={(x) => {
+                              {
+                                let temp = [];
+                                temp = childrenAssigned;
+                                temp[i] = x.value;
+                                setChildrenAssigned(temp);
+                              }
+                            }} // always fires once a selection happens even if there is no change
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </Form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div
+                      onClick={() => {
+                        setRouter("home");
+                        console.log(childrenAssigned);
+                        acceptSponsorshipRequest(
+                          sponsorIdToAssign,
+                          "manual",
+                          childrenAssigned
+                        );
+                      }}
+                      class="Button"
+                      className="button_green"
+                    >
+                      Assign Children
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <StyledPopup
+                      trigger={
+                        <div class="Button" className="button_redd">
+                          Discard Changes
+                        </div>
+                      }
+                      position="center"
+                      modal
+                      nested
+                    >
+                      {(close) => (
+                        <div>
+                          <div>
+                            You are about to discard the changes made. Do you
+                            want to continue?
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <button
+                                onClick={() => {
+                                  console.log("modal closed ");
+                                  close();
+                                }}
+                                className="button_gray"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                            <div class="col-md-6">
+                              <button
+                                onClick={() => setRouter("home")}
+                                className="button_red"
+                              >
+                                Discard Changes
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </StyledPopup>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <StyledPopup
-                    trigger={
-                      <div class="Button" className="button_redd">
-                        Discard Changes
-                      </div>
-                    }
-                    position="center"
-                    modal
-                    nested
-                  >
-                    {(close) => (
-                      <div>
-                        <div>
-                          You are about to discard the changes made. Do you want
-                          to continue?
-                        </div>
-
-                        <div class="row">
-                          <div class="col-md-6">
-                            <button
-                              onClick={() => {
-                                console.log("modal closed ");
-                                close();
-                              }}
-                              className="button_gray"
-                            >
-                              Cancel
-                            </button>
-                          </div>
-                          <div class="col-md-6">
-                            <button
-                              onClick={() => setRouter("home")}
-                              className="button_red"
-                            >
-                              Discard Changes
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </StyledPopup>
-                </div>
               </div>
-            </div>
+            ) : (
+              <div class="col-md-12">
+                <h2 className="titletext">Not Enough Children to Assign</h2>
+              </div>
+            )}
             );
           </div>
         </section>
@@ -237,15 +225,12 @@ const AdminManualChild = (props) => {
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
           <div className="smalltext">
-          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+            <p className="smalltext" onClick={handleLogout}>
+              <span>Logout</span>
+            </p>
           </div>
           <nav className="navbarContainer">
-            <p
-              className="smalltext"
-              onClick={() =>
-                setRouter("home")
-              }
-            >
+            <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">ADD EVENT</h2>

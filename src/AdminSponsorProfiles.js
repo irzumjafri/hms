@@ -306,7 +306,8 @@ const AdminSponsorProfiles = (props) => {
                           <div class="col-md-6">
                             <button
                               onClick={() =>
-                                deleteSponsorProfile(sponsorData[i].id)
+                                {deleteSponsorProfile(sponsorData[i].id);
+                                setI(0);}
                               }
                               className="button_red"
                             >

@@ -327,59 +327,18 @@ const SponsorshipRequests = (props) => {
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                            <StyledPopup
-                              trigger={
-                                <button
-                                  className="button_blue"
-                                  onClick={() =>
-                                    manuallyAssignChildren(
-                                      sponsorshipApplicationData[i]
-                                        .numberOfSponsoredChildren
-                                    )
-                                  }
-                                >
-                                  {" "}
-                                  Manually Assign
-                                </button>
+                            <button
+                              className="button_blue"
+                              onClick={() =>
+                                manuallyAssignChildren(
+                                  sponsorshipApplicationData[i]
+                                    .numberOfSponsoredChildren, sponsorshipApplicationData[i].id
+                                )
                               }
-                              modal
-                              nested
                             >
-                              {(close) => (
-                                <div>
-                                  <Form>
-                                    <Form.Label>
-                                      Number of Children to Assign *
-                                    </Form.Label>
-                                    <Form.Control type="text"></Form.Control>
-
-                                    <Form.Label>Select Children</Form.Label>
-                                    <Form.Control type="test"></Form.Control>
-                                  </Form>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <button
-                                        className="button_gray"
-                                        onClick={() => {
-                                          console.log("modal closed ");
-                                          close();
-                                        }}
-                                      >
-                                        {" "}
-                                        Cancel{" "}
-                                      </button>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                      <button className="button_green">
-                                        {" "}
-                                        Assign Children{" "}
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                            </StyledPopup>
+                              {" "}
+                              Manually Assign
+                            </button>
                           </div>
                           <div class="col-md-6">
                             <button
