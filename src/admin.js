@@ -25,6 +25,7 @@ import AdminEditPaymentHistory from "./AdminEditPaymentHistory";
 import AdminLetterBox from "./AdminLetterBox";
 import AdminAddEvent from "./AdminAddEvent";
 import AdminDeleteEvent from "./AdminDeleteEvent";
+import AdminManualChild from "./AdminManualChild"
 //-----------------------------------------------------------------------------------IMPORTS----------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------DATABSE INIT--------------------------------------------------------------------------------------
@@ -61,6 +62,7 @@ const Admin = () => {
   const [editingChildProfile, setEditingChildProfile] = useState();
   const [paymentRecords, setpaymentRecords] = useState([]);
   const [editingPaymentHistory, setEditingPaymentHistory] = useState();
+  const [numberOfChildrenToAssign, setNumberOfChildrenToAssign] = useState(0);
   const [meetingRecords, setmeetingRecords] = useState([]);
   const [academicRecords, setacademicRecords] = useState([]);
   const [letters, setLetters] = useState([]);
@@ -264,6 +266,11 @@ const Admin = () => {
       });
   };
 
+  const manuallyAssignChildren = (i) => {
+    setNumberOfChildrenToAssign(i);
+    setRouter("manualassignchildren");
+  };
+
   // this function allows admin users to accept the application with id = i and sets HowToAssign children according to
   // the popup. It will either be "Auto-assign" or "Assign Manually"
   const acceptSponsorshipRequest = (i, howTo, object) => {
@@ -348,7 +355,7 @@ const Admin = () => {
   // this function takes CNIC of number and assigns noc which are unsassigned to assigned and adds cnic of sponsor there
   // for identification
   const assignChildrenToSponsor = (mail, noc, howTo, object) => {
-    console.log("assigning children to sponsors")
+    console.log("assigning children to sponsors");
     // automatically assign children
     if (howTo === "auto") {
       db.collection("childrenProfiles")
@@ -1499,6 +1506,9 @@ const Admin = () => {
                   editAdminProfile={editAdminProfile}
                 />
               ),
+              manualassignchildren: (
+                <AdminManualChild />
+              ),
               sponsorshiprequests: (
                 <AdminSponsorshipRequests
                   fetchSponsorshipApplications={fetchSponsorshipApplications}
@@ -1507,6 +1517,7 @@ const Admin = () => {
                   handlelogout={handleAdminLogout}
                   rejectSponsorshipRequest={rejectSponsorshipRequest}
                   acceptSponsorshipRequest={acceptSponsorshipRequest}
+                  manuallyAssignChildren={manuallyAssignChildren}
                 />
               ),
               sponsorprofiles: (
@@ -1543,7 +1554,7 @@ const Admin = () => {
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   addPaymentHistory={addPaymentHistory}
-                  sponsorData = {sponsorData}
+                  sponsorData={sponsorData}
                 />
               ),
               editpaymenthistory: (

@@ -14,6 +14,7 @@ const SponsorshipRequests = (props) => {
     setRouter,
     rejectSponsorshipRequest,
     acceptSponsorshipRequest,
+    manuallyAssignChildren,
     fetchSponsorshipApplications,
     StyledPopup = Styled(Popup)`
   // use your custom style for ".popup-overlay"
@@ -134,7 +135,6 @@ const SponsorshipRequests = (props) => {
       <section className="navbar">
         <section className="editMyProfileSponsor">
           <div className="editMyProfileSponsorContainer">
-            
             {/* <div class="col-md-12">
               <div
                 onClick={() => setRouter("adminaddsponsorprofile")}
@@ -148,13 +148,14 @@ const SponsorshipRequests = (props) => {
             return (
             {sponsorshipApplicationData.length ? (
               <>
-              <div class="row">
-              <div class="col-md-12">
-                <textbox className="titletext2">
-                  Total Sponsorship Requests: {sponsorshipApplicationData.length}
-                </textbox>
-              </div>
-            </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <textbox className="titletext2">
+                      Total Sponsorship Requests:{" "}
+                      {sponsorshipApplicationData.length}
+                    </textbox>
+                  </div>
+                </div>
                 <Form>
                   <Form.Row>
                     <div class="col-md-6">
@@ -328,7 +329,15 @@ const SponsorshipRequests = (props) => {
                           <div class="col-md-6">
                             <StyledPopup
                               trigger={
-                                <button className="button_blue">
+                                <button
+                                  className="button_blue"
+                                  onClick={() =>
+                                    manuallyAssignChildren(
+                                      sponsorshipApplicationData[i]
+                                        .numberOfSponsoredChildren
+                                    )
+                                  }
+                                >
                                   {" "}
                                   Manually Assign
                                 </button>
@@ -371,7 +380,7 @@ const SponsorshipRequests = (props) => {
                                 </div>
                               )}
                             </StyledPopup>
-                          </div> 
+                          </div>
                           <div class="col-md-6">
                             <button
                               className="button_blue"

@@ -486,7 +486,7 @@ const Sponsor = () => {
           }
           fetchSponsorData(id);
           fetchChildProfiles(doc.data().email);
-          checkingPaymentHistory(id);
+          checkingPaymentHistory(doc.data().email);
           fetchFAQs();
           fetchContactUs();
           fetchLetters(doc.data().email);
@@ -669,9 +669,10 @@ const Sponsor = () => {
 
   // sponsor checking his payment history
   const checkingPaymentHistory = (i) => {
+    console.log("Fetch Payment Data")
     let tempData = [];
     db.collection("paymentHistory")
-      .where("senderEmail", "==", email)
+      .where("senderEmail", "==", i)
       .get()
       .then((querySnapshot) => {
         // No meeting request is in db and it is empty
