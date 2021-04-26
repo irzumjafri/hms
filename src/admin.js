@@ -509,7 +509,7 @@ const Admin = () => {
   const addSponsorProfile = (spon) => {
     console.log(spon);
     console.log("called");
-    db.collection("registeredSponsors")
+    db.collection("sponsorshipApplicants")
       .add({
         firstName: spon.firstName,
         lastName: spon.lastName,
@@ -523,20 +523,26 @@ const Admin = () => {
         paymentMethod: spon.paymentMethod,
         paymentSchedule: spon.paymentSchedule,
         timeStamp: firebase.firestore.Timestamp.fromDate(new Date()).toDate(),
-        applicationStatus: "Accepted",
-        howToAssignChildren: "auto", // hardcoding right now to "auto"
+        applicationStatus: "",
+        howToAssignChildren: "auto", // hardcoding right now to "auto" // spon.howToAssignChildren  ////////////////////////
       })
       .then((value) => {
         // set this id as its own attribte
-        let profileToEdit = db.collection("registeredSponsors").doc(value.id);
+        let profileToEdit = db
+          .collection("sponsorshipApplicants")
+          .doc(value.id);
         return profileToEdit
           .update({
             id: value.id,
           })
           .then(() => {
+            //////
+            let reason = `Admin generated a request for sponsorship for ${spon.firstName}${spon.lastName}`;
+            generateNotification("admin", reason);
+            //////
             console.log("Document successfully updated!");
             fetchSponsorshipApplications();
-            fetchSponsorData();
+            // fetchSponsorData();
           });
       });
   };
