@@ -470,6 +470,7 @@ const Admin = () => {
 
   // This fucntion fetches all the sponsor profiles to be displayed
   const fetchSponsorData = () => {
+    setSponsorData([])
     let tempData = [];
     db.collection("registeredSponsors")
       .get()
