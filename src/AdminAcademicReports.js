@@ -5,9 +5,9 @@ import logo from "./HMSlogo.png";
 import { Dropdown, Selection } from "react-dropdown-now";
 import "react-dropdown-now/style.css";
 import { Button, Form } from "react-bootstrap";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import Styled from 'styled-components';
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import Styled from "styled-components";
 
 const AdminAcademicReports = (props) => {
   const {
@@ -127,7 +127,6 @@ const AdminAcademicReports = (props) => {
   }
   `,
   } = props;
-  
 
   const [childName, setChildName] = useState("");
   const [reportType, setReportType] = useState("");
@@ -147,8 +146,8 @@ const AdminAcademicReports = (props) => {
     var child = [];
     {
       childData.map((con, i) => {
-        if (childData[i].status){
-        child.push({ label: childData[i].name, value: childData[i].name });
+        if (childData[i].status) {
+          child.push({ label: childData[i].name, value: childData[i].name });
         }
       });
     }
@@ -199,7 +198,7 @@ const AdminAcademicReports = (props) => {
     { label: "spring", value: "spring" },
   ];
 
-  console.log(editing)
+  console.log(editing);
 
   return (
     <body>
@@ -207,7 +206,7 @@ const AdminAcademicReports = (props) => {
         <section></section>
         <section className="academicReportsSponsor">
           <div className="academicReportsSponsorContainer">
-          {/* <div class="col-md-12">
+            {/* <div class="col-md-12">
                 <div
                   onClick={() => setRouter("addpaymenthistory")}
                   class="Button"
@@ -219,33 +218,33 @@ const AdminAcademicReports = (props) => {
               </div> */}
             <Form>
               <Form.Row>
-                <div class = "col-md-6">
-                <Dropdown
-                  className="my-className"
-                  options={fetchChildData()}
-                  placeholder="Please select a child"
-                  value="Please select a child"
-                  onSelect={(i) => {
-                    {
-                      setChildName(i.value);
-                      setValues(fetchChildReport(i.value, reportType));
-                    }
-                  }} // always fires once a selection happens even if there is no change
-                />
+                <div class="col-md-6">
+                  <Dropdown
+                    className="my-className"
+                    options={fetchChildData()}
+                    placeholder="Please select a child"
+                    value="Please select a child"
+                    onSelect={(i) => {
+                      {
+                        setChildName(i.value);
+                        setValues(fetchChildReport(i.value, reportType));
+                      }
+                    }} // always fires once a selection happens even if there is no change
+                  />
                 </div>
-                <div class = "col-md-6">
-                <Dropdown
-                  className="my-className"
-                  options={reportOptions}
-                  placeholder="Please Select Report Type"
-                  value="Please Select Report Type"
-                  onSelect={(i) => {
-                    {
-                      setReportType(i.value);
-                      setValues(fetchChildReport(childName, i.value));
-                    }
-                  }} // always fires once a selection happens even if there is no change
-                />
+                <div class="col-md-6">
+                  <Dropdown
+                    className="my-className"
+                    options={reportOptions}
+                    placeholder="Please Select Report Type"
+                    value="Please Select Report Type"
+                    onSelect={(i) => {
+                      {
+                        setReportType(i.value);
+                        setValues(fetchChildReport(childName, i.value));
+                      }
+                    }} // always fires once a selection happens even if there is no change
+                  />
                 </div>
               </Form.Row>
               <Form.Row>
@@ -310,7 +309,9 @@ const AdminAcademicReports = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
-                  <Form.Label className="label-right">General Knowledge</Form.Label>
+                  <Form.Label className="label-right">
+                    General Knowledge
+                  </Form.Label>
                   {/* <Form.Select options={marks6}/> */}
                   <Form.Control
                     type="text"
@@ -329,7 +330,7 @@ const AdminAcademicReports = (props) => {
                     type="text"
                     autoFocus
                     required
-                    value={s1+s2+s3+s4+s5+s6}
+                    value={s1 + s2 + s3 + s4 + s5 + s6}
                   ></Form.Control>
                 </div>
                 <div class="col-md-6">
@@ -338,7 +339,7 @@ const AdminAcademicReports = (props) => {
                   <Form.Control
                     type="text"
                     required
-                    value={((s1+s2+s3+s4+s5+s6)/600)*100}
+                    value={((s1 + s2 + s3 + s4 + s5 + s6) / 600) * 100}
                   ></Form.Control>
                 </div>
               </Form.Row>
@@ -356,7 +357,7 @@ const AdminAcademicReports = (props) => {
                 </div>
               </Form.Row>
             </Form>
-            
+
             {/* <div class="row">
                         <div class="col-md-6">
                           <div className= "button_blue"
@@ -412,102 +413,103 @@ const AdminAcademicReports = (props) => {
 
             </div> */}
 
-
-
-    
-            <div class = "row">
-            <div className="col-md-6">
-              
-                <button
-                  onClick={() => {{
-                    editing
-                      ? (editAcademicRecords({
-                          name: childName,
-                          id: id,
-                          reportType: reportType,
-                          subject1: s1,
-                          subject2: s2,
-                          subject3: s3,
-                          subject4: s4,
-                          subject5: s5,
-                          subject6: s6,
-                          totalMarks: s1+s2+s3+s4+s5+s6,
-                          grade: grd,
-                          percentage: ((s1+s2+s3+s4+s5+s6)/600)*100,
-                        }))
-                      : (addAcademicRecord({
-                          name: childName,
-                          reportType: reportType,
-                          subject1: s1,
-                          subject2: s2,
-                          subject3: s3,
-                          subject4: s4,
-                          subject5: s5,
-                          subject6: s6,
-                          totalMarks: s1+s2+s3+s4+s5+s6,
-                          grade: grd,
-                          percentage: ((s1+s2+s3+s4+s5+s6)/600)*100,
-                        }))
-                  };setRouter('home')}}
-                  class="Button"
-                  className="button_green"
-                >
-                  {"                       "}
-                  Save Changes
-                </button>
-              
+            <div class="row">
+              <div className="col-md-6">
+                {childName && reportType ? (
+                  <button
+                    onClick={() => {
+                      {
+                        editing
+                          ? editAcademicRecords({
+                              name: childName,
+                              id: id,
+                              reportType: reportType,
+                              subject1: s1,
+                              subject2: s2,
+                              subject3: s3,
+                              subject4: s4,
+                              subject5: s5,
+                              subject6: s6,
+                              totalMarks: s1 + s2 + s3 + s4 + s5 + s6,
+                              grade: grd,
+                              percentage:
+                                ((s1 + s2 + s3 + s4 + s5 + s6) / 600) * 100,
+                            })
+                          : addAcademicRecord({
+                              name: childName,
+                              reportType: reportType,
+                              subject1: s1,
+                              subject2: s2,
+                              subject3: s3,
+                              subject4: s4,
+                              subject5: s5,
+                              subject6: s6,
+                              totalMarks: s1 + s2 + s3 + s4 + s5 + s6,
+                              grade: grd,
+                              percentage:
+                                ((s1 + s2 + s3 + s4 + s5 + s6) / 600) * 100,
+                            });
+                      }
+                      setRouter("home");
+                    }}
+                    class="Button"
+                    className="button_green"
+                  >
+                    {"                       "}
+                    Save Changes
+                  </button>
+                ) : (
+                  <button class="Button" className="button_grey">
+                    {"                       "}
+                    Save Changes
+                  </button>
+                )}
               </div>
               <div className="col-md-6">
+                <StyledPopup
+                  trigger={
+                    <div class="Button" className="button_redd">
+                      Discard Changes
+                    </div>
+                  }
+                  position="center"
+                  modal
+                  nested
+                >
+                  {(close) => (
+                    <div>
+                      <div>
+                        You are about to discard the changes made. Do you want
+                        to continue?
+                      </div>
 
-              <StyledPopup trigger={<div class = "Button" className= "button_redd">
-
-
-                
-                     Discard Changes</div>} position="center" modal nested>
-
-                     {close => (
-      <div >
-        <div>
-          You are about to discard the changes made. Do you want to continue?
-        </div>
-
-        <div class = "row">
-                      <div class = "col-md-6">
-                      
-                     <button
-                        onClick={() => {
-                          console.log('modal closed ');
-                          close();
-                        }}
-                         className="button_gray"
-                       >
-                         Cancel
-                       </button> 
-
-                       </div>
-                       <div class = "col-md-6">
-                       <button
-                        onClick={() => setRouter("home")}
-                         
-                         className="button_red"
-                       >
-                        Discard Changes
-                       </button>
-
-                       </div>
-                       </div>
-
-      </div>
-    )}
-                    
-                       </StyledPopup>
-              
+                      <div class="row">
+                        <div class="col-md-6">
+                          <button
+                            onClick={() => {
+                              console.log("modal closed ");
+                              close();
+                            }}
+                            className="button_gray"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                        <div class="col-md-6">
+                          <button
+                            onClick={() => setRouter("home")}
+                            className="button_red"
+                          >
+                            Discard Changes
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </StyledPopup>
               </div>
-
-            
-            </div> 
+            </div>
           </div>
-
         </section>
         <nav className="navbarContainer_gray">
           <img src={logo} className="Applogo" alt="logo" />
@@ -515,23 +517,13 @@ const AdminAcademicReports = (props) => {
           <p className="smalltext" onClick={handleLogout}>
             <span>Logout</span>
           </p>
-       
 
           <nav className="navbarContainer">
-            <p
-              className="smalltext"
-              onClick={() =>
-                setRouter('home')
-              }
-            >
+            <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">ACADEMIC REPORTS</h2>
-            <p
-              className="smalltext1"
-              onClick={() =>
-                fetchAcademicRecords()}
-            >
+            <p className="smalltext1" onClick={() => fetchAcademicRecords()}>
               <span>Sync</span>
             </p>
           </nav>
