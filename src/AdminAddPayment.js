@@ -3,18 +3,31 @@ import SearchField from "react-search-field";
 import logo from "./HMSlogo.png";
 import { Button, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { Dropdown, Selection } from "react-dropdown-now";
+import "react-dropdown-now/style.css";
 
 const AdminAddPayment = (props) => {
   const {
     setRouter,
     addPaymentHistory,
+    sponsorData,
     handlelogout,
   } = props;
 
-  const [senderEmail, setSenderEmail] = useState("");
-  const [senderName, setSenderName] = useState("");
   const [amount, setAmount] = useState("");
   const [paymentDate, setPaymentDate] = useState("");
+  const [i, setI] = useState(0);
+
+
+  const fetchSponsorData = () => {
+    var sponsor = [];
+    {
+      sponsorData.map((con, i) => {
+          sponsor.push({ label: (sponsorData[i].firstName + " " + sponsorData[i].lastName), value: i});
+      });
+    }
+    return sponsor;
+  };
 
   return (
     <body>
@@ -30,12 +43,15 @@ const AdminAddPayment = (props) => {
                         <Form.Label className="label-left">
                           Sender Name *
                         </Form.Label>
-                        <Form.Control
-                          type="text"
-                          required
-                          value={senderName}
-                          onChange={(e) => setSenderName(e.target.value)}
-                        ></Form.Control>
+                        <Dropdown
+                        className="my-className"
+                        options={fetchSponsorData()}
+                        placeholder= {sponsorData[i].firstName + " " + sponsorData[i].lastName}
+                        value= {sponsorData[i].firstName + " " + sponsorData[i].lastName}
+                        onSelect={(i) => {
+                          setI(i.value);
+                        }} // always fires once a selection happens even if there is no change
+                      />
                       </div>
                       <div class="col-md-6">
                         <Form.Label className="label-right">
@@ -44,8 +60,7 @@ const AdminAddPayment = (props) => {
                         <Form.Control
                           type="text"
                           required
-                          value={senderEmail}
-                          onChange={(e) => setSenderEmail(e.target.value)}
+                          value={sponsorData[i].email}
                         ></Form.Control>
                       </div>
                     </Form.Row>
@@ -80,8 +95,8 @@ const AdminAddPayment = (props) => {
                          {() => {
                            setRouter("paymenthistory");
                            addPaymentHistory({
-                             senderName: senderName,
-                             senderEmail: senderEmail,
+                             senderName: (sponsorData[i].firstName + " " + sponsorData[i].lastName),
+                             senderEmail: sponsorData[i].email,
                              amount: amount,
                              paymentDate: paymentDate
                            });

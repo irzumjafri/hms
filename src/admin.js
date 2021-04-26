@@ -1543,6 +1543,7 @@ const Admin = () => {
                   handlelogout={handleAdminLogout}
                   setRouter={setRouter}
                   addPaymentHistory={addPaymentHistory}
+                  sponsorData = {sponsorData}
                 />
               ),
               editpaymenthistory: (
