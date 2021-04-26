@@ -348,6 +348,7 @@ const Admin = () => {
   // this function takes CNIC of number and assigns noc which are unsassigned to assigned and adds cnic of sponsor there
   // for identification
   const assignChildrenToSponsor = (mail, noc, howTo, object) => {
+    console.log("assigning children to sponsors")
     // automatically assign children
     if (howTo === "auto") {
       db.collection("childrenProfiles")
@@ -1399,8 +1400,8 @@ const Admin = () => {
             }
           });
         }
-        setNotifications(tempData);
         markNotificationRead();
+        setNotifications(tempData);
       });
   };
 

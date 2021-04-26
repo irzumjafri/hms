@@ -371,7 +371,7 @@ const SponsorshipRequests = (props) => {
                                 </div>
                               )}
                             </StyledPopup>
-                          </div>
+                          </div> 
                           <div class="col-md-6">
                             <button
                               className="button_blue"

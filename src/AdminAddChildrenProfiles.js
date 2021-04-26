@@ -301,7 +301,7 @@ const AdminAddChildrenProfiles = (props) => {
                               guardian2Name: childGuardian2Name,
                               guardian2Relation: childGuardian2Relation,
                               familyBackground: childFamilyBackground,
-                              status: "unassigned",
+                              status: "",
                             });
                           }}
                          class="Button"

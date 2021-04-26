@@ -147,9 +147,7 @@ const AdminAcademicReports = (props) => {
     var child = [];
     {
       childData.map((con, i) => {
-        if (childData[i].status) {
           child.push({ label: childData[i].name, value: childData[i].name });
-        }
       });
     }
 
