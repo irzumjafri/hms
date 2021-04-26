@@ -612,7 +612,7 @@ const Admin = () => {
       dateOfBirth: child.dateOfBirth,
       gender: child.gender,
       currentAddress: child.currentAddress,
-      grade: child.gender,
+      grade: child.grade,
       contactInformation: child.contactInformation,
       guardian1Name: child.guardian1Name,
       guardian1Relation: child.guardian1Relation,

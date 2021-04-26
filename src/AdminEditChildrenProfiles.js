@@ -136,8 +136,6 @@ const AdminEditChildrenProfiles = (props) => {
   const [childGuardian2Relation, setChildGuardian2Relation] = useState(childData.guardian2Relation);
   const [childFamilyBackground, setchildFamilyBackground] = useState(childData.familyBackground);
 
-  console.log(childGuardian1Occupation)
-  console.log(childGuardian1Cnic)
   return (
     <body>
        <section className="navbar">
