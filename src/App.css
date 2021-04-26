@@ -2757,6 +2757,7 @@
 .letterBox .letterBoxContainer .input-left {
   margin: 10px 0px;
   width: 100%;
+  min-height: 200px;
 }
 .letterBox .letterBoxContainer .label-right {
   color: white;

@@ -182,13 +182,13 @@ const AdminLetterBox = (props) => {
                       />
 
                       <Form.Label className="label-left">Letter *</Form.Label>
-                      <Form.Control
+                      <textarea
                         className="input-left"
                         type="text"
                         required
                         value={letterBody}
                         onChange={(e) => setLetterBody(e.target.value)}
-                      ></Form.Control>
+                      ></textarea>
                     </Form>
 
                     {reciever && letterBody ? (

@@ -164,13 +164,15 @@ const LetterBox = (props) => {
 
                       <div class="col-md-12">
                         <Form.Label className="label-left">Letter *</Form.Label>
-                        <Form.Control
+                       
+                        <textarea
                           className="input-left"
                           type="text"
                           required
                           value={letterBody}
                           onChange={(e) => setLetterBody(e.target.value)}
-                        ></Form.Control>
+                        ></textarea>
+                        
                       </div>
                     </Form>
 
