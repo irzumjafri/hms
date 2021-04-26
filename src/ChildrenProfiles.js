@@ -183,7 +183,7 @@ const ChildrenProfiles = (props) => {
                       <Form.Label className="label-left">Grade</Form.Label>
                       <Form.Control
                         type="text"
-                        autoFocus
+
                         required
                         value={childData[i].grade}
                       ></Form.Control>

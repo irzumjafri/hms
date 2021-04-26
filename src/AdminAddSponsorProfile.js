@@ -235,12 +235,16 @@ const AdminAddSponsorProfile = (props) => {
                     <Form.Label className="label-left">
                       Preferred Medium of Communication *
                         </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={preferredMediumOfCommunication}
-                      onChange={(e) => setPreferredMediumOfCommunication(e.target.value)}
-                    ></Form.Control>
+                        <Dropdown
+                    className="my-className"
+                    options={[
+                      { value: "Phone/Whatsapp", label: "Phone / Whatsapp" },
+                      { value: "Email", label: "Email" },
+                    ]}
+                    required
+                    value={preferredMediumOfCommunication}
+                    onChange={(i) => setPreferredMediumOfCommunication(i.value)}
+                  />
                   </div>
                 </Form.Row>
 
@@ -261,12 +265,17 @@ const AdminAddSponsorProfile = (props) => {
                     <Form.Label className="label-left">
                       Payment Method
                         </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={paymentMethod}
-                      onChange={(e) => setPaymentMethod(e.target.value)}
-                    ></Form.Control>
+                        <Dropdown
+                    className="my-className"
+                    options={[
+                      { value: "Cash", label: "Cash" },
+                      { value: "Online Transfer", label: "Online Transfer" },
+                      { value: "Cheque", label: "Cheque" },
+                    ]}
+                    required
+                    value={paymentMethod}
+                    onChange={(i) => setPaymentMethod(i.value)}
+                  />
                   </div>
                 </Form.Row>
 
@@ -275,12 +284,18 @@ const AdminAddSponsorProfile = (props) => {
                     <Form.Label className="label-left">
                       Payment Schedule
                     </Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      value={paymentSchedule}
-                      onChange={(e) => setPaymentSchedule(e.target.value)}
-                    ></Form.Control>
+                    <Dropdown
+                    className="my-className"
+                    options={[
+                      { value: "Quarterly", label: "Quarterly" },
+                      { value: "Monthly", label: "Monthly" },
+                      { value: "Annually", label: "Annualy" },
+                    ]}
+                    required
+                    placeholder="Select"
+                    value={paymentSchedule}
+                    onSelect={(i) => setPaymentSchedule(i.value)}
+                  />
                   </div>
                 </Form.Row>
 
