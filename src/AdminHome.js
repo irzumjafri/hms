@@ -139,13 +139,15 @@ const AdminHome = (props) => {
               <h1 className="label-left" /*Make the updates array work*/>
                 Updates
               </h1>
-              <button className="button_green"
+              
+              <button className="button_blue"
                     onClick={() => fetchNotifications()}>Refresh</button>
               {notifications.map((con, i) => {
                     return (
                       <p>{notifications[i].notificationContent}</p>
                     );
                   })}
+                  
             </div>
 
             <div>
