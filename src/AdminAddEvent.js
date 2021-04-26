@@ -107,15 +107,21 @@ const AdminAddEvent = (props) => {
     var sponsor = [];
     {
       sponsorData.map((con, i) => {
-        sponsor.push({ label: (sponsorData[i].firstName + " " + sponsorData[i].lastName + " ( " + sponsorData[i].email + " )"), value: sponsorData[i].email});
+        sponsor.push({
+          label:
+            sponsorData[i].firstName +
+            " " +
+            sponsorData[i].lastName +
+            " ( " +
+            sponsorData[i].email +
+            " )",
+          value: sponsorData[i].email,
+        });
       });
     }
-    sponsor.push({label: "All Sponsors", value: "sponsor"})
-    return sponsor
-  }
-
-
-  console.log(sponsorData)
+    sponsor.push({ label: "All Sponsors", value: "sponsor" });
+    return sponsor;
+  };
 
   return (
     <body>
@@ -127,17 +133,19 @@ const AdminAddEvent = (props) => {
             return (
             <div>
               <Form>
-              <Dropdown
-                        className="my-className"
-                        options={fetchSponsorData()}
-                        placeholder="Please select a sponsor"
-                        value="Please select a sponsor"
-                        onSelect={(i) => {
-                          setCreatedFor(i.value);
-                        }} // always fires once a selection happens even if there is no change
-                      />
+                <Dropdown
+                  className="my-className"
+                  options={fetchSponsorData()}
+                  placeholder="Please select a sponsor"
+                  value="Please select a sponsor"
+                  onSelect={(i) => {
+                    setCreatedFor(i.value);
+                  }} // always fires once a selection happens even if there is no change
+                />
                 <div class="col">
-                  <textbox className="label-left">Creating an event for {date}</textbox>
+                  <textbox className="label-left">
+                    Creating an event for {date}
+                  </textbox>
                 </div>
                 <div class="col">
                   <Form.Label className="label-left">Event Title *</Form.Label>
@@ -160,9 +168,7 @@ const AdminAddEvent = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col">
-                  <Form.Label className="label-left">
-                    Description
-                  </Form.Label>
+                  <Form.Label className="label-left">Description</Form.Label>
                   <Form.Control
                     type="text"
                     required
@@ -172,18 +178,31 @@ const AdminAddEvent = (props) => {
                 </div>
               </Form>
               <div class="row">
-                <div class="col-md-6">
+                {(date && desc && title && notifsFrom && createdFor) ? (<div class="col-md-6">
                   <div
                     onClick={() => {
                       setRouter("home");
-                      addEvent({date: date, description: desc, title: title, notificationFrom: notifsFrom, createdFor: createdFor});
+                      addEvent({
+                        date: date,
+                        description: desc,
+                        title: title,
+                        notificationFrom: notifsFrom,
+                        createdFor: createdFor,
+                      });
                     }}
                     class="Button"
                     className="button_green"
                   >
                     Save Changes
                   </div>
-                </div>
+                </div>) : (<div class="col-md-6">
+                  <div
+                    class="Button"
+                    className="button_gray"
+                  >
+                    Save Changes
+                  </div>
+                </div>)}
                 <div class="col-md-6">
                   <StyledPopup
                     trigger={
@@ -237,15 +256,12 @@ const AdminAddEvent = (props) => {
           <img src={logo} className="Applogo" alt="logo" />
           <h2 className="titletext">Hunehar Management System</h2>
           <div className="smalltext">
-          <p className="smalltext" onClick={handleLogout}><span>Logout</span></p>
+            <p className="smalltext" onClick={handleLogout}>
+              <span>Logout</span>
+            </p>
           </div>
           <nav className="navbarContainer">
-            <p
-              className="smalltext"
-              onClick={() =>
-                setRouter("home")
-              }
-            >
+            <p className="smalltext" onClick={() => setRouter("home")}>
               <span>HOME PAGE</span>
             </p>
             <h2 className="titletext">ADD EVENT</h2>

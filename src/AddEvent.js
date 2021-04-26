@@ -113,7 +113,9 @@ const AddEvent = (props) => {
             <div>
               <Form>
                 <div class="col">
-                  <textbox className="label-left">Creating an event for {date}</textbox>
+                  <textbox className="label-left">
+                    Creating an event for {date}
+                  </textbox>
                 </div>
                 <div class="col">
                   <Form.Label className="label-left">Event Title *</Form.Label>
@@ -136,9 +138,7 @@ const AddEvent = (props) => {
                   ></Form.Control>
                 </div>
                 <div class="col">
-                  <Form.Label className="label-left">
-                    Description
-                  </Form.Label>
+                  <Form.Label className="label-left">Description</Form.Label>
                   <Form.Control
                     type="text"
                     required
@@ -148,18 +148,31 @@ const AddEvent = (props) => {
                 </div>
               </Form>
               <div class="row">
-                <div class="col-md-6">
+                {(date && desc && title && notifsFrom) ? (<div class="col-md-6">
                   <div
                     onClick={() => {
                       setRouter("registered");
-                      addEvent({date: date, description: desc, title: title, notificationFrom: notifsFrom});
+                      addEvent({
+                        date: date,
+                        description: desc,
+                        title: title,
+                        notificationFrom: notifsFrom,
+                      });
                     }}
                     class="Button"
                     className="button_green"
                   >
                     Save Changes
                   </div>
-                </div>
+                </div>) : (<div class="col-md-6">
+                  <div
+                    
+                    class="Button"
+                    className="button_gray"
+                  >
+                    Save Changes
+                  </div>
+                </div>)}
                 <div class="col-md-6">
                   <StyledPopup
                     trigger={
