@@ -5,7 +5,7 @@ includes Sponsor Profile and Communication Management, Child Record Management a
 Academics Management. HMS will be a standalone product that will have its own, independent,
 URL. This URL can be used to access this web app from anywhere in the world.
 
-The project is deployed at
+The project is deployed at:
 hunehar.web.app
 
 The admin portal can be accessed at:
